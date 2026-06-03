@@ -160,7 +160,7 @@ export const projects: PortfolioProject[] = [
     title: 'Clipsmith: AI-Assisted Twitch Clip Pipeline',
     repo: 'https://github.com/ricardogr07/clipsmith',
     visibility: 'public',
-    featured: true,
+    featured: false,
     categories: ['media-automation', 'automation', 'rag-llm'],
     summary:
       'Local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips.',
@@ -203,7 +203,7 @@ export const projects: PortfolioProject[] = [
     title: 'PurkinjeUV: Scientific Python Package for Cardiac Simulation',
     repo: 'https://github.com/ricardogr07/purkinje-uv',
     visibility: 'public',
-    featured: false,
+    featured: true,
     categories: ['scientific-python', 'automation'],
     summary:
       'Modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',

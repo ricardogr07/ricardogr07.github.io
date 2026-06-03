@@ -1,33 +1,33 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Brain, Database, Cloud } from 'lucide-react'
+import { Brain, Database, FlaskConical } from 'lucide-react'
 import Hero from '@/components/hero'
 import ProjectCard from '@/components/project-card'
 import Footer from '@/components/footer'
 import { featuredProjects } from '@/content/projects'
 
 export const metadata: Metadata = {
-  title: 'Ricardo García | Full Stack · Data Science · Cloud',
+  title: 'Ricardo García | ML/AI · Data Engineering · Scientific Computing',
 }
 
 const focusAreas = [
   {
     Icon: Brain,
-    title: 'Data Science & ML/AI',
+    title: 'ML/AI Systems',
     description:
-      'Data cleaning, EDA, ML model training, RAG pipelines, LLM tooling, vector search, Bayesian methods, and AI-assisted automation.',
+      'RAG pipelines, LLM tooling, vector search, embedding workflows, ML model training, and AI-assisted automation.',
   },
   {
     Icon: Database,
-    title: 'Full Stack Engineering',
+    title: 'Data Engineering',
     description:
-      'Python/FastAPI backends, Next.js web apps, REST APIs, dashboards, CLI tools, web scraping, and end-to-end automation workflows.',
+      'ETL pipelines, DuckDB/Parquet datasets, analytics tooling, scraping infrastructure, and end-to-end data products.',
   },
   {
-    Icon: Cloud,
-    title: 'Cloud & Automation',
+    Icon: FlaskConical,
+    title: 'Scientific Computing',
     description:
-      'ETL pipelines, GitHub Actions CI/CD, serverless functions, Docker deployments, data infrastructure, and reproducible workflows.',
+      'Research software engineering, scientific Python packages, simulation tooling, computational modeling, and PyPI-published libraries.',
   },
 ]
 
@@ -85,7 +85,7 @@ export default function Home() {
               Featured Work
             </h2>
             <p className="text-neutral-500">
-              A cross-domain sample — AI pipelines, data engineering, and full-stack automation.
+              One project per pillar — ML/AI · Data Engineering · Scientific Computing.
             </p>
           </div>
 
