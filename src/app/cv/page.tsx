@@ -367,7 +367,6 @@ export default function CVPage() {
               ))}
             </div>
           </section>
-
         </div>
       </div>
 

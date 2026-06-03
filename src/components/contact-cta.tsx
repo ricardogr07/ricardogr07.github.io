@@ -24,7 +24,6 @@ export default function ContactCTA() {
         >
           Send an Email
         </a>
-
       </div>
     </section>
   )
