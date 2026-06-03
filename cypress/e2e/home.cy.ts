@@ -1,0 +1,68 @@
+describe('Portfolio Home Page', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it('renders the nav with all links', () => {
+    cy.get('[data-testid="nav"]').should('be.visible')
+    cy.contains('a', 'Projects').should('be.visible')
+    cy.contains('a', 'About').should('be.visible')
+    cy.contains('a', 'CV').should('be.visible')
+    cy.contains('a', 'Freelance').should('be.visible')
+  })
+
+  it('renders the hero section with main heading', () => {
+    cy.get('h1').should('be.visible')
+    cy.get('h1').should('contain.text', 'data science, ML/AI')
+  })
+
+  it('shows the Full Stack · Data Science · Cloud badge in the hero', () => {
+    cy.contains('Full Stack · Data Science · Cloud').should('be.visible')
+  })
+
+  it('has View Projects CTA linking to /projects', () => {
+    cy.contains('a', 'View Projects').should('have.attr', 'href', '/projects')
+  })
+
+  it('has About Me CTA linking to /about', () => {
+    cy.contains('a', 'About Me').should('have.attr', 'href', '/about')
+  })
+
+  it('does NOT have a GitHub CTA in the hero', () => {
+    cy.get('section[aria-label="Hero"]').within(() => {
+      cy.contains('a', 'GitHub').should('not.exist')
+    })
+  })
+
+  it('renders the "What I work on" section with 3 focus areas', () => {
+    cy.contains('h2', 'What I work on').should('be.visible')
+    cy.contains('Data Science & ML/AI').should('be.visible')
+    cy.contains('Full Stack Engineering').should('be.visible')
+    cy.contains('Cloud & Automation').should('be.visible')
+  })
+
+  it('renders exactly 3 featured project cards', () => {
+    cy.get('[data-testid="project-card"]').should('have.length', 3)
+  })
+
+  it('featured projects cover all three domains', () => {
+    cy.contains('Rust + Python RAG Chunking Pipeline').should('be.visible')
+    cy.contains('Mexico Jobs Analytics Pipeline').should('be.visible')
+    cy.contains('Clipsmith').should('be.visible')
+  })
+
+  it('has a "View all projects" link', () => {
+    cy.contains('a', /view all projects/i).should('have.attr', 'href', '/projects')
+  })
+
+  it('renders the footer with GitHub and LinkedIn links', () => {
+    cy.get('footer').within(() => {
+      cy.contains('GitHub').should('be.visible')
+      cy.contains('LinkedIn').should('be.visible')
+    })
+  })
+
+  it('does NOT show How I Work section on home page', () => {
+    cy.contains('h2', 'How I Work').should('not.exist')
+  })
+})
