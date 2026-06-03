@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ricardogr07.github.io
 
-## Getting Started
+Personal freelance portfolio — a public proof surface for automation, data engineering, RAG/LLM tooling, media automation, and scientific Python work.
 
-First, run the development server:
+Live at: **[ricardogr07.github.io](https://ricardogr07.github.io)**
+
+---
+
+## Stack
+
+| Layer                | Choice                                 |
+| -------------------- | -------------------------------------- |
+| Framework            | Next.js 15 (App Router, static export) |
+| Language             | TypeScript (strict)                    |
+| Styling              | Tailwind CSS v4                        |
+| Package manager      | pnpm                                   |
+| Unit/component tests | Vitest + React Testing Library         |
+| E2E tests            | Cypress                                |
+| Hosting              | GitHub Pages                           |
+| CI/Deploy            | GitHub Actions                         |
+
+---
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Start dev server
 pnpm dev
-# or
-bun dev
+
+# Visit http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command              | What it does                  |
+| -------------------- | ----------------------------- |
+| `pnpm dev`           | Start dev server              |
+| `pnpm build`         | Build static export to `out/` |
+| `pnpm typecheck`     | TypeScript check              |
+| `pnpm lint`          | ESLint                        |
+| `pnpm format`        | Prettier write                |
+| `pnpm format:check`  | Prettier check                |
+| `pnpm test`          | Vitest unit/component tests   |
+| `pnpm test:watch`    | Vitest in watch mode          |
+| `pnpm test:coverage` | Vitest with coverage          |
+| `pnpm e2e`           | Open Cypress interactive      |
+| `pnpm e2e:run`       | Run Cypress headless          |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/            # Next.js App Router pages and layout
+├── components/     # React components (each paired with a .test.tsx)
+├── content/        # Typed TypeScript data files (projects, services)
+└── lib/            # Shared types and test utilities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+cypress/
+└── e2e/            # Cypress E2E smoke tests
 
-## Deploy on Vercel
+docs/
+├── ARCHITECTURE.md   # Site structure and data flow
+├── CONTENT_GUIDE.md  # How to add/edit projects and services
+└── DEPLOYMENT.md     # GitHub Pages deployment guide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.github/
+└── workflows/
+    ├── ci.yml              # Lint, typecheck, test, build on PR
+    └── deploy-pages.yml    # Deploy to GitHub Pages on main merge
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Adding content
+
+See [docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md) for instructions on adding projects or services.
+
+---
+
+## Deployment
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for GitHub Pages setup instructions.
