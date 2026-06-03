@@ -42,7 +42,7 @@ const socialLinks: SocialLink[] = [
   {
     label: 'Google Scholar',
     handle: 'Garcia-Ramirez',
-    href: 'https://scholar.google.com/scholar?q=Ricardo+Garcia-Ramirez+biomedical',
+    href: 'https://scholar.google.com/citations?user=l71XTncAAAAJ&hl=es&oi=ao',
     hoverColor: 'group-hover:text-[#4285F4]',
     icon: 'scholar',
   },
@@ -424,7 +424,7 @@ export default function AboutPage() {
             </div>
             <div className="mt-6">
               <a
-                href="https://scholar.google.com/scholar?q=Ricardo+Garcia-Ramirez+biomedical"
+                href="https://scholar.google.com/citations?user=l71XTncAAAAJ&hl=es&oi=ao"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-neutral-400 transition-colors hover:text-cyan-400"
