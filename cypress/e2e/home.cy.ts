@@ -16,8 +16,8 @@ describe('Portfolio Home Page', () => {
     cy.get('h1').should('contain.text', 'data science, ML/AI')
   })
 
-  it('shows the Full Stack · Data Science · Cloud badge in the hero', () => {
-    cy.contains('Full Stack · Data Science · Cloud').should('be.visible')
+  it('shows the ML/AI · Data Engineering · Scientific Computing badge in the hero', () => {
+    cy.contains('ML/AI · Data Engineering · Scientific Computing').should('be.visible')
   })
 
   it('has View Projects CTA linking to /projects', () => {
@@ -36,9 +36,9 @@ describe('Portfolio Home Page', () => {
 
   it('renders the "What I work on" section with 3 focus areas', () => {
     cy.contains('h2', 'What I work on').should('be.visible')
-    cy.contains('Data Science & ML/AI').should('be.visible')
-    cy.contains('Full Stack Engineering').should('be.visible')
-    cy.contains('Cloud & Automation').should('be.visible')
+    cy.contains('ML/AI Systems').should('be.visible')
+    cy.contains('Data Engineering').should('be.visible')
+    cy.contains('Scientific Computing').should('be.visible')
   })
 
   it('renders exactly 3 featured project cards', () => {
@@ -48,7 +48,7 @@ describe('Portfolio Home Page', () => {
   it('featured projects cover all three domains', () => {
     cy.contains('Rust + Python RAG Chunking Pipeline').should('be.visible')
     cy.contains('Mexico Jobs Analytics Pipeline').should('be.visible')
-    cy.contains('Clipsmith').should('be.visible')
+    cy.contains('PurkinjeUV').should('be.visible')
   })
 
   it('has a "View all projects" link', () => {
