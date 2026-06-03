@@ -1,0 +1,345 @@
+import type { PortfolioProject } from '@/lib/types'
+
+export const projects: PortfolioProject[] = [
+  {
+    slug: 'linkedin-webscraper',
+    title: 'LinkedIn Job Scraping & Data Export Pipeline',
+    repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
+    visibility: 'public',
+    featured: false,
+    categories: ['web-scraping', 'automation', 'data-engineering'],
+    summary:
+      'Python scraping pipeline that collects job listings, normalizes records, persists run history in SQLite, and exports datasets through CLI workflows.',
+    problem:
+      'Teams often need recurring job-market or competitive-market datasets, but manual collection is slow, inconsistent, and hard to reuse.',
+    solution:
+      'Built a Python scraping pipeline that collects job listings, normalizes records, persists run history, and exports reusable datasets through CLI workflows.',
+    deliverables: [
+      'Scraping library',
+      'CLI commands',
+      'SQLite-backed persistence',
+      'Export workflows',
+      'Managed artifacts',
+      'Documentation',
+      'CI/docs/release automation',
+      'Optional OpenAI enrichment',
+    ],
+    techStack: [
+      'Python',
+      'SQLite',
+      'CLI tooling',
+      'TOML config',
+      'GitHub Actions',
+      'PyPI',
+      'OpenAI API',
+    ],
+    servicesSupported: [
+      'Web Scraping',
+      'Data Extraction',
+      'Python Automation',
+      'ETL Pipelines',
+      'Reporting Automation',
+    ],
+  },
+  {
+    slug: 'mx-jobs-insights',
+    title: 'Mexico Jobs Analytics Pipeline',
+    repo: 'https://github.com/ricardogr07/mx-jobs-insights',
+    visibility: 'public',
+    featured: true,
+    categories: ['data-engineering', 'automation', 'dashboard'],
+    summary:
+      'Analytics pipeline that transforms raw job snapshots into curated DuckDB/Parquet datasets, bilingual reports, and a public MkDocs documentation site.',
+    problem:
+      'Raw job listing snapshots are useful only if they become clean, queryable, repeatable analytics assets.',
+    solution:
+      'Built an analytics pipeline that transforms raw job snapshots into curated datasets, bilingual reports, and a public documentation site with automated publishing.',
+    deliverables: [
+      'Curated DuckDB/Parquet datasets',
+      'Weekly/monthly bilingual reports',
+      'Public MkDocs site',
+      'GitHub Actions workflow',
+      'Local/cloud execution paths',
+      'Reproducible pipeline CLI',
+    ],
+    techStack: [
+      'Python',
+      'DuckDB',
+      'Parquet',
+      'MkDocs',
+      'GitHub Actions',
+      'Cloud Run-ready workflow',
+    ],
+    servicesSupported: [
+      'Data Engineering',
+      'ETL Pipelines',
+      'Business Analytics',
+      'Dashboard/Reporting Automation',
+      'Cloud Application Development',
+    ],
+  },
+  {
+    slug: 'reposage',
+    title: 'RepoSage: AI-Assisted Repository Audit Tool',
+    repo: 'https://github.com/ricardogr07/reposage',
+    visibility: 'public',
+    featured: false,
+    categories: ['developer-tooling', 'automation', 'rag-llm'],
+    summary:
+      'Repository analysis tool that scans codebases, detects language and framework signals, summarizes dependencies, and outputs structured Markdown or JSON audit reports.',
+    problem:
+      "Engineering teams need quick codebase audits, but 'chat with your repo' tools often produce vague output without deterministic evidence.",
+    solution:
+      'Built a repository analysis tool that scans codebases, detects language/framework signals, summarizes dependencies, checks tests/docs/CI/typing/linting, and outputs structured Markdown or JSON reports.',
+    deliverables: [
+      'Local repo scanner',
+      'Language/framework detection',
+      'Dependency and manifest analysis',
+      'Quality heuristics',
+      'Markdown/JSON audit reports',
+      'Optional AI enrichment',
+      'GitHub Action integration',
+    ],
+    techStack: [
+      'Python',
+      'CLI tooling',
+      'GitHub Actions',
+      'JSON/Markdown reporting',
+      'Optional OpenAI/Anthropic enrichment',
+    ],
+    servicesSupported: [
+      'AI Automation',
+      'Developer Tooling',
+      'Codebase Audit',
+      'Software Quality',
+      'Technical Documentation',
+    ],
+  },
+  {
+    slug: 'rusty-rag-chunker',
+    title: 'Rust + Python RAG Chunking Pipeline',
+    repo: 'https://github.com/ricardogr07/rusty-rag-chunker',
+    visibility: 'public',
+    featured: true,
+    categories: ['rag-llm', 'backend-api', 'developer-tooling'],
+    summary:
+      'Token-aware RAG ingestion pipeline where Rust handles performance-critical chunking via PyO3, Python orchestrates embeddings, and Qdrant stores searchable vectors.',
+    problem:
+      'Naive text chunking can exceed embedding model token limits, cause truncation, and degrade retrieval quality.',
+    solution:
+      'Built a token-aware RAG ingestion pipeline where Rust handles performance-critical chunking, Python orchestrates embeddings and retrieval, and Qdrant stores searchable vectors.',
+    deliverables: [
+      'Rust tokenizer/chunker exposed to Python through PyO3',
+      'Python orchestration package',
+      'Qdrant vector store integration',
+      'CLI commands for ingest/search/ask',
+      'Local and OpenAI embedding paths',
+      'Hallucination guard',
+      'Benchmark results',
+    ],
+    techStack: [
+      'Rust',
+      'PyO3',
+      'Python',
+      'Qdrant',
+      'tiktoken-rs',
+      'OpenAI embeddings',
+      'sentence-transformers',
+      'Docker',
+    ],
+    servicesSupported: [
+      'RAG Pipelines',
+      'Python/Rust Integration',
+      'Vector Search',
+      'LLM Tooling',
+      'Performance Optimization',
+    ],
+  },
+  {
+    slug: 'clipsmith',
+    title: 'Clipsmith: AI-Assisted Twitch Clip Pipeline',
+    repo: 'https://github.com/ricardogr07/clipsmith',
+    visibility: 'public',
+    featured: true,
+    categories: ['media-automation', 'automation', 'rag-llm'],
+    summary:
+      'Local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips.',
+    problem:
+      'Turning long streams or recordings into short-form vertical clips is repetitive, slow, and hard to prioritize manually.',
+    solution:
+      'Built a local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips with optional captions and reframing.',
+    deliverables: [
+      'Local CLI',
+      'Twitch VOD ingestion',
+      'Spanish transcription',
+      'Chat replay parsing',
+      'Candidate scoring',
+      'LLM-assisted clip selection',
+      'FFmpeg clip generation',
+      'Optional captions',
+      'Optional webcam/gameplay stacked layout',
+      'FastAPI/dashboard path',
+    ],
+    techStack: [
+      'Python',
+      'FFmpeg',
+      'faster-whisper',
+      'chat-downloader',
+      'twitch-dl',
+      'OpenAI/Anthropic/Ollama',
+      'FastAPI',
+      'Next.js',
+    ],
+    servicesSupported: [
+      'AI Media Automation',
+      'Video Processing',
+      'Speech-to-Text Pipelines',
+      'LLM-Assisted Content Selection',
+      'Creator Tooling',
+    ],
+  },
+  {
+    slug: 'purkinje-uv',
+    title: 'PurkinjeUV: Scientific Python Package for Cardiac Simulation',
+    repo: 'https://github.com/ricardogr07/purkinje-uv',
+    visibility: 'public',
+    featured: false,
+    categories: ['scientific-python', 'automation'],
+    summary:
+      'Modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
+    problem:
+      'Computational modeling workflows need reusable, testable, documented package code instead of fragile research scripts.',
+    solution:
+      'Built a modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, export utilities, documentation, tests, and PyPI packaging.',
+    deliverables: [
+      'Python package',
+      'Fractal network generation',
+      'Mesh support',
+      'UV mapping workflow',
+      'Eikonal solver path',
+      'Visualization utilities',
+      'Docs',
+      'CI',
+      'PyPI release',
+    ],
+    techStack: [
+      'Python',
+      'NumPy',
+      'PyVista',
+      'VTK',
+      'GMSH',
+      'Scientific computing',
+      'GitHub Actions',
+      'PyPI',
+    ],
+    servicesSupported: [
+      'Scientific Python',
+      'Simulation Tools',
+      'Research Software Engineering',
+      'Package Development',
+      'Computational Modeling',
+    ],
+  },
+  {
+    slug: 'market-lab',
+    title: 'MarketLab: Reproducible Market Experiment Platform',
+    repo: 'https://github.com/ricardogr07/market-lab',
+    visibility: 'public',
+    featured: false,
+    categories: ['ml', 'data-engineering', 'automation'],
+    summary:
+      'Package-first research toolkit for market experiments: data preparation, baselines, ML model training, walk-forward evaluation, diagnostics, reports, and paper-trading workflows.',
+    problem:
+      'Financial experiments often become messy notebooks with unclear assumptions, weak validation, and unreproducible results.',
+    solution:
+      'Built a package-first research toolkit for market experiments, including data preparation, baselines, ML model training, walk-forward evaluation, diagnostics, reports, and paper-trading workflows.',
+    deliverables: [
+      'Experiment configs',
+      'Data preparation pipeline',
+      'Baseline strategies',
+      'ML model training workflows',
+      'Walk-forward folds',
+      'Diagnostics',
+      'Reports and plots',
+      'Local paper-trading MVP',
+      'Docker/MCP server path',
+    ],
+    techStack: [
+      'Python',
+      'pandas',
+      'scikit-learn',
+      'Docker',
+      'YAML configs',
+      'Alpaca paper trading',
+      'MCP tooling',
+    ],
+    servicesSupported: [
+      'ML Prototyping',
+      'Data Science Pipelines',
+      'Experiment Tracking',
+      'Financial Analytics',
+      'Python Automation',
+    ],
+  },
+  {
+    slug: 'myocardial-mesh',
+    title: 'Myocardial Mesh Scientific Python Library',
+    repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
+    visibility: 'public',
+    featured: false,
+    categories: ['scientific-python'],
+    summary:
+      'Refactored and packaged myocardial mesh utilities into a maintainable Python library for computational cardiology workflows.',
+    problem:
+      'Research code around myocardial mesh processing and Purkinje-fiber modeling needed packaging, maintainability, and reproducible structure.',
+    solution:
+      'Refactored and packaged myocardial mesh utilities into a maintainable Python library for computational cardiology workflows.',
+    deliverables: [
+      'Installable package',
+      'Mesh parsing/manipulation',
+      'Purkinje geometry integration',
+      'Simulation environment support',
+      'pytest-compatible structure',
+      'Release/versioning setup',
+    ],
+    techStack: ['Python', 'NumPy', 'VTK', 'pytest', 'pyproject.toml', 'Scientific computing'],
+    servicesSupported: [
+      'Scientific Python',
+      'Research Software Engineering',
+      'Simulation Tooling',
+      'Package Refactoring',
+    ],
+  },
+  {
+    slug: 'jax-bo',
+    title: 'JAX-BO: Bayesian Optimization Library Maintenance',
+    repo: 'https://github.com/ricardogr07/JAX-BO',
+    visibility: 'public',
+    featured: false,
+    categories: ['ml', 'scientific-python', 'developer-tooling'],
+    summary:
+      'Modernized a Bayesian Optimization library for current Python/JAX versions, improving documentation, testing demos, and expanding optimizer functionality.',
+    problem: 'Research libraries often break as Python and core ML dependencies evolve.',
+    solution:
+      'Modernized a Bayesian Optimization library for current Python/JAX versions, improved documentation, tested demos, added logging/error handling, and expanded optimizer functionality.',
+    deliverables: [
+      'Python/JAX compatibility updates',
+      'PyPI install path',
+      'Documentation improvements',
+      'Error handling/logging',
+      'Optimizer refactoring',
+      'Tested demos/examples',
+    ],
+    techStack: ['Python', 'JAX', 'Bayesian Optimization', 'Gaussian Processes', 'PyPI'],
+    servicesSupported: [
+      'ML Research Tooling',
+      'Bayesian Optimization',
+      'Scientific Python',
+      'Package Maintenance',
+    ],
+  },
+]
+
+export const publicProjects = projects.filter((p) => p.visibility === 'public')
+export const featuredProjects = publicProjects.filter((p) => p.featured)
+export const secondaryProjects = publicProjects.filter((p) => !p.featured)
