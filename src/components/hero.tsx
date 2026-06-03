@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5">
           <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
           <span className="text-sm font-medium tracking-wide text-cyan-400">
-            Full Stack · Data Science · Cloud
+            ML/AI · Data Engineering · Scientific Computing
           </span>
         </div>
 
@@ -29,15 +29,16 @@ export default function Hero() {
         <h1 className="mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
           Senior engineer at the intersection of{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-            full stack, data science,
+            data science, ML/AI,
           </span>{' '}
-          and cloud computing.
+          and production systems.
         </h1>
 
         {/* Sub-copy */}
         <p className="mx-auto mb-12 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          7+ years building across the full stack — data pipelines, ML/AI systems, web apps, APIs,
-          and cloud automation. M.Sc. Data Science (Distinction). Available for freelance projects.
+          M.Sc. Data Science (Distinction). 5 peer-reviewed publications. 7+ years enterprise
+          engineering. Now taking freelance projects in ML/AI systems, data engineering, and
+          scientific Python.
         </p>
 
         {/* CTAs */}
