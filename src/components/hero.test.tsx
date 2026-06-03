@@ -27,7 +27,7 @@ describe('Hero', () => {
   it('renders the ML/AI · Data Engineering · Scientific Computing badge', () => {
     render(<Hero />)
     expect(
-      screen.getByText(/ML\/AI · Data Engineering · Scientific Computing/i),
+      screen.getByText(/ML\/AI · Data Engineering · Scientific Computing/i)
     ).toBeInTheDocument()
   })
 
