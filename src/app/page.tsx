@@ -1,65 +1,127 @@
-import Image from "next/image";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Brain, Database, Cloud } from 'lucide-react'
+import Hero from '@/components/hero'
+import ProjectCard from '@/components/project-card'
+import Footer from '@/components/footer'
+import { featuredProjects } from '@/content/projects'
+
+export const metadata: Metadata = {
+  title: 'Ricardo García | Full Stack · Data Science · Cloud',
+}
+
+const focusAreas = [
+  {
+    Icon: Brain,
+    title: 'Data Science & ML/AI',
+    description:
+      'Data cleaning, EDA, ML model training, RAG pipelines, LLM tooling, vector search, Bayesian methods, and AI-assisted automation.',
+  },
+  {
+    Icon: Database,
+    title: 'Full Stack Engineering',
+    description:
+      'Python/FastAPI backends, Next.js web apps, REST APIs, dashboards, CLI tools, web scraping, and end-to-end automation workflows.',
+  },
+  {
+    Icon: Cloud,
+    title: 'Cloud & Automation',
+    description:
+      'ETL pipelines, GitHub Actions CI/CD, serverless functions, Docker deployments, data infrastructure, and reproducible workflows.',
+  },
+]
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main>
+      <Hero />
+
+      {/* Focus areas */}
+      <section
+        className="bg-neutral-900/40 px-6 py-20 lg:px-8 lg:py-28"
+        aria-labelledby="focus-heading"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2
+              id="focus-heading"
+              className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              What I work on
+            </h2>
+            <p className="text-neutral-500">
+              Building at the intersection of research and production engineering.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {focusAreas.map(({ Icon, title, description }) => (
+              <div
+                key={title}
+                className="flex flex-col gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-neutral-700"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-400/10">
+                  <Icon className="h-5 w-5 text-cyan-400" aria-hidden="true" />
+                </div>
+                <h3 className="text-base font-semibold text-white">{title}</h3>
+                <p className="text-sm leading-relaxed text-neutral-400">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Work */}
+      <section
+        id="featured-work"
+        className="bg-neutral-950 px-6 py-20 lg:px-8 lg:py-28"
+        aria-labelledby="featured-heading"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2
+              id="featured-heading"
+              className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Featured Work
+            </h2>
+            <p className="text-neutral-500">
+              A cross-domain sample — AI pipelines, data engineering, and full-stack automation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                featured
+                href={`/projects/${project.slug}`}
+              />
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-6 py-3 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+            >
+              View all projects
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </section>
+
+<Footer />
+    </main>
+  )
 }
