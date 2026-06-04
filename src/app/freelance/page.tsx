@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   title: 'Freelance',
   description:
     'How I work on freelance projects: scope, delivery process, and how to get in touch.',
+  openGraph: {
+    images: [
+      {
+        url: 'https://ricardogr07.github.io/og/freelance.png',
+        width: 1200,
+        height: 630,
+        alt: 'Freelance — Ricardo García',
+      },
+    ],
+  },
+  twitter: {
+    images: ['https://ricardogr07.github.io/og/freelance.png'],
+  },
 }
 
 export default function FreelancePage() {

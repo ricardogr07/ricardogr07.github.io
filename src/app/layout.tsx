@@ -40,12 +40,21 @@ export const metadata: Metadata = {
     title: 'Ricardo García | Python & .NET Engineer',
     description:
       'I build practical software tools for automation, data workflows, reporting, APIs, and AI-assisted systems.',
+    images: [
+      {
+        url: 'https://ricardogr07.github.io/og/home.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ricardo García | ML/AI · Data Engineering · Scientific Computing',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ricardo García | Python & .NET Engineer',
     description:
       'I build practical software tools for automation, data workflows, reporting, APIs, and AI-assisted systems.',
+    images: ['https://ricardogr07.github.io/og/home.png'],
   },
 }
 

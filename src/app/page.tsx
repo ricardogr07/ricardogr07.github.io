@@ -8,6 +8,19 @@ import { featuredProjects } from '@/content/projects'
 
 export const metadata: Metadata = {
   title: 'Ricardo García | ML/AI · Data Engineering · Scientific Computing',
+  openGraph: {
+    images: [
+      {
+        url: 'https://ricardogr07.github.io/og/home.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ricardo García | ML/AI · Data Engineering · Scientific Computing',
+      },
+    ],
+  },
+  twitter: {
+    images: ['https://ricardogr07.github.io/og/home.png'],
+  },
 }
 
 const focusAreas = [

@@ -5,6 +5,19 @@ export const metadata: Metadata = {
   title: 'CV',
   description:
     'Ricardo García Ramírez — Senior Software Engineer. Resume with experience at MSCI, Rackspace, Python/data engineering, scientific computing, M.Sc. Data Science.',
+  openGraph: {
+    images: [
+      {
+        url: 'https://ricardogr07.github.io/og/cv.png',
+        width: 1200,
+        height: 630,
+        alt: 'CV — Ricardo García',
+      },
+    ],
+  },
+  twitter: {
+    images: ['https://ricardogr07.github.io/og/cv.png'],
+  },
 }
 
 const experience = [

@@ -1,4 +1,5 @@
 allowBuilds:
+  '@resvg/resvg-js': true
   cypress: true
   esbuild: true
   sharp: true
