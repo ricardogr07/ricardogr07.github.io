@@ -21,24 +21,23 @@ export default function Hero() {
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5">
           <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
           <span className="text-sm font-medium tracking-wide text-cyan-400">
-            ML/AI · Data Engineering · Scientific Computing
+            AI/ML · Data Engineering · Cloud · Full-Stack
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-          Senior engineer at the intersection of{' '}
+          Full-Stack engineer &amp; Data Scientist building{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-            data science, ML/AI,
+            AI/ML systems
           </span>{' '}
-          and production systems.
+          that run in production on the cloud.
         </h1>
 
         {/* Sub-copy */}
         <p className="mx-auto mb-12 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          M.Sc. Data Science (Distinction). 5 peer-reviewed publications. 7+ years enterprise
-          engineering. Now taking freelance projects in ML/AI systems, data engineering, and
-          scientific Python.
+          M.Sc. Data Science. 7+ years enterprise engineering. Open to senior roles and select
+          freelance work.
         </p>
 
         {/* CTAs */}
@@ -47,13 +46,19 @@ export default function Hero() {
             href="/projects"
             className="inline-flex h-12 items-center gap-2 rounded-lg bg-cyan-400 px-6 text-sm font-semibold text-neutral-950 transition-all hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
           >
-            View Projects
+            View projects
           </Link>
           <Link
-            href="/about"
+            href="/cv"
             className="inline-flex h-12 items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-6 text-sm font-semibold text-white transition-all hover:border-neutral-500 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
           >
-            About Me
+            Download CV
+          </Link>
+          <Link
+            href="/freelance"
+            className="inline-flex h-12 items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-6 text-sm font-semibold text-white transition-all hover:border-neutral-500 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
+          >
+            Hire me
           </Link>
         </div>
       </div>

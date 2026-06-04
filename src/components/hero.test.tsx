@@ -24,10 +24,10 @@ describe('Hero', () => {
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
   })
 
-  it('renders the ML/AI · Data Engineering · Scientific Computing badge', () => {
+  it('renders the four-pillar badge', () => {
     render(<Hero />)
     expect(
-      screen.getByText(/ML\/AI · Data Engineering · Scientific Computing/i)
+      screen.getByText(/AI\/ML · Data Engineering · Cloud · Full-Stack/i)
     ).toBeInTheDocument()
   })
 
@@ -36,22 +36,34 @@ describe('Hero', () => {
     expect(screen.getByText(/M\.Sc\. Data Science/i)).toBeInTheDocument()
   })
 
-  it('renders the View Projects CTA linking to /projects', () => {
+  it('renders the sub-copy with open roles positioning', () => {
+    render(<Hero />)
+    expect(screen.getByText(/Open to senior roles and select freelance work/i)).toBeInTheDocument()
+  })
+
+  it('renders the View projects CTA linking to /projects', () => {
     render(<Hero />)
     const cta = screen.getByRole('link', { name: /view projects/i })
     expect(cta).toBeInTheDocument()
     expect(cta).toHaveAttribute('href', '/projects')
   })
 
-  it('renders the About Me CTA linking to /about', () => {
+  it('renders the Download CV CTA linking to /cv', () => {
     render(<Hero />)
-    const cta = screen.getByRole('link', { name: /about me/i })
+    const cta = screen.getByRole('link', { name: /download cv/i })
     expect(cta).toBeInTheDocument()
-    expect(cta).toHaveAttribute('href', '/about')
+    expect(cta).toHaveAttribute('href', '/cv')
   })
 
-  it('does not have a GitHub CTA in the hero', () => {
+  it('renders the Hire me CTA linking to /freelance', () => {
     render(<Hero />)
-    expect(screen.queryByRole('link', { name: /github/i })).not.toBeInTheDocument()
+    const cta = screen.getByRole('link', { name: /hire me/i })
+    expect(cta).toBeInTheDocument()
+    expect(cta).toHaveAttribute('href', '/freelance')
+  })
+
+  it('does not contain old freelance messaging', () => {
+    render(<Hero />)
+    expect(screen.queryByText(/Now taking freelance projects/i)).not.toBeInTheDocument()
   })
 })
