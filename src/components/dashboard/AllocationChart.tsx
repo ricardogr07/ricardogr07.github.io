@@ -38,7 +38,11 @@ export default function AllocationChart({ holdings }: AllocationChartProps) {
       <h2 className="mb-4 text-lg font-semibold text-white">Allocation</h2>
 
       {/* Stacked bar */}
-      <div className="mb-4 flex h-8 w-full overflow-hidden rounded-lg" role="img" aria-label="Asset allocation bar chart">
+      <div
+        className="mb-4 flex h-8 w-full overflow-hidden rounded-lg"
+        role="img"
+        aria-label="Asset allocation bar chart"
+      >
         {segments.map((s) => (
           <div
             key={s.assetClass}
@@ -58,8 +62,7 @@ export default function AllocationChart({ holdings }: AllocationChartProps) {
               aria-hidden="true"
             />
             <span className="text-sm text-neutral-400">
-              {s.label}{' '}
-              <span className="font-medium text-neutral-200">{s.pct.toFixed(1)}%</span>
+              {s.label} <span className="font-medium text-neutral-200">{s.pct.toFixed(1)}%</span>
             </span>
           </div>
         ))}

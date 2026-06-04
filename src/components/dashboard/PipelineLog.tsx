@@ -47,7 +47,9 @@ export default function PipelineLog({ logLines }: PipelineLogProps) {
         {logLines.slice(0, revealed).map((line, i) => (
           <div key={i} className="flex gap-3">
             <span className="shrink-0 text-neutral-600">{line.ts}</span>
-            <span className={`shrink-0 font-semibold ${LEVEL_COLOR[line.level]}`}>{line.level}</span>
+            <span className={`shrink-0 font-semibold ${LEVEL_COLOR[line.level]}`}>
+              {line.level}
+            </span>
             <span className="text-neutral-400">{line.message}</span>
           </div>
         ))}

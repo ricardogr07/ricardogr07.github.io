@@ -1,5 +1,9 @@
 const fmt = (n: number) =>
-  new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(n)
+  new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'MXN',
+    maximumFractionDigits: 0,
+  }).format(n)
 
 interface StatTileProps {
   label: string
@@ -13,7 +17,9 @@ function StatTile({ label, value, sub, positive }: StatTileProps) {
     positive === true ? 'text-cyan-400' : positive === false ? 'text-red-400' : 'text-white'
   return (
     <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-5">
-      <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-neutral-500">{label}</p>
+      <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        {label}
+      </p>
       <p className={`text-2xl font-bold ${valueColor}`}>{value}</p>
       {sub && <p className="mt-1 text-sm text-neutral-500">{sub}</p>}
     </div>
@@ -49,7 +55,12 @@ export default function SummaryCards({
         sub="Jan–Jun 2024"
         positive={ytdReturnPct >= 0}
       />
-      <StatTile label="Positions" value={String(holdingsCount)} sub="Active holdings" positive={null} />
+      <StatTile
+        label="Positions"
+        value={String(holdingsCount)}
+        sub="Active holdings"
+        positive={null}
+      />
     </div>
   )
 }

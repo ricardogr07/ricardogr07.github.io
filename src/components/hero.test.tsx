@@ -26,9 +26,7 @@ describe('Hero', () => {
 
   it('renders the four-pillar badge', () => {
     render(<Hero />)
-    expect(
-      screen.getByText(/AI\/ML · Data Engineering · Cloud · Full-Stack/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/AI\/ML · Data Engineering · Cloud · Full-Stack/i)).toBeInTheDocument()
   })
 
   it('renders the credential-anchored sub-copy', () => {

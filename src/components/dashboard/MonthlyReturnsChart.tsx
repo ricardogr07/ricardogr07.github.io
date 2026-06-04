@@ -33,7 +33,8 @@ export default function MonthlyReturnsChart({ returns }: MonthlyReturnsChartProp
           <span className="inline-block h-2.5 w-2.5 rounded-sm bg-cyan-400/70" /> Portfolio
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-sm bg-neutral-500/60" /> S&amp;P MX Blend (benchmark)
+          <span className="inline-block h-2.5 w-2.5 rounded-sm bg-neutral-500/60" /> S&amp;P MX
+          Blend (benchmark)
         </span>
       </div>
 
@@ -65,7 +66,8 @@ export default function MonthlyReturnsChart({ returns }: MonthlyReturnsChartProp
               fontSize={10}
               fill="#737373"
             >
-              {v >= 0 ? '+' : ''}{v.toFixed(1)}%
+              {v >= 0 ? '+' : ''}
+              {v.toFixed(1)}%
             </text>
           ))}
 
@@ -84,8 +86,22 @@ export default function MonthlyReturnsChart({ returns }: MonthlyReturnsChartProp
 
             return (
               <g key={r.month}>
-                <rect x={x1} y={portY} width={barW} height={Math.max(portH, 1)} fill={portColor} rx={1} />
-                <rect x={x2} y={benchY} width={barW} height={Math.max(benchH, 1)} fill="rgba(115,115,115,0.5)" rx={1} />
+                <rect
+                  x={x1}
+                  y={portY}
+                  width={barW}
+                  height={Math.max(portH, 1)}
+                  fill={portColor}
+                  rx={1}
+                />
+                <rect
+                  x={x2}
+                  y={benchY}
+                  width={barW}
+                  height={Math.max(benchH, 1)}
+                  fill="rgba(115,115,115,0.5)"
+                  rx={1}
+                />
               </g>
             )
           })}
@@ -95,14 +111,7 @@ export default function MonthlyReturnsChart({ returns }: MonthlyReturnsChartProp
             const i = returns.indexOf(r)
             const cx = PADDING.left + i * barGroupW + barGroupW / 2
             return (
-              <text
-                key={r.month}
-                x={cx}
-                y={H - 4}
-                textAnchor="middle"
-                fontSize={9}
-                fill="#737373"
-              >
+              <text key={r.month} x={cx} y={H - 4} textAnchor="middle" fontSize={9} fill="#737373">
                 {r.month}
               </text>
             )

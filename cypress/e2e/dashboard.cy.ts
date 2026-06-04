@@ -34,8 +34,7 @@ describe('Financial Dashboard Demo', () => {
 
   it('case-study page shows Live Demo button linking to the dashboard', () => {
     cy.visit('/projects/financial-dashboard-demo')
-    cy.contains('a', /live demo/i)
-      .should('have.attr', 'href', '/demo/financial-dashboard')
+    cy.contains('a', /live demo/i).should('have.attr', 'href', '/demo/financial-dashboard')
   })
 
   it('projects page with Dashboard filter shows the demo card', () => {
