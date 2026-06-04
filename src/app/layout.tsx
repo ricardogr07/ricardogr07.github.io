@@ -16,19 +16,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     template: '%s | Ricardo García',
-    default: 'Ricardo García | Python & .NET Engineer',
+    default: 'Ricardo García | Full-Stack Engineer & Data Scientist',
   },
   description:
-    'I build practical software tools for automation, data workflows, reporting, APIs, and AI-assisted systems. Web scraping, ETL pipelines, RAG/LLM tooling, dashboards, and scientific Python packages.',
+    'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
   keywords: [
-    'Python engineer',
-    '.NET engineer',
-    'automation',
-    'web scraping',
-    'ETL pipelines',
+    'Full-Stack engineer',
+    'Data Scientist',
+    'AI/ML',
+    'data engineering',
+    'cloud',
+    'Python',
+    'Next.js',
     'RAG',
     'LLM',
-    'data engineering',
     'freelance developer',
   ],
   authors: [{ name: 'Ricardo García' }],
@@ -37,23 +38,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ricardogr07.github.io',
     siteName: 'Ricardo García Portfolio',
-    title: 'Ricardo García | Python & .NET Engineer',
+    title: 'Ricardo García | Full-Stack Engineer & Data Scientist',
     description:
-      'I build practical software tools for automation, data workflows, reporting, APIs, and AI-assisted systems.',
+      'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
     images: [
       {
         url: 'https://ricardogr07.github.io/og/home.png',
         width: 1200,
         height: 630,
-        alt: 'Ricardo García | ML/AI · Data Engineering · Scientific Computing',
+        alt: 'Ricardo García | Full-Stack Engineer & Data Scientist',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ricardo García | Python & .NET Engineer',
+    title: 'Ricardo García | Full-Stack Engineer & Data Scientist',
     description:
-      'I build practical software tools for automation, data workflows, reporting, APIs, and AI-assisted systems.',
+      'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
     images: ['https://ricardogr07.github.io/og/home.png'],
   },
 }

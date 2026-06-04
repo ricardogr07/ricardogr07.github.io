@@ -8,16 +8,19 @@ import { Menu, X } from 'lucide-react'
 const navLinks = [
   { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
+  { href: '/about#teaching', label: 'Teaching' },
+  { href: '/about#research', label: 'Research' },
   { href: '/cv', label: 'CV' },
-  { href: '/freelance', label: 'Freelance' },
 ]
 
 export default function Nav() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
-  const isActive = (href: string) =>
-    pathname === href || (href !== '/' && pathname.startsWith(href))
+  const isActive = (href: string) => {
+    const path = href.split('#')[0]
+    return pathname === path || (path !== '/' && pathname.startsWith(path) && !href.includes('#'))
+  }
 
   return (
     <header
@@ -37,7 +40,7 @@ export default function Nav() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-8 sm:flex">
+        <ul className="hidden items-center gap-6 sm:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -50,6 +53,14 @@ export default function Nav() {
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              href="/freelance"
+              className="inline-flex items-center rounded-full border border-cyan-400/50 bg-cyan-400/10 px-4 py-1.5 text-sm font-semibold text-cyan-400 transition-all hover:border-cyan-400 hover:bg-cyan-400/20"
+            >
+              Hire me
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -81,6 +92,13 @@ export default function Nav() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/freelance"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-md px-3 py-2 text-sm font-semibold text-cyan-400 hover:bg-cyan-400/10"
+            >
+              Hire me
+            </Link>
           </div>
         </div>
       )}
