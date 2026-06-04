@@ -388,8 +388,55 @@ export const projects: PortfolioProject[] = [
       'Improved docs and tested examples reduce onboarding time for new contributors',
     ],
   },
+  {
+    slug: 'financial-dashboard-demo',
+    title: 'Financial Data Dashboard Demo',
+    liveUrl: '/demo/financial-dashboard',
+    visibility: 'demo-only',
+    featured: false,
+    categories: ['dashboard', 'data-engineering'],
+    summary:
+      'End-to-end demo of a personal finance dashboard: synthetic brokerage statements ingested by a Python ETL pipeline into DuckDB, surfaced as a React/Next.js allocation and performance dashboard.',
+    problem:
+      'Personal finance data is highly sensitive — demonstrating a real brokerage dashboard publicly is not an option. Yet the engineering challenge of ingesting, normalizing, and visualizing statement data is real and worth showing.',
+    solution:
+      'Built a fully synthetic version of the private dashboard: a pipeline that parses fake PDF statements, normalizes holdings, and publishes a Next.js dashboard with allocation charts, monthly return charts, goal tracking, and an animated ETL pipeline log — all using fabricated data.',
+    deliverables: [
+      'Synthetic brokerage statement dataset (18 months, 8 positions)',
+      'Normalized holdings and monthly-returns schema (DuckDB pattern)',
+      'Allocation breakdown chart (hand-written SVG)',
+      'Monthly returns chart vs benchmark (hand-written SVG)',
+      'Goals and milestones tracker',
+      'Animated ETL pipeline rebuild log',
+      'OG image for LinkedIn Services media',
+    ],
+    techStack: [
+      'Next.js 16',
+      'TypeScript',
+      'Tailwind v4',
+      'React 19',
+      'SVG charts',
+      'DuckDB (pipeline pattern)',
+      'Python ETL (pipeline pattern)',
+    ],
+    servicesSupported: [
+      'Dashboard Development',
+      'Data Engineering',
+      'Financial Analytics',
+      'ETL Pipelines',
+      'Python Automation',
+    ],
+    businessValue: [
+      'Proves dashboard + data pipeline skills without exposing any real financial data',
+      'ETL pipeline log makes the architecture visible to non-technical stakeholders',
+      'Allocation and performance charts use hand-written SVG — no runtime chart dependency',
+      'Directly supports LinkedIn Services portfolio media with a public live URL',
+    ],
+  },
 ]
 
 export const publicProjects = projects.filter((p) => p.visibility === 'public')
+export const demoProjects = projects.filter((p) => p.visibility === 'demo-only')
+export const visibleProjects = [...publicProjects, ...demoProjects]
 export const featuredProjects = publicProjects.filter((p) => p.featured)
 export const secondaryProjects = publicProjects.filter((p) => !p.featured)

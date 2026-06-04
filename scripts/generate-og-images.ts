@@ -33,6 +33,7 @@ const staticPages: OgPage[] = [
   { slug: 'projects', subtitle: 'Projects' },
   { slug: 'cv', subtitle: 'CV / Résumé' },
   { slug: 'freelance', subtitle: 'Freelance' },
+  { slug: 'demo-financial-dashboard', subtitle: 'Financial Data Dashboard Demo — Synthetic Data' },
 ]
 
 const projectPages: OgPage[] = projects.map((p) => ({
