@@ -34,6 +34,7 @@ const staticPages: OgPage[] = [
   { slug: 'cv', subtitle: 'CV / Résumé' },
   { slug: 'freelance', subtitle: 'Freelance' },
   { slug: 'demo-financial-dashboard', subtitle: 'Financial Data Dashboard Demo — Synthetic Data' },
+  { slug: 'demo-query-lab', subtitle: 'Portfolio Query Lab — SQLite / WASM in the Browser' },
 ]
 
 const projectPages: OgPage[] = projects.map((p) => ({

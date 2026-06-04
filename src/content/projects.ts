@@ -389,6 +389,42 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
+    slug: 'query-lab-demo',
+    title: 'Portfolio Query Lab',
+    liveUrl: '/demo/query-lab',
+    visibility: 'demo-only',
+    featured: false,
+    categories: ['data-engineering', 'dashboard'],
+    summary:
+      'Interactive SQLite query lab running in the browser via sql.js/WebAssembly. Query synthetic portfolio holdings, monthly returns, and goals with plain SQL — no server, no backend.',
+    problem:
+      'Showing SQL and data-engineering skills on a portfolio requires either a live backend (operational cost, attack surface) or a restricted sandbox. Neither is ideal for an always-on public demo.',
+    solution:
+      'Embedded SQLite directly in the browser using sql.js (SQLite compiled to WASM). The engine loads once, populates three tables from synthetic portfolio data, and executes arbitrary SQL client-side — zero server required.',
+    deliverables: [
+      'In-browser SQLite via sql.js/WASM (no backend)',
+      'Three queryable tables: holdings, monthly_returns, goals',
+      'Seven preset queries covering aggregation, filtering, and alpha calculation',
+      'Live SQL editor with syntax-aware results table',
+      'Schema reference sidebar',
+      'Demo banner — all data synthetic',
+    ],
+    techStack: ['sql.js', 'WebAssembly', 'Next.js 16', 'TypeScript', 'Tailwind v4', 'React 19'],
+    servicesSupported: [
+      'Data Engineering',
+      'SQL Analytics',
+      'Dashboard Development',
+      'ETL Pipelines',
+      'Python Automation',
+    ],
+    businessValue: [
+      'Proves SQL fluency interactively — visitors run real queries, not just see screenshots',
+      'Zero backend means zero ops cost and no attack surface for a public demo',
+      'WASM-based SQLite is the same engine used in DuckDB-style analytical pipelines',
+      'Preset queries demonstrate aggregation, time-series, and goal-tracking patterns relevant to data-engineering clients',
+    ],
+  },
+  {
     slug: 'financial-dashboard-demo',
     title: 'Financial Data Dashboard Demo',
     liveUrl: '/demo/financial-dashboard',
