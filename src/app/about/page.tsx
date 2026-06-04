@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'About Ricardo García Ramírez — Senior Software Engineer focused on Python, Data Science, and AI/ML systems. M.Sc. Data Science, 5 publications, former professor.',
+  openGraph: {
+    images: [
+      {
+        url: 'https://ricardogr07.github.io/og/about.png',
+        width: 1200,
+        height: 630,
+        alt: 'About — Ricardo García',
+      },
+    ],
+  },
+  twitter: {
+    images: ['https://ricardogr07.github.io/og/about.png'],
+  },
 }
 
 type SocialLink = {

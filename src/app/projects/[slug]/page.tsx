@@ -16,9 +16,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const project = publicProjects.find((p) => p.slug === slug)
   if (!project) return {}
+  const imageUrl = `https://ricardogr07.github.io/og/project-${project.slug}.png`
   return {
     title: project.title,
     description: project.summary,
+    openGraph: {
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: project.title }],
+    },
+    twitter: {
+      images: [imageUrl],
+    },
   }
 }
 
