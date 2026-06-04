@@ -15,27 +15,21 @@ interface PipelineLogProps {
 
 export default function PipelineLog({ logLines }: PipelineLogProps) {
   const [revealed, setRevealed] = useState(0)
-  const [running, setRunning] = useState(true)
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!running) return
-    if (revealed >= logLines.length) {
-      setRunning(false)
-      return
-    }
+    if (revealed >= logLines.length) return
     const id = setTimeout(() => setRevealed((n) => n + 1), 300)
     return () => clearTimeout(id)
-  }, [revealed, running, logLines.length])
+  }, [revealed, logLines.length])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [revealed])
 
-  const rebuild = () => {
-    setRevealed(0)
-    setRunning(true)
-  }
+  const rebuild = () => setRevealed(0)
+
+  const running = revealed < logLines.length
 
   return (
     <div>
@@ -57,9 +51,7 @@ export default function PipelineLog({ logLines }: PipelineLogProps) {
             <span className="text-neutral-400">{line.message}</span>
           </div>
         ))}
-        {running && revealed < logLines.length && (
-          <span className="animate-pulse text-neutral-600">▋</span>
-        )}
+        {running && <span className="animate-pulse text-neutral-600">▋</span>}
         <div ref={bottomRef} />
       </div>
     </div>
