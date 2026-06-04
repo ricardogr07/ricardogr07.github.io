@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import ProjectCard from '@/components/project-card'
 import Footer from '@/components/footer'
-import { publicProjects } from '@/content/projects'
+import { visibleProjects } from '@/content/projects'
 import type { ProjectCategory } from '@/lib/types'
 
 const filterOptions: { label: string; value: 'all' | ProjectCategory }[] = [
@@ -16,6 +16,7 @@ const filterOptions: { label: string; value: 'all' | ProjectCategory }[] = [
   { label: 'Media Automation', value: 'media-automation' },
   { label: 'Developer Tools', value: 'developer-tooling' },
   { label: 'ML', value: 'ml' },
+  { label: 'Dashboard', value: 'dashboard' },
 ]
 
 export default function ProjectsClient() {
@@ -23,8 +24,8 @@ export default function ProjectsClient() {
 
   const filtered =
     activeFilter === 'all'
-      ? publicProjects
-      : publicProjects.filter((p) => p.categories.includes(activeFilter))
+      ? visibleProjects
+      : visibleProjects.filter((p) => p.categories.includes(activeFilter))
 
   return (
     <main>

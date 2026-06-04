@@ -2,19 +2,19 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/footer'
-import { publicProjects } from '@/content/projects'
+import { visibleProjects } from '@/content/projects'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return publicProjects.map((p) => ({ slug: p.slug }))
+  return visibleProjects.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const project = publicProjects.find((p) => p.slug === slug)
+  const project = visibleProjects.find((p) => p.slug === slug)
   if (!project) return {}
   const imageUrl = `https://ricardogr07.github.io/og/project-${project.slug}.png`
   return {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params
-  const project = publicProjects.find((p) => p.slug === slug)
+  const project = visibleProjects.find((p) => p.slug === slug)
 
   if (!project) return notFound()
 
