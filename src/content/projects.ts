@@ -6,7 +6,7 @@ export const projects: PortfolioProject[] = [
     title: 'LinkedIn Job Scraping & Data Export Pipeline',
     repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
     visibility: 'public',
-    featured: false,
+    featured: true,
     categories: ['web-scraping', 'automation', 'data-engineering'],
     summary:
       'Python scraping pipeline that collects job listings, normalizes records, persists run history in SQLite, and exports datasets through CLI workflows.',
@@ -40,11 +40,18 @@ export const projects: PortfolioProject[] = [
       'ETL Pipelines',
       'Reporting Automation',
     ],
+    businessValue: [
+      'Turns manual job-market research into an automated, repeatable data product',
+      'CLI-driven — anyone on the team can run it, not just the person who built it',
+      'SQLite history lets you track market changes over time without re-scraping from scratch',
+      'Optional OpenAI enrichment adds structured tagging to raw scraped records',
+    ],
   },
   {
     slug: 'mx-jobs-insights',
     title: 'Mexico Jobs Analytics Pipeline',
     repo: 'https://github.com/ricardogr07/mx-jobs-insights',
+    docsUrl: 'https://ricardogr07.github.io/mx-jobs-insights/',
     visibility: 'public',
     featured: true,
     categories: ['data-engineering', 'automation', 'dashboard'],
@@ -77,13 +84,19 @@ export const projects: PortfolioProject[] = [
       'Dashboard/Reporting Automation',
       'Cloud Application Development',
     ],
+    businessValue: [
+      'Delivers a public analytics site that updates automatically — not a one-time report',
+      'DuckDB + Parquet keeps the dataset queryable and shareable without a database server',
+      'Bilingual outputs serve both English and Spanish stakeholders from the same pipeline',
+      'GitHub Actions workflow means zero manual intervention after initial setup',
+    ],
   },
   {
     slug: 'reposage',
     title: 'RepoSage: AI-Assisted Repository Audit Tool',
     repo: 'https://github.com/ricardogr07/reposage',
     visibility: 'public',
-    featured: false,
+    featured: true,
     categories: ['developer-tooling', 'automation', 'rag-llm'],
     summary:
       'Repository analysis tool that scans codebases, detects language and framework signals, summarizes dependencies, and outputs structured Markdown or JSON audit reports.',
@@ -113,6 +126,12 @@ export const projects: PortfolioProject[] = [
       'Codebase Audit',
       'Software Quality',
       'Technical Documentation',
+    ],
+    businessValue: [
+      'Gives engineering managers an instant quality snapshot of any codebase without reading it',
+      'Deterministic, structured output can be integrated into CI or PR review flows',
+      'Markdown/JSON reports feed other tools — ticketing systems, dashboards, LLM summarizers',
+      'Optional AI enrichment adds natural language explanations on top of raw heuristics',
     ],
   },
   {
@@ -154,13 +173,19 @@ export const projects: PortfolioProject[] = [
       'LLM Tooling',
       'Performance Optimization',
     ],
+    businessValue: [
+      'Rust chunking eliminates token overflow failures that silently degrade retrieval quality in pure-Python stacks',
+      'PyO3 bridge gives you Rust performance without rewriting your existing Python workflow',
+      'Hallucination guard reduces the risk of confident wrong answers from the LLM layer',
+      'Pluggable embeddings: OpenAI for quality, local sentence-transformers to cut API costs',
+    ],
   },
   {
     slug: 'clipsmith',
     title: 'Clipsmith: AI-Assisted Twitch Clip Pipeline',
     repo: 'https://github.com/ricardogr07/clipsmith',
     visibility: 'public',
-    featured: false,
+    featured: true,
     categories: ['media-automation', 'automation', 'rag-llm'],
     summary:
       'Local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips.',
@@ -196,6 +221,12 @@ export const projects: PortfolioProject[] = [
       'Speech-to-Text Pipelines',
       'LLM-Assisted Content Selection',
       'Creator Tooling',
+    ],
+    businessValue: [
+      'Turns a 4-hour VOD into 5 ready-to-post vertical clips without a video editor',
+      'Chat-replay scoring prioritizes moments the audience already validated — not guesswork',
+      'LLM selection adds context-awareness that pure engagement metrics miss',
+      'Stacked 9:16 layout works directly for TikTok, Reels, and YouTube Shorts',
     ],
   },
   {
@@ -239,6 +270,12 @@ export const projects: PortfolioProject[] = [
       'Package Development',
       'Computational Modeling',
     ],
+    businessValue: [
+      'Installable package means collaborators reproduce results without re-reading your setup notes',
+      'PyPI release makes the work citable and verifiable outside the lab',
+      'Fractal generation + UV mapping handles geometry that pure FEM mesh tools cannot address',
+      'Tests + CI keep the package reliable as scientific dependencies evolve',
+    ],
   },
   {
     slug: 'market-lab',
@@ -280,6 +317,11 @@ export const projects: PortfolioProject[] = [
       'Financial Analytics',
       'Python Automation',
     ],
+    businessValue: [
+      'Package-first structure means experiments are reproducible — not just notebooks that ran once',
+      'Walk-forward evaluation avoids look-ahead bias that invalidates most notebook backtests',
+      'YAML configs make it easy to hand off experiments to another engineer or stakeholder',
+    ],
   },
   {
     slug: 'myocardial-mesh',
@@ -309,6 +351,10 @@ export const projects: PortfolioProject[] = [
       'Simulation Tooling',
       'Package Refactoring',
     ],
+    businessValue: [
+      'Installable package structure replaces copy-paste scripts that break between collaborators',
+      'pytest-compatible layout means the library can be validated in CI alongside other tools',
+    ],
   },
   {
     slug: 'jax-bo',
@@ -336,6 +382,10 @@ export const projects: PortfolioProject[] = [
       'Bayesian Optimization',
       'Scientific Python',
       'Package Maintenance',
+    ],
+    businessValue: [
+      'Keeps the library usable as Python and JAX versions advance — no forking required',
+      'Improved docs and tested examples reduce onboarding time for new contributors',
     ],
   },
 ]

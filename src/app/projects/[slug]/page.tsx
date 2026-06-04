@@ -161,6 +161,20 @@ export default async function CaseStudyPage({ params }: Props) {
                   ))}
                 </ul>
               </section>
+
+              {project.businessValue.length > 0 && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Why it matters</h2>
+                  <ul className="space-y-2">
+                    {project.businessValue.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-neutral-400">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
             </div>
 
             {/* Sidebar */}
