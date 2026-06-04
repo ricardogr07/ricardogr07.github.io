@@ -16,6 +16,7 @@ const mockProject: PortfolioProject = {
   deliverables: ['CLI tool', 'Documentation'],
   techStack: ['Python', 'SQLite', 'GitHub Actions'],
   servicesSupported: ['Python Automation'],
+  businessValue: ['Automates repetitive manual work'],
 }
 
 describe('ProjectCard', () => {

@@ -26,6 +26,7 @@ export interface PortfolioProject {
   deliverables: string[]
   techStack: string[]
   servicesSupported: string[]
+  businessValue: string[]
   featured: boolean
 }
 
