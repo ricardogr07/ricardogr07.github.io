@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/freelance.png',
         width: 1200,
         height: 630,
-        alt: 'Freelance — Ricardo García',
+        alt: 'Freelance — Ricardo García Ramírez',
       },
     ],
   },

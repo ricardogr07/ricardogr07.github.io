@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/about.png',
         width: 1200,
         height: 630,
-        alt: 'About — Ricardo García',
+        alt: 'About — Ricardo García Ramírez',
       },
     ],
   },
@@ -244,7 +244,7 @@ export default function AboutPage() {
           <div className="mb-12 flex flex-col items-start gap-8 sm:flex-row sm:items-center">
             <Image
               src="/images/profile.png"
-              alt="Ricardo García"
+              alt="Ricardo García Ramírez"
               width={112}
               height={112}
               className="h-28 w-28 rounded-full border-2 border-cyan-400/30 object-cover"
