@@ -47,8 +47,8 @@ const socialLinks: SocialLink[] = [
   },
   {
     label: 'Medium',
-    handle: '@rgr5882',
-    href: 'https://medium.com/@rgr5882',
+    handle: '@ricardogr07',
+    href: 'https://medium.com/@ricardogr07',
     hoverColor: 'group-hover:text-white',
     icon: 'medium',
   },
