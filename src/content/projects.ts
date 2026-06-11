@@ -7,8 +7,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/linkedin-webscraper/diagram.svg',
-    heroImage: '/images/projects/linkedin-webscraper/hero.png',
     categories: ['web-scraping', 'automation', 'data-engineering'],
     summary:
       'Python scraping pipeline that collects job listings, normalizes records, persists run history in SQLite, and exports datasets through CLI workflows.',
@@ -56,8 +54,6 @@ export const projects: PortfolioProject[] = [
     docsUrl: 'https://ricardogr07.github.io/mx-jobs-insights/',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/mx-jobs-insights/diagram.svg',
-    heroImage: '/images/projects/mx-jobs-insights/hero.png',
     categories: ['data-engineering', 'automation', 'dashboard'],
     summary:
       'Analytics pipeline that transforms raw job snapshots into curated DuckDB/Parquet datasets, bilingual reports, and a public MkDocs documentation site.',
@@ -101,8 +97,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/reposage',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/reposage/diagram.svg',
-    heroImage: '/images/projects/reposage/hero.png',
     categories: ['developer-tooling', 'automation', 'rag-llm'],
     summary:
       'Repository analysis tool that scans codebases, detects language and framework signals, summarizes dependencies, and outputs structured Markdown or JSON audit reports.',
@@ -146,8 +140,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/rusty-rag-chunker',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/rusty-rag-chunker/diagram.svg',
-    heroImage: '/images/projects/rusty-rag-chunker/hero.png',
     categories: ['rag-llm', 'backend-api', 'developer-tooling'],
     summary:
       'Token-aware RAG ingestion pipeline where Rust handles performance-critical chunking via PyO3, Python orchestrates embeddings, and Qdrant stores searchable vectors.',
@@ -194,8 +186,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/clipsmith',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/clipsmith/diagram.svg',
-    heroImage: '/images/projects/clipsmith/hero.png',
     categories: ['media-automation', 'automation', 'rag-llm'],
     summary:
       'Local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips.',
@@ -245,8 +235,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/purkinje-uv',
     visibility: 'public',
     featured: true,
-    diagram: '/images/projects/purkinje-uv/diagram.svg',
-    heroImage: '/images/projects/purkinje-uv/hero.png',
     categories: ['scientific-python', 'automation'],
     summary:
       'Modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
@@ -290,49 +278,11 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
-    slug: 'wc26-simulation',
-    title: 'WC26 Tournament Forecasting System',
-    liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',
-    visibility: 'public',
-    featured: true,
-    categories: ['ml', 'dashboard', 'backend-api'],
-    summary:
-      'Live tournament forecasting system for World Cup 2026 that runs 10,000 Monte Carlo simulations of the full bracket using Elo-based win probabilities, with completed results pinned and future matches probabilistic.',
-    problem:
-      'Tournament fans want real-time bracket probability forecasts that update as matches complete, blending pinned actual results with probabilistic simulation for all remaining games.',
-    solution:
-      'Built a Next.js app on Azure Static Web Apps that runs 10,000 Monte Carlo simulations of the full WC26 bracket using Elo ratings. Completed results are pinned; future matches are probabilistic. Results are cached in Cosmos DB and recomputed only when new match results arrive.',
-    deliverables: [
-      'Monte Carlo simulation engine (10,000 bracket runs)',
-      'Elo-based win probability model',
-      'Live bracket UI with pinned real results',
-      'Azure Cosmos DB result-caching layer',
-      'Azure Static Web Apps deployment',
-      'Automated recompute trigger on new results',
-    ],
-    techStack: [
-      'Next.js',
-      'TypeScript',
-      'Azure Static Web Apps',
-      'Azure Cosmos DB',
-      'Monte Carlo Simulation',
-      'Elo Rating System',
-    ],
-    servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
-    businessValue: [
-      'Real-time bracket probabilities update automatically when new match results arrive',
-      'Cosmos DB caching prevents redundant simulation re-runs — results served instantly until standings change',
-      'Elo ratings provide a principled, data-driven baseline for team strength without manual tuning',
-    ],
-  },
-  {
     slug: 'market-lab',
     title: 'MarketLab: Reproducible Market Experiment Platform',
     repo: 'https://github.com/ricardogr07/market-lab',
     visibility: 'public',
     featured: false,
-    diagram: '/images/projects/market-lab/diagram.svg',
-    heroImage: '/images/projects/market-lab/hero.png',
     categories: ['ml', 'data-engineering', 'automation'],
     summary:
       'Package-first research toolkit for market experiments: data preparation, baselines, ML model training, walk-forward evaluation, diagnostics, reports, and paper-trading workflows.',
@@ -379,8 +329,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
     visibility: 'public',
     featured: false,
-    diagram: '/images/projects/myocardial-mesh/diagram.svg',
-    heroImage: '/images/projects/myocardial-mesh/hero.png',
     categories: ['scientific-python'],
     summary:
       'Refactored and packaged myocardial mesh utilities into a maintainable Python library for computational cardiology workflows.',
@@ -414,8 +362,6 @@ export const projects: PortfolioProject[] = [
     repo: 'https://github.com/ricardogr07/JAX-BO',
     visibility: 'public',
     featured: false,
-    diagram: '/images/projects/jax-bo/diagram.svg',
-    heroImage: '/images/projects/jax-bo/hero.png',
     categories: ['ml', 'scientific-python', 'developer-tooling'],
     summary:
       'Modernized a Bayesian Optimization library for current Python/JAX versions, improving documentation, testing demos, and expanding optimizer functionality.',

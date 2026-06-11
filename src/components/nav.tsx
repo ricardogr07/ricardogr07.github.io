@@ -36,7 +36,7 @@ export default function Nav() {
           href="/"
           className="text-sm font-semibold text-white transition-colors hover:text-cyan-400"
         >
-          Ricardo García Ramírez
+          Ricardo García
         </Link>
 
         {/* Desktop links */}

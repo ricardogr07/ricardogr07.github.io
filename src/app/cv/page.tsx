@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/cv.png',
         width: 1200,
         height: 630,
-        alt: 'CV — Ricardo García Ramírez',
+        alt: 'CV — Ricardo García',
       },
     ],
   },

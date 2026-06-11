@@ -9,14 +9,14 @@ import Footer from '@/components/footer'
 import { projects } from '@/content/projects'
 
 export const metadata: Metadata = {
-  title: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+  title: 'Ricardo García | Full-Stack Engineer & Data Scientist',
   openGraph: {
     images: [
       {
         url: 'https://ricardogr07.github.io/og/home.png',
         width: 1200,
         height: 630,
-        alt: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+        alt: 'Ricardo García | Full-Stack Engineer & Data Scientist',
       },
     ],
   },

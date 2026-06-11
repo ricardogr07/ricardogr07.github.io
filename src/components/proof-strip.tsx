@@ -4,14 +4,14 @@ const stats = [
   {
     icon: GitBranch,
     label: 'GitHub repos',
-    value: '31',
+    value: '⟨N⟩',
     href: 'https://github.com/ricardogr07',
     external: true,
   },
   {
     icon: Package,
     label: 'PyPI packages',
-    value: '7',
+    value: '⟨N⟩',
     href: 'https://pypi.org/user/ricardogr07',
     external: true,
   },
@@ -25,7 +25,7 @@ const stats = [
   {
     icon: PenLine,
     label: 'Medium writing',
-    value: '127',
+    value: '⟨N⟩',
     href: 'https://medium.com/@ricardogr07',
     external: true,
   },

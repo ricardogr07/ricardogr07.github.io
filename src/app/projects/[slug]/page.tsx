@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/footer'
@@ -116,40 +115,26 @@ export default async function CaseStudyPage({ params }: Props) {
             )}
           </div>
 
-          {/* Hero image */}
-          {project.heroImage ? (
-            <div className="mb-12 overflow-hidden rounded-xl border border-neutral-800">
-              <Image
-                src={project.heroImage}
-                alt={`${project.title} hero`}
-                width={1200}
-                height={630}
-                className="w-full object-cover"
-                priority
-                unoptimized
-              />
+          {/* Screenshot placeholder */}
+          <div className="mb-12 flex h-64 items-center justify-center rounded-xl border border-dashed border-neutral-700 bg-neutral-900/50 text-neutral-600">
+            <div className="text-center">
+              <svg
+                className="mx-auto mb-2 h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3 9.75h18"
+                />
+              </svg>
+              <p className="text-sm">Screenshot coming in Phase 3</p>
             </div>
-          ) : (
-            <div className="mb-12 flex h-64 items-center justify-center rounded-xl border border-dashed border-neutral-700 bg-neutral-900/50 text-neutral-600">
-              <div className="text-center">
-                <svg
-                  className="mx-auto mb-2 h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21h18M3 9.75h18"
-                  />
-                </svg>
-                <p className="text-sm">Hero image pending</p>
-              </div>
-            </div>
-          )}
+          </div>
 
           {/* Content grid */}
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
@@ -164,22 +149,6 @@ export default async function CaseStudyPage({ params }: Props) {
                 <h2 className="mb-3 text-xl font-semibold text-white">Solution</h2>
                 <p className="text-base leading-relaxed text-neutral-400">{project.solution}</p>
               </section>
-
-              {project.diagram && (
-                <section>
-                  <h2 className="mb-4 text-xl font-semibold text-white">How it works</h2>
-                  <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
-                    <Image
-                      src={project.diagram}
-                      alt={`${project.title} architecture diagram`}
-                      width={900}
-                      height={80}
-                      className="max-w-full"
-                      unoptimized
-                    />
-                  </div>
-                </section>
-              )}
 
               <section>
                 <h2 className="mb-3 text-xl font-semibold text-white">Deliverables</h2>

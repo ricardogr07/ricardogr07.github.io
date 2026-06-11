@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Ricardo García Ramírez',
-    default: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+    template: '%s | Ricardo García',
+    default: 'Ricardo García | Full-Stack Engineer & Data Scientist',
   },
   description:
     'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     'LLM',
     'freelance developer',
   ],
-  authors: [{ name: 'Ricardo García Ramírez' }],
+  authors: [{ name: 'Ricardo García' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://ricardogr07.github.io',
-    siteName: 'Ricardo García Ramírez Portfolio',
-    title: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+    siteName: 'Ricardo García Portfolio',
+    title: 'Ricardo García | Full-Stack Engineer & Data Scientist',
     description:
       'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/home.png',
         width: 1200,
         height: 630,
-        alt: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+        alt: 'Ricardo García | Full-Stack Engineer & Data Scientist',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ricardo García Ramírez | Full-Stack Engineer & Data Scientist',
+    title: 'Ricardo García | Full-Stack Engineer & Data Scientist',
     description:
       'M.Sc. Data Science. AI/ML systems, data engineering, cloud, and full-stack — open to senior roles and select freelance work.',
     images: ['https://ricardogr07.github.io/og/home.png'],
