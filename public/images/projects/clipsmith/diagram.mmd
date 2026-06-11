@@ -1,0 +1,5 @@
+flowchart LR
+  A["VOD"] --> B["Transcribe"]
+  B["Transcribe"] --> C["Score"]
+  C["Score"] --> D["LLM Select"]
+  D["LLM Select"] --> E["FFmpeg 9:16"]

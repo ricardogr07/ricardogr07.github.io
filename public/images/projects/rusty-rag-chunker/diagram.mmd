@@ -1,0 +1,5 @@
+flowchart LR
+  A["Ingest"] --> B["Chunk (Rust/PyO3)"]
+  B["Chunk (Rust/PyO3)"] --> C["Embed"]
+  C["Embed"] --> D["Qdrant"]
+  D["Qdrant"] --> E["Ask"]
