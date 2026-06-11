@@ -12,7 +12,7 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/demo-query-lab.png',
         width: 1200,
         height: 630,
-        alt: 'Portfolio Query Lab — Ricardo García',
+        alt: 'Portfolio Query Lab — Ricardo García Ramírez',
       },
     ],
   },
