@@ -28,6 +28,10 @@ export interface PortfolioProject {
   servicesSupported: string[]
   businessValue: string[]
   featured: boolean
+  /** Path to the rendered SVG flow diagram (e.g. /images/projects/slug/diagram.svg) */
+  diagram?: string
+  /** Path to the project hero image (1200×630). Slot awaits Ricardo's AI art if absent. */
+  heroImage?: string
 }
 
 export interface ServiceCard {
