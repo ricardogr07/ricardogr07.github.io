@@ -290,6 +290,42 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
+    slug: 'wc26-simulation',
+    title: 'WC26 Tournament Forecasting System',
+    liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',
+    visibility: 'public',
+    featured: true,
+    categories: ['ml', 'dashboard', 'backend-api'],
+    summary:
+      'Live tournament forecasting system for World Cup 2026 that runs 10,000 Monte Carlo simulations of the full bracket using Elo-based win probabilities, with completed results pinned and future matches probabilistic.',
+    problem:
+      'Tournament fans want real-time bracket probability forecasts that update as matches complete, blending pinned actual results with probabilistic simulation for all remaining games.',
+    solution:
+      'Built a Next.js app on Azure Static Web Apps that runs 10,000 Monte Carlo simulations of the full WC26 bracket using Elo ratings. Completed results are pinned; future matches are probabilistic. Results are cached in Cosmos DB and recomputed only when new match results arrive.',
+    deliverables: [
+      'Monte Carlo simulation engine (10,000 bracket runs)',
+      'Elo-based win probability model',
+      'Live bracket UI with pinned real results',
+      'Azure Cosmos DB result-caching layer',
+      'Azure Static Web Apps deployment',
+      'Automated recompute trigger on new results',
+    ],
+    techStack: [
+      'Next.js',
+      'TypeScript',
+      'Azure Static Web Apps',
+      'Azure Cosmos DB',
+      'Monte Carlo Simulation',
+      'Elo Rating System',
+    ],
+    servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
+    businessValue: [
+      'Real-time bracket probabilities update automatically when new match results arrive',
+      'Cosmos DB caching prevents redundant simulation re-runs — results served instantly until standings change',
+      'Elo ratings provide a principled, data-driven baseline for team strength without manual tuning',
+    ],
+  },
+  {
     slug: 'market-lab',
     title: 'MarketLab: Reproducible Market Experiment Platform',
     repo: 'https://github.com/ricardogr07/market-lab',
