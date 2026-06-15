@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
+import type { PortfolioProject } from '@/lib/types'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -30,11 +31,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+const linkButtonClass =
+  'inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white'
+
+const roleLabels: Record<NonNullable<PortfolioProject['role']>, string> = {
+  solo: 'Solo build',
+  'oss-contrib': 'OSS contributor',
+  team: 'Team',
+  maintainer: 'Maintainer',
+}
+
+const statusLabels: Record<NonNullable<PortfolioProject['status']>, string> = {
+  live: 'Live',
+  pypi: 'On PyPI',
+  active: 'Active',
+  archived: 'Archived',
+}
+
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params
-  const project = visibleProjects.find((p) => p.slug === slug)
+  const index = visibleProjects.findIndex((p) => p.slug === slug)
+  const project = index === -1 ? undefined : visibleProjects[index]
 
   if (!project) return notFound()
+
+  // STARL beats with legacy fallback — degradation logic lives here so the JSX stays clean.
+  const situation = project.situation ?? project.problem
+  const action = project.action ?? project.solution
+  const { task, result, learning } = project
+  const hasDeliverables = project.deliverables.length > 0
+  const showTldr = Boolean(project.tldr || project.headlineMetric)
+
+  const prev = index > 0 ? visibleProjects[index - 1] : undefined
+  const next = index < visibleProjects.length - 1 ? visibleProjects[index + 1] : undefined
 
   return (
     <main>
@@ -82,7 +111,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -99,7 +128,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
                 Live Demo
               </a>
@@ -109,9 +138,19 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.docsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
                 Documentation
+              </a>
+            )}
+            {project.pypiUrl && (
+              <a
+                href={project.pypiUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                PyPI
               </a>
             )}
           </div>
@@ -151,47 +190,89 @@ export default async function CaseStudyPage({ params }: Props) {
             </div>
           )}
 
+          {/* TL;DR block */}
+          {showTldr && (
+            <div className="mb-12 rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
+              {project.headlineMetric && (
+                <p className="mb-2 text-2xl font-bold tracking-tight text-cyan-400 sm:text-3xl">
+                  {project.headlineMetric}
+                </p>
+              )}
+              {project.tldr && (
+                <p className="text-lg leading-relaxed text-neutral-200">{project.tldr}</p>
+              )}
+              {project.caveat && (
+                <p className="mt-3 text-sm italic text-neutral-500">{project.caveat}</p>
+              )}
+            </div>
+          )}
+
           {/* Content grid */}
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* Main content */}
             <div className="space-y-10 lg:col-span-2">
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Problem</h2>
-                <p className="text-base leading-relaxed text-neutral-400">{project.problem}</p>
-              </section>
+              {situation && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Situation</h2>
+                  <p className="text-base leading-relaxed text-neutral-400">{situation}</p>
+                </section>
+              )}
 
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Solution</h2>
-                <p className="text-base leading-relaxed text-neutral-400">{project.solution}</p>
-              </section>
+              {task && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Task</h2>
+                  <p className="text-base leading-relaxed text-neutral-400">{task}</p>
+                </section>
+              )}
 
+              {(action || hasDeliverables) && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Action</h2>
+                  {action && <p className="text-base leading-relaxed text-neutral-400">{action}</p>}
+                  {hasDeliverables && (
+                    <ul className="mt-4 space-y-2">
+                      {project.deliverables.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-neutral-400">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              )}
+
+              {/* How it works — directly after the Action beat */}
               {project.diagram && (
                 <section>
                   <h2 className="mb-4 text-xl font-semibold text-white">How it works</h2>
                   <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG diagram, render at its intrinsic aspect ratio */}
+                    <img
                       src={project.diagram}
                       alt={`${project.title} architecture diagram`}
-                      width={900}
-                      height={80}
-                      className="max-w-full"
-                      unoptimized
+                      className="h-auto w-full"
                     />
                   </div>
+                  {project.diagramCaption && (
+                    <p className="mt-3 text-sm text-neutral-500">{project.diagramCaption}</p>
+                  )}
                 </section>
               )}
 
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Deliverables</h2>
-                <ul className="space-y-2">
-                  {project.deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-neutral-400">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              {result && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Result</h2>
+                  <p className="text-base leading-relaxed text-neutral-400">{result}</p>
+                </section>
+              )}
+
+              {learning && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Learning</h2>
+                  <p className="text-base leading-relaxed text-neutral-400">{learning}</p>
+                </section>
+              )}
 
               {project.businessValue.length > 0 && (
                 <section>
@@ -205,6 +286,53 @@ export default async function CaseStudyPage({ params }: Props) {
                     ))}
                   </ul>
                 </section>
+              )}
+
+              {/* Gallery — stacked full-width figures, each at its intrinsic aspect */}
+              {project.gallery && project.gallery.length > 0 && (
+                <section className="space-y-8">
+                  {project.gallery.map((shot) => (
+                    <figure key={shot.src}>
+                      <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60 p-4">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG diagram, render at its intrinsic aspect ratio */}
+                        <img src={shot.src} alt={shot.alt} className="h-auto w-full" />
+                      </div>
+                      {shot.caption && (
+                        <figcaption className="mt-2 text-sm text-neutral-500">
+                          {shot.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </section>
+              )}
+
+              {/* CLI snippet */}
+              {project.cliSnippet && (
+                <section>
+                  <pre className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900 p-4 text-sm text-neutral-300">
+                    <code>{project.cliSnippet}</code>
+                  </pre>
+                </section>
+              )}
+
+              {/* Limitations disclaimer */}
+              {project.limitations && (
+                <section>
+                  <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5">
+                    <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-amber-400/90">
+                      Limitations
+                    </h2>
+                    <p className="text-sm leading-relaxed text-neutral-400">
+                      {project.limitations}
+                    </p>
+                  </div>
+                </section>
+              )}
+
+              {/* Artifact note */}
+              {project.artifactNote && (
+                <p className="text-xs italic text-neutral-600">{project.artifactNote}</p>
               )}
             </div>
 
@@ -238,8 +366,76 @@ export default async function CaseStudyPage({ params }: Props) {
                   ))}
                 </div>
               </section>
+
+              {project.role && (
+                <section>
+                  <h2 className="mb-1.5 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Role
+                  </h2>
+                  <p className="text-sm text-neutral-300">{roleLabels[project.role]}</p>
+                </section>
+              )}
+
+              {project.status && (
+                <section>
+                  <h2 className="mb-1.5 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Status
+                  </h2>
+                  <p className="text-sm text-neutral-300">{statusLabels[project.status]}</p>
+                </section>
+              )}
+
+              {project.metrics && project.metrics.length > 0 && (
+                <section>
+                  <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Metrics
+                  </h2>
+                  <dl className="space-y-3">
+                    {project.metrics.map((m) => (
+                      <div key={m.label}>
+                        <dt className="text-xs text-neutral-500">{m.label}</dt>
+                        <dd className="text-base font-semibold text-white">{m.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </section>
+              )}
             </div>
           </div>
+
+          {/* Prev / next nav */}
+          <nav
+            aria-label="Project navigation"
+            className="mt-16 flex items-center justify-between gap-4 border-t border-neutral-800 pt-8"
+          >
+            {prev ? (
+              <Link
+                href={`/projects/${prev.slug}`}
+                className="group flex max-w-[45%] flex-col text-sm text-neutral-500 transition-colors hover:text-white"
+              >
+                <span className="text-xs uppercase tracking-wider text-neutral-600">Previous</span>
+                <span className="mt-1 font-medium text-neutral-300 group-hover:text-white">
+                  {prev.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+
+            {next ? (
+              <Link
+                href={`/projects/${next.slug}`}
+                className="group flex max-w-[45%] flex-col text-right text-sm text-neutral-500 transition-colors hover:text-white"
+              >
+                <span className="text-xs uppercase tracking-wider text-neutral-600">Next</span>
+                <span className="mt-1 font-medium text-neutral-300 group-hover:text-white">
+                  {next.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
         </div>
       </article>
 
