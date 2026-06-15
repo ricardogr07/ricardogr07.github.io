@@ -33,6 +33,8 @@ const staticPages: OgPage[] = [
   { slug: 'projects', subtitle: 'Projects' },
   { slug: 'cv', subtitle: 'CV / Résumé' },
   { slug: 'freelance', subtitle: 'Freelance' },
+  { slug: 'teaching', subtitle: 'Teaching — Bioinstrumentation at Tec de Monterrey' },
+  { slug: 'research', subtitle: 'Research — Publications, Thesis & Scientific Software' },
   { slug: 'demo-financial-dashboard', subtitle: 'Financial Data Dashboard Demo — Synthetic Data' },
   { slug: 'demo-query-lab', subtitle: 'Portfolio Query Lab — SQLite / WASM in the Browser' },
 ]
