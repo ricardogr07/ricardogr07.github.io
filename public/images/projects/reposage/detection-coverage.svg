@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="440" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Detection coverage — all deterministic, all from files on disk</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">No model, no network: extension maps, name maps, and manifest parsers do the work.</text>
+
+  <!-- 3 columns -->
+  <g>
+    <!-- languages -->
+    <rect x="48" y="104" width="336" height="296" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="80" y="178" fill="#22d3ee" font-size="72" font-weight="800">29</text>
+    <text x="80" y="208" fill="#cbd5e1" font-size="14" font-weight="700">languages</text>
+    <text x="80" y="232" fill="#64748b" font-size="12">32 map entries · extension +</text>
+    <text x="80" y="250" fill="#64748b" font-size="12">special filenames</text>
+    <g font-size="11.5" fill="#94a3b8">
+      <text x="80" y="288">Python · TypeScript · Rust</text>
+      <text x="80" y="310">Go · Java · C# · C++ · Ruby</text>
+      <text x="80" y="332">Kotlin · Swift · Dockerfile</text>
+      <text x="80" y="354">Makefile · … 18 more</text>
+    </g>
+  </g>
+
+  <!-- frameworks -->
+  <rect x="400" y="104" width="336" height="296" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="432" y="178" fill="#22d3ee" font-size="72" font-weight="800">32</text>
+  <text x="432" y="208" fill="#cbd5e1" font-size="14" font-weight="700">frameworks</text>
+  <text x="432" y="232" fill="#64748b" font-size="12">19 exact + 12 prefix +</text>
+  <text x="432" y="250" fill="#64748b" font-size="12">file signals</text>
+  <g font-size="11.5" fill="#94a3b8">
+    <text x="432" y="288">React · FastAPI · Flask</text>
+    <text x="432" y="310">Django (manage.py)</text>
+    <text x="432" y="332">Next.js · Deno · Bun</text>
+    <text x="432" y="354">Spring · … prefix-matched</text>
+  </g>
+
+  <!-- manifests -->
+  <rect x="752" y="104" width="320" height="296" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="784" y="178" fill="#22d3ee" font-size="72" font-weight="800">10</text>
+  <text x="784" y="208" fill="#cbd5e1" font-size="14" font-weight="700">manifest parsers</text>
+  <text x="784" y="232" fill="#64748b" font-size="12">dependency formats</text>
+  <g font-size="11.5" fill="#94a3b8">
+    <text x="784" y="270">pyproject.toml · requirements*</text>
+    <text x="784" y="292">package.json · Cargo.toml</text>
+    <text x="784" y="314">pom.xml · build.gradle(.kts)</text>
+    <text x="784" y="336">*.csproj · packages.config</text>
+    <text x="784" y="358">Directory.Packages.props</text>
+  </g>
+</svg>
