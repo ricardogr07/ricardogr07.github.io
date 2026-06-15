@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/footer'
+import { experience } from '@/content/experience'
 
 export const metadata: Metadata = {
   title: 'CV',
@@ -19,49 +20,6 @@ export const metadata: Metadata = {
     images: ['https://ricardogr07.github.io/og/cv.png'],
   },
 }
-
-const experience = [
-  {
-    role: 'Aggregation Services Senior Developer',
-    company: 'MSCI',
-    dates: 'Sep 2023 – Present',
-    bullets: [
-      'Build and maintain enterprise backend services, APIs, analytics tooling, operational scripts, dashboards, and data workflows supporting large-scale financial data systems.',
-      'Develop Python-oriented automation and data workflows for operational analytics, reporting, validation, documentation, and engineering productivity.',
-      'Design telemetry and monitoring solutions using Splunk, Azure DevOps data, database-backed reporting, and Power BI.',
-      'Contribute to modernization and technical debt reduction, including Java refactoring and upgrade-readiness work while preserving behavior and release stability.',
-      'Contributed to enterprise initiatives with approximately USD 1M in business impact.',
-    ],
-  },
-  {
-    role: 'Software Developer II',
-    company: 'Rackspace Technology',
-    dates: 'Aug 2022 – Sep 2023',
-    bullets: [
-      'Developed internal and customer-facing APIs, enterprise services, and serverless applications using C#, .NET, and Azure Functions.',
-      'Translated functional requirements into conceptual designs, estimates, prototypes, and production-grade software.',
-      'Implemented automated tests, Jenkins CI/CD workflows, monitoring, telemetry tooling, and production troubleshooting.',
-    ],
-  },
-  {
-    role: '.NET Middle Software Engineer',
-    company: 'Parallel Staff / Softeq',
-    dates: 'Jan 2022 – Aug 2022',
-    bullets: [
-      'Built backend services and desktop automation tooling using C#, .NET Core, and .NET Framework.',
-      'Performed requirements analysis, authored test scenarios, wrote test scripts, and contributed to code reviews and documentation.',
-    ],
-  },
-  {
-    role: 'Hardware and Software Development Specialist',
-    company: 'Delee Corp',
-    dates: 'Feb 2020 – Dec 2021',
-    bullets: [
-      'Built C#/.NET backend services and WPF/XAML MVVM desktop tools for laboratory automation, device control, data acquisition, and automated biomedical testing workflows.',
-      'Worked with cross-functional stakeholders to capture requirements, deliver reusable software, and support Agile delivery.',
-    ],
-  },
-]
 
 const education = [
   {
@@ -124,38 +82,6 @@ const publications = [
     text: 'Hosseini, S., Espinosa-Hernandez, M., Garcia-Ramirez, R., et al. (2020). BioMEMS: Biosensing Applications.',
     venue: 'Springer Nature (1st ed., p. 178).',
     doi: null,
-  },
-]
-
-const selectedProjects = [
-  {
-    title: 'LinkedIn Job Scraping & Data Export Pipeline',
-    summary:
-      'Python scraping pipeline with SQLite persistence, CLI, and optional OpenAI enrichment.',
-    repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
-  },
-  {
-    title: 'Rust + Python RAG Chunking Pipeline',
-    summary: 'Token-aware RAG pipeline using Rust/PyO3 for chunking, Qdrant for vector search.',
-    repo: 'https://github.com/ricardogr07/rusty-rag-chunker',
-  },
-  {
-    title: 'Clipsmith: AI-Assisted Media Pipeline',
-    summary:
-      'Local media automation: VOD ingestion, Spanish transcription, LLM clip selection, FFmpeg output.',
-    repo: 'https://github.com/ricardogr07/clipsmith',
-  },
-  {
-    title: 'RepoSage: AI-Assisted Repository Audit Tool',
-    summary:
-      'Codebase scanner that detects language/framework signals and outputs structured audit reports.',
-    repo: 'https://github.com/ricardogr07/reposage',
-  },
-  {
-    title: 'PurkinjeUV: Scientific Python Package',
-    summary:
-      'Modular scientific package for generating Purkinje network geometries over cardiac meshes. Published on PyPI.',
-    repo: 'https://github.com/ricardogr07/purkinje-uv',
   },
 ]
 
@@ -269,7 +195,7 @@ export default function CVPage() {
                       <span className="font-semibold text-white">{entry.role}</span>
                       <span className="ml-2 text-sm text-neutral-500">{entry.company}</span>
                     </div>
-                    <span className="text-sm text-neutral-600">{entry.dates}</span>
+                    <span className="text-sm text-neutral-600">{entry.period}</span>
                   </div>
                   <ul className="mt-2 space-y-1">
                     {entry.bullets.map((b) => (
