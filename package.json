@@ -14,8 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "e2e": "cypress open",
-    "e2e:run": "cypress run"
+    "e2e": "node scripts/run-cypress.mjs open",
+    "e2e:run": "node scripts/run-cypress.mjs run"
   },
   "dependencies": {
     "lucide-react": "^1.17.0",
