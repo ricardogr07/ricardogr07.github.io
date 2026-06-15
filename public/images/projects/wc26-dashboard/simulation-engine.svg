@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="se-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" /></marker>
+  </defs>
+  <rect width="1120" height="540" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">The match model — Elo logistic + Monte Carlo, kept deliberately simple</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">One match is a coin-flip weighted by rating. Run the whole tournament 10,000× and tally where each of the 5 players lands.</text>
+
+  <!-- rules -->
+  <g>
+    <rect x="48" y="108" width="624" height="56" rx="10" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
+    <text x="72" y="132" fill="#67e8f9" font-size="12.5" font-weight="700">win probability</text>
+    <text x="72" y="152" fill="#cbd5e1" font-size="11.5">P(A beats B) = 1 / (1 + 10^((Elo_B − Elo_A) / 400)) — neutral site, no home advantage</text>
+
+    <rect x="48" y="174" width="624" height="56" rx="10" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="72" y="198" fill="#67e8f9" font-size="12.5" font-weight="700">group match</text>
+    <text x="72" y="218" fill="#94a3b8" font-size="11.5">fixed 25% draw rate; the winner is given a random 1–3 goal margin</text>
+
+    <rect x="48" y="240" width="624" height="56" rx="10" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="72" y="264" fill="#67e8f9" font-size="12.5" font-weight="700">qualification</text>
+    <text x="72" y="284" fill="#94a3b8" font-size="11.5">points → goal-diff → random tiebreak; top 2 per group + 8 best third-placed advance (12-group 2026 format)</text>
+
+    <rect x="48" y="306" width="624" height="56" rx="10" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="72" y="330" fill="#67e8f9" font-size="12.5" font-weight="700">knockout</text>
+    <text x="72" y="350" fill="#94a3b8" font-size="11.5">straight Elo draw, no draws — extra time and penalties fold into the coin-flip</text>
+
+    <rect x="48" y="372" width="624" height="56" rx="10" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="72" y="396" fill="#67e8f9" font-size="12.5" font-weight="700">ratings</text>
+    <text x="72" y="416" fill="#94a3b8" font-size="11.5">pre-tournament seed from eloratings.net, then live-updated (K=32) after every completed match</text>
+  </g>
+
+  <!-- monte carlo loop, right -->
+  <rect x="708" y="108" width="364" height="320" rx="14" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
+  <text x="890" y="138" text-anchor="middle" fill="#94a3b8" font-size="12.5" font-weight="700">10,000 tournaments, then count</text>
+  <rect x="740" y="160" width="300" height="92" rx="10" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="756" y="186" fill="#cbd5e1" font-size="11">for run in 1 … 10,000:</text>
+  <text x="772" y="208" fill="#cbd5e1" font-size="11">pin completed results</text>
+  <text x="772" y="228" fill="#cbd5e1" font-size="11">sample groups → knockout</text>
+  <text x="772" y="246" fill="#cbd5e1" font-size="11">record the final pool order</text>
+  <path d="M890 252 V282" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#se-ar)" />
+  <g font-size="10.5">
+    <text x="756" y="306" fill="#94a3b8">P(1st)</text><rect x="816" y="298" width="208" height="9" rx="4.5" fill="#0b1f24" /><rect x="816" y="298" width="166" height="9" rx="4.5" fill="#22d3ee" />
+    <text x="756" y="328" fill="#94a3b8">P(2nd)</text><rect x="816" y="320" width="208" height="9" rx="4.5" fill="#0b1f24" /><rect x="816" y="320" width="120" height="9" rx="4.5" fill="#3ba7bd" />
+    <text x="756" y="350" fill="#94a3b8">P(3rd)</text><rect x="816" y="342" width="208" height="9" rx="4.5" fill="#0b1f24" /><rect x="816" y="342" width="84" height="9" rx="4.5" fill="#2c7d8e" />
+    <text x="756" y="372" fill="#94a3b8">P(4th)</text><rect x="816" y="364" width="208" height="9" rx="4.5" fill="#0b1f24" /><rect x="816" y="364" width="52" height="9" rx="4.5" fill="#246574" />
+    <text x="756" y="394" fill="#94a3b8">P(5th)</text><rect x="816" y="386" width="208" height="9" rx="4.5" fill="#0b1f24" /><rect x="816" y="386" width="30" height="9" rx="4.5" fill="#1e5360" />
+  </g>
+  <text x="890" y="416" text-anchor="middle" fill="#64748b" font-size="10.5">per-player finish distribution</text>
+
+  <text x="48" y="466" fill="#475569" font-size="12.5">Simple by design: the win model is one logistic and a draw rate. The value isn't model sophistication — it's the <tspan fill="#94a3b8">live, interactive product</tspan> around it.</text>
+  <text x="48" y="488" fill="#475569" font-size="12.5">These probabilities are <tspan fill="#94a3b8">modelled, not calibrated</tspan> — there's no backtest against bookmaker odds or real outcomes.</text>
+</svg>

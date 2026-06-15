@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="wa-ar-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" /></marker>
+    <marker id="wa-ar-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+  </defs>
+  <rect width="1120" height="660" fill="#0a0a0a" />
+  <text x="42" y="44" fill="#e2e8f0" font-size="20" font-weight="700">Architecture — a pure simulation engine behind a stateful serverless API</text>
+  <text x="42" y="70" fill="#64748b" font-size="13">Next.js on Azure Static Web Apps → Python Azure Functions → Cosmos DB. The compute core imports no IO — and a test enforces it.</text>
+
+  <!-- front end -->
+  <rect x="42" y="92" width="1038" height="66" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="64" y="120" fill="#67e8f9" font-size="13.5" font-weight="700">Front end — Next.js 16, static export → Azure Static Web Apps (Free tier)</text>
+  <text x="64" y="142" fill="#94a3b8" font-size="11.5">Recharts · bilingual es/en · Scenario Builder (fix hypothetical winners, watch pool odds shift) · web/out/</text>
+  <path d="M260 158 V196" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#wa-ar-c)" />
+  <text x="272" y="182" fill="#64748b" font-size="10.5">HTTPS · web/lib/api.ts</text>
+
+  <!-- functions container -->
+  <rect x="42" y="200" width="648" height="214" rx="13" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="5 4" />
+  <text x="60" y="222" fill="#94a3b8" font-size="12" font-weight="700">Azure Functions · Python 3.11 · consumption</text>
+
+  <!-- /simulate handler -->
+  <rect x="62" y="238" width="206" height="120" rx="11" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="165" y="266" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">POST /simulate</text>
+  <text x="80" y="290" fill="#cbd5e1" font-size="10.5">1 · check Cosmos cache</text>
+  <text x="80" y="310" fill="#cbd5e1" font-size="10.5">2 · miss → run engine</text>
+  <text x="80" y="330" fill="#cbd5e1" font-size="10.5">3 · upsert baseline result</text>
+  <text x="80" y="350" fill="#64748b" font-size="10">overrides → step 2, never cache</text>
+
+  <path d="M268 280 H292" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#wa-ar-c)" />
+  <path d="M292 320 H268" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#wa-ar-c)" />
+
+  <!-- pure engine (the heart) -->
+  <rect x="296" y="240" width="374" height="100" rx="11" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.9" />
+  <text x="483" y="266" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">run_simulation(seed?, n_runs = 10000)</text>
+  <text x="483" y="288" text-anchor="middle" fill="#cbd5e1" font-size="11">Elo logistic win-prob → Monte Carlo over remaining matches</text>
+  <text x="483" y="308" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">pure &amp; seedable — stdlib random only</text>
+  <text x="483" y="328" text-anchor="middle" fill="#94a3b8" font-size="10.5">imports no azure · cosmos · httpx</text>
+  <text x="483" y="358" text-anchor="middle" fill="#64748b" font-size="10.5">↑ a purity contract test fails if "azure" ever appears in the engine module</text>
+
+  <!-- other endpoints -->
+  <rect x="62" y="372" width="608" height="32" rx="8" fill="#0b0e14" stroke="#1e293b" stroke-width="1" />
+  <text x="366" y="392" text-anchor="middle" fill="#94a3b8" font-size="11">also: GET /standings · GET /matches · POST /admin/override (function-key) · timer-triggered sync_matches</text>
+
+  <!-- cosmos -->
+  <rect x="712" y="200" width="368" height="214" rx="13" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="736" y="226" fill="#67e8f9" font-size="13" font-weight="700">Azure Cosmos DB · Session</text>
+  <g font-size="11">
+    <text x="736" y="254" fill="#cbd5e1">teams { eloRating } — patched after each match</text>
+    <text x="736" y="278" fill="#cbd5e1">matches — synced from the results feed</text>
+    <text x="736" y="302" fill="#cbd5e1">participants — 5 players × 5 teams</text>
+    <rect x="730" y="318" width="334" height="76" rx="9" fill="#0b1f24" stroke="#1e3a42" stroke-width="1" />
+    <text x="746" y="342" fill="#67e8f9" font-size="11.5" font-weight="700">simulationRun_latest — CACHED</text>
+    <text x="746" y="362" fill="#cbd5e1">key = # completed matches · baseline only</text>
+    <text x="746" y="382" fill="#64748b" font-size="10.5">one doc; scenario runs are never stored here</text>
+  </g>
+  <path d="M670 290 H708" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#wa-ar-c)" />
+
+  <!-- cache decision -->
+  <text x="42" y="446" fill="#94a3b8" font-size="13" font-weight="700">Caching is keyed by real-world state, not by request</text>
+  <text x="42" y="470" fill="#64748b" font-size="12"><tspan fill="#67e8f9">hit</tspan> — baseline request (no overrides) AND completed-match count unchanged → serve the cached doc, page loads instant.</text>
+  <text x="42" y="490" fill="#64748b" font-size="12"><tspan fill="#f59e0b">miss / bypass</tspan> — a real match finished (count changed) → recompute 10k; OR a scenario override → always a fresh run, never cached.</text>
+
+  <!-- sync loop -->
+  <text x="42" y="524" fill="#94a3b8" font-size="13" font-weight="700">Live updates</text>
+  <rect x="42" y="536" width="1038" height="34" rx="9" fill="#0b0e14" stroke="#1e293b" stroke-width="1" />
+  <text x="60" y="557" fill="#cbd5e1" font-size="11">timer-triggered <tspan fill="#a5b4fc">sync_matches</tspan> → pulls results from TheSportsDB (httpx) → <tspan fill="#a5b4fc">compute_elo_update</tspan> (K=32) → writes teams + matches back to Cosmos</text>
+
+  <!-- honest footnotes -->
+  <line x1="42" y1="592" x2="1078" y2="592" stroke="#1e293b" stroke-width="1" />
+  <text x="42" y="616" fill="#64748b" font-size="11.5">Honest scope: deploy.yml is manual (workflow_dispatch) — auto-on-push is a pending phase. No calibration or backtest — probabilities are modelled, not validated.</text>
+  <text x="42" y="636" fill="#64748b" font-size="11.5">The match model is deliberately simple (flat 25% group draw, random 1–3 goal margin, knockout as an Elo coin-flip, random third-place selection). /simulate is anonymous with an unbounded run count; live runs are unseeded.</text>
+</svg>
