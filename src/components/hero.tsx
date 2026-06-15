@@ -19,7 +19,6 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-4xl">
         {/* Badge */}
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
           <span className="text-sm font-medium tracking-wide text-cyan-400">
             AI/ML · Data Engineering · Cloud · Full-Stack
           </span>
@@ -27,17 +26,18 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-          Full-Stack engineer &amp; Data Scientist building{' '}
+          Full-Stack Developer &amp; Data Scientist building{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-            AI/ML systems
+            AI/ML systems.
           </span>{' '}
-          that run in production on the cloud.
         </h1>
 
         {/* Sub-copy */}
+        <p className="mx-auto mb-0 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
+          M.Sc. Data Science. 7+ years enterprise engineering.
+        </p>
         <p className="mx-auto mb-12 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          M.Sc. Data Science. 7+ years enterprise engineering. Open to senior roles and select
-          freelance work.
+          Open to senior roles and select freelance work.
         </p>
 
         {/* CTAs */}

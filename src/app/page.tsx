@@ -52,7 +52,7 @@ export default function Home() {
               Featured Work
             </h2>
             <p className="text-neutral-500">
-              One flagship per pillar — AI/ML · Data Engineering · Cloud · Full-Stack.
+              AI/ML · Data Engineering · Cloud · Full-Stack
             </p>
           </div>
 
