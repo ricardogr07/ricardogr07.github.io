@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="430" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">A trustworthy research tool — not a money machine</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">Strong as an engineering story: installable, fair, and safe. Modest by design as a forecaster — and honest about it.</text>
+
+  <!-- what's solid -->
+  <rect x="56" y="132" width="488" height="252" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
+  <text x="84" y="172" fill="#67e8f9" font-size="17" font-weight="700">What's solid</text>
+  <g font-size="15" fill="#cbd5e1">
+    <path d="M86 200 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="207">a real, installable package (pip install)</text>
+    <path d="M86 242 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="249">tested so the model can never peek ahead</text>
+    <path d="M86 284 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="291">settings are validated before each run</text>
+    <path d="M86 326 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="333">refuses to trade with real money</text>
+  </g>
+
+  <!-- where it stops -->
+  <rect x="576" y="132" width="488" height="252" rx="14" fill="#0d1117" stroke="#475569" stroke-width="1.4" />
+  <text x="604" y="172" fill="#94a3b8" font-size="17" font-weight="700">Where it stops</text>
+  <g font-size="15" fill="#94a3b8">
+    <text x="606" y="207">→ <tspan fill="#cbd5e1">no claim it makes money</tspan> — it's a fair test bench</text>
+    <text x="606" y="249">→ results are re-run from settings, not saved as</text>
+    <text x="624" y="271" font-size="13.5" fill="#64748b">trophy numbers you have to take on faith</text>
+    <text x="606" y="305">→ <tspan fill="#cbd5e1">one Python version</tspan>, coverage not measured yet</text>
+    <text x="606" y="347">→ two large files flagged for future tidy-up</text>
+  </g>
+
+  <text x="560" y="414" text-anchor="middle" fill="#64748b" font-size="14">Every limit on the right is stated up front — the point of the tool is honesty about what it does and doesn't prove.</text>
+</svg>

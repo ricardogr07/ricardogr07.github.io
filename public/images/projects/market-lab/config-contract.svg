@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="cc-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+  </defs>
+  <rect width="1120" height="440" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">Bad settings stop before anything runs</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">Every experiment is written as a simple settings file — and checked against the rules before a single calculation starts.</text>
+
+  <!-- step 1: settings file -->
+  <rect x="56" y="150" width="280" height="200" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="196" y="186" text-anchor="middle" fill="#cbd5e1" font-size="16" font-weight="700">1 · Your settings</text>
+  <text x="196" y="210" text-anchor="middle" fill="#64748b" font-size="13">one readable file</text>
+  <g font-size="14" fill="#94a3b8" text-anchor="middle">
+    <text x="196" y="250">how far back to train</text>
+    <text x="196" y="280">how to split the bets</text>
+    <text x="196" y="310">which model to use</text>
+  </g>
+
+  <!-- step 2: the rules -->
+  <rect x="420" y="150" width="280" height="200" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+  <text x="560" y="186" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">2 · Checked</text>
+  <g font-size="13.5" fill="#cbd5e1">
+    <path d="M448 222 l6 6 l11 -13" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="476" y="228">weights add up to 100%</text>
+    <path d="M448 262 l6 6 l11 -13" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="476" y="268">limits stay in range</text>
+    <path d="M448 302 l6 6 l11 -13" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="476" y="308">only known options allowed</text>
+  </g>
+
+  <!-- step 3: outcome -->
+  <rect x="784" y="150" width="280" height="200" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="924" y="186" text-anchor="middle" fill="#cbd5e1" font-size="16" font-weight="700">3 · Fails loudly</text>
+  <text x="924" y="226" text-anchor="middle" fill="#94a3b8" font-size="14">anything invalid stops</text>
+  <text x="924" y="250" text-anchor="middle" fill="#94a3b8" font-size="14">immediately</text>
+  <rect x="824" y="278" width="200" height="48" rx="10" fill="#160a0a" stroke="#7f1d1d" stroke-width="1.3" />
+  <text x="924" y="307" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">no quiet wrong results</text>
+
+  <!-- arrows -->
+  <path d="M340 250 H416" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#cc-ar)" />
+  <path d="M704 250 H780" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#cc-ar)" />
+
+  <text x="56" y="404" fill="#64748b" font-size="14">Why it matters: a typo can't silently run and produce a plausible-looking but meaningless result.</text>
+</svg>
