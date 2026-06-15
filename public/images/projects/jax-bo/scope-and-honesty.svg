@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="430" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">A clean packaging story — honest about its edges</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">Strong as distribution engineering: installable, linted, tested, auto-released. Deliberately not a new framework.</text>
+
+  <!-- what's solid -->
+  <rect x="56" y="126" width="488" height="264" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
+  <text x="84" y="164" fill="#67e8f9" font-size="17" font-weight="700">What's solid</text>
+  <g font-size="15" fill="#cbd5e1">
+    <path d="M86 192 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="199">installs today on modern Python &amp; JAX</text>
+    <path d="M86 234 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="241">two real releases shipped to PyPI</text>
+    <path d="M86 276 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="283">tested on two Python versions, linted</text>
+    <path d="M86 318 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="325">releases publish themselves, token-less</text>
+    <path d="M86 360 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="367">upstream authors clearly credited</text>
+  </g>
+
+  <!-- where it stops -->
+  <rect x="576" y="126" width="488" height="264" rx="14" fill="#0d1117" stroke="#475569" stroke-width="1.4" />
+  <text x="604" y="164" fill="#94a3b8" font-size="17" font-weight="700">Where it stops</text>
+  <g font-size="15" fill="#94a3b8">
+    <text x="606" y="199">→ <tspan fill="#cbd5e1">a fork</tspan> — the math is upstream, not original</text>
+    <text x="606" y="241">→ <tspan fill="#cbd5e1">not a new framework</tspan> — maintenance &amp; packaging</text>
+    <text x="606" y="283">→ best for <tspan fill="#cbd5e1">small, low-dimensional</tspan> problems</text>
+    <text x="606" y="325">→ you assemble the search loop yourself</text>
+    <text x="606" y="367">→ the core math is only lightly tested</text>
+  </g>
+
+  <text x="560" y="418" text-anchor="middle" fill="#64748b" font-size="14">The point of the project is honest distribution: research code made installable, with every limit stated.</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="460" fill="#0a0a0a" />
+
+  <text x="56" y="56" fill="#f8fafc" font-size="26" font-weight="700">The idea: don't guess everywhere — guess smartly</text>
+  <text x="56" y="90" fill="#94a3b8" font-size="16">When every test is expensive, model what you've learned, then test where the payoff is most uncertain-but-promising.</text>
+
+  <!-- chart frame -->
+  <rect x="80" y="128" width="700" height="260" rx="10" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
+  <text x="92" y="152" fill="#64748b" font-size="12">how good the result is &#8594;</text>
+  <text x="430" y="412" text-anchor="middle" fill="#64748b" font-size="12">a setting you could try &#8594;</text>
+
+  <!-- uncertainty band (wide where no data) -->
+  <path d="M110 300
+           C 180 250, 200 248, 240 250
+           C 300 254, 340 210, 400 196
+           C 470 182, 520 250, 600 250
+           C 660 250, 700 196, 750 176
+           L 750 250
+           C 700 286, 660 320, 600 320
+           C 520 320, 470 256, 400 270
+           C 340 282, 300 300, 240 296
+           C 200 294, 180 300, 110 330 Z"
+        fill="#22d3ee" opacity="0.10" />
+
+  <!-- predicted mean curve -->
+  <path d="M110 315
+           C 180 275, 200 274, 240 273
+           C 300 272, 340 230, 400 233
+           C 470 236, 520 285, 600 285
+           C 660 285, 700 246, 750 213"
+        fill="none" stroke="#67e8f9" stroke-width="2.4" stroke-linecap="round" />
+
+  <!-- tested points -->
+  <circle cx="240" cy="273" r="6" fill="#f8fafc" />
+  <circle cx="400" cy="233" r="6" fill="#f8fafc" />
+  <circle cx="600" cy="285" r="6" fill="#f8fafc" />
+  <text x="240" y="256" text-anchor="middle" fill="#94a3b8" font-size="11">tested</text>
+  <text x="400" y="216" text-anchor="middle" fill="#94a3b8" font-size="11">tested</text>
+  <text x="600" y="306" text-anchor="middle" fill="#94a3b8" font-size="11">tested</text>
+
+  <!-- next pick marker (high, uncertain) -->
+  <line x1="725" y1="170" x2="725" y2="360" stroke="#f59e0b" stroke-width="1.6" stroke-dasharray="5 4" />
+  <circle cx="725" cy="221" r="7" fill="#f59e0b" />
+  <text x="708" y="380" text-anchor="end" fill="#fcd34d" font-size="13" font-weight="700">try here next</text>
+
+  <!-- legend / explainer column -->
+  <g font-size="14.5" fill="#cbd5e1">
+    <circle cx="836" cy="170" r="6" fill="#f8fafc" />
+    <text x="856" y="175">what you've already tested</text>
+
+    <rect x="830" y="208" width="14" height="10" rx="2" fill="#67e8f9" />
+    <text x="856" y="218">the model's best prediction</text>
+
+    <rect x="830" y="246" width="14" height="14" rx="2" fill="#22d3ee" opacity="0.18" />
+    <text x="856" y="258">how unsure it still is (the band)</text>
+
+    <circle cx="836" cy="296" r="6" fill="#f59e0b" />
+    <text x="856" y="301">the next test it picks —</text>
+    <text x="856" y="323">promising, and still uncertain</text>
+  </g>
+
+  <!-- footer -->
+  <text x="56" y="438" fill="#64748b" font-size="14">Each new test sharpens the model, so it homes in on the best setting in far fewer tries than a brute-force sweep.</text>
+</svg>
