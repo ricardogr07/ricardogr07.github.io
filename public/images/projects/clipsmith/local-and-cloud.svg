@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="500" fill="#0a0a0a" />
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Local-first, cloud-optional — graded by how far it's actually proven</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">The same Docker image and process_vod() run on a laptop or on ephemeral Azure. Each tier is placed by the evidence that backs it, not by ambition.</text>
+
+  <!-- Tier 1: shipped & CI-verified -->
+  <rect x="48" y="100" width="1024" height="116" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.5" />
+  <text x="72" y="130" fill="#67e8f9" font-size="14" font-weight="700">SHIPPED &amp; CI-VERIFIED</text>
+  <text x="72" y="150" fill="#64748b" font-size="11">green on every push — ruff · mypy · pytest · bandit · pip-audit</text>
+  <g font-size="12" fill="#cbd5e1">
+    <path d="M76 176 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="108" y="182">local CLI pipeline (Typer) · checkpoint + --resume</text>
+    <path d="M76 202 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="108" y="208">FastAPI service — same process_vod(), 24 API tests</text>
+    <path d="M556 176 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="588" y="182">Next.js dashboard — SSE, approve/reject, Cypress specs</text>
+    <path d="M556 202 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="588" y="208">PyPI clipsmith-ai v0.2.1 · Docker image published</text>
+  </g>
+
+  <!-- Tier 2: built & manually exercised -->
+  <rect x="48" y="232" width="1024" height="116" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.5" />
+  <text x="72" y="262" fill="#fcd34d" font-size="14" font-weight="700">BUILT &amp; MANUALLY EXERCISED</text>
+  <text x="72" y="282" fill="#b08436" font-size="11">real modules + Terraform, but no recorded CI run — proven by hand, not by pipeline</text>
+  <g font-size="12" fill="#e7c38a">
+    <text x="72" y="310">→ clipsmith cloud run — provisioner + azure_runner, Key Vault, Drive upload, teardown</text>
+    <text x="72" y="332">→ Docker image last pulled 2026-06-05 (used) · e2e-cloud workflow exists but has 0 recorded runs</text>
+  </g>
+
+  <!-- Tier 3: in progress -->
+  <rect x="48" y="364" width="1024" height="80" rx="12" fill="#0b0e14" stroke="#475569" stroke-width="1.3" stroke-dasharray="5 4" />
+  <text x="72" y="394" fill="#94a3b8" font-size="14" font-weight="700">IN PROGRESS — Sprint 10</text>
+  <g font-size="12" fill="#64748b">
+    <text x="72" y="420">→ continuous deployment (deploy.yml, ACI update, health-check gate) — uncommitted in the working tree</text>
+    <text x="72" y="438">the case study does not claim CD; it's named here as the current edge, not a finished feature</text>
+  </g>
+
+  <text x="560" y="478" text-anchor="middle" fill="#475569" font-size="11.5">Tier placement is auditable: registry checks, test counts, and workflow run history — not self-assessment.</text>
+</svg>
