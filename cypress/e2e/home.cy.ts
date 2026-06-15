@@ -13,19 +13,20 @@ describe('Portfolio Home Page', () => {
 
   it('renders the hero section with main heading', () => {
     cy.get('h1').should('be.visible')
-    cy.get('h1').should('contain.text', 'data science, ML/AI')
+    cy.get('h1').should('contain.text', 'AI/ML systems')
   })
 
-  it('shows the ML/AI · Data Engineering · Scientific Computing badge in the hero', () => {
-    cy.contains('ML/AI · Data Engineering · Scientific Computing').should('be.visible')
+  it('shows the four-pillar badge in the hero', () => {
+    cy.contains('AI/ML · Data Engineering · Cloud · Full-Stack').should('be.visible')
   })
 
-  it('has View Projects CTA linking to /projects', () => {
-    cy.contains('a', 'View Projects').should('have.attr', 'href', '/projects')
+  it('has a View projects CTA linking to /projects', () => {
+    // trailingSlash: true → href renders as /projects/
+    cy.contains('a', 'View projects').should('have.attr', 'href', '/projects/')
   })
 
-  it('has About Me CTA linking to /about', () => {
-    cy.contains('a', 'About Me').should('have.attr', 'href', '/about')
+  it('has a Download CV CTA linking to /cv', () => {
+    cy.contains('a', 'Download CV').should('have.attr', 'href', '/cv/')
   })
 
   it('does NOT have a GitHub CTA in the hero', () => {
@@ -34,25 +35,26 @@ describe('Portfolio Home Page', () => {
     })
   })
 
-  it('renders the "What I work on" section with 3 focus areas', () => {
+  it('renders the "What I work on" section with the four pillars', () => {
     cy.contains('h2', 'What I work on').should('be.visible')
-    cy.contains('ML/AI Systems').should('be.visible')
+    cy.contains('AI/ML').should('be.visible')
     cy.contains('Data Engineering').should('be.visible')
-    cy.contains('Scientific Computing').should('be.visible')
+    cy.contains('Cloud').should('be.visible')
+    cy.contains('Full-Stack').should('be.visible')
   })
 
-  it('renders exactly 3 featured project cards', () => {
-    cy.get('[data-testid="project-card"]').should('have.length', 3)
+  it('renders exactly 4 featured project cards', () => {
+    cy.get('[data-testid="project-card"]').should('have.length', 4)
   })
 
-  it('featured projects cover all three domains', () => {
+  it('featured projects cover the core domains', () => {
     cy.contains('Rust + Python RAG Chunking Pipeline').should('be.visible')
     cy.contains('Mexico Jobs Analytics Pipeline').should('be.visible')
     cy.contains('PurkinjeUV').should('be.visible')
   })
 
   it('has a "View all projects" link', () => {
-    cy.contains('a', /view all projects/i).should('have.attr', 'href', '/projects')
+    cy.contains('a', /view all projects/i).should('have.attr', 'href', '/projects/')
   })
 
   it('renders the footer with GitHub and LinkedIn links', () => {
