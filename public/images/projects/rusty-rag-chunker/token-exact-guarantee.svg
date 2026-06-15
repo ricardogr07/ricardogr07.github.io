@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="460" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Token-exact by construction — the limit can't be exceeded</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">A chunk is a window over the token IDs themselves, not a guess over characters. The math is the guarantee.</text>
+
+  <!-- token-aware panel -->
+  <rect x="48" y="104" width="540" height="312" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+  <text x="72" y="138" fill="#67e8f9" font-size="14" font-weight="700">TOKEN-AWARE (tiktoken-rs)</text>
+  <text x="72" y="160" fill="#64748b" font-size="11.5">encode → window over token IDs → decode</text>
+
+  <!-- token row windows -->
+  <g>
+    <rect x="72" y="184" width="216" height="40" rx="6" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="180" y="209" text-anchor="middle" fill="#cbd5e1" font-size="12">≤ max_tokens</text>
+    <rect x="280" y="184" width="44" height="40" rx="6" fill="#15171f" stroke="#475569" stroke-width="1" stroke-dasharray="3 3" />
+    <rect x="316" y="184" width="216" height="40" rx="6" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="424" y="209" text-anchor="middle" fill="#cbd5e1" font-size="12">≤ max_tokens</text>
+    <text x="302" y="244" text-anchor="middle" fill="#475569" font-size="10.5">overlap</text>
+  </g>
+
+  <g font-size="13">
+    <path d="M76 280 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="108" y="286" fill="#cbd5e1">every variant: 0 over-limit chunks</text>
+    <path d="M76 318 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="108" y="324" fill="#cbd5e1">holds at 1 MB, 10 MB, and 50 MB alike</text>
+    <path d="M76 356 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="108" y="362" fill="#cbd5e1">no silent truncation at the embed call</text>
+  </g>
+  <text x="72" y="398" fill="#64748b" font-size="11.5">configurable: max_tokens=800, overlap=100 (benchmark)</text>
+
+  <!-- naive panel -->
+  <rect x="612" y="104" width="460" height="312" rx="12" fill="#140404" stroke="#ef4444" stroke-width="1.2" />
+  <text x="636" y="138" fill="#f87171" font-size="14" font-weight="700">CHARACTER-COUNT BASELINE</text>
+  <text x="636" y="160" fill="#9b6b6b" font-size="11.5">split on char length → tokens are unbounded</text>
+
+  <g font-size="36" font-weight="800" text-anchor="end">
+    <text x="1048" y="232" fill="#ef4444">200</text>
+    <text x="1048" y="288" fill="#ef4444">2,600</text>
+    <text x="1048" y="344" fill="#ef4444">13,100</text>
+  </g>
+  <g font-size="12.5" fill="#cbd5e1">
+    <text x="636" y="228">over-limit chunks @ 1 MB</text>
+    <text x="636" y="284">over-limit chunks @ 10 MB</text>
+    <text x="636" y="340">over-limit chunks @ 50 MB</text>
+  </g>
+  <text x="636" y="392" fill="#9b6b6b" font-size="11.5">each one risks truncation or a rejected embedding</text>
+
+  <text x="560" y="446" text-anchor="middle" fill="#64748b" font-size="12">All figures are committed benchmark output — benchmarks/results.csv, not a README claim.</text>
+</svg>

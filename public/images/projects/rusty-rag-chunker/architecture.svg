@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="rc-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="620" fill="#0a0a0a" />
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Ingest pipeline — Python orchestrates, Rust owns the hot path</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">ingest_documents() makes exactly four calls. The only Rust↔Python crossing is the chunker.</text>
+
+  <!-- CLI strip -->
+  <rect x="48" y="100" width="1024" height="58" rx="10" fill="#0b0e14" stroke="#334155" stroke-width="1.2" />
+  <text x="68" y="124" fill="#94a3b8" font-size="12" font-weight="700">CLI · Typer</text>
+  <g font-size="12.5">
+    <text x="68" y="146" fill="#cbd5e1">init-db</text>
+    <text x="200" y="146" fill="#cbd5e1">ingest &lt;dir&gt;</text>
+    <text x="360" y="146" fill="#cbd5e1">search &lt;query&gt;</text>
+    <text x="360" y="146" fill="#cbd5e1"> </text>
+    <text x="560" y="146" fill="#cbd5e1">ask &lt;question&gt;</text>
+    <text x="500" y="146" fill="#22d3ee" font-size="10.5">keyless ↑</text>
+    <text x="690" y="146" fill="#f59e0b" font-size="10.5">needs OPENAI_API_KEY ↑</text>
+  </g>
+
+  <!-- pipeline row -->
+  <g>
+    <!-- load -->
+    <rect x="48" y="208" width="206" height="104" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="151" y="244" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">load_documents</text>
+    <text x="151" y="268" text-anchor="middle" fill="#cbd5e1" font-size="11.5">glob *.txt / *.md</text>
+    <text x="151" y="288" text-anchor="middle" fill="#64748b" font-size="11">{id, source, text}</text>
+
+    <path d="M254 260 H300" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#rc-ar)" />
+
+    <!-- chunk (Rust boundary) -->
+    <rect x="304" y="194" width="232" height="132" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+    <text x="420" y="222" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">chunk_documents</text>
+    <text x="420" y="242" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">⟂ PyO3 boundary · Rust</text>
+    <text x="420" y="266" text-anchor="middle" fill="#cbd5e1" font-size="11">token-window split</text>
+    <text x="420" y="286" text-anchor="middle" fill="#cbd5e1" font-size="11">amortized BPE init</text>
+    <text x="420" y="308" text-anchor="middle" fill="#64748b" font-size="10.5">tiktoken-rs · cl100k_base</text>
+
+    <path d="M536 260 H582" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#rc-ar)" />
+
+    <!-- embed -->
+    <rect x="586" y="208" width="214" height="104" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+    <text x="693" y="240" text-anchor="middle" fill="#a5b4fc" font-size="13.5" font-weight="700">embed_texts</text>
+    <text x="693" y="264" text-anchor="middle" fill="#cbd5e1" font-size="11">MiniLM-L6-v2 · 384d</text>
+    <text x="693" y="284" text-anchor="middle" fill="#cbd5e1" font-size="11">or OpenAI 3-small · 1536d</text>
+    <text x="693" y="304" text-anchor="middle" fill="#64748b" font-size="10.5">picked by env, not a flag</text>
+
+    <path d="M800 260 H846" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#rc-ar)" />
+
+    <!-- qdrant -->
+    <rect x="850" y="208" width="222" height="104" rx="12" fill="#0d1117" stroke="#67e8f9" stroke-width="1.3" />
+    <text x="961" y="240" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">upsert_chunks</text>
+    <text x="961" y="264" text-anchor="middle" fill="#cbd5e1" font-size="11">Qdrant · cosine</text>
+    <text x="961" y="284" text-anchor="middle" fill="#cbd5e1" font-size="11">UUID5 point IDs</text>
+    <text x="961" y="304" text-anchor="middle" fill="#64748b" font-size="10.5">payload: text + token_count</text>
+  </g>
+
+  <!-- query side -->
+  <text x="48" y="384" fill="#94a3b8" font-size="13" font-weight="700">Query side — the hallucination guard sits before the model</text>
+  <g>
+    <rect x="48" y="404" width="240" height="92" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="168" y="436" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">retrieve top-k</text>
+    <text x="168" y="460" text-anchor="middle" fill="#cbd5e1" font-size="11">Qdrant cosine search</text>
+    <text x="168" y="480" text-anchor="middle" fill="#64748b" font-size="10.5">local embeddings — keyless</text>
+
+    <path d="M288 450 H334" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#rc-ar)" />
+
+    <rect x="338" y="404" width="262" height="92" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+    <text x="469" y="432" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">score &lt; retrieval_min_score?</text>
+    <text x="469" y="456" text-anchor="middle" fill="#e7c38a" font-size="11">default 0.50 — declines before any LLM call</text>
+    <text x="469" y="478" text-anchor="middle" fill="#b08436" font-size="10.5">"I don't have information about this."</text>
+
+    <path d="M600 450 H646" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#rc-ar)" />
+
+    <rect x="650" y="404" width="220" height="92" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+    <text x="760" y="436" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">gpt-4o-mini</text>
+    <text x="760" y="460" text-anchor="middle" fill="#cbd5e1" font-size="11">strict context-only prompt</text>
+    <text x="760" y="480" text-anchor="middle" fill="#64748b" font-size="10.5">"do not use outside knowledge"</text>
+  </g>
+
+  <!-- honest footnotes -->
+  <line x1="48" y1="540" x2="1072" y2="540" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="568" fill="#64748b" font-size="12">Honest scope: the live ingest path runs the <tspan fill="#94a3b8">sequential</tspan> chunker — the Rayon-parallel variant that wins benchmarks is bench-only.</text>
+  <text x="48" y="590" fill="#64748b" font-size="12">No CI, no published wheels, no ingest-side error handling. Engineering depth is the happy path, measured honestly.</text>
+</svg>
