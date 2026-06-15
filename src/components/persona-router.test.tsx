@@ -47,16 +47,16 @@ describe('PersonaRouter', () => {
     expect(link).toHaveAttribute('href', '/freelance')
   })
 
-  it('Teaching card links to /about#teaching', () => {
+  it('Teaching card links to /teaching', () => {
     render(<PersonaRouter />)
     const link = screen.getByRole('link', { name: /teaching/i })
-    expect(link).toHaveAttribute('href', '/about#teaching')
+    expect(link).toHaveAttribute('href', '/teaching')
   })
 
-  it('Research card links to /about#research', () => {
+  it('Research card links to /research', () => {
     render(<PersonaRouter />)
     const link = screen.getByRole('link', { name: /research/i })
-    expect(link).toHaveAttribute('href', '/about#research')
+    expect(link).toHaveAttribute('href', '/research')
   })
 
   it('About card links to /about', () => {

@@ -24,13 +24,13 @@ const personas = [
     icon: BookOpen,
     label: 'Teaching',
     audience: 'Courses & curricula',
-    href: '/about#teaching',
+    href: '/teaching',
   },
   {
     icon: FlaskConical,
     label: 'Research',
     audience: 'Publications & thesis',
-    href: '/about#research',
+    href: '/research',
   },
   {
     icon: User,

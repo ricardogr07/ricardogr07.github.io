@@ -45,16 +45,16 @@ describe('Nav', () => {
     expect(hirePills[0]).toHaveAttribute('href', '/freelance')
   })
 
-  it('Teaching link points to /about#teaching', () => {
+  it('Teaching link points to /teaching', () => {
     render(<Nav />)
     const teaching = screen.getAllByRole('link', { name: /^teaching$/i })
-    expect(teaching[0]).toHaveAttribute('href', '/about#teaching')
+    expect(teaching[0]).toHaveAttribute('href', '/teaching')
   })
 
-  it('Research link points to /about#research', () => {
+  it('Research link points to /research', () => {
     render(<Nav />)
     const research = screen.getAllByRole('link', { name: /^research$/i })
-    expect(research[0]).toHaveAttribute('href', '/about#research')
+    expect(research[0]).toHaveAttribute('href', '/research')
   })
 
   it('has the correct testid', () => {
