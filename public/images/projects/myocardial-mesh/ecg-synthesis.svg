@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="es-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+  </defs>
+  <rect width="1120" height="470" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">From a 3D wave to the trace a doctor reads</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">Each sensor sums up the heart's activity, with closer regions counting for more — building the familiar 12-lead ECG.</text>
+
+  <!-- 3D activation -->
+  <rect x="56" y="156" width="270" height="200" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="191" y="192" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Wave on the heart</text>
+  <ellipse cx="191" cy="266" rx="76" ry="56" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+  <ellipse cx="191" cy="266" rx="50" ry="36" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.6" />
+  <ellipse cx="191" cy="266" rx="24" ry="17" fill="none" stroke="#67e8f9" stroke-width="1.2" opacity="0.8" />
+  <text x="191" y="338" text-anchor="middle" fill="#64748b" font-size="12.5">electrical activity, everywhere at once</text>
+
+  <!-- weighting -->
+  <rect x="392" y="180" width="244" height="152" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+  <text x="514" y="216" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">Distance weighting</text>
+  <text x="514" y="250" text-anchor="middle" fill="#cbd5e1" font-size="13.5">nearer regions count for more,</text>
+  <text x="514" y="272" text-anchor="middle" fill="#cbd5e1" font-size="13.5">farther ones fade out</text>
+  <text x="514" y="300" text-anchor="middle" fill="#64748b" font-size="12">a simple, physical 1-over-distance rule</text>
+
+  <!-- 12-lead ecg grid -->
+  <rect x="700" y="148" width="364" height="216" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="882" y="180" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">12-lead ECG</text>
+  <g font-size="10" fill="#64748b">
+    <text x="722" y="210">I</text><text x="808" y="210">aVR</text><text x="894" y="210">V1</text><text x="980" y="210">V4</text>
+    <text x="722" y="262">II</text><text x="808" y="262">aVL</text><text x="894" y="262">V2</text><text x="980" y="262">V5</text>
+    <text x="722" y="314">III</text><text x="808" y="314">aVF</text><text x="894" y="314">V3</text><text x="980" y="314">V6</text>
+  </g>
+  <g stroke="#67e8f9" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
+    <path d="M722 226 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M808 226 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M894 226 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M980 226 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M722 278 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M808 278 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M894 278 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M980 278 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M722 330 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M808 330 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M894 330 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+    <path d="M980 330 l10 0 l4 -5 l4 5 l8 0 l4 6 l4 -16 l4 8 l4 0 l4 -3 l4 3 l6 0" />
+  </g>
+
+  <!-- arrows -->
+  <path d="M326 256 H390" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#es-ar)" />
+  <path d="M636 256 H698" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#es-ar)" />
+
+  <text x="56" y="408" fill="#64748b" font-size="14">This is the standard physics of how a body-surface ECG forms — the library assembles all 12 leads (the limb and chest views) the same way.</text>
+</svg>

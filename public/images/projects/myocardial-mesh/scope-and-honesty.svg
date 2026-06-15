@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="430" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">A dependable glue layer — honest about its edges</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">Strong as a research-engineering story: tested, typed, and proven equal to the original. Deliberately narrow in scope.</text>
+
+  <!-- what's solid -->
+  <rect x="56" y="126" width="488" height="264" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
+  <text x="84" y="164" fill="#67e8f9" font-size="17" font-weight="700">What's solid</text>
+  <g font-size="15" fill="#cbd5e1">
+    <path d="M86 192 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="199">proven to match the original, to the millionth</text>
+    <path d="M86 234 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="241">tested on two Python versions, types checked</text>
+    <path d="M86 276 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="283">coverage kept above 80% on every build</text>
+    <path d="M86 318 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="325">a clean, installable package, not loose scripts</text>
+    <path d="M86 360 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="118" y="367">delegates the heavy math to a proven solver</text>
+  </g>
+
+  <!-- where it stops -->
+  <rect x="576" y="126" width="488" height="264" rx="14" fill="#0d1117" stroke="#475569" stroke-width="1.4" />
+  <text x="604" y="164" fill="#94a3b8" font-size="17" font-weight="700">Where it stops</text>
+  <g font-size="15" fill="#94a3b8">
+    <text x="606" y="199">→ <tspan fill="#cbd5e1">not a clinical tool</tspan> — it's research software</text>
+    <text x="606" y="241">→ <tspan fill="#cbd5e1">not published</tspan> yet (release setup ready, none shipped)</text>
+    <text x="606" y="283">→ <tspan fill="#cbd5e1">local-only</tspan> — a single import, no CLI or service</text>
+    <text x="606" y="325">→ leans on an external solver for the heavy math</text>
+    <text x="606" y="367">→ you bring the heart model and wiring; it's the glue</text>
+  </g>
+
+  <text x="560" y="418" text-anchor="middle" fill="#64748b" font-size="14">The point of the project is trust through reproducibility — every limit is stated, not hidden.</text>
+</svg>
