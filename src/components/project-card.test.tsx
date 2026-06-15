@@ -62,4 +62,29 @@ describe('ProjectCard', () => {
     render(<ProjectCard project={manyTechProject} />)
     expect(screen.getByText('+2')).toBeInTheDocument()
   })
+
+  it('does not render a headline metric line when headlineMetric is absent', () => {
+    render(<ProjectCard project={mockProject} />)
+    expect(screen.queryByText('5× faster chunking')).not.toBeInTheDocument()
+  })
+
+  it('renders the headline metric line when headlineMetric is set', () => {
+    render(<ProjectCard project={{ ...mockProject, headlineMetric: '5× faster chunking' }} />)
+    expect(screen.getByText('5× faster chunking')).toBeInTheDocument()
+  })
+
+  it('does not render a thumbnail when heroImage is absent', () => {
+    render(<ProjectCard project={mockProject} />)
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
+  })
+
+  it('renders a thumbnail when heroImage is set', () => {
+    render(
+      <ProjectCard
+        project={{ ...mockProject, heroImage: '/images/projects/test-project/hero.png' }}
+      />
+    )
+    const img = screen.getByRole('img')
+    expect(img).toHaveAttribute('alt', 'Test Automation Pipeline thumbnail')
+  })
 })
