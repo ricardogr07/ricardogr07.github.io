@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="ui-sans-serif, system-ui, Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="ci" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee" />
+      <stop offset="1" stop-color="#818cf8" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="6%" r="70%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0 H0 V48" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1" />
+    </pattern>
+    <marker id="ac" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#818cf8" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <!-- title -->
+  <text x="600" y="74" text-anchor="middle" fill="#f8fafc" font-size="44" font-weight="700" letter-spacing="-1">Mexico Jobs Analytics Pipeline</text>
+  <text x="600" y="108" text-anchor="middle" fill="#22d3ee" font-size="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">bilingual job-market analytics · zero servers</text>
+
+  <!-- 14/14 banner -->
+  <rect x="120" y="132" width="960" height="52" rx="26" fill="#0d1117" stroke="#22d3ee" stroke-width="1.4" />
+  <rect x="120" y="132" width="960" height="52" rx="26" fill="url(#ci)" fill-opacity="0.08" />
+  <text x="600" y="165" text-anchor="middle" fill="#67e8f9" font-size="22" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">14 / 14 unattended scheduled runs succeeded since Mar 30 2026</text>
+
+  <!-- ===== 4-stage spine ===== -->
+  <!-- containers -->
+  <g fill="#0b0e14" stroke="#1e293b" stroke-width="1.2">
+    <rect x="48"  y="240" width="232" height="262" rx="12" />
+    <rect x="316" y="240" width="232" height="262" rx="12" />
+    <rect x="584" y="240" width="232" height="262" rx="12" />
+    <rect x="852" y="240" width="232" height="262" rx="12" />
+  </g>
+
+  <!-- connecting arrows -->
+  <g stroke="#818cf8" stroke-width="1.8">
+    <line x1="282" y1="371" x2="312" y2="371" marker-end="url(#ac)" />
+    <line x1="550" y1="371" x2="580" y2="371" marker-end="url(#ac)" />
+    <line x1="818" y1="371" x2="848" y2="371" marker-end="url(#ac)" />
+  </g>
+
+  <!-- ===== Stage 1: RAW INPUT (center 164) ===== -->
+  <g>
+    <!-- folder -->
+    <path d="M104 300 h26 l8 10 h36 a6 6 0 0 1 6 6 v44 a6 6 0 0 1 -6 6 h-70 a6 6 0 0 1 -6 -6 v-54 a6 6 0 0 1 6 -6 z" fill="#0d1117" stroke="#818cf8" stroke-width="1.4" />
+    <!-- scattered docs -->
+    <g fill="#0d1117" stroke="#22d3ee" stroke-width="1.2">
+      <rect x="196" y="300" width="22" height="28" rx="3" transform="rotate(-8 207 314)" />
+      <rect x="214" y="330" width="22" height="28" rx="3" transform="rotate(6 225 344)" />
+      <rect x="196" y="360" width="22" height="28" rx="3" transform="rotate(-5 207 374)" />
+    </g>
+    <text x="164" y="418" text-anchor="middle" fill="#22d3ee" font-size="22" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">9,661</text>
+    <text x="164" y="438" text-anchor="middle" fill="#cbd5e1" font-size="12.5">job snapshots</text>
+    <text x="164" y="462" text-anchor="middle" fill="#64748b" font-size="11">79 daily folders</text>
+    <text x="164" y="478" text-anchor="middle" fill="#64748b" font-size="11">checked out at run time</text>
+  </g>
+
+  <!-- ===== Stage 2: CURATED STORE (center 432) ===== -->
+  <g>
+    <!-- duckdb cylinder -->
+    <g stroke="#22d3ee" stroke-width="1.5" fill="#0d1117">
+      <ellipse cx="432" cy="294" rx="48" ry="13" />
+      <path d="M384 294 V348 A48 13 0 0 0 480 348 V294" />
+      <ellipse cx="432" cy="294" rx="48" ry="13" fill="#0d1117" />
+      <path d="M384 321 A48 13 0 0 0 480 321" fill="none" stroke-opacity="0.5" />
+    </g>
+    <text x="432" y="312" text-anchor="middle" fill="#67e8f9" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">DuckDB</text>
+    <!-- create or replace badge -->
+    <rect x="356" y="360" width="152" height="22" rx="11" fill="#0d1117" stroke="#818cf8" stroke-width="1.1" />
+    <text x="432" y="375" text-anchor="middle" fill="#a5b4fc" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">CREATE OR REPLACE</text>
+    <!-- three tables -->
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+      <rect x="356" y="390" width="152" height="20" rx="4" fill="#0d1117" stroke="#334155" />
+      <text x="366" y="404" fill="#cbd5e1">source_runs</text>
+      <rect x="356" y="414" width="152" height="20" rx="4" fill="#0d1117" stroke="#334155" />
+      <text x="366" y="428" fill="#cbd5e1">job_observations</text>
+      <rect x="356" y="438" width="152" height="20" rx="4" fill="#0d1117" stroke="#334155" />
+      <text x="366" y="452" fill="#cbd5e1">job_entities</text>
+    </g>
+    <text x="432" y="478" text-anchor="middle" fill="#64748b" font-size="11">+ Parquet sidecars · no pyarrow</text>
+  </g>
+
+  <!-- ===== Stage 3: BILINGUAL NARRATIVE (center 700) ===== -->
+  <g>
+    <!-- LLM node -->
+    <circle cx="700" cy="300" r="22" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5" />
+    <text x="700" y="305" text-anchor="middle" fill="#67e8f9" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">LLM</text>
+    <text x="700" y="344" text-anchor="middle" fill="#cbd5e1" font-size="12.5">1 OpenAI call</text>
+    <!-- two report cards -->
+    <line x1="700" y1="352" x2="648" y2="372" stroke="#818cf8" stroke-width="1.5" marker-end="url(#ac)" />
+    <line x1="700" y1="352" x2="752" y2="372" stroke="#818cf8" stroke-width="1.5" marker-end="url(#ac)" />
+    <g>
+      <rect x="600" y="376" width="86" height="78" rx="7" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+      <text x="611" y="396" fill="#67e8f9" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">EN</text>
+      <rect x="611" y="404" width="64" height="7" rx="3.5" fill="#22d3ee" opacity="0.8" />
+      <rect x="611" y="418" width="52" height="6" rx="3" fill="#334155" />
+      <rect x="611" y="430" width="58" height="6" rx="3" fill="#334155" />
+      <rect x="611" y="442" width="46" height="6" rx="3" fill="#334155" />
+    </g>
+    <g>
+      <rect x="714" y="376" width="86" height="78" rx="7" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+      <text x="725" y="396" fill="#67e8f9" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">ES</text>
+      <rect x="725" y="404" width="64" height="7" rx="3.5" fill="#22d3ee" opacity="0.8" />
+      <rect x="725" y="418" width="52" height="6" rx="3" fill="#334155" />
+      <rect x="725" y="430" width="58" height="6" rx="3" fill="#334155" />
+      <rect x="725" y="442" width="46" height="6" rx="3" fill="#334155" />
+    </g>
+    <text x="700" y="478" text-anchor="middle" fill="#64748b" font-size="11">schema-locked · in sync by construction</text>
+  </g>
+
+  <!-- ===== Stage 4: PUBLIC SITE (center 968) ===== -->
+  <g>
+    <!-- browser window -->
+    <rect x="892" y="290" width="152" height="96" rx="8" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <line x1="892" y1="308" x2="1044" y2="308" stroke="#22d3ee" stroke-opacity="0.4" />
+    <g fill="#475569"><circle cx="904" cy="299" r="3" /><circle cx="916" cy="299" r="3" /><circle cx="928" cy="299" r="3" /></g>
+    <rect x="904" y="320" width="60" height="8" rx="4" fill="#22d3ee" opacity="0.7" />
+    <rect x="904" y="336" width="128" height="6" rx="3" fill="#334155" />
+    <rect x="904" y="350" width="112" height="6" rx="3" fill="#334155" />
+    <rect x="904" y="364" width="120" height="6" rx="3" fill="#334155" />
+    <!-- cron pills -->
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+      <rect x="892" y="398" width="152" height="20" rx="10" fill="#0d1117" stroke="#334155" />
+      <text x="968" y="412" text-anchor="middle" fill="#94a3b8">0 14 * * 1  weekly</text>
+      <rect x="892" y="424" width="152" height="20" rx="10" fill="#0d1117" stroke="#334155" />
+      <text x="968" y="438" text-anchor="middle" fill="#94a3b8">0 15 1 * *  monthly</text>
+    </g>
+    <text x="968" y="478" text-anchor="middle" fill="#64748b" font-size="11">GitHub Pages · static deploy</text>
+  </g>
+
+  <!-- stage labels -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">
+    <text x="164" y="534">1 · RAW INPUT</text>
+    <text x="432" y="534">2 · CURATED STORE</text>
+    <text x="700" y="534">3 · BILINGUAL NARRATIVE</text>
+    <text x="968" y="534">4 · PUBLIC SITE</text>
+  </g>
+  <rect x="48" y="548" width="1036" height="3" rx="1.5" fill="url(#ci)" fill-opacity="0.55" />
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="430" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">The data layer — DuckDB authoritative, Parquet sidecars</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">No pyarrow · all I/O is DuckDB-native · no incremental state to corrupt</text>
+
+  <!-- input -->
+  <g>
+    <rect x="48" y="150" width="150" height="120" rx="9" fill="#0d1117" stroke="#475569" stroke-width="1.3" />
+    <text x="123" y="200" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="700">raw snapshots</text>
+    <text x="123" y="224" text-anchor="middle" fill="#22d3ee" font-size="12">9,661 rows</text>
+    <text x="123" y="244" text-anchor="middle" fill="#64748b" font-size="10.5">79 daily exports</text>
+  </g>
+  <line x1="198" y1="210" x2="244" y2="210" stroke="#818cf8" stroke-width="1.6" marker-end="url(#a)" />
+
+  <!-- CREATE OR REPLACE badge -->
+  <g>
+    <rect x="248" y="186" width="150" height="48" rx="9" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+    <text x="323" y="208" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="700">CREATE OR</text>
+    <text x="323" y="224" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="700">REPLACE</text>
+    <text x="323" y="256" text-anchor="middle" fill="#64748b" font-size="10.5">full rebuild every run</text>
+  </g>
+  <line x1="398" y1="210" x2="444" y2="210" stroke="#818cf8" stroke-width="1.6" marker-end="url(#a)" />
+
+  <!-- DuckDB cylinder with 3 tables -->
+  <g>
+    <rect x="452" y="118" width="290" height="200" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.4" />
+    <text x="597" y="146" text-anchor="middle" fill="#67e8f9" font-size="14" font-weight="700">DuckDB — source of truth</text>
+    <g font-size="12">
+      <rect x="476" y="162" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
+      <text x="492" y="186" fill="#cbd5e1">source_runs</text>
+      <text x="702" y="186" text-anchor="end" fill="#64748b" font-size="10.5">provenance</text>
+      <rect x="476" y="210" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
+      <text x="492" y="234" fill="#cbd5e1">job_observations</text>
+      <text x="702" y="234" text-anchor="end" fill="#64748b" font-size="10.5">fact · obs grain</text>
+      <rect x="476" y="258" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
+      <text x="492" y="282" fill="#cbd5e1">job_entities</text>
+      <text x="702" y="282" text-anchor="end" fill="#64748b" font-size="10.5">latest projection</text>
+    </g>
+  </g>
+
+  <!-- COPY FORMAT PARQUET -->
+  <line x1="742" y1="210" x2="800" y2="210" stroke="#818cf8" stroke-width="1.6" marker-end="url(#a)" />
+  <text x="771" y="200" text-anchor="middle" fill="#64748b" font-size="10">COPY</text>
+
+  <!-- parquet sidecars -->
+  <g>
+    <rect x="806" y="150" width="246" height="120" rx="10" fill="#0b0e14" stroke="#334155" stroke-width="1.2" />
+    <text x="929" y="176" text-anchor="middle" fill="#94a3b8" font-size="13" font-weight="700">Parquet sidecars</text>
+    <g fill="#0d1117" stroke="#22d3ee" stroke-width="1.2">
+      <rect x="826" y="196" width="66" height="54" rx="6" />
+      <rect x="896" y="196" width="66" height="54" rx="6" />
+      <rect x="966" y="196" width="66" height="54" rx="6" />
+    </g>
+    <g fill="#67e8f9" font-size="10.5" text-anchor="middle">
+      <text x="859" y="227">.parquet</text>
+      <text x="929" y="227">.parquet</text>
+      <text x="999" y="227">.parquet</text>
+    </g>
+  </g>
+
+  <text x="560" y="378" text-anchor="middle" fill="#64748b" font-size="12.5">Stateless by design: nothing here survives the runner — it is rebuilt whole, deterministically, on the next run.</text>
+</svg>

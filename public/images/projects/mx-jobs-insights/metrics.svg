@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="440" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Unattended execution — by the numbers</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">All GitHub-API / repo-verified. No projections.</text>
+
+  <!-- 2x2 grid -->
+  <g fill="#0b0e14" stroke="#1e293b" stroke-width="1.2">
+    <rect x="48"  y="104" width="510" height="150" rx="12" />
+    <rect x="578" y="104" width="494" height="150" rx="12" />
+    <rect x="48"  y="266" width="510" height="150" rx="12" />
+    <rect x="578" y="266" width="494" height="150" rx="12" />
+  </g>
+
+  <!-- 14/14 -->
+  <text x="84" y="196" fill="#22d3ee" font-size="64" font-weight="700">14 / 14</text>
+  <text x="84" y="228" fill="#cbd5e1" font-size="13">scheduled runs succeeded — ~10 weeks fully unattended</text>
+
+  <!-- 9,661 -->
+  <text x="614" y="196" fill="#22d3ee" font-size="64" font-weight="700">9,661</text>
+  <text x="614" y="228" fill="#cbd5e1" font-size="13">raw job snapshots ingested · 466 source-run projections</text>
+
+  <!-- 398 -->
+  <text x="84" y="358" fill="#22d3ee" font-size="64" font-weight="700">398</text>
+  <text x="84" y="390" fill="#cbd5e1" font-size="13">curated jobs published in the latest weekly report (2026-W23)</text>
+
+  <!-- 78 -->
+  <text x="614" y="358" fill="#22d3ee" font-size="64" font-weight="700">78</text>
+  <text x="614" y="390" fill="#cbd5e1" font-size="13">tests protecting the pipeline · 7 artifacts emitted per period</text>
+</svg>
