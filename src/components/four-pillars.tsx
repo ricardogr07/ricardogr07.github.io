@@ -8,10 +8,10 @@ const pillars = [
     proofHref: '/projects/rusty-rag-chunker',
   },
   {
-    name: 'Data Engineering',
-    oneliner: 'ETL, DuckDB/Parquet datasets, scraping infra, end-to-end data products',
-    proofLabel: 'mx-jobs-insights',
-    proofHref: '/projects/mx-jobs-insights',
+    name: 'Data Science',
+    oneliner: 'Reproducible ML experiments, statistical analysis, ETL pipelines, DuckDB/Parquet, scientific Python',
+    proofLabel: 'market-lab',
+    proofHref: '/projects/market-lab',
   },
   {
     name: 'Cloud',

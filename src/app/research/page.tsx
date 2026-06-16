@@ -136,7 +136,7 @@ export default function ResearchPage() {
 
             {/* Book — distinct card */}
             <div className="mb-6 flex flex-col gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:flex-row sm:items-center">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400/20 to-neutral-800">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-cyan-400/10">
                 <BookMarked className="h-7 w-7 text-cyan-400" aria-hidden="true" />
               </div>
               <div>
@@ -204,13 +204,13 @@ export default function ResearchPage() {
               {researchPositions.map((pos) => (
                 <div
                   key={pos.lab}
-                  className="rounded-xl border border-neutral-800 bg-neutral-900 p-5"
+                  className="rounded-xl border border-neutral-800 bg-neutral-900 p-5 transition-all hover:border-neutral-700 hover:bg-neutral-800/60"
                 >
                   <div className="mb-1 flex items-baseline justify-between gap-2">
                     <h3 className="font-semibold text-white">{pos.role}</h3>
                     <span className="shrink-0 text-xs text-neutral-600">{pos.period}</span>
                   </div>
-                  <p className="mb-2 text-sm text-cyan-400/80">{pos.lab}</p>
+                  <p className="mb-2 text-sm text-neutral-500">{pos.lab}</p>
                   <p className="text-sm leading-relaxed text-neutral-400">{pos.blurb}</p>
                 </div>
               ))}

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const offers = [
   {
     icon: Brain,
-    title: 'AI / RAG Pipeline — Build or Audit',
+    title: 'AI / RAG Pipeline — build or audit',
     description:
       'Token-aware ingestion, vector search, hallucination guards, and an eval harness — built right or reviewed against the failure modes that quietly wreck retrieval quality.',
     bullets: [
@@ -39,7 +39,7 @@ const offers = [
   },
   {
     icon: Database,
-    title: 'Data Pipeline → Reporting Site',
+    title: 'Data Pipeline → reporting site',
     description:
       'Raw, messy data turned into curated DuckDB/Parquet assets and automated reports — running unattended so the numbers stay fresh without anyone touching them.',
     bullets: [
@@ -51,7 +51,7 @@ const offers = [
   },
   {
     icon: ClipboardCheck,
-    title: 'Engineering / Repo Audit',
+    title: 'Engineering / repo audit',
     description:
       'A structured audit of your codebase — language and framework signals, dependencies, tests, docs, CI, typing — with a prioritized remediation plan. A low-commitment way to start.',
     bullets: [
@@ -92,7 +92,7 @@ export default function FreelancePage() {
             {offers.map((offer) => (
               <div
                 key={offer.title}
-                className="flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-6"
+                className="flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-all hover:border-neutral-700 hover:bg-neutral-800/60"
               >
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-400/10">
                   <offer.icon className="h-5 w-5 text-cyan-400" aria-hidden="true" />

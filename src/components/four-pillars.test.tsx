@@ -22,7 +22,7 @@ describe('FourPillars', () => {
   it('renders all 4 pillar headings', () => {
     render(<FourPillars />)
     expect(screen.getByText('AI/ML')).toBeInTheDocument()
-    expect(screen.getByText('Data Engineering')).toBeInTheDocument()
+    expect(screen.getByText('Data Science')).toBeInTheDocument()
     expect(screen.getByText('Cloud')).toBeInTheDocument()
     expect(screen.getByText('Full-Stack')).toBeInTheDocument()
   })

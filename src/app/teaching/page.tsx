@@ -88,7 +88,7 @@ export default function TeachingPage() {
           </div>
 
           {/* Role card */}
-          <div className="mb-12 rounded-xl border border-neutral-800 bg-neutral-900 p-6">
+          <div className="mb-12 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-all hover:border-neutral-700 hover:bg-neutral-800/60">
             <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
               <h2 className="text-lg font-semibold text-white">
                 Adjunct Assistant Professor — Biomedical Engineering Department
@@ -116,7 +116,7 @@ export default function TeachingPage() {
               {courses.map((course) => (
                 <div
                   key={course.code}
-                  className="rounded-xl border border-neutral-800 bg-neutral-900 p-5"
+                  className="rounded-xl border border-neutral-800 bg-neutral-900 p-5 transition-all hover:border-neutral-700 hover:bg-neutral-800/60"
                 >
                   <div className="mb-2 flex items-center gap-2">
                     <span className="rounded-md border border-cyan-400/30 bg-cyan-400/10 px-2 py-0.5 text-xs font-semibold text-cyan-400">

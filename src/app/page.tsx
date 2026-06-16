@@ -52,7 +52,7 @@ export default function Home() {
               Featured Work
             </h2>
             <p className="text-neutral-500">
-              AI/ML · Data Engineering · Cloud · Full-Stack
+              AI/ML · Data Science · Cloud · Full-Stack
             </p>
           </div>
 
