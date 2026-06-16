@@ -22,9 +22,6 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <p className="mx-auto mt-4 max-w-7xl text-center text-xs text-neutral-600 sm:text-left">
-        Built with Next.js &amp; Tailwind. Deployed via CI/CD as a static export to GitHub Pages.
-      </p>
     </footer>
   )
 }
