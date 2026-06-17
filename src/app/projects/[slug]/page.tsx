@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import DiagramZoom from '@/components/diagram-zoom'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
 import type { PortfolioProject } from '@/lib/types'
@@ -224,7 +225,20 @@ export default async function CaseStudyPage({ params }: Props) {
               {(action || hasDeliverables) && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Action</h2>
-                  {action && <p className="text-base leading-relaxed text-neutral-400">{action}</p>}
+                  {action && (
+                    Array.isArray(action) ? (
+                      <ul className="space-y-3">
+                        {action.map((point) => (
+                          <li key={point} className="flex items-start gap-2 text-base leading-relaxed text-neutral-400">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-base leading-relaxed text-neutral-400">{action}</p>
+                    )
+                  )}
                   {hasDeliverables && (
                     <ul className="mt-4 space-y-2">
                       {project.deliverables.map((item) => (
@@ -242,12 +256,10 @@ export default async function CaseStudyPage({ params }: Props) {
               {project.diagram && (
                 <section>
                   <h2 className="mb-4 text-xl font-semibold text-white">How it works</h2>
-                  <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
-                    {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG diagram, render at its intrinsic aspect ratio */}
-                    <img
+                  <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60">
+                    <DiagramZoom
                       src={project.diagram}
                       alt={`${project.title} architecture diagram`}
-                      className="h-auto w-full"
                     />
                   </div>
                   {project.diagramCaption && (
@@ -260,6 +272,23 @@ export default async function CaseStudyPage({ params }: Props) {
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Result</h2>
                   <p className="text-base leading-relaxed text-neutral-400">{result}</p>
+                  {project.resultGallery && project.resultGallery.length > 0 && (
+                    <div className="mt-6 space-y-4">
+                      {project.resultGallery.map((shot) => (
+                        <figure key={shot.src}>
+                          <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60">
+                            {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG chart */}
+                            <img src={shot.src} alt={shot.alt} className="h-auto w-full" />
+                          </div>
+                          {shot.caption && (
+                            <figcaption className="mt-2 text-sm text-neutral-500">
+                              {shot.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      ))}
+                    </div>
+                  )}
                 </section>
               )}
 
