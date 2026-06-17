@@ -93,8 +93,8 @@ export const projects: PortfolioProject[] = [
       'Cloud Application Development',
     ],
     businessValue: [],
-    tldr: 'Raw job snapshots → clean DuckDB/Parquet datasets → bilingual reports → public site, running unattended weekly (plus a monthly rollup).',
-    headlineMetric: '14 for 14: every unattended scheduled run has succeeded since Mar 30, 2026',
+    tldr: 'Runs free on ephemeral CI, rebuilds 9,661 raw job records from scratch on every run, and publishes bilingual analytics reports to a live site. No server. No manual step.',
+    headlineMetric: 'A stateless weekly pipeline on free ephemeral CI: full dataset rebuilt every run, bilingual reports from one API call, running unattended every week since March 2026',
     situation:
       "Raw job-listing snapshots are worthless until they're clean, queryable, repeatable analytics assets. Manual reporting is slow and inconsistent. The constraint was free infrastructure: no server, no hosting cost.",
     task: 'Turn periodic raw snapshots into curated datasets + bilingual reports + a public docs site, reproducibly and without manual intervention, on infrastructure that costs nothing to run.',
@@ -108,7 +108,7 @@ export const projects: PortfolioProject[] = [
     learning:
       "DuckDB-in-CI made compute trivially reproducible. Rebuilding the whole store from upstream history every run was deterministic and debuggable for free at ~9.6k rows, with no server to host Postgres on anyway. But I learned state has to live somewhere: the stateless rebuild quietly turned my 'archive' into 'latest issue only,' so the public history evaporated and took ten backfill runs to restore. Next time the compute stays stateless, but a small hosted DB or a committed-state branch keeps the archive.",
     caveat:
-      'The live site currently exposes only the latest weekly bundle: each deploy replaces the published periods, so the monthly archive does not accumulate publicly without a backfill run. A consequence of the stateless-rebuild design, not a data loss.',
+      'A trade-off worth naming: every rebuild is deterministic and free, but each deploy replaces what was on the site. Past periods need a backfill run to reappear publicly.',
     status: 'live',
     gallery: [
       {
