@@ -115,29 +115,12 @@ export const projects: PortfolioProject[] = [
         caption:
           'The data layer: DuckDB is the authoritative store, rebuilt whole every run (CREATE OR REPLACE) into three tables (source_runs, job_observations, job_entities), each exported as a DuckDB-native Parquet sidecar. No pyarrow, no incremental state to corrupt.',
       },
-      {
-        src: '/images/projects/mx-jobs-insights/bilingual.svg',
-        alt: 'One schema-locked OpenAI call returns EN + ES, rendered by two passes from the same metrics',
-        caption:
-          'Bilingual by construction: one schema-locked OpenAI call returns both EN and ES (headline + exactly 3 bullets each) from aggregate metrics only; two render passes consume the same object, so the languages cannot drift.',
-      },
-      {
-        src: '/images/projects/mx-jobs-insights/reliability.svg',
-        alt: 'Fail-closed validation gates and a deliberate no-retries policy',
-        caption:
-          'Reliability by refusing to ship a bad run: an empty-snapshot guard, fail-closed env validation, a strict MkDocs deploy gate, and concurrency locks, with no retries by design: at this cadence a clean re-run beats hidden retry state.',
-      },
-      {
-        src: '/images/projects/mx-jobs-insights/archive-tradeoff.svg',
-        alt: 'Stateless rebuild: reproducible compute but the public archive evaporates each deploy',
-        caption:
-          "The honest trade-off: stateless rebuilds buy deterministic, free compute, but the published archive doesn't accumulate. Each deploy ships only the current period; restoring history takes a backfill run. State has to live somewhere.",
-      },
+    ],
+    resultGallery: [
       {
         src: '/images/projects/mx-jobs-insights/metrics.svg',
         alt: 'By the numbers: 14/14 runs, 9,661 snapshots, 398 curated jobs, 78 tests',
-        caption:
-          'By the numbers (all repo/API-verified): 14 / 14 unattended runs over ~10 weeks · 9,661 raw snapshots ingested · 398 curated jobs in the latest weekly report · 78 tests emitting 7 artifacts per period.',
+        caption: 'All figures GitHub-API and repo-verified.',
       },
     ],
   },
