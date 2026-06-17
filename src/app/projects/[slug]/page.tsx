@@ -196,7 +196,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 </p>
               )}
               {project.tldr && (
-                <p className="text-lg leading-relaxed text-neutral-200">{project.tldr}</p>
+                <p className="text-lg leading-relaxed text-justify text-neutral-200">{project.tldr}</p>
               )}
               {project.caveat && (
                 <p className="mt-3 text-sm italic text-neutral-500">{project.caveat}</p>
@@ -211,14 +211,14 @@ export default async function CaseStudyPage({ params }: Props) {
               {situation && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Situation</h2>
-                  <p className="text-base leading-relaxed text-neutral-400">{situation}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">{situation}</p>
                 </section>
               )}
 
               {task && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Task</h2>
-                  <p className="text-base leading-relaxed text-neutral-400">{task}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">{task}</p>
                 </section>
               )}
 
@@ -229,14 +229,14 @@ export default async function CaseStudyPage({ params }: Props) {
                     Array.isArray(action) ? (
                       <ul className="space-y-3">
                         {action.map((point) => (
-                          <li key={point} className="flex items-start gap-2 text-base leading-relaxed text-neutral-400">
+                          <li key={point} className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400">
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
                             {point}
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-base leading-relaxed text-neutral-400">{action}</p>
+                      <p className="text-base leading-relaxed text-justify text-neutral-400">{action}</p>
                     )
                   )}
                   {hasDeliverables && (
@@ -271,7 +271,7 @@ export default async function CaseStudyPage({ params }: Props) {
               {result && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Result</h2>
-                  <p className="text-base leading-relaxed text-neutral-400">{result}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">{result}</p>
                   {project.resultGallery && project.resultGallery.length > 0 && (
                     <div className="mt-6 space-y-4">
                       {project.resultGallery.map((shot) => (
@@ -295,7 +295,7 @@ export default async function CaseStudyPage({ params }: Props) {
               {learning && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Learning</h2>
-                  <p className="text-base leading-relaxed text-neutral-400">{learning}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">{learning}</p>
                 </section>
               )}
 
