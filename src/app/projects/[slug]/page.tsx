@@ -34,13 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const linkButtonClass =
   'inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white'
 
-const roleLabels: Record<NonNullable<PortfolioProject['role']>, string> = {
-  solo: 'Solo build',
-  'oss-contrib': 'OSS contributor',
-  team: 'Team',
-  maintainer: 'Maintainer',
-}
-
 const statusLabels: Record<NonNullable<PortfolioProject['status']>, string> = {
   live: 'Live',
   pypi: 'On PyPI',
@@ -150,6 +143,9 @@ export default async function CaseStudyPage({ params }: Props) {
                 rel="noopener noreferrer"
                 className={linkButtonClass}
               >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C8.746 0 9 1.53 9 1.53V4.5h6V5.4H5.748C5.748 5.4 3 5.148 3 8.448c0 3.3 2.55 3.15 2.55 3.15H7.2V9.9s-.1-2.55 2.55-2.55h4.2s2.4.05 2.4-2.3V1.55S16.6 0 12 0zM8.85 1.5c.45 0 .75.3.75.75s-.3.75-.75.75-.75-.3-.75-.75.3-.75.75-.75zM12 24c3.254 0 3-1.53 3-1.53V19.5H9v-.9h9.252C18.252 18.6 21 18.852 21 15.552c0-3.3-2.55-3.15-2.55-3.15H16.8v1.698s.1 2.55-2.55 2.55H10.05s-2.4-.05-2.4 2.3v3.5S7.4 24 12 24zm3.15-1.5c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z"/>
+                </svg>
                 PyPI
               </a>
             )}
@@ -366,15 +362,6 @@ export default async function CaseStudyPage({ params }: Props) {
                   ))}
                 </div>
               </section>
-
-              {project.role && (
-                <section>
-                  <h2 className="mb-1.5 text-sm font-semibold uppercase tracking-wider text-neutral-500">
-                    Role
-                  </h2>
-                  <p className="text-sm text-neutral-300">{roleLabels[project.role]}</p>
-                </section>
-              )}
 
               {project.status && (
                 <section>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FlaskConical, BookMarked } from 'lucide-react'
 import Footer from '@/components/footer'
@@ -62,7 +63,7 @@ const researchPositions = [
     role: 'Visiting Student',
     period: 'Jan – Feb 2020',
     blurb:
-      'Laser-Scribed Graphene electrodes for biosensing — gold electrodeposition and functionalization for BPA detection in water samples.',
+      'Laser-Scribed Graphene electrodes for biosensing: gold electrodeposition and functionalization for BPA detection in water samples.',
   },
   {
     lab: 'Elvira Lab, University of Victoria (Mitacs)',
@@ -106,21 +107,40 @@ export default function ResearchPage() {
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Research
             </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-neutral-400">
-              A research background in biosensing and BioMEMS, carried forward into computational
-              modeling and scientific software. Published as <em>Garcia-Ramirez</em>.
-            </p>
+            <div className="space-y-4 text-base leading-relaxed text-neutral-400 text-justify">
+              <p>
+                I got into a research lab in my first semester of undergrad as a volunteer. Not for
+                credit, not because it was required. I just wanted to be there. I came to biomedical
+                engineering already knowing I wanted to work on the engineering side of healthcare:
+                building better tools for detection and measurement, not treating patients directly.
+                The lab was where that started to become real.
+              </p>
+              <p>
+                The through-line from biosensors and BioMEMS to cardiac modeling is less of a pivot
+                than it looks. It is all the same question: how do you measure what the body is
+                doing, as precisely and non-invasively as possible? Microfluidic point-of-care
+                devices, graphene electrodes for environmental biosensing, Bayesian reconstruction
+                of cardiac conduction from an ECG: different scales, different tools, the same
+                engineering problem.
+              </p>
+              <p>
+                I think of myself as an engineer who does research, not a researcher who uses
+                engineering tools. The instinct is always to ask what can be measured, reproduced,
+                and verified. That question is what connects the bench work, the publications, and
+                the thesis.
+              </p>
+            </div>
           </div>
 
           {/* Thesis */}
-          <section className="mb-12 rounded-xl border border-cyan-400/20 bg-cyan-400/[0.03] p-6">
+          <section className="mb-12 rounded-xl border border-cyan-400/20 bg-cyan-400/3 p-6">
             <h2 className="mb-1 text-lg font-semibold text-white">
-              M.Sc. in Data Science — Pontificia Universidad Católica de Chile
+              M.Sc. in Data Science, Pontificia Universidad Católica de Chile
             </h2>
             <p className="mb-3 text-sm text-cyan-400">Graduated with Distinction</p>
             <p className="text-sm leading-relaxed text-neutral-300">
               Thesis: probabilistic reconstruction of the Purkinje network from electrocardiogram
-              signals using computational modeling and Bayesian inference — inferring the heart&apos;s
+              signals using computational modeling and Bayesian inference. Inferring the heart&apos;s
               electrical conduction structure from the signals it produces.
             </p>
           </section>
@@ -135,9 +155,20 @@ export default function ResearchPage() {
             </h2>
 
             {/* Book — distinct card */}
-            <div className="mb-6 flex flex-col gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:flex-row sm:items-center">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-cyan-400/10">
-                <BookMarked className="h-7 w-7 text-cyan-400" aria-hidden="true" />
+            <a
+              href="https://link.springer.com/book/10.1007/978-981-15-6382-9#bibliographic-information"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-6 flex flex-col gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-neutral-700 hover:bg-neutral-800/50 sm:flex-row sm:items-center"
+            >
+              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-md">
+                <Image
+                  src="https://media.springernature.com/w306/springer-static/cover/book/978-981-15-6382-9.jpg"
+                  alt="BioMEMS: Biosensing Applications book cover"
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
               </div>
               <div>
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-cyan-400">
@@ -149,7 +180,7 @@ export default function ResearchPage() {
                   178 pp. Springer Nature.
                 </p>
               </div>
-            </div>
+            </a>
 
             {/* Articles */}
             <div className="space-y-5">

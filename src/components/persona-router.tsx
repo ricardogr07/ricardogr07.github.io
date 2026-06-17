@@ -26,7 +26,7 @@ export default function PersonaRouter() {
       <div className="mx-auto max-w-7xl">
         <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-neutral-400">
           I&apos;m a full-stack engineer and data scientist. I build ML systems, data pipelines,
-          and Python tools that run in production — day job, open-source, and freelance. Here&apos;s
+          and Python tools that run in production: day job, open-source, and freelance. Here&apos;s
           where to go depending on what brought you here.
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

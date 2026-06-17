@@ -70,19 +70,39 @@ export default function TeachingPage() {
               Teaching
             </h1>
             {/* Draft intro — flagged for Ricardo's review. */}
-            <div className="max-w-2xl space-y-4 text-base leading-relaxed text-neutral-400">
+            <div className="space-y-4 text-base leading-relaxed text-neutral-400 text-justify">
               <p>
-                I taught bioinstrumentation — the engineering of measuring the human body — to
-                biomedical engineering students at Tec de Monterrey. My emphasis was always the same
-                one I bring to production software: a measurement you can&apos;t trust isn&apos;t a
-                measurement, so the lab work centered on building circuits students actually
-                validated rather than ones that merely looked right on paper.
+                Teaching goes back further than university for me. In high school I helped coach
+                middle schoolers for the Math Olympiad in Chihuahua, and that early experience of
+                watching someone work through a hard problem and finally get it was enough. By the
+                time I was a TA in physics labs during my undergrad, I already knew teaching was
+                something I wanted to keep doing. When the opportunity at Tec de Monterrey came up,
+                I didn&apos;t hesitate.
               </p>
               <p>
-                Across lecture and laboratory courses in both the Tec20 and TEC21 curricula, the goal
-                was to take students from the physics of a transducer all the way to a working,
-                documented instrument — the same path from first principles to a reproducible result
-                that runs through everything I build.
+                Teaching while working full time is a specific kind of challenge. It makes you
+                honest about the student/teacher relationship in a way that&apos;s hard to appreciate
+                from one side of it. The classroom was energizing for that reason: it kept me sharp
+                in both directions.
+              </p>
+              <p>
+                The labs were where it clicked. Students built ECG circuits from components and
+                assembled a neonatal incubator: not simulations, not pre-wired kits. Problem-Based
+                Learning at that level forces every prior engineering course to justify itself. The
+                question stops being &quot;what does this formula do?&quot; and becomes &quot;why is
+                my circuit reading noise instead of a heartbeat?&quot;
+              </p>
+              <p>
+                What I liked most was the bench moment: a circuit that finally worked, a signal that
+                looked right, documentation that matched what was built, and a student who could
+                explain why. Working system, honest documentation, clear reasoning. Basic good
+                engineering work.
+              </p>
+              <p>
+                It&apos;s really important to understand the basics, do good engineering work, and
+                don&apos;t outsource your thinking. Not to a formula sheet, not to a senior
+                engineer&apos;s answer you copied without knowing why, and not to AI. The tools
+                change. The discipline doesn&apos;t.
               </p>
             </div>
           </div>
@@ -91,7 +111,7 @@ export default function TeachingPage() {
           <div className="mb-12 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-all hover:border-neutral-700 hover:bg-neutral-800/60">
             <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
               <h2 className="text-lg font-semibold text-white">
-                Adjunct Assistant Professor — Biomedical Engineering Department
+                Adjunct Assistant Professor, Biomedical Engineering Department
               </h2>
               <span className="shrink-0 text-sm text-neutral-600">Aug 2022 – Dec 2023</span>
             </div>

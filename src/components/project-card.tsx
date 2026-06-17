@@ -59,7 +59,7 @@ export default function ProjectCard({ project, featured = false, href }: Project
 
         {/* Tech badges */}
         <div className="flex flex-wrap gap-1.5">
-          {project.techStack.slice(0, 5).map((tech) => (
+          {project.techStack.slice(0, 4).map((tech) => (
             <span
               key={tech}
               className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-0.5 text-xs text-neutral-300"
@@ -67,9 +67,9 @@ export default function ProjectCard({ project, featured = false, href }: Project
               {tech}
             </span>
           ))}
-          {project.techStack.length > 5 && (
+          {project.techStack.length > 4 && (
             <span className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-0.5 text-xs text-neutral-500">
-              +{project.techStack.length - 5}
+              +{project.techStack.length - 4}
             </span>
           )}
         </div>
@@ -131,6 +131,19 @@ export default function ProjectCard({ project, featured = false, href }: Project
               className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 transition-colors hover:text-cyan-400"
             >
               Docs
+            </a>
+          )}
+          {project.pypiUrl && (
+            <a
+              href={project.pypiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 transition-colors hover:text-cyan-400"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C8.746 0 9 1.53 9 1.53V4.5h6V5.4H5.748C5.748 5.4 3 5.148 3 8.448c0 3.3 2.55 3.15 2.55 3.15H7.2V9.9s-.1-2.55 2.55-2.55h4.2s2.4.05 2.4-2.3V1.55S16.6 0 12 0zM8.85 1.5c.45 0 .75.3.75.75s-.3.75-.75.75-.75-.3-.75-.75.3-.75.75-.75zM12 24c3.254 0 3-1.53 3-1.53V19.5H9v-.9h9.252C18.252 18.6 21 18.852 21 15.552c0-3.3-2.55-3.15-2.55-3.15H16.8v1.698s.1 2.55-2.55 2.55H10.05s-2.4-.05-2.4 2.3v3.5S7.4 24 12 24zm3.15-1.5c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z"/>
+              </svg>
+              PyPI
             </a>
           )}
         </div>

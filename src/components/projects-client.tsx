@@ -36,7 +36,7 @@ export default function ProjectsClient() {
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Projects
             </h1>
-            <p className="max-w-2xl text-lg text-neutral-400">
+            <p className="text-lg text-neutral-400">
               A full view of public work across automation, data engineering, AI tooling, and
               scientific software.
             </p>

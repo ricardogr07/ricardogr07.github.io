@@ -48,7 +48,6 @@ export interface PortfolioProject {
   headlineMetric?: string
   /** Honest framing */
   caveat?: string
-  role?: 'solo' | 'oss-contrib' | 'team' | 'maintainer'
   /** Lifecycle; distinct from visibility */
   status?: 'live' | 'pypi' | 'active' | 'archived'
   pypiUrl?: string

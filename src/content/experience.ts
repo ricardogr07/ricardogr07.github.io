@@ -23,13 +23,11 @@ export const experience: WorkExperience[] = [
     summary:
       'Backend services, APIs, analytics tooling, and data workflows for large-scale financial data systems.',
     bullets: [
-      'Build and maintain enterprise backend services, APIs, analytics tooling, operational scripts, dashboards, and data workflows supporting large-scale financial data systems.',
-      'Develop Python-oriented automation and data workflows for operational analytics, reporting, validation, documentation, and engineering productivity.',
-      'Design telemetry and monitoring solutions using Splunk, Azure DevOps data, database-backed reporting, and Power BI to improve visibility into throughput, failures, delays, and system health.',
-      'Use GenAI-assisted SDLC tools (Claude Code, Cursor, Copilot) in approved engineering workflows for PR preparation, code planning, refactoring, debugging, test generation, and documentation.',
-      'Contribute to modernization and technical debt reduction, including Java refactoring and upgrade-readiness work while preserving behavior, testability, and release stability.',
-      'Contributed to enterprise initiatives with approximately USD 1M in business impact.',
-      'Provide 3rd-tier production support for uninterrupted service.',
+      'Build and maintain Python-based backend services, APIs, data pipelines, analytics tooling, and operational workflows for large-scale financial data systems, including 3rd-tier production support.',
+      'Design observability and monitoring solutions using Splunk, Power BI, and Azure DevOps data to surface throughput, failure, and latency trends across production systems.',
+      'Apply AI-assisted development tooling (Claude Code, Cursor, Copilot) across the full SDLC: planning, refactoring, test generation, code review, and documentation.',
+      'Lead Java modernization and technical debt reduction: refactoring legacy services for upgrade-readiness while preserving behavior, testability, and release stability.',
+      'Contributed to cross-team initiatives with ~$1M in business impact.',
     ],
   },
   {
@@ -38,9 +36,9 @@ export const experience: WorkExperience[] = [
     period: 'Aug 2022 – Sep 2023',
     summary: 'APIs, enterprise services, and Azure serverless applications in C#/.NET.',
     bullets: [
-      'Developed internal and customer-facing APIs, enterprise services, and Azure-based serverless applications using C#, .NET, and Azure Functions.',
-      'Translated functional requirements into conceptual and detailed technical designs, estimates, proof-of-concepts, prototypes, and production-grade software.',
-      'Implemented unit and acceptance tests, Jenkins-based CI/CD workflows, deployment automation support, monitoring, telemetry tooling, and production troubleshooting.',
+      'Built internal and customer-facing APIs, enterprise services, and Azure-based serverless applications in C#, .NET, and Azure Functions.',
+      'Owned technical design for new features: scoping, architecture decisions, proof-of-concept work, and delivery through production.',
+      'Implemented unit and acceptance test suites, Jenkins CI/CD pipelines, deployment automation, and production monitoring and telemetry tooling.',
     ],
   },
   {
@@ -49,8 +47,8 @@ export const experience: WorkExperience[] = [
     period: 'Jan 2022 – Aug 2022',
     summary: 'Backend services and desktop automation tooling in C#/.NET.',
     bullets: [
-      'Built backend services and desktop automation tooling using C#, .NET Core, and .NET Framework.',
-      'Performed requirements analysis, authored positive/negative/boundary scenarios, wrote test scripts, supported existing automated tests, documented workflows, and contributed to code reviews.',
+      'Built backend services and desktop automation tooling in C#, .NET Core, and .NET Framework.',
+      'Contributed to requirements analysis, test scenario coverage, workflow documentation, and code reviews.',
     ],
   },
   {
@@ -60,8 +58,10 @@ export const experience: WorkExperience[] = [
     summary:
       'C#/.NET backend services and WPF/XAML desktop tools for laboratory and biomedical automation.',
     bullets: [
-      'Built C#/.NET backend services and WPF/XAML MVVM tools for laboratory automation, device control, data acquisition, and automated biological testing workflows.',
-      'Worked with cross-functional stakeholders to capture requirements, deliver reusable software, manage Git-based project workflows, and support Scrum/Agile delivery.',
+      'Built C#/.NET backend services and WPF/XAML MVVM desktop applications for laboratory automation and biomedical device control.',
+      'Programmed microcontrollers in C to drive microfluidic devices and automate microscope control for cell imaging and blood sample analysis.',
+      'Automated assay workflows for blood sample processing: cell counting, imaging pipelines, and data acquisition from laboratory instrumentation.',
+      'Developed Python tooling to bridge hardware instrumentation output with desktop reporting and analysis workflows.',
     ],
   },
 ]

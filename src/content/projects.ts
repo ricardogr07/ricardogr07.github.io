@@ -5,6 +5,8 @@ export const projects: PortfolioProject[] = [
     slug: 'linkedin-webscraper',
     title: 'LinkedIn Job Scraping & Data Export Pipeline',
     repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
+    pypiUrl: 'https://pypi.org/project/LinkedInWebScraper/',
+    docsUrl: 'https://ricardogr07.github.io/LinkedInWebScraper/',
     visibility: 'public',
     featured: true,
     diagram: '/images/projects/linkedin-webscraper/architecture.svg',
@@ -57,7 +59,6 @@ export const projects: PortfolioProject[] = [
       'Published to PyPI via trusted publishing (LinkedInWebScraper, v1.1.1) and validated across Python 3.11–3.14 with 24 test modules. Runs unattended on a daily schedule — the committed data branch shows 8 consecutive successful runs. A local multi-city backfill scraped ~2,280 raw listings in a single city/remote-type pass and persisted 146 deduplicated, OpenAI-enriched jobs in ~47 minutes across three cities.',
     learning:
       "Retries were never optional — the real maturation was going from 'retry until it returns 200' to a typed, frozen HTTP policy that separates retryable failures (429/5xx) from permanent ones, caps exponential backoff, and is unit-testable with an injected clock. The deeper lesson of an unofficial scraper: you trade API stability for access, so you design for silent degradation — every selector null-checks to 'N/A' instead of crashing, and an automated alert loop (a GitHub issue auto-filed on a failed run, auto-closed on recovery) replaces the deprecation notice the markup will never send you.",
-    role: 'solo',
     status: 'pypi',
     gallery: [
       {
@@ -136,7 +137,6 @@ export const projects: PortfolioProject[] = [
       "DuckDB-in-CI made compute trivially reproducible — rebuilding the whole store from upstream history every run was deterministic and debuggable for free at ~9.6k rows, with no server to host Postgres on anyway. But I learned state has to live somewhere: the stateless rebuild quietly turned my 'archive' into 'latest issue only' — each deploy replaces the site with just the periods in that run, so the public history evaporated and took ten backfill runs to restore. Next time the compute stays stateless, but a small hosted DB or a committed-state branch keeps the archive.",
     caveat:
       'The live site currently exposes only the latest weekly bundle — each deploy replaces the published periods, so the monthly archive does not accumulate publicly without a backfill run. A consequence of the stateless-rebuild design, not a data loss.',
-    role: 'solo',
     status: 'live',
     gallery: [
       {
@@ -227,7 +227,6 @@ export const projects: PortfolioProject[] = [
       'Deterministic heuristics first, LLM as enrichment — not the other way around. The tool produces a complete, byte-identical report with no API key; the LLM only annotates it. Forcing that enrichment through a JSON-schema tool call meant the AI layer could never break the report schema — the deterministic core and the AI layer share a single ten-line Protocol and nothing else.',
     caveat:
       'Heuristics are signal, not proof — every check is file-presence or regex-based, with no semantic understanding unless you opt into the LLM layer. And LLM output is schema-constrained but not fact-checked against the deterministic report.',
-    role: 'solo',
     status: 'active',
     gallery: [
       {
@@ -315,7 +314,6 @@ export const projects: PortfolioProject[] = [
       "The honest engineering call was knowing when not to reach for Rust. Below a measured 10–50 MB crossover the per-call FFI and BPE-init cost makes Rust slower than pure Python everywhere — so the benchmark keeps that negative result in the table instead of hiding it. The win is real, but it's narrow, and pretending otherwise would have been the easy lie.",
     caveat:
       "The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker. It's a happy-path build — no CI, no published wheels, no ingest-side error handling.",
-    role: 'solo',
     status: 'active',
     gallery: [
       {
@@ -398,7 +396,6 @@ export const projects: PortfolioProject[] = [
     task: 'A local pipeline that finds the best moments and cuts publish-ready 9:16 clips — without a cloud subscription.',
     action:
       'Twitch VOD ingest → faster-whisper transcription → five deterministic candidate signals (existing clips, !clip commands, chat-density bursts, transcript hype keywords, audio-RMS spikes) → greedy time-spread to ≤20 moments → one cached LLM call per candidate to adjudicate → FFmpeg cut (optional 9:16 stack + burned-in captions). The same process_vod() drives a local Typer CLI, a FastAPI service + Next.js dashboard, and a cloud-batch launcher on ephemeral Azure ACI.',
-    role: 'solo',
     status: 'active',
     headlineMetric:
       'Bounded cost by design — the whole pipeline runs at $0/clip on local Ollama, or with the only paid step capped at ≤20 prompt-cached selection calls per VOD',
@@ -489,7 +486,6 @@ export const projects: PortfolioProject[] = [
     task: 'Package Purkinje-network geometry generation over cardiac surface meshes for reuse, release, and reproducibility.',
     action:
       'A modular scientific-Python package built around one idea: grow the surface-constrained tree in a flattened 2D UV chart, then map it back to 3D. Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric (0.5·trace(FᵀF)) so 2D steps stay correct on the curved surface; FractalTree.grow_tree runs the deterministic fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination); PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity. Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK. Released to PyPI through an OIDC trusted-publisher pipeline with release-please automation, 107 tests across 19 files, and a dual-Python tox CI.',
-    role: 'solo',
     status: 'pypi',
     headlineMetric:
       'The fractal-Purkinje method as an installable library — PyPI 0.4.0, OIDC-released, 107 tests on dual-Python CI',
@@ -579,7 +575,6 @@ export const projects: PortfolioProject[] = [
       'The value here was never model sophistication — a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word "azure" ever appears in the engine — it keeps the model something you can test and reason about offline, no cloud attached.',
     caveat:
       "It's a fast-shipped product for a real pool — strong as engineering, modest as a forecast. The probabilities are modelled, not calibrated; there's no backtest against bookmaker odds or outcomes, and the match model is deliberately simple (a fixed 25% group-draw rate, a random 1–3 goal margin, knockouts as an Elo coin-flip, and random selection among third-place qualifiers rather than the FIFA criteria). Production runs are unseeded (the seed exists only for tests), /simulate is anonymous with an unbounded run count, and deployment is still a manual trigger.",
-    role: 'solo',
     status: 'live',
     diagram: '/images/projects/wc26-dashboard/architecture.svg',
     diagramCaption:
@@ -670,7 +665,6 @@ export const projects: PortfolioProject[] = [
       'A config-driven, leak-free walk-forward harness that ships as a real package — on PyPI (0.1.0 → 0.2.0), 678 tests across 77 files green on an 8-job tox CI, with look-ahead leakage caught by an executable test rather than a code review.',
     result:
       'Shipped to PyPI as marketlab 0.2.0 via an OIDC trusted-publisher release; 678 tests / 77 files green on an 8-job tox CI; three CLIs, a real FastMCP server, and a Docker image. Results are reproduced from config rather than committed — there is no checked-in P&L number, by design.',
-    role: 'solo',
     status: 'pypi',
     learning:
       "The model is the cheap part; the contract around it is the expensive part. The sklearn estimators are one-line imports with a fixed random_state — but the config validation, the leak-free fold builder, and the paper-trading fence are where the real engineering went. In quant tooling, the work that earns trust isn't the model: it's the harness that makes a result trustworthy and a mistake impossible.",
@@ -757,7 +751,6 @@ export const projects: PortfolioProject[] = [
       'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
     result:
       'The library reproduces the notebook\'s 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.',
-    role: 'maintainer',
     status: 'active',
     learning:
       "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
@@ -839,7 +832,6 @@ export const projects: PortfolioProject[] = [
       'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
     result:
       'pip install jaxbo works today — two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
-    role: 'maintainer',
     status: 'pypi',
     learning:
       "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood — it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN — and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",

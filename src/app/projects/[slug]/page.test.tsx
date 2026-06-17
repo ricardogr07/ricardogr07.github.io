@@ -29,7 +29,6 @@ const { starlProject, neighbour } = vi.hoisted(() => {
     tldr: 'One-sentence summary.',
     headlineMetric: '5× faster chunking',
     caveat: 'Benchmarks are synthetic.',
-    role: 'solo',
     status: 'pypi',
     metrics: [{ label: 'Throughput', value: '5×' }],
   }
@@ -65,9 +64,8 @@ describe('CaseStudyPage — full STARL fixture', () => {
     expect(screen.getByText('Benchmarks are synthetic.')).toBeInTheDocument()
   })
 
-  it('renders sidebar role, status, and metrics', async () => {
+  it('renders sidebar status and metrics', async () => {
     await renderPage('starl-full')
-    expect(screen.getByText('Solo build')).toBeInTheDocument()
     expect(screen.getByText('On PyPI')).toBeInTheDocument()
     expect(screen.getByText('Throughput')).toBeInTheDocument()
   })
