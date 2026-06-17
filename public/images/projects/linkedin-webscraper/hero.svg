@@ -1,78 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="ui-sans-serif, system-ui, Segoe UI, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Geist, system-ui, sans-serif">
   <defs>
-    <linearGradient id="ci" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#22d3ee" />
-      <stop offset="1" stop-color="#818cf8" />
-    </linearGradient>
-    <radialGradient id="glow" cx="82%" cy="22%" r="65%">
-      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.12" />
-      <stop offset="1" stop-color="#22d3ee" stop-opacity="0" />
-    </radialGradient>
+    
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M48 0 H0 V48" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1" />
+      <path d="M48 0 H0 V48" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
     </pattern>
-    <marker id="ac" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
-      <polygon points="0 0, 9 3.5, 0 7" fill="#818cf8" />
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(912 265) scale(430 300)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.12"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"></stop><stop offset="1" stop-color="#818cf8"></stop>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#06b6d4"></stop><stop offset="1" stop-color="#22d3ee"></stop>
+    </linearGradient>
+    <linearGradient id="funnelStroke" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee"></stop><stop offset="1" stop-color="#818cf8"></stop>
+    </linearGradient>
+    <marker id="ah" markerWidth="9" markerHeight="8" refX="7.5" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#818cf8"></polygon>
     </marker>
   </defs>
 
-  <rect width="1200" height="630" fill="#0a0a0a" />
-  <rect width="1200" height="630" fill="url(#grid)" />
-  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
 
-  <!-- ===== Left: title block ===== -->
-  <text x="80" y="238" fill="#f8fafc" font-size="58" font-weight="700" letter-spacing="-1">LinkedIn Job Scraping</text>
-  <text x="80" y="306" fill="#f8fafc" font-size="58" font-weight="700" letter-spacing="-1">&amp; Data Export Pipeline</text>
-  <rect x="82" y="338" width="132" height="4" rx="2" fill="url(#ci)" />
-  <text x="82" y="384" fill="#22d3ee" font-size="23" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Nightly · self-healing · token-disciplined</text>
+  
+  <text x="80" y="170" font-size="51" font-weight="700" letter-spacing="-1.3" fill="#ffffff">LinkedIn Job Scraping</text>
+  <text x="80" y="227" font-size="51" font-weight="700" letter-spacing="-1.3" fill="#ffffff">&amp; Data Export Pipeline</text>
+  <rect x="80" y="252" width="132" height="4" rx="2" fill="url(#rule)"></rect>
+  <text x="80" y="305" font-size="18.5" fill="#a3a3a3"><tspan>A </tspan><tspan font-weight="600" fill="#f5f5f5">self-healing</tspan><tspan> scraper for LinkedIn&#39;s guest job surface.</tspan></text>
 
-  <!-- tech chips -->
-  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">
-    <rect x="80" y="540" width="150" height="36" rx="18" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
-    <text x="155" y="563" text-anchor="middle" fill="#cbd5e1">Python ≥ 3.11</text>
-    <rect x="244" y="540" width="160" height="36" rx="18" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
-    <text x="324" y="563" text-anchor="middle" fill="#cbd5e1">SQLAlchemy 2.x</text>
-    <rect x="418" y="540" width="158" height="36" rx="18" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
-    <text x="497" y="563" text-anchor="middle" fill="#cbd5e1">GitHub Actions</text>
-    <rect x="590" y="540" width="140" height="36" rx="18" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
-    <text x="660" y="563" text-anchor="middle" fill="#67e8f9">PyPI v1.1.1</text>
+  
+  <rect x="80" y="342" width="446" height="176" rx="11" fill="#ffffff" fill-opacity="0.022" stroke="#262626" stroke-width="1"></rect>
+  <circle cx="104" cy="370.5" r="3.5" fill="#4ade80"></circle>
+  <text x="117" y="374" font-family="&#39;Geist Mono&#39;, monospace" font-size="10.5" letter-spacing="1.9" fill="#737373">SELF-HEALING — LAST RUNS</text>
+  <g font-family="&#39;Geist Mono&#39;, monospace" font-size="13" xml:space="preserve">
+    <text x="100" y="403"><tspan fill="#4ade80">✓</tspan><tspan fill="#a3a3a3"> run #412 </tspan><tspan fill="#525252">·</tspan><tspan fill="#a3a3a3"> 1,284 listings scraped</tspan></text>
+    <text x="100" y="428"><tspan fill="#22d3ee">•</tspan><tspan fill="#a3a3a3"> 6 fields missing </tspan><tspan fill="#525252">→</tspan><tspan fill="#22d3ee"> &#34;N/A&#34;</tspan><tspan fill="#525252"> · no crash</tspan></text>
+    <text x="100" y="453"><tspan fill="#f87171">✗</tspan><tspan fill="#a3a3a3"> run #408 failed </tspan><tspan fill="#525252">→</tspan><tspan fill="#a3a3a3"> opened issue #128</tspan></text>
+    <text x="100" y="478"><tspan fill="#4ade80">✓</tspan><tspan fill="#a3a3a3"> recovered </tspan><tspan fill="#525252">→</tspan><tspan fill="#a3a3a3"> auto-closed #128</tspan></text>
   </g>
 
-  <!-- ===== Right: chaos -> funnel -> structured, on a schedule ===== -->
-  <!-- nightly clock badge -->
-  <circle cx="905" cy="120" r="20" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5" />
-  <line x1="905" y1="120" x2="905" y2="108" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round" />
-  <line x1="905" y1="120" x2="914" y2="124" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round" />
-  <text x="935" y="125" fill="#64748b" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">30 12 * * *</text>
+  
+  
+  <circle cx="918" cy="124" r="20" fill="none" stroke="#22d3ee" stroke-width="1.6"></circle>
+  <line x1="918" y1="124" x2="918" y2="111" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round"></line>
+  <line x1="918" y1="124" x2="928" y2="124" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round"></line>
+  <text x="952" y="129" font-family="&#39;Geist Mono&#39;, monospace" font-size="13" letter-spacing="1" fill="#737373">30 12 * * *</text>
 
-  <!-- messy listing cards feeding in -->
-  <g stroke-width="1.4" fill="#0d1117">
-    <rect x="772" y="150" width="44" height="28" rx="4" stroke="#818cf8" transform="rotate(-11 794 164)" />
-    <rect x="836" y="158" width="44" height="28" rx="4" stroke="#22d3ee" transform="rotate(7 858 172)" />
-    <rect x="902" y="150" width="44" height="28" rx="4" stroke="#818cf8" transform="rotate(-6 924 164)" />
-    <rect x="968" y="160" width="44" height="28" rx="4" stroke="#22d3ee" transform="rotate(13 990 174)" />
-    <rect x="1034" y="152" width="44" height="28" rx="4" stroke="#818cf8" transform="rotate(-9 1056 166)" />
+  
+  <rect x="790" y="150" width="58" height="36" rx="6" fill="#101826" stroke="#818cf8" stroke-width="1.4"></rect>
+  <rect x="858" y="158" width="58" height="36" rx="6" fill="#0d1622" stroke="#22d3ee" stroke-width="1.4"></rect>
+  <rect x="924" y="150" width="58" height="36" rx="6" fill="#0d1622" stroke="#22d3ee" stroke-width="1.4"></rect>
+  <rect x="992" y="158" width="58" height="36" rx="6" fill="#0d1622" stroke="#404040" stroke-width="1.4"></rect>
+  <text x="1021" y="180" text-anchor="middle" font-family="&#39;Geist Mono&#39;, monospace" font-size="12" fill="#737373">N/A</text>
+  <rect x="1058" y="152" width="58" height="36" rx="6" fill="#101826" stroke="#818cf8" stroke-width="1.4"></rect>
+
+  
+  <path d="M812 214 L1024 214 L948 318 L888 318 Z" fill="none" stroke="url(#funnelStroke)" stroke-width="2" stroke-linejoin="round"></path>
+  <line x1="918" y1="318" x2="918" y2="372" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ah)"></line>
+
+  
+  <rect x="812" y="382" width="186" height="15" rx="4" fill="url(#barGrad)"></rect>
+  <rect x="812" y="404" width="186" height="15" rx="4" fill="url(#barGrad)" opacity="0.82"></rect>
+  <rect x="812" y="426" width="186" height="15" rx="4" fill="url(#barGrad)" opacity="0.6"></rect>
+  <rect x="812" y="448" width="186" height="15" rx="4" fill="url(#barGrad)" opacity="0.4"></rect>
+
+  
+  <line x1="1006" y1="414" x2="1046" y2="414" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ah)"></line>
+
+  
+  <g stroke="#22d3ee" stroke-width="1.6" fill="none">
+    <ellipse cx="1086" cy="392" rx="32" ry="9"></ellipse>
+    <path d="M1054 392 L1054 436 A32 9 0 0 0 1118 436 L1118 392"></path>
+    <path d="M1054 414 A32 9 0 0 0 1118 414" opacity="0.55"></path>
   </g>
-
-  <!-- funnel -->
-  <polygon points="800,210 1060,210 968,322 892,322" fill="#22d3ee" fill-opacity="0.06" stroke="#22d3ee" stroke-width="1.6" />
-  <line x1="930" y1="322" x2="930" y2="352" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ac)" />
-
-  <!-- structured output: clean rows + db cylinder -->
-  <g>
-    <rect x="792" y="372" width="170" height="14" rx="3" fill="#22d3ee" opacity="0.9" />
-    <rect x="792" y="394" width="170" height="14" rx="3" fill="#22d3ee" opacity="0.7" />
-    <rect x="792" y="416" width="170" height="14" rx="3" fill="#22d3ee" opacity="0.5" />
-    <rect x="792" y="438" width="170" height="14" rx="3" fill="#22d3ee" opacity="0.35" />
-  </g>
-
-  <!-- database cylinder -->
-  <g stroke="#22d3ee" stroke-width="1.6" fill="#0d1117">
-    <ellipse cx="1050" cy="376" rx="42" ry="12" />
-    <path d="M1008 376 V436 A42 12 0 0 0 1092 436 V376" fill="#0d1117" />
-    <ellipse cx="1050" cy="376" rx="42" ry="12" fill="#0d1117" />
-    <path d="M1008 406 A42 12 0 0 0 1092 406" fill="none" stroke="#22d3ee" stroke-opacity="0.5" />
-  </g>
-  <line x1="966" y1="406" x2="1004" y2="406" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ac)" />
-  <text x="1050" y="470" text-anchor="middle" fill="#64748b" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">SQLite</text>
+  <text x="1086" y="472" text-anchor="middle" font-family="&#39;Geist Mono&#39;, monospace" font-size="12" letter-spacing="0.6" fill="#737373">SQLite</text>
 </svg>

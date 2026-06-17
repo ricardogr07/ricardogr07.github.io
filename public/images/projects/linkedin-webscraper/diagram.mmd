@@ -1,7 +1,0 @@
-flowchart LR
-  A["Guest Search"] --> B["Parse Cards"]
-  B["Parse Cards"] --> C["Detail API"]
-  C["Detail API"] --> D["Clean + Dedupe"]
-  D["Clean + Dedupe"] --> E["OpenAI (opt)"]
-  E["OpenAI (opt)"] --> F["SQLite"]
-  F["SQLite"] --> G["CSV Export"]
