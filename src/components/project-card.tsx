@@ -130,7 +130,11 @@ export default function ProjectCard({ project, featured = false, href }: Project
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 transition-colors hover:text-cyan-400"
             >
-              Docs
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path strokeLinecap="round" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+              </svg>
+              {project.docsLabel ?? 'Docs'}
             </a>
           )}
           {project.pypiUrl && (
