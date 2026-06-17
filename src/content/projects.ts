@@ -129,6 +129,8 @@ export const projects: PortfolioProject[] = [
     slug: 'reposage',
     title: 'RepoSage: AI-Assisted Repository Audit Tool',
     repo: 'https://github.com/ricardogr07/reposage',
+    pypiUrl: 'https://pypi.org/project/reposage/',
+    marketplaceUrl: 'https://github.com/marketplace/actions/reposage-audit',
     visibility: 'public',
     featured: true,
     diagram: '/images/projects/reposage/architecture.svg',
@@ -138,21 +140,13 @@ export const projects: PortfolioProject[] = [
     categories: ['developer-tooling', 'automation', 'rag-llm'],
     summary:
       'Repository analysis tool that scans codebases, detects language and framework signals, summarizes dependencies, and outputs structured Markdown or JSON audit reports.',
-    deliverables: [
-      'Local repo scanner',
-      'Language/framework detection',
-      'Dependency and manifest analysis',
-      'Quality heuristics',
-      'Markdown/JSON audit reports',
-      'Optional AI enrichment',
-      'GitHub Action integration',
-    ],
+    deliverables: [],
     techStack: [
       'Python',
-      'CLI tooling',
       'GitHub Actions',
-      'JSON/Markdown reporting',
-      'Optional OpenAI/Anthropic enrichment',
+      'OpenAI API',
+      'Anthropic API',
+      'MCP',
     ],
     servicesSupported: [
       'AI Automation',
@@ -161,51 +155,49 @@ export const projects: PortfolioProject[] = [
       'Software Quality',
       'Technical Documentation',
     ],
-    businessValue: [
-      'Gives engineering managers an instant quality snapshot of any codebase without reading it',
-      'Deterministic, structured output can be integrated into CI or PR review flows',
-      'Markdown/JSON reports feed other tools — ticketing systems, dashboards, LLM summarizers',
-      'Optional AI enrichment adds natural language explanations on top of raw heuristics',
-    ],
-    tldr: 'Deterministic codebase audit tool — structured evidence, not vibes.',
+    businessValue: [],
+    tldr: 'Deterministic codebase audit tool: structured evidence, not vibes.',
     headlineMetric:
-      'Zero runtime dependencies, zero API keys — 29 languages, 32 frameworks, 10 manifest parsers, all deterministic',
+      'Zero runtime dependencies, zero API keys: 29 languages, 32 frameworks, 10 manifest parsers, all deterministic',
     situation:
-      "Teams want quick codebase audits, but 'chat with your repo' tools give fluent but ungrounded output — no deterministic evidence you can put in a CI gate, a PR review, or a ticket.",
-    task: 'A scanner that emits structured, evidence-backed audit reports — Markdown or JSON — reproducible run-to-run, useful with or without an LLM, and safe to drop into CI.',
-    action:
-      'A stdlib-only deterministic core: filesystem walk → language/framework detection → dependency/manifest parsing → quality heuristics (tests/docs/CI/typing/linting) → architecture + risk analysis, assembled into an immutable report and rendered to Markdown/JSON. Optional AI enrichment (Anthropic/OpenAI) plugs in at a single one-method Protocol seam, forced through a JSON schema. Ships as a PyPI package, a GitHub Action, and an MCP server.',
+      "Teams want quick codebase audits, but 'chat with your repo' tools give fluent but ungrounded output: no deterministic evidence you can put in a CI gate, a PR review, or a ticket.",
+    task: 'A scanner that emits structured, evidence-backed audit reports (Markdown or JSON), reproducible run-to-run, useful with or without an LLM, and safe to drop into CI.',
+    action: [
+      'A stdlib-only deterministic core: filesystem walk → language and framework detection (29 languages, 32 frameworks) → dependency manifest parsing (10 formats) → quality heuristics (tests, docs, CI, typing, lint) → architecture and risk analysis, all assembled into an immutable typed report rendered to Markdown or JSON.',
+      'Optional AI enrichment (Anthropic or OpenAI) plugs in at a single one-method Protocol seam, forced through a JSON tool-use schema. It can annotate the already-complete report but never restructure it. No API key means a clean exit with the full deterministic report still emitted.',
+      'Ships three ways: a PyPI package (v0.3.0), a published GitHub Actions marketplace action, and an MCP server. All three drive the same pipeline.',
+    ],
     result:
       'Shipped to PyPI (v0.3.0) with a published GitHub Action, on zero runtime dependencies: 29 languages, 32 frameworks, and 10 dependency-manifest parsers feed a 6-signal quality score and Markdown/JSON reports. Guarded by 179 tests across a 5-environment CI matrix, with strict mypy, Ruff, and a custom 400-line-per-file gate enforced on every run.',
     learning:
-      'Deterministic heuristics first, LLM as enrichment — not the other way around. The tool produces a complete, byte-identical report with no API key; the LLM only annotates it. Forcing that enrichment through a JSON-schema tool call meant the AI layer could never break the report schema — the deterministic core and the AI layer share a single ten-line Protocol and nothing else.',
+      'Deterministic heuristics first, LLM as enrichment, not the other way around. The tool produces a complete, byte-identical report with no API key; the LLM only annotates it. Forcing that enrichment through a JSON-schema tool call meant the AI layer could never break the report schema: the deterministic core and the AI layer share a single ten-line Protocol and nothing else.',
     caveat:
-      'Heuristics are signal, not proof — every check is file-presence or regex-based, with no semantic understanding unless you opt into the LLM layer. And LLM output is schema-constrained but not fact-checked against the deterministic report.',
+      'Heuristics are signal, not proof: every check is file-presence or regex-based, with no semantic understanding unless you opt into the LLM layer. And LLM output is schema-constrained but not fact-checked against the deterministic report.',
     status: 'active',
     gallery: [
       {
         src: '/images/projects/reposage/detection-coverage.svg',
         alt: '29 languages, 32 frameworks, and 10 dependency-manifest parsers',
         caption:
-          'Detection coverage, all deterministic: 29 languages (extension + special-filename map), 32 frameworks (exact + prefix + file signals like manage.py / next.config), and 10 dependency-manifest formats — from pyproject.toml and package.json to Cargo.toml and *.csproj.',
+          'Detection coverage, all deterministic: 29 languages (extension + special-filename map), 32 frameworks (exact + prefix + file signals like manage.py / next.config), and 10 dependency-manifest formats: pyproject.toml, package.json, Cargo.toml, *.csproj, and more.',
       },
       {
         src: '/images/projects/reposage/quality-score.svg',
         alt: 'Six scored quality checks producing an X/100 score, plus five risk rules',
         caption:
-          'The quality score is six file-presence checks — tests, CI, docs, packaging, lint config, typing — summed to X/100, alongside five risk rules (no tests, no CI, god modules ≥200 lines, no docs, ≥25 dependencies). Every finding points at the evidence that produced it.',
+          'The quality score is six file-presence checks (tests, CI, docs, packaging, lint config, typing) summed to X/100, alongside five risk rules (no tests, no CI, god modules ≥200 lines, no docs, ≥25 dependencies). Every finding points at the evidence that produced it.',
       },
       {
         src: '/images/projects/reposage/enrichment-seam.svg',
         alt: 'The LLM plugs in at one Protocol seam and is forced through a JSON schema',
         caption:
-          'The whole AI surface is one structural Protocol: enrich(report) -> EnrichmentResult. The LLM receives a report that is already complete and is forced through a JSON tool-use schema, so it can annotate but never break the structure — the core and the AI share ten lines of interface and nothing else.',
+          'The whole AI surface is one structural Protocol: enrich(report) -> EnrichmentResult. The LLM receives a report that is already complete and is forced through a JSON tool-use schema, so it can annotate but never break the structure. The core and the AI share ten lines of interface and nothing else.',
       },
       {
         src: '/images/projects/reposage/fail-open.svg',
-        alt: 'Fail-open scanning: every parser catches errors and records tools_skipped; the scan always completes',
+        alt: 'Fail-open scanning: every parser catches errors; the scan always completes',
         caption:
-          'Fail-open by design: every manifest parser catches I/O and decode errors and returns empty rather than crashing, and the security orchestrator records every tool failure in tools_skipped — so a repo it cannot fully parse still produces a valid, partial report instead of an exception.',
+          'Fail-open by design: every manifest parser catches I/O and decode errors and returns empty rather than crashing, and every tool failure is logged. A repo it cannot fully parse still produces a valid, partial report instead of an exception.',
       },
     ],
   },

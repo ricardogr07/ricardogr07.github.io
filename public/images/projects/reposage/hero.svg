@@ -19,7 +19,7 @@
 
   <!-- title block -->
   <text x="100" y="118" fill="#f8fafc" font-size="62" font-weight="800" letter-spacing="-1.5">RepoSage</text>
-  <text x="100" y="158" fill="#94a3b8" font-size="22" font-weight="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Deterministic repo intelligence — not chat-with-your-repo.</text>
+  <text x="100" y="158" fill="#94a3b8" font-size="22" font-weight="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Deterministic repo intelligence: not chat-with-your-repo.</text>
 
   <!-- zero-deps banner pill -->
   <g transform="translate(100 196)">

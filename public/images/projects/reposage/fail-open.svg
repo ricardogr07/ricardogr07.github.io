@@ -12,8 +12,8 @@
     <text x="108" y="200" fill="#64748b" font-size="11">unreadable manifest → empty list, not a crash</text>
 
     <path d="M76 224 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-    <text x="108" y="230" fill="#cbd5e1">security orchestrator never raises</text>
-    <text x="108" y="250" fill="#64748b" font-size="11">every tool failure recorded in tools_skipped</text>
+    <text x="108" y="230" fill="#cbd5e1">security checks never crash the scan</text>
+    <text x="108" y="250" fill="#64748b" font-size="11">every failure is logged; the scan completes</text>
 
     <path d="M76 274 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
     <text x="108" y="280" fill="#cbd5e1">symlinks skipped during the walk</text>
@@ -37,8 +37,8 @@
   </g>
 
   <line x1="656" y1="300" x2="1048" y2="300" stroke="#1e293b" stroke-width="1" />
-  <text x="656" y="328" fill="#64748b" font-size="11.5">One known gap: path.stat() is unguarded against</text>
-  <text x="656" y="348" fill="#64748b" font-size="11.5">files vanishing mid-scan — called out, not hidden.</text>
+  <text x="656" y="328" fill="#64748b" font-size="11.5">One known gap: files vanishing mid-scan</text>
+  <text x="656" y="348" fill="#64748b" font-size="11.5">may not be caught. Named, not hidden.</text>
 
   <text x="560" y="408" text-anchor="middle" fill="#64748b" font-size="12.5">Reliability as a property of the design: the audit never blocks on the thing it couldn’t read.</text>
 </svg>

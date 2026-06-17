@@ -20,6 +20,7 @@ export interface PortfolioProject {
   docsUrl?: string
   /** Override the "Documentation" label on the docsUrl button, e.g. 'Live Site' */
   docsLabel?: string
+  marketplaceUrl?: string
   visibility: ProjectVisibility
   categories: ProjectCategory[]
   summary: string

@@ -11,7 +11,7 @@
     <g>
       <path d="M76 168 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
       <text x="108" y="174" fill="#cbd5e1">tests present</text>
-      <text x="372" y="174" fill="#64748b" font-size="11">detect_test_files</text>
+      <text x="372" y="174" fill="#64748b" font-size="11">test file patterns</text>
     </g>
     <g>
       <path d="M76 206 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -31,12 +31,12 @@
     <g>
       <path d="M76 320 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
       <text x="108" y="326" fill="#cbd5e1">lint config present</text>
-      <text x="372" y="326" fill="#64748b" font-size="11">14 filenames + [tool.ruff]</text>
+      <text x="372" y="326" fill="#64748b" font-size="11">14 config filenames</text>
     </g>
     <g>
       <path d="M76 358 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
       <text x="108" y="364" fill="#cbd5e1">typing present</text>
-      <text x="372" y="364" fill="#64748b" font-size="11">+ statically-typed-lang shortcut</text>
+      <text x="372" y="364" fill="#64748b" font-size="11">typed-language shortcut</text>
     </g>
   </g>
   <text x="72" y="398" fill="#64748b" font-size="11.5">+ 4 TypeScript strictness checks when a tsconfig is found.</text>

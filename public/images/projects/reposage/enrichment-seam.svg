@@ -21,7 +21,7 @@
   <text x="494" y="162" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">EnrichmentProvider</text>
   <text x="494" y="182" text-anchor="middle" fill="#64748b" font-size="11">structural Protocol · 10 lines</text>
   <rect x="368" y="200" width="252" height="40" rx="8" fill="#0a0a0a" stroke="#334155" stroke-width="1" />
-  <text x="494" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12.5">enrich(report) -&gt; EnrichmentResult</text>
+  <text x="494" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12.5">enrich(report) → annotated result</text>
   <text x="494" y="266" text-anchor="middle" fill="#64748b" font-size="11">the only thing the core and the AI share</text>
 
   <!-- forced schema gate -->
@@ -42,8 +42,8 @@
 
   <!-- guarantees row -->
   <g font-size="12.5">
-    <text x="48" y="338" fill="#22d3ee">✓ no key → clean exit 2, deterministic report still emitted</text>
-    <text x="48" y="364" fill="#22d3ee">✓ non-tool response raises · fields coerced to dataclasses · debt items capped at 5</text>
+    <text x="48" y="338" fill="#22d3ee">✓ no key: exits cleanly, deterministic report still emitted</text>
+    <text x="48" y="364" fill="#22d3ee">✓ non-schema response rejected · output structure enforced · debt items capped at 5</text>
   </g>
   <text x="48" y="404" fill="#b08436" font-size="12">⚠ honest limit: the structure can’t hallucinate, but the free-text strings inside it aren’t fact-checked against the report.</text>
 </svg>
