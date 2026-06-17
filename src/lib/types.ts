@@ -27,7 +27,7 @@ export interface PortfolioProject {
   solution?: string
   deliverables: string[]
   techStack: string[]
-  servicesSupported: string[]
+  servicesSupported?: string[]
   businessValue: string[]
   featured: boolean
   /** Path to the rendered SVG flow diagram (e.g. /images/projects/slug/diagram.svg) */

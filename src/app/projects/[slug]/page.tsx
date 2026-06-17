@@ -379,18 +379,20 @@ export default async function CaseStudyPage({ params }: Props) {
                 </div>
               </section>
 
-              <section>
-                <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
-                  Services
-                </h2>
-                <div className="flex flex-col gap-2">
-                  {project.servicesSupported.map((svc) => (
-                    <span key={svc} className="text-sm text-neutral-400">
-                      {svc}
-                    </span>
-                  ))}
-                </div>
-              </section>
+              {project.servicesSupported && project.servicesSupported.length > 0 && (
+                <section>
+                  <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Services
+                  </h2>
+                  <div className="flex flex-col gap-2">
+                    {project.servicesSupported.map((svc) => (
+                      <span key={svc} className="text-sm text-neutral-400">
+                        {svc}
+                      </span>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {project.status && (
                 <section>

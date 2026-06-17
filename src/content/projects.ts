@@ -25,7 +25,6 @@ export const projects: PortfolioProject[] = [
       'OpenAI API',
       'GitHub Actions',
     ],
-    servicesSupported: [],
     businessValue: [],
     tldr: "LinkedIn has no public jobs API. This pipeline scrapes the guest surface nightly, null-checks every field instead of crashing when markup shifts, and files its own GitHub issue when a run fails.",
     headlineMetric: "A daily scraper that fixes itself when LinkedIn's markup breaks",
