@@ -201,15 +201,7 @@ export const projects: PortfolioProject[] = [
     categories: ['rag-llm', 'backend-api', 'developer-tooling'],
     summary:
       'Token-aware RAG ingestion pipeline where Rust handles performance-critical chunking via PyO3, Python orchestrates embeddings, and Qdrant stores searchable vectors.',
-    deliverables: [
-      'Rust tokenizer/chunker exposed to Python through PyO3',
-      'Python orchestration package',
-      'Qdrant vector store integration',
-      'CLI commands for ingest/search/ask',
-      'Local and OpenAI embedding paths',
-      'Hallucination guard',
-      'Benchmark results',
-    ],
+    deliverables: [],
     techStack: [
       'Rust',
       'PyO3',
@@ -227,26 +219,23 @@ export const projects: PortfolioProject[] = [
       'LLM Tooling',
       'Performance Optimization',
     ],
-    businessValue: [
-      'Rust chunking eliminates token overflow failures that silently degrade retrieval quality in pure-Python stacks',
-      'PyO3 bridge gives you Rust performance without rewriting your existing Python workflow',
-      'Hallucination guard reduces the risk of confident wrong answers from the LLM layer',
-      'Pluggable embeddings: OpenAI for quality, local sentence-transformers to cut API costs',
-    ],
-    tldr: 'Token-exact RAG ingestion where the hot path runs in Rust.',
+    businessValue: [],
+    tldr: '0 over-limit chunks at every scale; up to 13,100 for a character-count baseline. 40% faster than Python tiktoken at 50 MB. Measured, committed.',
     situation:
       'RAG quality lives or dies on chunking. Naive splitters blow past embedding-model token limits, truncate silently, and degrade retrieval; the Python tokenize loop becomes the ingestion bottleneck at scale.',
     task: "Build ingestion that is token-exact (never exceeds the model limit) and fast enough for large corpora, without leaving Python's embedding/orchestration ecosystem.",
-    action:
-      'Pushed tokenize+chunk into Rust via PyO3 using tiktoken-rs; Python orchestrates embeddings (local sentence-transformers or OpenAI) and writes to Qdrant; CLI ingest/search/ask + a hallucination guard that declines ungrounded answers.',
-    headlineMetric:
-      'Token-exact chunking — 0 over-limit chunks at every scale, against up to 13,100 for a character-count baseline (measured, committed)',
+    action: [
+      'Pushed tokenize and chunk into Rust via PyO3 using tiktoken-rs; a chunk is a window over token IDs, so the limit cannot be exceeded by construction.',
+      'Python orchestrates embeddings (local sentence-transformers or OpenAI) and writes to Qdrant; a CLI covers init-db, ingest, search, and ask.',
+      'A two-layer hallucination guard declines before the model is called: a deterministic similarity cutoff (default 0.50) plus a strict context-only prompt.',
+    ],
+    headlineMetric: 'Token-exact RAG ingestion where the hot path runs in Rust.',
     result:
-      'Token-exact RAG chunking, proven in committed benchmarks: every token-aware variant produced 0 over-limit chunks from 1–50 MB, against up to 13,100 violations for a character-count splitter. The Rayon-parallel Rust path is 40% faster than Python tiktoken at 50 MB (24.99 s vs 35.04 s — 2.00 vs 1.43 MB/s), with a measured crossover between 10 MB and 50 MB below which pure Python wins. Five chunker variants benchmarked across four corpus sizes; 25 tests (8 Rust, 17 Python) cover the chunker and the ingest path.',
+      'Token-exact RAG chunking, proven in committed benchmarks: every token-aware variant produced 0 over-limit chunks from 1–50 MB, against up to 13,100 violations for a character-count splitter. The Rayon-parallel Rust path is 40% faster than Python tiktoken at 50 MB (24.99 s vs 35.04 s; 2.00 vs 1.43 MB/s), with a measured crossover between 10 MB and 50 MB below which pure Python wins. Five chunker variants benchmarked across four corpus sizes; 25 tests (8 Rust, 17 Python) cover the chunker and the ingest path.',
     learning:
-      "The honest engineering call was knowing when not to reach for Rust. Below a measured 10–50 MB crossover the per-call FFI and BPE-init cost makes Rust slower than pure Python everywhere — so the benchmark keeps that negative result in the table instead of hiding it. The win is real, but it's narrow, and pretending otherwise would have been the easy lie.",
+      "The honest engineering call was knowing when not to reach for Rust. Below a measured 10–50 MB crossover the per-call FFI and BPE-init cost makes Rust slower than pure Python everywhere, so the benchmark keeps that negative result in the table instead of hiding it. The win is real, but it's narrow, and pretending otherwise would have been the easy lie.",
     caveat:
-      "The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker. It's a happy-path build — no CI, no published wheels, no ingest-side error handling.",
+      "The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker.",
     status: 'active',
     gallery: [
       {

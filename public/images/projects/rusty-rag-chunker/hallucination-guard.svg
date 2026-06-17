@@ -13,8 +13,8 @@
   <text x="72" y="140" fill="#67e8f9" font-size="14" font-weight="700">LAYER 1 · pre-retrieval cutoff</text>
   <text x="72" y="162" fill="#64748b" font-size="11.5">deterministic — runs before the LLM is called</text>
   <rect x="72" y="178" width="450" height="40" rx="8" fill="#0a0a0a" stroke="#334155" stroke-width="1" />
-  <text x="92" y="203" fill="#e2e8f0" font-size="12.5">if top_score &lt; retrieval_min_score:  decline</text>
-  <text x="72" y="244" fill="#cbd5e1" font-size="12.5">default threshold 0.50 — returns the score + the cutoff,</text>
+  <text x="92" y="203" fill="#e2e8f0" font-size="12.5">if similarity score &lt; threshold: decline</text>
+  <text x="72" y="244" fill="#cbd5e1" font-size="12.5">default threshold 0.50; returns the score + the cutoff,</text>
   <text x="72" y="264" fill="#cbd5e1" font-size="12.5">prints "I don't have information about this." and stops.</text>
 
   <!-- layer 2 -->
