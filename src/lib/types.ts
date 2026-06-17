@@ -18,6 +18,8 @@ export interface PortfolioProject {
   repo?: string
   liveUrl?: string
   docsUrl?: string
+  /** Override the "Documentation" label on the docsUrl button, e.g. 'Live Site' */
+  docsLabel?: string
   visibility: ProjectVisibility
   categories: ProjectCategory[]
   summary: string

@@ -67,6 +67,7 @@ export const projects: PortfolioProject[] = [
     title: 'Mexico Jobs Analytics Pipeline',
     repo: 'https://github.com/ricardogr07/mx-jobs-insights',
     docsUrl: 'https://ricardogr07.github.io/mx-jobs-insights/',
+    docsLabel: 'Live Site',
     visibility: 'public',
     featured: true,
     diagram: '/images/projects/mx-jobs-insights/architecture.svg',
