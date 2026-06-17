@@ -56,5 +56,5 @@
     <text x="886" y="335" text-anchor="middle" fill="#64748b" font-size="10.5">re-emits past periods to rebuild the public archive</text>
   </g>
 
-  <text x="560" y="404" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Lesson: state has to live somewhere — keep the compute stateless, but give the archive a home.</text>
+  <text x="560" y="404" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Lesson: state has to live somewhere. Keep the compute stateless, but give the archive a home.</text>
 </svg>

@@ -26,7 +26,7 @@
 
   <!-- no retries panel -->
   <rect x="612" y="104" width="460" height="264" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.3" />
-  <text x="636" y="138" fill="#fcd34d" font-size="14" font-weight="700">NO RETRIES — single attempt</text>
+  <text x="636" y="138" fill="#fcd34d" font-size="14" font-weight="700">NO RETRIES: single attempt</text>
   <!-- crossed retry loop -->
   <g transform="translate(842 232)">
     <path d="M0 -42 a42 42 0 1 1 -30 12" fill="none" stroke="#475569" stroke-width="9" stroke-linecap="round" />

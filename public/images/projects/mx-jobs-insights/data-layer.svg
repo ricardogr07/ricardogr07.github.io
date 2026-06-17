@@ -6,7 +6,7 @@
   </defs>
   <rect width="1120" height="430" fill="#0a0a0a" />
   <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">The data layer — DuckDB authoritative, Parquet sidecars</text>
-  <text x="48" y="74" fill="#64748b" font-size="13">No pyarrow · all I/O is DuckDB-native · no incremental state to corrupt</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">Full rebuild every run · no incremental state · no pyarrow</text>
 
   <!-- input -->
   <g>
@@ -33,13 +33,13 @@
     <g font-size="12">
       <rect x="476" y="162" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
       <text x="492" y="186" fill="#cbd5e1">source_runs</text>
-      <text x="702" y="186" text-anchor="end" fill="#64748b" font-size="10.5">provenance</text>
+      <text x="702" y="186" text-anchor="end" fill="#64748b" font-size="10.5">pipeline runs</text>
       <rect x="476" y="210" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
       <text x="492" y="234" fill="#cbd5e1">job_observations</text>
-      <text x="702" y="234" text-anchor="end" fill="#64748b" font-size="10.5">fact · obs grain</text>
+      <text x="702" y="234" text-anchor="end" fill="#64748b" font-size="10.5">job records</text>
       <rect x="476" y="258" width="242" height="40" rx="7" fill="#0d1117" stroke="#334155" />
       <text x="492" y="282" fill="#cbd5e1">job_entities</text>
-      <text x="702" y="282" text-anchor="end" fill="#64748b" font-size="10.5">latest projection</text>
+      <text x="702" y="282" text-anchor="end" fill="#64748b" font-size="10.5">latest per job</text>
     </g>
   </g>
 
@@ -63,5 +63,5 @@
     </g>
   </g>
 
-  <text x="560" y="378" text-anchor="middle" fill="#64748b" font-size="12.5">Stateless by design: nothing here survives the runner — it is rebuilt whole, deterministically, on the next run.</text>
+  <text x="560" y="378" text-anchor="middle" fill="#64748b" font-size="12.5">Stateless by design: nothing here survives the runner. It is rebuilt whole, deterministically, on the next run.</text>
 </svg>

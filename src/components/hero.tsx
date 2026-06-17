@@ -39,8 +39,7 @@ export default function Hero() {
           M.Sc. Data Science. 7+ years enterprise engineering.
         </p>
         <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          Available for senior engineering roles and freelance projects — Python, ML systems, data
-          products.
+          Available for senior engineering roles and freelance projects in Python, ML systems, and data products.
         </p>
 
         {/* CTAs */}

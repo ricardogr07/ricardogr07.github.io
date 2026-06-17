@@ -71,26 +71,19 @@ export const projects: PortfolioProject[] = [
     featured: true,
     diagram: '/images/projects/mx-jobs-insights/architecture.svg',
     diagramCaption:
-      'Six stages on ephemeral CI: workspace → curate (DuckDB authoritative, CREATE OR REPLACE) → report (one schema-locked OpenAI call → EN/ES) → site → strict MkDocs deploy gate. Cloud delivery is built but dashed — GitHub Actions is the live path.',
+      'Six stages on ephemeral CI: workspace → curate (DuckDB authoritative, CREATE OR REPLACE) → report (one schema-locked OpenAI call → EN/ES) → site → strict MkDocs deploy gate. Cloud delivery is built but dashed; GitHub Actions is the live path.',
     heroImage: '/images/projects/mx-jobs-insights/hero.svg',
     categories: ['data-engineering', 'automation', 'dashboard'],
     summary:
       'Analytics pipeline that transforms raw job snapshots into curated DuckDB/Parquet datasets, bilingual reports, and a public MkDocs documentation site.',
-    deliverables: [
-      'Curated DuckDB/Parquet datasets',
-      'Weekly/monthly bilingual reports',
-      'Public MkDocs site',
-      'GitHub Actions workflow',
-      'Local/cloud execution paths',
-      'Reproducible pipeline CLI',
-    ],
+    deliverables: [],
     techStack: [
       'Python',
       'DuckDB',
       'Parquet',
       'MkDocs',
       'GitHub Actions',
-      'Cloud Run-ready workflow',
+      'Cloud Run',
     ],
     servicesSupported: [
       'Data Engineering',
@@ -99,32 +92,30 @@ export const projects: PortfolioProject[] = [
       'Dashboard/Reporting Automation',
       'Cloud Application Development',
     ],
-    businessValue: [
-      'Delivers a public analytics site that updates automatically — not a one-time report',
-      'DuckDB + Parquet keeps the dataset queryable and shareable without a database server',
-      'Bilingual outputs serve both English and Spanish stakeholders from the same pipeline',
-      'GitHub Actions workflow means zero manual intervention after initial setup',
-    ],
+    businessValue: [],
     tldr: 'Raw job snapshots → clean DuckDB/Parquet datasets → bilingual reports → public site, running unattended weekly (plus a monthly rollup).',
-    headlineMetric: '14 for 14 — every unattended scheduled run has succeeded since Mar 30, 2026',
+    headlineMetric: '14 for 14: every unattended scheduled run has succeeded since Mar 30, 2026',
     situation:
-      "Raw job-listing snapshots are worthless until they're clean, queryable, repeatable analytics assets. Manual reporting is slow and inconsistent — and it has to run for free, with no server to host.",
+      "Raw job-listing snapshots are worthless until they're clean, queryable, repeatable analytics assets. Manual reporting is slow and inconsistent. The constraint was free infrastructure: no server, no hosting cost.",
     task: 'Turn periodic raw snapshots into curated datasets + bilingual reports + a public docs site, reproducibly and without manual intervention, on infrastructure that costs nothing to run.',
-    action:
-      'A 6-stage CLI pipeline on ephemeral GitHub Actions runners: seed the upstream data branch, curate into an authoritative DuckDB store (CREATE OR REPLACE — a full idempotent rebuild every run) with Parquet sidecars, then a single schema-locked OpenAI call returns an EN + ES narrative that two render passes turn into bilingual Markdown/HTML — in sync by construction. A strict MkDocs build gates the GitHub Pages deploy. Runs weekly (plus a monthly rollup); a Cloud Run path is built and contract-tested but never the live one.',
+    action: [
+      "A 6-stage pipeline on ephemeral GitHub Actions runners: each run checks out the full upstream snapshot history, rebuilds an authoritative DuckDB store from scratch (CREATE OR REPLACE, no incremental state), and exports Parquet sidecars alongside it.",
+      "A single schema-locked API call returns both English and Spanish narrative in one response, with a headline and three bullets per language. Two render passes consume the same object to produce bilingual Markdown and HTML reports that cannot drift from each other.",
+      "A strict MkDocs build gates the GitHub Pages deploy, blocking publication on any warning. Runs on a weekly cron plus a monthly rollup; a Cloud Run delivery path is built and contract-tested but GitHub Actions is the live path.",
+    ],
     result:
-      'Fourteen of fourteen scheduled runs have succeeded since 2026-03-30 — roughly ten weeks fully unattended (11 weekly + 3 monthly bilingual bundles, GitHub-API verified). The latest run rebuilt 9,661 raw job snapshots (2026-03-22 → 2026-06-08) into 3 curated DuckDB tables and distilled the closed week (2026-W23) into 398 curated jobs, published as a bilingual report and a public CSV. Backed by 78 tests on Python 3.11.',
+      'Fourteen of fourteen scheduled runs have succeeded since 2026-03-30, roughly ten weeks fully unattended (11 weekly + 3 monthly bilingual bundles, GitHub-API verified). The latest run rebuilt 9,661 raw job snapshots (2026-03-22 → 2026-06-08) into 3 curated DuckDB tables and distilled the closed week (2026-W23) into 398 curated jobs, published as a bilingual report and a public CSV. Backed by 78 tests on Python 3.11.',
     learning:
-      "DuckDB-in-CI made compute trivially reproducible — rebuilding the whole store from upstream history every run was deterministic and debuggable for free at ~9.6k rows, with no server to host Postgres on anyway. But I learned state has to live somewhere: the stateless rebuild quietly turned my 'archive' into 'latest issue only' — each deploy replaces the site with just the periods in that run, so the public history evaporated and took ten backfill runs to restore. Next time the compute stays stateless, but a small hosted DB or a committed-state branch keeps the archive.",
+      "DuckDB-in-CI made compute trivially reproducible. Rebuilding the whole store from upstream history every run was deterministic and debuggable for free at ~9.6k rows, with no server to host Postgres on anyway. But I learned state has to live somewhere: the stateless rebuild quietly turned my 'archive' into 'latest issue only,' so the public history evaporated and took ten backfill runs to restore. Next time the compute stays stateless, but a small hosted DB or a committed-state branch keeps the archive.",
     caveat:
-      'The live site currently exposes only the latest weekly bundle — each deploy replaces the published periods, so the monthly archive does not accumulate publicly without a backfill run. A consequence of the stateless-rebuild design, not a data loss.',
+      'The live site currently exposes only the latest weekly bundle: each deploy replaces the published periods, so the monthly archive does not accumulate publicly without a backfill run. A consequence of the stateless-rebuild design, not a data loss.',
     status: 'live',
     gallery: [
       {
         src: '/images/projects/mx-jobs-insights/data-layer.svg',
         alt: 'DuckDB as authoritative store with CREATE OR REPLACE, three tables, and Parquet sidecars',
         caption:
-          'The data layer: DuckDB is the authoritative store, rebuilt whole every run (CREATE OR REPLACE) into three tables — source_runs, job_observations, job_entities — each exported as a DuckDB-native Parquet sidecar. No pyarrow, no incremental state to corrupt.',
+          'The data layer: DuckDB is the authoritative store, rebuilt whole every run (CREATE OR REPLACE) into three tables (source_runs, job_observations, job_entities), each exported as a DuckDB-native Parquet sidecar. No pyarrow, no incremental state to corrupt.',
       },
       {
         src: '/images/projects/mx-jobs-insights/bilingual.svg',
@@ -136,13 +127,13 @@ export const projects: PortfolioProject[] = [
         src: '/images/projects/mx-jobs-insights/reliability.svg',
         alt: 'Fail-closed validation gates and a deliberate no-retries policy',
         caption:
-          'Reliability by refusing to ship a bad run: an empty-snapshot guard, fail-closed env validation, a strict MkDocs deploy gate, and concurrency locks — with no retries by design, because at this cadence a clean re-run beats hidden retry state.',
+          'Reliability by refusing to ship a bad run: an empty-snapshot guard, fail-closed env validation, a strict MkDocs deploy gate, and concurrency locks, with no retries by design: at this cadence a clean re-run beats hidden retry state.',
       },
       {
         src: '/images/projects/mx-jobs-insights/archive-tradeoff.svg',
         alt: 'Stateless rebuild: reproducible compute but the public archive evaporates each deploy',
         caption:
-          "The honest trade-off: stateless rebuilds buy deterministic, free compute — but the published archive doesn't accumulate. Each deploy ships only the current period; restoring history takes a backfill run. State has to live somewhere.",
+          "The honest trade-off: stateless rebuilds buy deterministic, free compute, but the published archive doesn't accumulate. Each deploy ships only the current period; restoring history takes a backfill run. State has to live somewhere.",
       },
       {
         src: '/images/projects/mx-jobs-insights/metrics.svg',

@@ -127,9 +127,9 @@
     <!-- cron pills -->
     <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
       <rect x="892" y="398" width="152" height="20" rx="10" fill="#0d1117" stroke="#334155" />
-      <text x="968" y="412" text-anchor="middle" fill="#94a3b8">0 14 * * 1  weekly</text>
+      <text x="968" y="412" text-anchor="middle" fill="#94a3b8">weekly · Mondays</text>
       <rect x="892" y="424" width="152" height="20" rx="10" fill="#0d1117" stroke="#334155" />
-      <text x="968" y="438" text-anchor="middle" fill="#94a3b8">0 15 1 * *  monthly</text>
+      <text x="968" y="438" text-anchor="middle" fill="#94a3b8">monthly rollup</text>
     </g>
     <text x="968" y="478" text-anchor="middle" fill="#64748b" font-size="11">GitHub Pages · static deploy</text>
   </g>
