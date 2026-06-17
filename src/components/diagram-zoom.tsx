@@ -50,7 +50,14 @@ export default function DiagramZoom({ src, alt }: DiagramZoomProps) {
             className="absolute right-4 top-4 rounded-lg border border-neutral-700 bg-neutral-900 p-2 text-neutral-400 transition-colors hover:text-white"
             aria-label="Close"
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

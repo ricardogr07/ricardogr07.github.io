@@ -81,9 +81,9 @@ export default function TeachingPage() {
               </p>
               <p>
                 Teaching while working full time is a specific kind of challenge. It makes you
-                honest about the student/teacher relationship in a way that&apos;s hard to appreciate
-                from one side of it. The classroom was energizing for that reason: it kept me sharp
-                in both directions.
+                honest about the student/teacher relationship in a way that&apos;s hard to
+                appreciate from one side of it. The classroom was energizing for that reason: it
+                kept me sharp in both directions.
               </p>
               <p>
                 The labs were where it clicked. Students built ECG circuits from components and

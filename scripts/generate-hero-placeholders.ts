@@ -38,16 +38,13 @@ const heroPrompts: Record<string, string> = {
     'data pipeline turning scattered records into a clean dataset cube, dark, cyan→indigo',
   'linkedin-webscraper':
     'structured rows extracted from a noisy web, funnel into a tidy database, dark, cyan→indigo',
-  reposage:
-    'a codebase X-rayed into a structured report card, dark, cyan→indigo',
-  clipsmith:
-    'long video timeline distilled into vertical highlight clips, dark, cyan→indigo',
+  reposage: 'a codebase X-rayed into a structured report card, dark, cyan→indigo',
+  clipsmith: 'long video timeline distilled into vertical highlight clips, dark, cyan→indigo',
   'purkinje-uv':
     'fractal Purkinje network over a translucent heart mesh, scientific, dark, cyan→indigo',
   'market-lab':
     'reproducible experiment folds and diagnostic charts, lab-notebook feel, dark, cyan→indigo',
-  'myocardial-mesh':
-    'myocardial surface mesh wireframe, scientific, dark, cyan→indigo',
+  'myocardial-mesh': 'myocardial surface mesh wireframe, scientific, dark, cyan→indigo',
   'jax-bo':
     'Gaussian-process posterior with acquisition curve, optimization converging, dark, cyan→indigo',
   'wc26-dashboard':
@@ -218,7 +215,7 @@ async function main() {
   for (const { slug, title } of publicSlugs) {
     await generateOne(slug, title)
   }
-  console.log('Done. Replace each hero.png with Ricardo\'s AI art when ready.')
+  console.log("Done. Replace each hero.png with Ricardo's AI art when ready.")
 }
 
 main().catch((err) => {

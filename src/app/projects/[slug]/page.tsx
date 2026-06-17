@@ -135,13 +135,34 @@ export default async function CaseStudyPage({ params }: Props) {
                 className={linkButtonClass}
               >
                 {project.docsLabel ? (
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
                     <circle cx="12" cy="12" r="10" />
-                    <path strokeLinecap="round" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                    <path
+                      strokeLinecap="round"
+                      d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"
+                    />
                   </svg>
                 ) : (
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
                 )}
                 {project.docsLabel ?? 'Documentation'}
@@ -155,7 +176,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 className={linkButtonClass}
               >
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 0C8.746 0 9 1.53 9 1.53V4.5h6V5.4H5.748C5.748 5.4 3 5.148 3 8.448c0 3.3 2.55 3.15 2.55 3.15H7.2V9.9s-.1-2.55 2.55-2.55h4.2s2.4.05 2.4-2.3V1.55S16.6 0 12 0zM8.85 1.5c.45 0 .75.3.75.75s-.3.75-.75.75-.75-.3-.75-.75.3-.75.75-.75zM12 24c3.254 0 3-1.53 3-1.53V19.5H9v-.9h9.252C18.252 18.6 21 18.852 21 15.552c0-3.3-2.55-3.15-2.55-3.15H16.8v1.698s.1 2.55-2.55 2.55H10.05s-2.4-.05-2.4 2.3v3.5S7.4 24 12 24zm3.15-1.5c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z"/>
+                  <path d="M12 0C8.746 0 9 1.53 9 1.53V4.5h6V5.4H5.748C5.748 5.4 3 5.148 3 8.448c0 3.3 2.55 3.15 2.55 3.15H7.2V9.9s-.1-2.55 2.55-2.55h4.2s2.4.05 2.4-2.3V1.55S16.6 0 12 0zM8.85 1.5c.45 0 .75.3.75.75s-.3.75-.75.75-.75-.3-.75-.75.3-.75.75-.75zM12 24c3.254 0 3-1.53 3-1.53V19.5H9v-.9h9.252C18.252 18.6 21 18.852 21 15.552c0-3.3-2.55-3.15-2.55-3.15H16.8v1.698s.1 2.55-2.55 2.55H10.05s-2.4-.05-2.4 2.3v3.5S7.4 24 12 24zm3.15-1.5c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z" />
                 </svg>
                 PyPI
               </a>
@@ -167,8 +188,19 @@ export default async function CaseStudyPage({ params }: Props) {
                 rel="noopener noreferrer"
                 className={linkButtonClass}
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  />
                 </svg>
                 GitHub Action
               </a>
@@ -219,7 +251,9 @@ export default async function CaseStudyPage({ params }: Props) {
                 </p>
               )}
               {project.tldr && (
-                <p className="text-lg leading-relaxed text-justify text-neutral-200">{project.tldr}</p>
+                <p className="text-lg leading-relaxed text-justify text-neutral-200">
+                  {project.tldr}
+                </p>
               )}
               {project.caveat && (
                 <p className="mt-3 text-sm italic text-neutral-500">{project.caveat}</p>
@@ -234,7 +268,9 @@ export default async function CaseStudyPage({ params }: Props) {
               {situation && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Situation</h2>
-                  <p className="text-base leading-relaxed text-justify text-neutral-400">{situation}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {situation}
+                  </p>
                 </section>
               )}
 
@@ -248,20 +284,24 @@ export default async function CaseStudyPage({ params }: Props) {
               {(action || hasDeliverables) && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Action</h2>
-                  {action && (
-                    Array.isArray(action) ? (
+                  {action &&
+                    (Array.isArray(action) ? (
                       <ul className="space-y-3">
                         {action.map((point) => (
-                          <li key={point} className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400">
+                          <li
+                            key={point}
+                            className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400"
+                          >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
                             {point}
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-base leading-relaxed text-justify text-neutral-400">{action}</p>
-                    )
-                  )}
+                      <p className="text-base leading-relaxed text-justify text-neutral-400">
+                        {action}
+                      </p>
+                    ))}
                   {hasDeliverables && (
                     <ul className="mt-4 space-y-2">
                       {project.deliverables.map((item) => (
@@ -294,7 +334,9 @@ export default async function CaseStudyPage({ params }: Props) {
               {result && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Result</h2>
-                  <p className="text-base leading-relaxed text-justify text-neutral-400">{result}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {result}
+                  </p>
                   {project.resultGallery && project.resultGallery.length > 0 && (
                     <div className="mt-6 space-y-4">
                       {project.resultGallery.map((shot) => (
@@ -318,7 +360,9 @@ export default async function CaseStudyPage({ params }: Props) {
               {learning && (
                 <section>
                   <h2 className="mb-3 text-xl font-semibold text-white">Learning</h2>
-                  <p className="text-base leading-relaxed text-justify text-neutral-400">{learning}</p>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {learning}
+                  </p>
                 </section>
               )}
 

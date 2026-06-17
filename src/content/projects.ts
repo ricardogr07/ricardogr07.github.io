@@ -17,29 +17,22 @@ export const projects: PortfolioProject[] = [
     summary:
       'Python scraping pipeline that collects job listings, normalizes records, persists run history in SQLite, and exports datasets through CLI workflows.',
     deliverables: [],
-    techStack: [
-      'Python',
-      'BeautifulSoup',
-      'SQLAlchemy',
-      'SQLite',
-      'OpenAI API',
-      'GitHub Actions',
-    ],
+    techStack: ['Python', 'BeautifulSoup', 'SQLAlchemy', 'SQLite', 'OpenAI API', 'GitHub Actions'],
     businessValue: [],
-    tldr: "LinkedIn has no public jobs API. This pipeline scrapes the guest surface daily, null-checks every field instead of crashing when markup shifts, and files its own GitHub issue when a run fails.",
+    tldr: 'LinkedIn has no public jobs API. This pipeline scrapes the guest surface daily, null-checks every field instead of crashing when markup shifts, and files its own GitHub issue when a run fails.',
     headlineMetric: "A daily scraper that fixes itself when LinkedIn's markup breaks",
     situation:
       "I built this during my M.Sc. while job hunting and trying to decide which skills to prioritize before graduating. I kept checking LinkedIn manually, but that doesn't scale across cities, roles, and time. There's no public jobs API, so the choices were clear: keep copy-pasting, or build a scraper that runs daily, keeps a queryable history, and actually answers the question.",
     task: "The goal was practical: a daily data feed I could query to track which skills were trending. That meant unattended runs, graceful handling when LinkedIn's markup changed instead of crashes, a queryable run history, and automatic alerts when a run came back empty, all without me having to check.",
     action: [
-      "Designed the core scraping and persistence logic to be callable two ways: an Argparse CLI for one-off runs and an importable library API for scripted use, both driving the same underlying code.",
+      'Designed the core scraping and persistence logic to be callable two ways: an Argparse CLI for one-off runs and an importable library API for scripted use, both driving the same underlying code.',
       "Scraped LinkedIn's guest surface via paginated card search and per-job detail calls, with rotating User-Agents, exponential backoff, and per-field null-checks so markup shifts degrade to 'N/A' instead of crashing. Optional OpenAI enrichment adds structured tags (summary, tech stack, seniority) before persisting to SQLite across four tables.",
-      "Automated delivery on GitHub Actions: a daily cron commits scrape output and dated CSV exports to an orphan data branch, auto-files an issue on any empty run, and auto-closes it on recovery.",
+      'Automated delivery on GitHub Actions: a daily cron commits scrape output and dated CSV exports to an orphan data branch, auto-files an issue on any empty run, and auto-closes it on recovery.',
     ],
     result:
       'Shipped to PyPI as LinkedInWebScraper v1.1.1. The CI schedule has been running every day since March 22, 2026, each committing output and dated CSV exports to the data branch. A multi-city analysis across Mexico City, Monterrey, and Guadalajara covered 285 deduplicated postings: Python dominated skill requirements at roughly 80% of listings, mid-senior roles made up half the market with entry level at 38%, and the work-scheme split was nearly even: on-site 41%, hybrid 30%, remote 29%.',
     learning:
-      "Unofficial scrapers have no deprecation notices, so resilience has to be the starting assumption rather than a patch added after the first breakage. The retry policy was the clearest example: a typed, frozen dataclass that models retryable vs. permanent failures is not just safer than ad-hoc retries, it is a contract you can test in isolation. That same thinking scales: null-check every field at parse time, and make the system alert you when it fails rather than silently returning empty.",
+      'Unofficial scrapers have no deprecation notices, so resilience has to be the starting assumption rather than a patch added after the first breakage. The retry policy was the clearest example: a typed, frozen dataclass that models retryable vs. permanent failures is not just safer than ad-hoc retries, it is a contract you can test in isolation. That same thinking scales: null-check every field at parse time, and make the system alert you when it fails rather than silently returning empty.',
     status: 'pypi',
     resultGallery: [
       {
@@ -78,14 +71,7 @@ export const projects: PortfolioProject[] = [
     summary:
       'Analytics pipeline that transforms raw job snapshots into curated DuckDB/Parquet datasets, bilingual reports, and a public MkDocs documentation site.',
     deliverables: [],
-    techStack: [
-      'Python',
-      'DuckDB',
-      'Parquet',
-      'MkDocs',
-      'GitHub Actions',
-      'Cloud Run',
-    ],
+    techStack: ['Python', 'DuckDB', 'Parquet', 'MkDocs', 'GitHub Actions', 'Cloud Run'],
     servicesSupported: [
       'Data Engineering',
       'ETL Pipelines',
@@ -100,9 +86,9 @@ export const projects: PortfolioProject[] = [
       "Raw job-listing snapshots are worthless until they're clean, queryable, repeatable analytics assets. Manual reporting is slow and inconsistent. The constraint was free infrastructure: no server, no hosting cost.",
     task: 'Turn periodic raw snapshots into curated datasets + bilingual reports + a public docs site, reproducibly and without manual intervention, on infrastructure that costs nothing to run.',
     action: [
-      "A 6-stage pipeline on ephemeral GitHub Actions runners: each run checks out the full upstream snapshot history, rebuilds an authoritative DuckDB store from scratch (CREATE OR REPLACE, no incremental state), and exports Parquet sidecars alongside it.",
-      "A single schema-locked API call returns both English and Spanish narrative in one response, with a headline and three bullets per language. Two render passes consume the same object to produce bilingual Markdown and HTML reports that cannot drift from each other.",
-      "A strict MkDocs build gates the GitHub Pages deploy, blocking publication on any warning. Runs on a weekly cron plus a monthly rollup; a Cloud Run delivery path is built and contract-tested but GitHub Actions is the live path.",
+      'A 6-stage pipeline on ephemeral GitHub Actions runners: each run checks out the full upstream snapshot history, rebuilds an authoritative DuckDB store from scratch (CREATE OR REPLACE, no incremental state), and exports Parquet sidecars alongside it.',
+      'A single schema-locked API call returns both English and Spanish narrative in one response, with a headline and three bullets per language. Two render passes consume the same object to produce bilingual Markdown and HTML reports that cannot drift from each other.',
+      'A strict MkDocs build gates the GitHub Pages deploy, blocking publication on any warning. Runs on a weekly cron plus a monthly rollup; a Cloud Run delivery path is built and contract-tested but GitHub Actions is the live path.',
     ],
     result:
       'Fourteen of fourteen scheduled runs have succeeded since 2026-03-30, roughly ten weeks fully unattended (11 weekly + 3 monthly bilingual bundles, GitHub-API verified). The latest run rebuilt 9,661 raw job snapshots (2026-03-22 → 2026-06-08) into 3 curated DuckDB tables and distilled the closed week (2026-W23) into 398 curated jobs, published as a bilingual report and a public CSV. Backed by 78 tests on Python 3.11.',
@@ -141,13 +127,7 @@ export const projects: PortfolioProject[] = [
     summary:
       'Repository analysis tool that scans codebases, detects language and framework signals, summarizes dependencies, and outputs structured Markdown or JSON audit reports.',
     deliverables: [],
-    techStack: [
-      'Python',
-      'GitHub Actions',
-      'OpenAI API',
-      'Anthropic API',
-      'MCP',
-    ],
+    techStack: ['Python', 'GitHub Actions', 'OpenAI API', 'Anthropic API', 'MCP'],
     servicesSupported: [
       'AI Automation',
       'Developer Tooling',
@@ -235,7 +215,7 @@ export const projects: PortfolioProject[] = [
     learning:
       "The honest engineering call was knowing when not to reach for Rust. Below a measured 10–50 MB crossover the per-call FFI and BPE-init cost makes Rust slower than pure Python everywhere, so the benchmark keeps that negative result in the table instead of hiding it. The win is real, but it's narrow, and pretending otherwise would have been the easy lie.",
     caveat:
-      "The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker.",
+      'The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker.',
     status: 'active',
     resultGallery: [
       {
@@ -300,7 +280,7 @@ export const projects: PortfolioProject[] = [
     result:
       'Shipped clipsmith-ai v0.2.1 to PyPI and Docker Hub with 193 tests and CI green on every push (ruff, mypy, pytest, bandit, pip-audit). Five free signals reduce any VOD to ≤20 candidates before the model runs; the LLM makes one cached call per candidate at cents each. All three providers fully wired: Anthropic by default, OpenAI as a drop-in, and Ollama for $0/clip fully local. The FastAPI service and Next.js dashboard run the same pipeline with SSE progress and an approve/reject loop; a cloud-batch path runs the identical Docker image on ephemeral Azure ACI with Drive upload and teardown.',
     learning:
-      "The clips get good from the signal funnel and its plumbing (dedupe, normalization, time-spread), not from the model. The LLM is the last and cheapest step: a yes/no over ≤20 ninety-second windows, never a search over hours of footage. I built per-signal approval analytics and prompt A/B endpoints specifically because I refused to assume which signal earned its weight; instrumenting the question is the honest version of answering it.",
+      'The clips get good from the signal funnel and its plumbing (dedupe, normalization, time-spread), not from the model. The LLM is the last and cheapest step: a yes/no over ≤20 ninety-second windows, never a search over hours of footage. I built per-signal approval analytics and prompt A/B endpoints specifically because I refused to assume which signal earned its weight; instrumenting the question is the honest version of answering it.',
     caveat: "It's an active project mid-sprint, not a finished product.",
     resultGallery: [
       {
@@ -389,7 +369,7 @@ export const projects: PortfolioProject[] = [
         src: '/images/projects/wc26-dashboard/simulation-engine.svg',
         alt: 'The match model — Elo logistic win probability, group-stage draw rate, qualification rules, knockout coin-flip, and live Elo ratings — beside the 10,000-run Monte Carlo loop and per-player finish bars.',
         caption:
-          'The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player\'s finish distribution. The probabilities are modelled, not calibrated.',
+          "The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player's finish distribution. The probabilities are modelled, not calibrated.",
       },
       {
         src: '/images/projects/wc26-dashboard/scope-and-honesty.svg',
@@ -408,7 +388,7 @@ export const projects: PortfolioProject[] = [
     featured: false,
     diagram: '/images/projects/jax-bo/architecture.svg',
     diagramCaption:
-      "Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.",
+      'Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.',
     heroImage: '/images/projects/jax-bo/hero.svg',
     categories: ['ml', 'scientific-python', 'developer-tooling'],
     summary:
@@ -437,7 +417,7 @@ export const projects: PortfolioProject[] = [
       "A useful Gaussian-process Bayesian-optimization library written in JAX (the Predictive Intelligence Lab's) had bit-rotted: it no longer installed on current Python or JAX, so the research inside it was effectively unreachable.",
     task: 'Fork it, restore modern Python/JAX compatibility, and make it a properly packaged, tested, automatically released PyPI library — without claiming the optimization research as my own.',
     action:
-      "Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.",
+      'Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.',
     headlineMetric:
       'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
     result:
@@ -464,7 +444,7 @@ export const projects: PortfolioProject[] = [
         src: '/images/projects/jax-bo/how-bo-works.svg',
         alt: 'A chart showing a few tested points, a predicted curve through them, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try — high and still uncertain',
         caption:
-          "What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.",
+          'What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.',
       },
       {
         src: '/images/projects/jax-bo/scope-and-honesty.svg',
@@ -618,7 +598,7 @@ export const projects: PortfolioProject[] = [
     headlineMetric:
       'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
     result:
-      'The library reproduces the notebook\'s 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.',
+      "The library reproduces the notebook's 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.",
     status: 'active',
     learning:
       "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
@@ -647,7 +627,7 @@ export const projects: PortfolioProject[] = [
         src: '/images/projects/myocardial-mesh/delegate-and-own.svg',
         alt: 'Two columns: delegated (the external FIM solver handles how fast the wave travels, as a black box) versus owned (the library handles mesh I/O, Purkinje-muscle coupling, 12-lead ECG assembly, and the parity test)',
         caption:
-          "Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.",
+          'Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.',
       },
       {
         src: '/images/projects/myocardial-mesh/scope-and-honesty.svg',

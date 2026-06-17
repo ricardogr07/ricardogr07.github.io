@@ -98,7 +98,9 @@ export default function FreelancePage() {
                   <offer.icon className="h-5 w-5 text-cyan-400" aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-white">{offer.title}</h3>
-                <p className="mb-4 text-sm leading-relaxed text-justify text-neutral-400">{offer.description}</p>
+                <p className="mb-4 text-sm leading-relaxed text-justify text-neutral-400">
+                  {offer.description}
+                </p>
                 <ul className="mb-5 space-y-2">
                   {offer.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-2 text-sm text-neutral-400">

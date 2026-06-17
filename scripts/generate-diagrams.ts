@@ -73,7 +73,7 @@ const diagrams: DiagramSpec[] = [
 const NODE_W = 136
 const NODE_H = 38
 const NODE_RX = 7
-const GAP = 38        // space between nodes (arrow travels here)
+const GAP = 38 // space between nodes (arrow travels here)
 const PAD_X = 22
 const PAD_Y = 18
 
@@ -85,7 +85,7 @@ const COLOR_ARROW = '#818cf8'
 function buildSVG(nodes: string[]): string {
   const n = nodes.length
   const totalW = 2 * PAD_X + n * NODE_W + (n - 1) * GAP
-  const totalH = 2 * PAD_Y + NODE_H + 24  // extra room for arrowhead baseline
+  const totalH = 2 * PAD_Y + NODE_H + 24 // extra room for arrowhead baseline
 
   // Arrow marker
   const defs = `
@@ -105,7 +105,7 @@ function buildSVG(nodes: string[]): string {
     // Node rect
     nodeEls.push(
       `<rect x="${x}" y="${y}" width="${NODE_W}" height="${NODE_H}" rx="${NODE_RX}" ` +
-        `fill="${COLOR_NODE_FILL}" stroke="${COLOR_NODE_STROKE}" stroke-width="1.5"/>`,
+        `fill="${COLOR_NODE_FILL}" stroke="${COLOR_NODE_STROKE}" stroke-width="1.5"/>`
     )
 
     // Node text (centered)
@@ -114,7 +114,7 @@ function buildSVG(nodes: string[]): string {
     nodeEls.push(
       `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="middle" ` +
         `fill="${COLOR_TEXT}" font-size="12" font-family="ui-monospace,SFMono-Regular,monospace" ` +
-        `font-weight="500">${escapeXml(nodes[i])}</text>`,
+        `font-weight="500">${escapeXml(nodes[i])}</text>`
     )
 
     // Arrow to next node
@@ -124,7 +124,7 @@ function buildSVG(nodes: string[]): string {
       const ay = y + NODE_H / 2
       arrowEls.push(
         `<line x1="${ax1}" y1="${ay}" x2="${ax2}" y2="${ay}" ` +
-          `stroke="${COLOR_ARROW}" stroke-width="1.5" marker-end="url(#arrowhead)"/>`,
+          `stroke="${COLOR_ARROW}" stroke-width="1.5" marker-end="url(#arrowhead)"/>`
       )
     }
   }

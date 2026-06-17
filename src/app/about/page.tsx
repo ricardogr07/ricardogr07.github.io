@@ -218,7 +218,7 @@ export default function AboutPage() {
             <div className="space-y-4 text-base leading-relaxed text-neutral-400 text-justify">
               <p>
                 Hey there! I&apos;m a full-stack engineer and data scientist. I build AI/ML systems
-                that run in production on the cloud, across machine learning, data engineering, 
+                that run in production on the cloud, across machine learning, data engineering,
                 cloud infrastructure, and full-stack delivery.
               </p>
               <p>
@@ -232,20 +232,20 @@ export default function AboutPage() {
                 My depth sits where data engineering, machine learning, and practical software
                 delivery meet. I&apos;ve built reproducible ML pipelines in JAX and scikit-learn for
                 real research problems, ETL workflows that take raw files all the way to queryable
-                analytics assets, and RAG systems from the vector-chunking layer through
-                retrieval and LLM orchestration. 
+                analytics assets, and RAG systems from the vector-chunking layer through retrieval
+                and LLM orchestration.
               </p>
               <p>
-                My background is in biomedical engineering, where the gap
-                between &quot;works in theory&quot; and &quot;works on a patient&quot; has real
-                consequences. That&apos;s why my thesis work was not a detour from that engineering mindset: it is where
-                I sharpened my approach to uncertainty, reproducibility, and proving a system is
+                My background is in biomedical engineering, where the gap between &quot;works in
+                theory&quot; and &quot;works on a patient&quot; has real consequences. That&apos;s
+                why my thesis work was not a detour from that engineering mindset: it is where I
+                sharpened my approach to uncertainty, reproducibility, and proving a system is
                 correct rather than assuming it.
               </p>
               <p>
                 My freelance work focuses on Python tools with clear scope and a real handoff:
                 automation pipelines, data-extraction workflows, RAG/LLM applications, dashboards,
-                and scientific Python packages. 
+                and scientific Python packages.
               </p>
               <p>
                 Underneath my software development work is a research and teaching track:
@@ -329,8 +329,8 @@ export default function AboutPage() {
                   <p className="font-semibold text-white">Teaching →</p>
                   <p className="mt-1 text-sm text-neutral-400">
                     Teaching bioinstrumentation at Tec de Monterrey is where I learned that
-                    explaining something clearly is the hardest proof you actually understand it.
-                    It made me a better engineer.
+                    explaining something clearly is the hardest proof you actually understand it. It
+                    made me a better engineer.
                   </p>
                 </div>
               </Link>
@@ -360,9 +360,9 @@ export default function AboutPage() {
             </h2>
             <p className="mb-8 text-base leading-relaxed text-neutral-400">
               Medium is where I work through ideas that don&apos;t fit in a commit message and are
-              too practical for a paper. I focus on software engineering for data scientists:
-              clean code, testing, reproducibility, and the debugging mindset that separates a
-              working model from a trusted one.
+              too practical for a paper. I focus on software engineering for data scientists: clean
+              code, testing, reproducibility, and the debugging mindset that separates a working
+              model from a trusted one.
             </p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {mediumArticles.map((article) => (

@@ -27,8 +27,7 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Full-Stack Developer &amp; Data Scientist
-          <br className="hidden lg:block" />
-          {' '}building{' '}
+          <br className="hidden lg:block" /> building{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
             AI/ML systems.
           </span>
@@ -39,7 +38,8 @@ export default function Hero() {
           M.Sc. Data Science. 7+ years enterprise engineering.
         </p>
         <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          Available for senior engineering roles and freelance projects in Python, ML systems, and data products.
+          Available for senior engineering roles and freelance projects in Python, ML systems, and
+          data products.
         </p>
 
         {/* CTAs */}

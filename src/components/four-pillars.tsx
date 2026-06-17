@@ -9,7 +9,8 @@ const pillars = [
   },
   {
     name: 'Data Science',
-    oneliner: 'Reproducible ML experiments, statistical analysis, ETL pipelines, DuckDB/Parquet, scientific Python',
+    oneliner:
+      'Reproducible ML experiments, statistical analysis, ETL pipelines, DuckDB/Parquet, scientific Python',
     proofLabel: 'market-lab',
     proofHref: '/projects/market-lab',
   },

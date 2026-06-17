@@ -9,7 +9,12 @@ type Persona = {
 }
 
 const personas: Persona[] = [
-  { icon: FolderOpen, label: 'Shipped projects', subtitle: 'Case studies & live demos', href: '/projects' },
+  {
+    icon: FolderOpen,
+    label: 'Shipped projects',
+    subtitle: 'Case studies & live demos',
+    href: '/projects',
+  },
   { icon: FileText, label: 'Full CV', subtitle: 'Experience, skills & education', href: '/cv' },
   { icon: Briefcase, label: 'Services', subtitle: 'Freelance & consulting', href: '/freelance' },
   { icon: BookOpen, label: 'Teaching', subtitle: 'Courses & curricula', href: '/teaching' },
@@ -19,10 +24,7 @@ const personas: Persona[] = [
 
 export default function PersonaRouter() {
   return (
-    <section
-      className="bg-neutral-950 px-6 py-12 lg:px-8 lg:py-16"
-      aria-label="Site navigation"
-    >
+    <section className="bg-neutral-950 px-6 py-12 lg:px-8 lg:py-16" aria-label="Site navigation">
       <div className="mx-auto max-w-7xl">
         <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-neutral-400">
           I build ML systems, data pipelines, and Python tools that run in production. Day job

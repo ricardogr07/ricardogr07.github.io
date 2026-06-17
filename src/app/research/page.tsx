@@ -140,8 +140,8 @@ export default function ResearchPage() {
             <p className="mb-3 text-sm text-cyan-400">Graduated with Distinction</p>
             <p className="text-sm leading-relaxed text-neutral-300">
               Thesis: probabilistic reconstruction of the Purkinje network from electrocardiogram
-              signals using computational modeling and Bayesian inference. Inferring the heart&apos;s
-              electrical conduction structure from the signals it produces.
+              signals using computational modeling and Bayesian inference. Inferring the
+              heart&apos;s electrical conduction structure from the signals it produces.
             </p>
           </section>
 
@@ -249,7 +249,10 @@ export default function ResearchPage() {
           </section>
 
           {/* Scientific-software cross-links */}
-          <section aria-labelledby="sci-software-heading" className="border-t border-neutral-800 pt-8">
+          <section
+            aria-labelledby="sci-software-heading"
+            className="border-t border-neutral-800 pt-8"
+          >
             <h2
               id="sci-software-heading"
               className="mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-500"
