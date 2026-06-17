@@ -94,7 +94,7 @@ export const projects: PortfolioProject[] = [
     ],
     businessValue: [],
     tldr: 'Runs free on ephemeral CI, rebuilds 9,661 raw job records from scratch on every run, and publishes bilingual analytics reports to a live site. No server. No manual step.',
-    headlineMetric: 'A stateless weekly pipeline on free ephemeral CI: full dataset rebuilt every run, bilingual reports from one API call, running unattended every week since March 2026',
+    headlineMetric: 'A stateless weekly pipeline running on free infrastructure',
     situation:
       "Raw job-listing snapshots are worthless until they're clean, queryable, repeatable analytics assets. Manual reporting is slow and inconsistent. The constraint was free infrastructure: no server, no hosting cost.",
     task: 'Turn periodic raw snapshots into curated datasets + bilingual reports + a public docs site, reproducibly and without manual intervention, on infrastructure that costs nothing to run.',
@@ -107,8 +107,6 @@ export const projects: PortfolioProject[] = [
       'Fourteen of fourteen scheduled runs have succeeded since 2026-03-30, roughly ten weeks fully unattended (11 weekly + 3 monthly bilingual bundles, GitHub-API verified). The latest run rebuilt 9,661 raw job snapshots (2026-03-22 → 2026-06-08) into 3 curated DuckDB tables and distilled the closed week (2026-W23) into 398 curated jobs, published as a bilingual report and a public CSV. Backed by 78 tests on Python 3.11.',
     learning:
       "DuckDB-in-CI made compute trivially reproducible. Rebuilding the whole store from upstream history every run was deterministic and debuggable for free at ~9.6k rows, with no server to host Postgres on anyway. But I learned state has to live somewhere: the stateless rebuild quietly turned my 'archive' into 'latest issue only,' so the public history evaporated and took ten backfill runs to restore. Next time the compute stays stateless, but a small hosted DB or a committed-state branch keeps the archive.",
-    caveat:
-      'A trade-off worth naming: every rebuild is deterministic and free, but each deploy replaces what was on the site. Past periods need a backfill run to reappear publicly.',
     status: 'live',
     gallery: [
       {
