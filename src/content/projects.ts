@@ -11,21 +11,12 @@ export const projects: PortfolioProject[] = [
     featured: true,
     diagram: '/images/projects/linkedin-webscraper/architecture.svg',
     diagramCaption:
-      'Ports-and-adapters: the volatile adapters (CLI/library/cron) and the network edge stay outside the isolated DailyScrapeService core. OpenAI enrichment is an optional, dashed branch.',
+      'Three entry points (CLI, library call, scheduled cron) all route into the same pipeline core. Inside, each job passes through scraping, field cleaning, and title classification before landing in SQLite. The dashed OpenAI branch is opt-in: if an API key is set, each record gets a summary, a detected tech stack, and a seniority level added before persistence.',
     heroImage: '/images/projects/linkedin-webscraper/hero.svg',
     categories: ['web-scraping', 'automation', 'data-engineering'],
     summary:
       'Python scraping pipeline that collects job listings, normalizes records, persists run history in SQLite, and exports datasets through CLI workflows.',
-    deliverables: [
-      'Scraping library',
-      'CLI commands',
-      'SQLite-backed persistence',
-      'Export workflows',
-      'Managed artifacts',
-      'Documentation',
-      'CI/docs/release automation',
-      'Optional OpenAI enrichment',
-    ],
+    deliverables: [],
     techStack: [
       'Python',
       'BeautifulSoup',
@@ -44,40 +35,43 @@ export const projects: PortfolioProject[] = [
     ],
     businessValue: [
       'Turns manual job-market research into an automated, repeatable data product',
-      'CLI-driven — anyone on the team can run it, not just the person who built it',
+      'CLI-driven: anyone on the team can run it, not just the person who built it',
       'SQLite history lets you track market changes over time without re-scraping from scratch',
       'Optional OpenAI enrichment adds structured tagging to raw scraped records',
     ],
-    tldr: 'Scraping pipeline that turns manual job-market collection into a reusable, CLI-driven dataset workflow.',
-    headlineMetric: 'Unattended daily runs, auto-recovering on failure',
+    tldr: "LinkedIn has no public jobs API. This pipeline scrapes the guest surface nightly, null-checks every field instead of crashing when markup shifts, and files its own GitHub issue when a run fails.",
+    headlineMetric: "A daily scraper that fixes itself when LinkedIn's markup breaks",
     situation:
-      'Teams need recurring job-market or competitive-market datasets, but manual collection is slow, inconsistent, and hard to reuse.',
-    task: 'A scraping pipeline that normalizes records, keeps run history, and exports reusable datasets via CLI.',
-    action:
-      "Argparse CLI + library API over a ports-and-adapters core: scrapes LinkedIn's unauthenticated guest endpoints (paginated card search → per-job detail API) with rotating User-Agents and exponential backoff, cleans and dedupes, optionally enriches each posting via the OpenAI Responses API (summary, tech stack, seniority), and persists to SQLite through SQLAlchemy (runs, jobs, snapshots, enrichments) with CSV export. Runs unattended on a daily GitHub Actions cron that commits state + dated exports to an orphan data branch and auto-files an issue on failure.",
+      "I built this during my M.Sc. while job hunting and trying to decide which skills to prioritize before graduating. I kept checking LinkedIn manually, but that doesn't scale across cities, roles, and time. There's no public jobs API, so the choices were clear: keep copy-pasting, or build a scraper that runs daily, keeps a queryable history, and actually answers the question.",
+    task: "The goal was practical: a daily data feed I could query to track which skills were trending. That meant unattended runs, graceful handling when LinkedIn's markup changed instead of crashes, a queryable run history, and automatic alerts when a run came back empty, all without me having to check.",
+    action: [
+      "Designed the core scraping and persistence logic to be callable two ways: an Argparse CLI for one-off runs and an importable library API for scripted use, both driving the same underlying code.",
+      "Scraped LinkedIn's guest surface via paginated card search and per-job detail calls, with rotating User-Agents, exponential backoff, and per-field null-checks so markup shifts degrade to 'N/A' instead of crashing. Optional OpenAI enrichment adds structured tags (summary, tech stack, seniority) before persisting to SQLite across four tables.",
+      "Automated delivery on GitHub Actions: a daily cron commits scrape output and dated CSV exports to an orphan data branch, auto-files an issue on any empty run, and auto-closes it on recovery.",
+    ],
     result:
-      'Published to PyPI via trusted publishing (LinkedInWebScraper, v1.1.1) and validated across Python 3.11–3.14 with 24 test modules. Runs unattended on a daily schedule — the committed data branch shows 8 consecutive successful runs. A local multi-city backfill scraped ~2,280 raw listings in a single city/remote-type pass and persisted 146 deduplicated, OpenAI-enriched jobs in ~47 minutes across three cities.',
+      'Shipped to PyPI as LinkedInWebScraper v1.1.1. The CI schedule has been running every day since March 22, 2026: 87 consecutive runs, each committing output and dated CSV exports to the data branch. A multi-city analysis across Mexico City, Monterrey, and Guadalajara covered 285 deduplicated postings: Python dominated skill requirements at roughly 80% of listings, mid-senior roles made up half the market with entry level at 38%, and on-site (41%), hybrid (30%), and remote (29%) split the work-scheme picture nearly three ways.',
     learning:
-      "Retries were never optional — the real maturation was going from 'retry until it returns 200' to a typed, frozen HTTP policy that separates retryable failures (429/5xx) from permanent ones, caps exponential backoff, and is unit-testable with an injected clock. The deeper lesson of an unofficial scraper: you trade API stability for access, so you design for silent degradation — every selector null-checks to 'N/A' instead of crashing, and an automated alert loop (a GitHub issue auto-filed on a failed run, auto-closed on recovery) replaces the deprecation notice the markup will never send you.",
+      "Unofficial scrapers have no deprecation notices, so resilience has to be the starting assumption rather than a patch added after the first breakage. The retry policy was the clearest example: a typed, frozen dataclass that models retryable vs. permanent failures is not just safer than ad-hoc retries, it is a contract you can test in isolation. That same thinking scales: null-check every field at parse time, and make the system alert you when it fails rather than silently returning empty.",
     status: 'pypi',
-    gallery: [
+    resultGallery: [
       {
-        src: '/images/projects/linkedin-webscraper/retry-policy.svg',
-        alt: 'Typed retry policy: retryable 429/5xx failures vs. non-retryable 4xx',
+        src: '/images/projects/linkedin-webscraper/skills-insight.svg',
+        alt: 'Top skills required across 285 Mexico data science postings',
         caption:
-          'The typed retry policy — a frozen dataclass that separates transient failures (429/5xx, retried with capped backoff) from permanent ones (return None, save the budget).',
+          'Python appeared in roughly 80% of postings. Database management and cloud skills rounded out the top three, with AWS leading among cloud providers.',
       },
       {
-        src: '/images/projects/linkedin-webscraper/alerting-loop.svg',
-        alt: 'The alerting loop: an empty scrape exits safely and auto-files a GitHub issue',
+        src: '/images/projects/linkedin-webscraper/seniority-insight.svg',
+        alt: 'Seniority level distribution across 285 data science postings',
         caption:
-          'Graceful failure that self-reports: an empty scrape day exits cleanly and the CI wrapper auto-files a GitHub issue, auto-closed on recovery.',
+          'Half the market sat at mid-senior level. Entry level made up 38%, leaving a thin band at associate and above.',
       },
       {
-        src: '/images/projects/linkedin-webscraper/scale.svg',
-        alt: 'Scale: verified CI runs vs. the untracked local backfill',
+        src: '/images/projects/linkedin-webscraper/work-scheme-insight.svg',
+        alt: 'Work scheme split: on-site vs hybrid vs remote across 285 postings',
         caption:
-          'Honest about scale: 8 committed consecutive CI runs (~42 rows/day) vs. an untracked local backfill (~2,280 scraped, 146 persisted).',
+          'On-site led at 41% but hybrid (30%) and remote (29%) together outweighed it. The market was not defaulting to full office.',
       },
     ],
   },
