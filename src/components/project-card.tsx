@@ -59,7 +59,7 @@ export default function ProjectCard({ project, featured = false, href }: Project
 
         {/* Tech badges */}
         <div className="flex flex-wrap gap-1.5">
-          {project.techStack.slice(0, 4).map((tech) => (
+          {project.techStack.slice(0, 5).map((tech) => (
             <span
               key={tech}
               className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-0.5 text-xs text-neutral-300"
@@ -67,9 +67,9 @@ export default function ProjectCard({ project, featured = false, href }: Project
               {tech}
             </span>
           ))}
-          {project.techStack.length > 4 && (
+          {project.techStack.length > 5 && (
             <span className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-0.5 text-xs text-neutral-500">
-              +{project.techStack.length - 4}
+              +{project.techStack.length - 5}
             </span>
           )}
         </div>
