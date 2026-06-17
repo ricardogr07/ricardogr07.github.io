@@ -24,21 +24,9 @@ export const projects: PortfolioProject[] = [
       'SQLite',
       'OpenAI API',
       'GitHub Actions',
-      'PyPI',
     ],
-    servicesSupported: [
-      'Web Scraping',
-      'Data Extraction',
-      'Python Automation',
-      'ETL Pipelines',
-      'Reporting Automation',
-    ],
-    businessValue: [
-      'Turns manual job-market research into an automated, repeatable data product',
-      'CLI-driven: anyone on the team can run it, not just the person who built it',
-      'SQLite history lets you track market changes over time without re-scraping from scratch',
-      'Optional OpenAI enrichment adds structured tagging to raw scraped records',
-    ],
+    servicesSupported: [],
+    businessValue: [],
     tldr: "LinkedIn has no public jobs API. This pipeline scrapes the guest surface nightly, null-checks every field instead of crashing when markup shifts, and files its own GitHub issue when a run fails.",
     headlineMetric: "A daily scraper that fixes itself when LinkedIn's markup breaks",
     situation:
@@ -50,7 +38,7 @@ export const projects: PortfolioProject[] = [
       "Automated delivery on GitHub Actions: a daily cron commits scrape output and dated CSV exports to an orphan data branch, auto-files an issue on any empty run, and auto-closes it on recovery.",
     ],
     result:
-      'Shipped to PyPI as LinkedInWebScraper v1.1.1. The CI schedule has been running every day since March 22, 2026: 87 consecutive runs, each committing output and dated CSV exports to the data branch. A multi-city analysis across Mexico City, Monterrey, and Guadalajara covered 285 deduplicated postings: Python dominated skill requirements at roughly 80% of listings, mid-senior roles made up half the market with entry level at 38%, and on-site (41%), hybrid (30%), and remote (29%) split the work-scheme picture nearly three ways.',
+      'Shipped to PyPI as LinkedInWebScraper v1.1.1. The CI schedule has been running every day since March 22, 2026: 87 consecutive runs, each committing output and dated CSV exports to the data branch. A multi-city analysis across Mexico City, Monterrey, and Guadalajara covered 285 deduplicated postings: Python dominated skill requirements at roughly 80% of listings, mid-senior roles made up half the market with entry level at 38%, and on-site (41%), hybrid (30%), and remote (29%) split the work-scheme picture close to evenly.',
     learning:
       "Unofficial scrapers have no deprecation notices, so resilience has to be the starting assumption rather than a patch added after the first breakage. The retry policy was the clearest example: a typed, frozen dataclass that models retryable vs. permanent failures is not just safer than ad-hoc retries, it is a contract you can test in isolation. That same thinking scales: null-check every field at parse time, and make the system alert you when it fails rather than silently returning empty.",
     status: 'pypi',
