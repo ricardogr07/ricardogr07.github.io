@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="480" viewBox="0 0 1120 480" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
   <rect width="1120" height="480" fill="#0a0a0a" />
-  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Three LLM providers, one interface — and the cheapest one is fully local</text>
-  <text x="48" y="72" fill="#64748b" font-size="13">A factory dispatches on config. All three are real implementations sharing the same retry, JSON contract, OTel spans and Prometheus instruments — none are stubs.</text>
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Three LLM providers, one interface; the cheapest one is fully local</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">A factory dispatches on config. All three are real implementations sharing the same retry, JSON contract, OTel spans and Prometheus instruments; none are stubs.</text>
 
   <!-- Anthropic (default) -->
   <rect x="48" y="100" width="324" height="214" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
@@ -10,8 +10,8 @@
   <text x="306" y="131" text-anchor="middle" fill="#67e8f9" font-size="10.5">DEFAULT</text>
   <text x="72" y="164" fill="#e2e8f0" font-size="12.5">claude-sonnet-4-6</text>
   <g font-size="11.5" fill="#cbd5e1">
-    <text x="72" y="194">· explicit cache_control: ephemeral</text>
-    <text x="72" y="216">  on the stable system + context prefix</text>
+    <text x="72" y="194">· stable prefix prompt-cached</text>
+    <text x="72" y="216">  per-call cache stats logged</text>
     <text x="72" y="240">· cache-usage logged per call</text>
     <text x="72" y="262">· strict JSON selection schema</text>
   </g>
@@ -22,7 +22,7 @@
   <text x="420" y="132" fill="#a5b4fc" font-size="14" font-weight="700">OpenAI</text>
   <text x="420" y="164" fill="#e2e8f0" font-size="12.5">gpt-4.1</text>
   <g font-size="11.5" fill="#cbd5e1">
-    <text x="420" y="194">· response_format: json_object</text>
+    <text x="420" y="194">· JSON response format enforced</text>
     <text x="420" y="216">· prefix ordered for automatic</text>
     <text x="420" y="238">  prompt caching</text>
     <text x="420" y="262">· same JSON contract as Anthropic</text>
@@ -36,7 +36,7 @@
   <text x="1016" y="131" text-anchor="middle" fill="#67e8f9" font-size="10.5">ZERO-KEY</text>
   <text x="768" y="164" fill="#e2e8f0" font-size="12.5">llama3.1:8b · local</text>
   <g font-size="11.5" fill="#cbd5e1">
-    <text x="768" y="194">· format="json" enforced</text>
+    <text x="768" y="194">· JSON output enforced</text>
     <text x="768" y="216">· no API key, no network egress</text>
     <text x="768" y="238">· own integration tests +</text>
     <text x="768" y="260">  check-ollama CLI command</text>
@@ -45,8 +45,8 @@
 
   <!-- bottom framing -->
   <line x1="48" y1="346" x2="1072" y2="346" stroke="#1e293b" stroke-width="1" />
-  <text x="48" y="376" fill="#cbd5e1" font-size="12.5">The LLM is the last, cheapest stage — not the brain. The funnel does the finding; the model adjudicates ≤ 20 windows.</text>
+  <text x="48" y="376" fill="#cbd5e1" font-size="12.5">The LLM is the last, cheapest stage; not the brain. The funnel does the finding; the model adjudicates ≤ 20 windows.</text>
   <text x="48" y="400" fill="#64748b" font-size="11.5">Because selection is the only paid step, the per-VOD bill is bounded by design: at most 20 prompt-cached calls on the hosted providers, or zero on Ollama.</text>
-  <text x="48" y="430" fill="#475569" font-size="11">Shared across all three: tenacity retry (3 attempts, exponential backoff) → catch-all returns None → that candidate is skipped, the run continues.</text>
+  <text x="48" y="430" fill="#475569" font-size="11">Shared across all three: retry with backoff (3 attempts); failed parse returns None; that candidate is skipped, the run continues.</text>
   <text x="48" y="452" fill="#475569" font-size="11">Two prompt versions (v1 / v2) are wired for A/B comparison via the analytics endpoints.</text>
 </svg>

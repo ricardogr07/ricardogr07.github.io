@@ -1,4 +1,4 @@
-import type { PortfolioProject } from '@/lib/types'
+﻿import type { PortfolioProject } from '@/lib/types'
 
 export const projects: PortfolioProject[] = [
   {
@@ -256,27 +256,17 @@ export const projects: PortfolioProject[] = [
     slug: 'clipsmith',
     title: 'Clipsmith: AI-Assisted Twitch Clip Pipeline',
     repo: 'https://github.com/ricardogr07/clipsmith',
+    pypiUrl: 'https://pypi.org/project/clipsmith-ai/',
     visibility: 'public',
     featured: true,
     diagram: '/images/projects/clipsmith/architecture.svg',
     diagramCaption:
-      'process_vod() runs six stages sequentially: five free deterministic signals reduce a multi-hour VOD to ≤20 moments, then the LLM adjudicates only those. The same pipeline runs from the local CLI, a FastAPI + Next.js dashboard, or a cloud-batch launcher on ephemeral Azure ACI.',
+      'Six stages run in sequence: five free deterministic signals reduce a multi-hour VOD to ≤20 moments, then the LLM adjudicates only those. The same pipeline runs from the local CLI, a FastAPI + Next.js dashboard, or a cloud-batch launcher on ephemeral Azure ACI.',
     heroImage: '/images/projects/clipsmith/hero.svg',
     categories: ['media-automation', 'automation', 'rag-llm'],
     summary:
       'Local media automation pipeline that downloads VODs, transcribes Spanish audio, ranks candidate moments by chat activity, uses an LLM to select highlights, and cuts 9:16 MP4 clips.',
-    deliverables: [
-      'Local CLI',
-      'Twitch VOD ingestion',
-      'Spanish transcription',
-      'Chat replay parsing',
-      'Candidate scoring',
-      'LLM-assisted clip selection',
-      'FFmpeg clip generation',
-      'Optional captions',
-      'Optional webcam/gameplay stacked layout',
-      'FastAPI/dashboard path',
-    ],
+    deliverables: [],
     techStack: [
       'Python',
       'FFmpeg',
@@ -294,51 +284,193 @@ export const projects: PortfolioProject[] = [
       'LLM-Assisted Content Selection',
       'Creator Tooling',
     ],
-    businessValue: [
-      'Turns a 4-hour VOD into 5 ready-to-post vertical clips without a video editor',
-      'Chat-replay scoring prioritizes moments the audience already validated — not guesswork',
-      'LLM selection adds context-awareness that pure engagement metrics miss',
-      'Stacked 9:16 layout works directly for TikTok, Reels, and YouTube Shorts',
-    ],
-    tldr: 'Local pipeline that turns a Twitch VOD into publish-ready 9:16 clips using Whisper + LLM selection.',
+    businessValue: [],
+    tldr: 'Bounded cost by design: $0/clip on local Ollama, or ≤20 prompt-cached selection calls per VOD.',
     situation:
       'Turning long streams into short vertical clips is repetitive, slow, and hard to prioritize without watching the whole archive.',
-    task: 'A local pipeline that finds the best moments and cuts publish-ready 9:16 clips — without a cloud subscription.',
-    action:
-      'Twitch VOD ingest → faster-whisper transcription → five deterministic candidate signals (existing clips, !clip commands, chat-density bursts, transcript hype keywords, audio-RMS spikes) → greedy time-spread to ≤20 moments → one cached LLM call per candidate to adjudicate → FFmpeg cut (optional 9:16 stack + burned-in captions). The same process_vod() drives a local Typer CLI, a FastAPI service + Next.js dashboard, and a cloud-batch launcher on ephemeral Azure ACI.',
+    task: 'A local pipeline that finds the best moments and cuts publish-ready 9:16 clips, with no cloud subscription required.',
+    action: [
+      'Built five deterministic signals (existing Twitch clips, !clip commands, chat-density bursts, transcript hype keywords, audio-RMS spikes) that score and deduplicate candidates within 60 s, normalize to [1,100], and spread the top ≤20 at least 120 s apart; the model never searches the full VOD.',
+      'Each candidate gets one cached LLM call over a 90-second transcript window with a strict JSON contract; bad parses are skipped, the run continues. Three providers fully wired: Anthropic (default, prompt-cached), OpenAI, and zero-key local Ollama.',
+      'Wired the same pipeline into a Typer CLI, a FastAPI service with SSE progress, and a Next.js approve/reject dashboard; the identical Docker image also runs as an ephemeral Azure ACI cloud-batch job.',
+    ],
     status: 'active',
     headlineMetric:
-      'Bounded cost by design — the whole pipeline runs at $0/clip on local Ollama, or with the only paid step capped at ≤20 prompt-cached selection calls per VOD',
+      'Local pipeline that turns a Twitch VOD into publish-ready 9:16 clips using Whisper + LLM selection.',
     result:
-      'A working six-stage pipeline that turns a multi-hour Twitch VOD into short clips, shipped to PyPI (clipsmith-ai v0.2.1) and Docker Hub, with 193 tests and CI green on every push (ruff, mypy, pytest, bandit, pip-audit). The deterministic funnel — five free signals deduped within 60 s and normalized to [1,100] — does the finding; the LLM only adjudicates the top ≤20 candidates (≥120 s apart) through a strict JSON contract, with the stable prompt prefix cached so the marginal cost per candidate is cents. Three LLM providers are fully wired (Anthropic default, OpenAI, zero-key local Ollama), and the FastAPI service + Next.js dashboard run the same pipeline with SSE progress and an approve/reject loop. A cloud-batch path runs the identical Docker image on ephemeral Azure ACI with Drive upload and teardown.',
+      'Shipped clipsmith-ai v0.2.1 to PyPI and Docker Hub with 193 tests and CI green on every push (ruff, mypy, pytest, bandit, pip-audit). Five free signals reduce any VOD to ≤20 candidates before the model runs; the LLM makes one cached call per candidate at cents each. All three providers fully wired: Anthropic by default, OpenAI as a drop-in, and Ollama for $0/clip fully local. The FastAPI service and Next.js dashboard run the same pipeline with SSE progress and an approve/reject loop; a cloud-batch path runs the identical Docker image on ephemeral Azure ACI with Drive upload and teardown.',
     learning:
-      "The engineering that makes the clips good is the deterministic signal funnel and its plumbing — dedupe, time-spread, checkpoints, retries — not the model. The LLM is the last and cheapest stage: a cacheable yes/no over ≤20 ninety-second windows, never a search over hours of footage. I built the per-signal approval analytics and prompt A/B endpoints (Sprint 5) specifically because I refused to assume which signal was earning its weight — instrumenting the question is the honest version of answering it.",
-    caveat:
-      "It's an active project mid-sprint, not a finished product. The default run produces a source-aspect stream-copy — 9:16 vertical and burned-in captions are opt-in (--reframe). No throughput number is committed to the repo (the doc figures are unsourced prose), and \"Spanish\" lives in the prompt and keyword list rather than a pinned language setting. The cloud-batch path is built and manually exercised but has no recorded CI run, and continuous deployment is still in progress (Sprint 10).",
-    gallery: [
+      "The clips get good from the signal funnel and its plumbing (dedupe, normalization, time-spread), not from the model. The LLM is the last and cheapest step: a yes/no over ≤20 ninety-second windows, never a search over hours of footage. I built per-signal approval analytics and prompt A/B endpoints specifically because I refused to assume which signal earned its weight; instrumenting the question is the honest version of answering it.",
+    caveat: "It's an active project mid-sprint, not a finished product.",
+    resultGallery: [
       {
         src: '/images/projects/clipsmith/signal-funnel.svg',
         alt: 'The candidate funnel: five deterministic signals (existing clips +100, !clip +25, chat-density bursts, hype keywords, audio-RMS spikes) deduped within 60s, normalized to [1,100], greedily spread to the top 20 candidates ≥120s apart, then adjudicated by one cached LLM call each.',
         caption:
-          'Five free signals reduce the VOD to ≤20 moments before the model is ever called — the expensive stage is last and smallest.',
+          'Five free signals reduce the VOD to ≤20 moments before the model is ever called; the expensive stage is last and smallest.',
       },
       {
         src: '/images/projects/clipsmith/provider-matrix.svg',
         alt: 'Three LLM providers behind one factory interface: Anthropic claude-sonnet-4-6 (default, explicit ephemeral cache_control), OpenAI gpt-4.1 (json_object), and Ollama llama3.1:8b (zero-key, $0/clip). All share retry, JSON contract, OTel and Prometheus instrumentation.',
         caption:
-          'Three swappable providers, one interface — and the cheapest runs the whole pipeline fully local at zero API cost.',
+          'Three swappable providers, one interface; the cheapest runs the whole pipeline fully local at zero API cost.',
+      },
+    ],
+  },
+  {
+    slug: 'wc26-dashboard',
+    title: 'WC26 Dashboard: Live World Cup Pool Forecasting',
+    repo: 'https://github.com/ricardogr07/wc26-dashboard',
+    liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',
+    visibility: 'public',
+    featured: true,
+    categories: ['ml', 'dashboard', 'backend-api'],
+    summary:
+      'Live World Cup 2026 dashboard for a 5-person quiniela: it Monte-Carlo-simulates the rest of the tournament 10,000 times from live Elo ratings to give each player their odds of finishing 1st–5th, with completed results pinned and a scenario builder for what-ifs.',
+    deliverables: [
+      'Pure Monte Carlo simulation engine (10,000 tournament runs)',
+      'Elo-based win-probability model with live K=32 updates',
+      'Pool standings UI + scenario builder, bilingual es/en',
+      'Azure Cosmos DB cache keyed by tournament progress',
+      'Azure Static Web Apps + Functions deployment',
+      'Timer-triggered results sync from a sports API',
+    ],
+    techStack: [
+      'Next.js',
+      'TypeScript',
+      'Python',
+      'Azure Functions',
+      'Azure Static Web Apps',
+      'Azure Cosmos DB',
+      'Pydantic',
+      'Recharts',
+      'Monte Carlo Simulation',
+      'Elo Rating System',
+    ],
+    servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
+    businessValue: [
+      'Real-time bracket probabilities update automatically when new match results arrive',
+      'Cosmos DB caching prevents redundant simulation re-runs — results served instantly until standings change',
+      'Elo ratings provide a principled, data-driven baseline for team strength without manual tuning',
+    ],
+    tldr: 'A live World Cup 2026 dashboard for a 5-person pool — it simulates the rest of the tournament 10,000× from live Elo ratings to show each player their odds of finishing 1st–5th.',
+    headlineMetric:
+      'The full 104-match tournament simulated 10,000× in under 3 s — pure Python on a free-tier serverless function, with baseline odds cached until the next real match finishes',
+    situation:
+      'Five of us run a World Cup quiniela — each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.',
+    task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool — and lets anyone explore what-if scenarios.',
+    action:
+      "A Next.js 16 dashboard (static-exported to Azure Static Web Apps) talks to a Python Azure Functions API. The compute core is a pure, seedable simulation engine — an Elo logistic win-probability (1 / (1 + 10^(Δ/400))) driving a Monte Carlo over every remaining match, run 10,000× to tally each player's finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does. The Functions handler wraps it with state: baseline results are cached in Cosmos DB keyed by the completed-match count and served instantly, while a scenario override always recomputes fresh and is never cached. A timer-triggered job syncs real results from a sports API and live-updates team Elo (K=32).",
+    result:
+      'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds — a bound enforced on every CI run — so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
+    learning:
+      'The value here was never model sophistication — a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word "azure" ever appears in the engine — it keeps the model something you can test and reason about offline, no cloud attached.',
+    caveat:
+      "It's a fast-shipped product for a real pool — strong as engineering, modest as a forecast. The probabilities are modelled, not calibrated; there's no backtest against bookmaker odds or outcomes, and the match model is deliberately simple (a fixed 25% group-draw rate, a random 1–3 goal margin, knockouts as an Elo coin-flip, and random selection among third-place qualifiers rather than the FIFA criteria). Production runs are unseeded (the seed exists only for tests), /simulate is anonymous with an unbounded run count, and deployment is still a manual trigger.",
+    status: 'live',
+    diagram: '/images/projects/wc26-dashboard/architecture.svg',
+    diagramCaption:
+      'A pure simulation engine (Elo logistic + Monte Carlo, importing no cloud) behind a Python Azure Functions API, with a Cosmos cache keyed by tournament progress and a timer job that live-updates Elo from a sports feed. The front end is a static-exported Next.js app on Azure SWA.',
+    heroImage: '/images/projects/wc26-dashboard/hero.svg',
+    gallery: [
+      {
+        src: '/images/projects/wc26-dashboard/caching-and-state.svg',
+        alt: 'A flowchart: scenario overrides bypass the cache; otherwise a baseline request is served from Cosmos when the completed-match count is unchanged, or recomputed when a real match has finished.',
+        caption:
+          'The most interesting part: the cache is keyed by the number of completed matches, so baseline odds stay cached exactly as long as the real tournament stands still — and a what-if never touches the cache.',
       },
       {
-        src: '/images/projects/clipsmith/local-and-cloud.svg',
-        alt: 'Three maturity tiers: shipped & CI-verified (local CLI, FastAPI with 24 tests, Next.js dashboard, PyPI + Docker); built & manually exercised (cloud ACI runner, Terraform, Drive upload — Docker image last pulled 2026-06-05, e2e-cloud workflow with 0 recorded runs); in progress (Sprint 10 continuous deployment, uncommitted).',
+        src: '/images/projects/wc26-dashboard/purity-boundary.svg',
+        alt: 'Two zones — a pure simulation engine that imports no cloud, and the serverless IO shell around it — separated by a purity contract test.',
         caption:
-          'The same image runs on a laptop or ephemeral Azure — each capability placed by the evidence that backs it, not by ambition.',
+          'The compute/IO boundary, enforced by a test: the engine imports no azure/cosmos/httpx, so the model stays unit-testable offline and an accidental cloud dependency becomes a red build, not a code review.',
       },
       {
-        src: '/images/projects/clipsmith/scope-and-honesty.svg',
-        alt: 'Two panels. Proven & committed: 6-stage funnel, 193 tests with green CI, 3 LLM providers, real FastAPI + Next.js dashboard, PyPI v0.2.1 + Docker, retry/checkpoint/resume. Where the depth ends: default output is source-aspect stream-copy, no committed throughput number, e2e never ran in CI, cloud CD in progress, language auto-detected not pinned.',
+        src: '/images/projects/wc26-dashboard/simulation-engine.svg',
+        alt: 'The match model — Elo logistic win probability, group-stage draw rate, qualification rules, knockout coin-flip, and live Elo ratings — beside the 10,000-run Monte Carlo loop and per-player finish bars.',
         caption:
-          "What's proven versus where the depth ends — every boundary is verifiable from the repo, surfaced rather than discovered later.",
+          'The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player\'s finish distribution. The probabilities are modelled, not calibrated.',
+      },
+      {
+        src: '/images/projects/wc26-dashboard/scope-and-honesty.svg',
+        alt: 'Two panels contrasting what is proven and shipped against where the depth ends.',
+        caption:
+          'What is proven versus where the depth ends — live on Azure with green CI and a real cache, but no calibration, a simple match model, unseeded production runs, and a manual deploy. Named, not hidden.',
+      },
+    ],
+  },
+  {
+    slug: 'jax-bo',
+    title: 'JAX-BO: Bayesian Optimization Library Maintenance',
+    repo: 'https://github.com/ricardogr07/JAX-BO',
+    pypiUrl: 'https://pypi.org/project/jaxbo/',
+    visibility: 'public',
+    featured: false,
+    diagram: '/images/projects/jax-bo/architecture.svg',
+    diagramCaption:
+      "Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.",
+    heroImage: '/images/projects/jax-bo/hero.svg',
+    categories: ['ml', 'scientific-python', 'developer-tooling'],
+    summary:
+      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork — the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
+    deliverables: [
+      'Modern Python & JAX compatibility (real floor ~3.10)',
+      'Installable PyPI package (pip install jaxbo)',
+      'CI tests on Python 3.10 & 3.12',
+      'Linting with Black + Ruff',
+      'Automated releases (release-please + PyPI OIDC Trusted Publisher)',
+      'Restored documentation and demo notebooks',
+    ],
+    techStack: ['Python', 'JAX', 'Gaussian Processes', 'PyPI', 'GitHub Actions', 'Black / Ruff'],
+    servicesSupported: [
+      'ML Research Tooling',
+      'Bayesian Optimization',
+      'Scientific Python',
+      'Package Maintenance',
+    ],
+    businessValue: [
+      'Keeps the library usable as Python and JAX versions advance — installable again with one command',
+      'Token-less automated releases mean any maintainer can ship a version safely, no stored secrets',
+    ],
+    tldr: 'Rescued a bit-rotted academic JAX Bayesian-optimization library into an installable, CI-linted, auto-published PyPI package. A maintenance-and-packaging fork — the math is upstream, the distribution engineering is mine.',
+    situation:
+      "A useful Gaussian-process Bayesian-optimization library written in JAX (the Predictive Intelligence Lab's) had bit-rotted: it no longer installed on current Python or JAX, so the research inside it was effectively unreachable.",
+    task: 'Fork it, restore modern Python/JAX compatibility, and make it a properly packaged, tested, automatically released PyPI library — without claiming the optimization research as my own.',
+    action:
+      "Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.",
+    headlineMetric:
+      'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
+    result:
+      'pip install jaxbo works today — two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
+    status: 'pypi',
+    learning:
+      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood — it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN — and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
+    caveat:
+      "A maintenance-and-packaging fork of the Predictive Intelligence Lab's research library — not a production Bayesian-optimization framework and not original research. The optimization math is upstream and credited. Where it stops: a standard exact Gaussian process (dense Cholesky, best for small / low-dimensional problems), float32 by default, the search loop is hand-assembled (there is no one-call optimize() driver), and the surrogate/acquisition core is only lightly tested. The defensible claim is that I made the research installable on modern Python — not that I built the research.",
+    gallery: [
+      {
+        src: '/images/projects/jax-bo/own-vs-upstream.svg',
+        alt: 'Two columns: upstream (the prediction model, the rules for choosing the next test, the kernels and variants, the original JAX implementation — credited to the Predictive Intelligence Lab) versus mine (fixed it to install on modern Python, a clean installable package, continuous testing and linting, automated token-less releases, restored docs and demos)',
+        caption:
+          "Honest credit: the Bayesian-optimization research is the Predictive Intelligence Lab's; the work here is the distribution engineering — making it install, lint, test, and ship. The defensible claim is “I made the research installable,” not “I built the research.”",
+      },
+      {
+        src: '/images/projects/jax-bo/publish-pipeline.svg',
+        alt: 'A four-step pipeline — merge a change, a bot picks the version from the commits, a version tag triggers publish, and PyPI publishes proven by identity (OIDC) with no stored token — ending at pip install jaxbo',
+        caption:
+          'Releases that ship themselves: release-please reads the commits and bumps the version, a tag triggers publishing, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Two real versions (0.1.1, 0.1.2) shipped this way — the cleanest, most reusable part of the project.',
+      },
+      {
+        src: '/images/projects/jax-bo/how-bo-works.svg',
+        alt: 'A chart showing a few tested points, a predicted curve through them, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try — high and still uncertain',
+        caption:
+          "What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.",
+      },
+      {
+        src: '/images/projects/jax-bo/scope-and-honesty.svg',
+        alt: "Two columns contrasting what's solid (installs on modern Python and JAX, two real PyPI releases, tested on two Python versions and linted, releases publish themselves token-less, upstream credited) against where it stops (a fork, not a new framework, best for small low-dimensional problems, you assemble the loop yourself, the core math is only lightly tested)",
+        caption:
+          'Honest scope: strong as distribution engineering — installable, linted, tested, auto-released — and deliberately not a new framework. A fork whose research math is upstream, suited to small low-dimensional problems, with the search loop left in the caller’s hands.',
       },
     ],
   },
@@ -436,84 +568,92 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
-    slug: 'wc26-dashboard',
-    title: 'WC26 Dashboard: Live World Cup Pool Forecasting',
-    repo: 'https://github.com/ricardogr07/wc26-dashboard',
-    liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',
+    slug: 'myocardial-mesh',
+    title: 'Myocardial Mesh Scientific Python Library',
+    repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
     visibility: 'public',
-    featured: true,
-    categories: ['ml', 'dashboard', 'backend-api'],
+    featured: false,
+    diagram: '/images/projects/myocardial-mesh/architecture.svg',
+    diagramCaption:
+      "You provide a 3D heart-muscle model, its electrical 'wiring' tree, and sensor positions; an iterative coupling loop simulates the electrical wave and synthesises a 12-lead ECG. The heavy wave-speed math is delegated to an external solver — the library is the orchestration and the proof.",
+    heroImage: '/images/projects/myocardial-mesh/hero.svg',
+    categories: ['scientific-python'],
     summary:
-      'Live World Cup 2026 dashboard for a 5-person quiniela: it Monte-Carlo-simulates the rest of the tournament 10,000 times from live Elo ratings to give each player their odds of finishing 1st–5th, with completed results pinned and a scenario builder for what-ifs.',
+      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as a single import (no CLI or service), refactored out of legacy notebooks and pinned to their output within RMSE < 1e-6.',
     deliverables: [
-      'Pure Monte Carlo simulation engine (10,000 tournament runs)',
-      'Elo-based win-probability model with live K=32 updates',
-      'Pool standings UI + scenario builder, bilingual es/en',
-      'Azure Cosmos DB cache keyed by tournament progress',
-      'Azure Static Web Apps + Functions deployment',
-      'Timer-triggered results sync from a sports API',
+      'Single-entry-point installable library (MyocardialMesh)',
+      'Iterative Purkinje-myocardium coupling loop',
+      '12-lead ECG synthesis (lead-field assembly)',
+      'Optional JAX fast-path Purkinje solver',
+      'Baseline parity test vs the original notebook (RMSE < 1e-6)',
+      'tox CI on Python 3.10 & 3.12 with strict typing, lint, docs, coverage >= 80%',
+      'Release automation (release-please) — not yet deployed',
     ],
     techStack: [
-      'Next.js',
-      'TypeScript',
       'Python',
-      'Azure Functions',
-      'Azure Static Web Apps',
-      'Azure Cosmos DB',
-      'Pydantic',
-      'Recharts',
-      'Monte Carlo Simulation',
-      'Elo Rating System',
+      'NumPy / SciPy',
+      'VTK / PyVista',
+      'fim-python',
+      'JAX',
+      'pytest',
+      'tox',
+      'MyPy (strict)',
     ],
-    servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
+    servicesSupported: [
+      'Scientific Python',
+      'Research Software Engineering',
+      'Simulation Tooling',
+      'Package Refactoring',
+    ],
     businessValue: [
-      'Real-time bracket probabilities update automatically when new match results arrive',
-      'Cosmos DB caching prevents redundant simulation re-runs — results served instantly until standings change',
-      'Elo ratings provide a principled, data-driven baseline for team strength without manual tuning',
+      'Installable package structure replaces copy-paste scripts that break between collaborators',
+      'pytest-compatible layout means the library can be validated in CI alongside other tools',
     ],
-    tldr: 'A live World Cup 2026 dashboard for a 5-person pool — it simulates the rest of the tournament 10,000× from live Elo ratings to show each player their odds of finishing 1st–5th.',
-    headlineMetric:
-      'The full 104-match tournament simulated 10,000× in under 3 s — pure Python on a free-tier serverless function, with baseline odds cached until the next real match finishes',
+    tldr: "A Python library that refactors legacy heart-simulation notebooks (a Purkinje 'wiring' tree + a 3D muscle mesh → a 12-lead ECG) into a tested, versioned package — pinned to the original notebook's output within RMSE < 1e-6.",
     situation:
-      'Five of us run a World Cup quiniela — each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.',
-    task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool — and lets anyone explore what-if scenarios.',
+      "Valuable computational-cardiology research — simulating how the heart's electrical wave spreads through the muscle and synthesising a 12-lead ECG — lived in fragile Jupyter notebooks: hard to reuse, easy to break between collaborators, and impossible to validate in CI.",
+    task: 'Refactor that notebook code into a maintainable, installable, CI-gated library without changing the physics — and prove the rewrite is correct rather than assume it.',
     action:
-      "A Next.js 16 dashboard (static-exported to Azure Static Web Apps) talks to a Python Azure Functions API. The compute core is a pure, seedable simulation engine — an Elo logistic win-probability (1 / (1 + 10^(Δ/400))) driving a Monte Carlo over every remaining match, run 10,000× to tally each player's finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does. The Functions handler wraps it with state: baseline results are cached in Cosmos DB keyed by the completed-match count and served instantly, while a scenario override always recomputes fresh and is never cached. A timer-triggered job syncs real results from a sports API and live-updates team Elo (K=32).",
+      "Extracted the notebook into a single-entry-point library: load a 3D myocardial mesh, a Purkinje 'wiring' tree, and electrode positions; run an iterative Purkinje-muscle coupling loop; synthesise a 12-lead ECG. Delegated the heavy wave-speed math to an external FIM solver and kept the library focused on orchestration and I/O glue. Pinned ground truth from the original notebook (committed reference data) and asserted bit-level parity — all 12 ECG leads within RMSE < 1e-6 — as a baseline regression test, gated behind tox on Python 3.10 & 3.12 with strict typing, lint, docstring checks, and coverage >= 80%.",
+    headlineMetric:
+      'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
     result:
-      'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds — a bound enforced on every CI run — so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
+      'The library reproduces the notebook\'s 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.',
+    status: 'active',
     learning:
-      'The value here was never model sophistication — a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word "azure" ever appears in the engine — it keeps the model something you can test and reason about offline, no cloud attached.',
+      "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
     caveat:
-      "It's a fast-shipped product for a real pool — strong as engineering, modest as a forecast. The probabilities are modelled, not calibrated; there's no backtest against bookmaker odds or outcomes, and the match model is deliberately simple (a fixed 25% group-draw rate, a random 1–3 goal margin, knockouts as an Elo coin-flip, and random selection among third-place qualifiers rather than the FIFA criteria). Production runs are unseeded (the seed exists only for tests), /simulate is anonymous with an unbounded run count, and deployment is still a manual trigger.",
-    status: 'live',
-    diagram: '/images/projects/wc26-dashboard/architecture.svg',
-    diagramCaption:
-      'A pure simulation engine (Elo logistic + Monte Carlo, importing no cloud) behind a Python Azure Functions API, with a Cosmos cache keyed by tournament progress and a timer job that live-updates Elo from a sports feed. The front end is a static-exported Next.js app on Azure SWA.',
-    heroImage: '/images/projects/wc26-dashboard/hero.svg',
+      'A research library, not a clinical or diagnostic tool, and not yet published to PyPI (release automation is set up; nothing deployed). It is the orchestration-and-proof glue: the wave-speed math is delegated to an external FIM solver (no pure-Python fallback), and the GPU path is plumbed but only the CPU path is exercised in CI. It packages and proves earlier notebook research behind a deliberately narrow, single-entry-point surface.',
     gallery: [
       {
-        src: '/images/projects/wc26-dashboard/caching-and-state.svg',
-        alt: 'A flowchart: scenario overrides bypass the cache; otherwise a baseline request is served from Cosmos when the completed-match count is unchanged, or recomputed when a real match has finished.',
+        src: '/images/projects/myocardial-mesh/parity-proof.svg',
+        alt: 'Two ECG traces side by side — the original notebook and the new library — joined by an equals sign, with a badge stating they match to within one-millionth across all 12 leads',
         caption:
-          'The most interesting part: the cache is keyed by the number of completed matches, so baseline odds stay cached exactly as long as the real tournament stands still — and a what-if never touches the cache.',
+          "Parity-first refactoring: the library is pinned to the original notebook's 12-lead ECG, and a baseline test fails the build if they ever drift — bit-level parity (RMSE < 1e-6), reproduced from data committed in the repo.",
       },
       {
-        src: '/images/projects/wc26-dashboard/purity-boundary.svg',
-        alt: 'Two zones — a pure simulation engine that imports no cloud, and the serverless IO shell around it — separated by a purity contract test.',
+        src: '/images/projects/myocardial-mesh/coupling-loop.svg',
+        alt: 'A four-step cycle — fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled — with a dashed arrow looping back to repeat',
         caption:
-          'The compute/IO boundary, enforced by a test: the engine imports no azure/cosmos/httpx, so the model stays unit-testable offline and an accidental cloud dependency becomes a red build, not a code review.',
+          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges — and can inject an early extra beat (a PVC) to study irregular rhythms.',
       },
       {
-        src: '/images/projects/wc26-dashboard/simulation-engine.svg',
-        alt: 'The match model — Elo logistic win probability, group-stage draw rate, qualification rules, knockout coin-flip, and live Elo ratings — beside the 10,000-run Monte Carlo loop and per-player finish bars.',
+        src: '/images/projects/myocardial-mesh/ecg-synthesis.svg',
+        alt: 'A 3D electrical wave on the heart feeding a distance-weighting step (nearer regions count for more) that produces a 12-lead ECG',
         caption:
-          'The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player\'s finish distribution. The probabilities are modelled, not calibrated.',
+          "How the ECG is built: each electrode sums the heart's activity with a simple one-over-distance weighting, assembling the standard 12 leads — the same physics as a real body-surface ECG.",
       },
       {
-        src: '/images/projects/wc26-dashboard/scope-and-honesty.svg',
-        alt: 'Two panels contrasting what is proven and shipped against where the depth ends.',
+        src: '/images/projects/myocardial-mesh/delegate-and-own.svg',
+        alt: 'Two columns: delegated (the external FIM solver handles how fast the wave travels, as a black box) versus owned (the library handles mesh I/O, Purkinje-muscle coupling, 12-lead ECG assembly, and the parity test)',
         caption:
-          'What is proven versus where the depth ends — live on Azure with green CI and a real cache, but no calibration, a simple match model, unseeded production runs, and a manual deploy. Named, not hidden.',
+          "Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.",
+      },
+      {
+        src: '/images/projects/myocardial-mesh/scope-and-honesty.svg',
+        alt: "Two columns contrasting what's solid (matches the original, two Python versions, coverage above 80%, installable package, delegates the heavy math) against where it stops (not clinical, not published, local-only single import, leans on an external solver, you supply the model and wiring)",
+        caption:
+          'Honest scope: strong as a research-engineering story (proven equal to the original, strictly typed, CI-gated) and deliberately narrow — a local-only library import (no CLI or service), not a clinical tool, wrapping an external solver for the heavy math.',
       },
     ],
   },
@@ -610,207 +750,6 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
-    slug: 'myocardial-mesh',
-    title: 'Myocardial Mesh Scientific Python Library',
-    repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
-    visibility: 'public',
-    featured: false,
-    diagram: '/images/projects/myocardial-mesh/architecture.svg',
-    diagramCaption:
-      "You provide a 3D heart-muscle model, its electrical 'wiring' tree, and sensor positions; an iterative coupling loop simulates the electrical wave and synthesises a 12-lead ECG. The heavy wave-speed math is delegated to an external solver — the library is the orchestration and the proof.",
-    heroImage: '/images/projects/myocardial-mesh/hero.svg',
-    categories: ['scientific-python'],
-    summary:
-      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as a single import (no CLI or service), refactored out of legacy notebooks and pinned to their output within RMSE < 1e-6.',
-    deliverables: [
-      'Single-entry-point installable library (MyocardialMesh)',
-      'Iterative Purkinje-myocardium coupling loop',
-      '12-lead ECG synthesis (lead-field assembly)',
-      'Optional JAX fast-path Purkinje solver',
-      'Baseline parity test vs the original notebook (RMSE < 1e-6)',
-      'tox CI on Python 3.10 & 3.12 with strict typing, lint, docs, coverage >= 80%',
-      'Release automation (release-please) — not yet deployed',
-    ],
-    techStack: [
-      'Python',
-      'NumPy / SciPy',
-      'VTK / PyVista',
-      'fim-python',
-      'JAX',
-      'pytest',
-      'tox',
-      'MyPy (strict)',
-    ],
-    servicesSupported: [
-      'Scientific Python',
-      'Research Software Engineering',
-      'Simulation Tooling',
-      'Package Refactoring',
-    ],
-    businessValue: [
-      'Installable package structure replaces copy-paste scripts that break between collaborators',
-      'pytest-compatible layout means the library can be validated in CI alongside other tools',
-    ],
-    tldr: "A Python library that refactors legacy heart-simulation notebooks (a Purkinje 'wiring' tree + a 3D muscle mesh → a 12-lead ECG) into a tested, versioned package — pinned to the original notebook's output within RMSE < 1e-6.",
-    situation:
-      "Valuable computational-cardiology research — simulating how the heart's electrical wave spreads through the muscle and synthesising a 12-lead ECG — lived in fragile Jupyter notebooks: hard to reuse, easy to break between collaborators, and impossible to validate in CI.",
-    task: 'Refactor that notebook code into a maintainable, installable, CI-gated library without changing the physics — and prove the rewrite is correct rather than assume it.',
-    action:
-      "Extracted the notebook into a single-entry-point library: load a 3D myocardial mesh, a Purkinje 'wiring' tree, and electrode positions; run an iterative Purkinje-muscle coupling loop; synthesise a 12-lead ECG. Delegated the heavy wave-speed math to an external FIM solver and kept the library focused on orchestration and I/O glue. Pinned ground truth from the original notebook (committed reference data) and asserted bit-level parity — all 12 ECG leads within RMSE < 1e-6 — as a baseline regression test, gated behind tox on Python 3.10 & 3.12 with strict typing, lint, docstring checks, and coverage >= 80%.",
-    headlineMetric:
-      'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
-    result:
-      'The library reproduces the notebook\'s 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.',
-    status: 'active',
-    learning:
-      "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
-    caveat:
-      'A research library, not a clinical or diagnostic tool, and not yet published to PyPI (release automation is set up; nothing deployed). It is the orchestration-and-proof glue: the wave-speed math is delegated to an external FIM solver (no pure-Python fallback), and the GPU path is plumbed but only the CPU path is exercised in CI. It packages and proves earlier notebook research behind a deliberately narrow, single-entry-point surface.',
-    gallery: [
-      {
-        src: '/images/projects/myocardial-mesh/parity-proof.svg',
-        alt: 'Two ECG traces side by side — the original notebook and the new library — joined by an equals sign, with a badge stating they match to within one-millionth across all 12 leads',
-        caption:
-          "Parity-first refactoring: the library is pinned to the original notebook's 12-lead ECG, and a baseline test fails the build if they ever drift — bit-level parity (RMSE < 1e-6), reproduced from data committed in the repo.",
-      },
-      {
-        src: '/images/projects/myocardial-mesh/coupling-loop.svg',
-        alt: 'A four-step cycle — fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled — with a dashed arrow looping back to repeat',
-        caption:
-          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges — and can inject an early extra beat (a PVC) to study irregular rhythms.',
-      },
-      {
-        src: '/images/projects/myocardial-mesh/ecg-synthesis.svg',
-        alt: 'A 3D electrical wave on the heart feeding a distance-weighting step (nearer regions count for more) that produces a 12-lead ECG',
-        caption:
-          "How the ECG is built: each electrode sums the heart's activity with a simple one-over-distance weighting, assembling the standard 12 leads — the same physics as a real body-surface ECG.",
-      },
-      {
-        src: '/images/projects/myocardial-mesh/delegate-and-own.svg',
-        alt: 'Two columns: delegated (the external FIM solver handles how fast the wave travels, as a black box) versus owned (the library handles mesh I/O, Purkinje-muscle coupling, 12-lead ECG assembly, and the parity test)',
-        caption:
-          "Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.",
-      },
-      {
-        src: '/images/projects/myocardial-mesh/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (matches the original, two Python versions, coverage above 80%, installable package, delegates the heavy math) against where it stops (not clinical, not published, local-only single import, leans on an external solver, you supply the model and wiring)",
-        caption:
-          'Honest scope: strong as a research-engineering story (proven equal to the original, strictly typed, CI-gated) and deliberately narrow — a local-only library import (no CLI or service), not a clinical tool, wrapping an external solver for the heavy math.',
-      },
-    ],
-  },
-  {
-    slug: 'jax-bo',
-    title: 'JAX-BO: Bayesian Optimization Library Maintenance',
-    repo: 'https://github.com/ricardogr07/JAX-BO',
-    pypiUrl: 'https://pypi.org/project/jaxbo/',
-    visibility: 'public',
-    featured: false,
-    diagram: '/images/projects/jax-bo/architecture.svg',
-    diagramCaption:
-      "Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.",
-    heroImage: '/images/projects/jax-bo/hero.svg',
-    categories: ['ml', 'scientific-python', 'developer-tooling'],
-    summary:
-      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork — the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
-    deliverables: [
-      'Modern Python & JAX compatibility (real floor ~3.10)',
-      'Installable PyPI package (pip install jaxbo)',
-      'CI tests on Python 3.10 & 3.12',
-      'Linting with Black + Ruff',
-      'Automated releases (release-please + PyPI OIDC Trusted Publisher)',
-      'Restored documentation and demo notebooks',
-    ],
-    techStack: ['Python', 'JAX', 'Gaussian Processes', 'PyPI', 'GitHub Actions', 'Black / Ruff'],
-    servicesSupported: [
-      'ML Research Tooling',
-      'Bayesian Optimization',
-      'Scientific Python',
-      'Package Maintenance',
-    ],
-    businessValue: [
-      'Keeps the library usable as Python and JAX versions advance — installable again with one command',
-      'Token-less automated releases mean any maintainer can ship a version safely, no stored secrets',
-    ],
-    tldr: 'Rescued a bit-rotted academic JAX Bayesian-optimization library into an installable, CI-linted, auto-published PyPI package. A maintenance-and-packaging fork — the math is upstream, the distribution engineering is mine.',
-    situation:
-      "A useful Gaussian-process Bayesian-optimization library written in JAX (the Predictive Intelligence Lab's) had bit-rotted: it no longer installed on current Python or JAX, so the research inside it was effectively unreachable.",
-    task: 'Fork it, restore modern Python/JAX compatibility, and make it a properly packaged, tested, automatically released PyPI library — without claiming the optimization research as my own.',
-    action:
-      "Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.",
-    headlineMetric:
-      'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
-    result:
-      'pip install jaxbo works today — two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
-    status: 'pypi',
-    learning:
-      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood — it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN — and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
-    caveat:
-      "A maintenance-and-packaging fork of the Predictive Intelligence Lab's research library — not a production Bayesian-optimization framework and not original research. The optimization math is upstream and credited. Where it stops: a standard exact Gaussian process (dense Cholesky, best for small / low-dimensional problems), float32 by default, the search loop is hand-assembled (there is no one-call optimize() driver), and the surrogate/acquisition core is only lightly tested. The defensible claim is that I made the research installable on modern Python — not that I built the research.",
-    gallery: [
-      {
-        src: '/images/projects/jax-bo/own-vs-upstream.svg',
-        alt: 'Two columns: upstream (the prediction model, the rules for choosing the next test, the kernels and variants, the original JAX implementation — credited to the Predictive Intelligence Lab) versus mine (fixed it to install on modern Python, a clean installable package, continuous testing and linting, automated token-less releases, restored docs and demos)',
-        caption:
-          "Honest credit: the Bayesian-optimization research is the Predictive Intelligence Lab's; the work here is the distribution engineering — making it install, lint, test, and ship. The defensible claim is “I made the research installable,” not “I built the research.”",
-      },
-      {
-        src: '/images/projects/jax-bo/publish-pipeline.svg',
-        alt: 'A four-step pipeline — merge a change, a bot picks the version from the commits, a version tag triggers publish, and PyPI publishes proven by identity (OIDC) with no stored token — ending at pip install jaxbo',
-        caption:
-          'Releases that ship themselves: release-please reads the commits and bumps the version, a tag triggers publishing, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Two real versions (0.1.1, 0.1.2) shipped this way — the cleanest, most reusable part of the project.',
-      },
-      {
-        src: '/images/projects/jax-bo/how-bo-works.svg',
-        alt: 'A chart showing a few tested points, a predicted curve through them, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try — high and still uncertain',
-        caption:
-          "What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.",
-      },
-      {
-        src: '/images/projects/jax-bo/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (installs on modern Python and JAX, two real PyPI releases, tested on two Python versions and linted, releases publish themselves token-less, upstream credited) against where it stops (a fork, not a new framework, best for small low-dimensional problems, you assemble the loop yourself, the core math is only lightly tested)",
-        caption:
-          'Honest scope: strong as distribution engineering — installable, linted, tested, auto-released — and deliberately not a new framework. A fork whose research math is upstream, suited to small low-dimensional problems, with the search loop left in the caller’s hands.',
-      },
-    ],
-  },
-  {
-    slug: 'query-lab-demo',
-    title: 'Portfolio Query Lab',
-    liveUrl: '/demo/query-lab',
-    visibility: 'demo-only',
-    featured: false,
-    categories: ['data-engineering', 'dashboard'],
-    summary:
-      'Interactive SQLite query lab running in the browser via sql.js/WebAssembly. Query synthetic portfolio holdings, monthly returns, and goals with plain SQL — no server, no backend.',
-    problem:
-      'Showing SQL and data-engineering skills on a portfolio requires either a live backend (operational cost, attack surface) or a restricted sandbox. Neither is ideal for an always-on public demo.',
-    solution:
-      'Embedded SQLite directly in the browser using sql.js (SQLite compiled to WASM). The engine loads once, populates three tables from synthetic portfolio data, and executes arbitrary SQL client-side — zero server required.',
-    deliverables: [
-      'In-browser SQLite via sql.js/WASM (no backend)',
-      'Three queryable tables: holdings, monthly_returns, goals',
-      'Seven preset queries covering aggregation, filtering, and alpha calculation',
-      'Live SQL editor with syntax-aware results table',
-      'Schema reference sidebar',
-      'Demo banner — all data synthetic',
-    ],
-    techStack: ['sql.js', 'WebAssembly', 'Next.js 16', 'TypeScript', 'Tailwind v4', 'React 19'],
-    servicesSupported: [
-      'Data Engineering',
-      'SQL Analytics',
-      'Dashboard Development',
-      'ETL Pipelines',
-      'Python Automation',
-    ],
-    businessValue: [
-      'Proves SQL fluency interactively — visitors run real queries, not just see screenshots',
-      'Zero backend means zero ops cost and no attack surface for a public demo',
-      'WASM-based SQLite is the same engine used in DuckDB-style analytical pipelines',
-      'Preset queries demonstrate aggregation, time-series, and goal-tracking patterns relevant to data-engineering clients',
-    ],
-  },
-  {
     slug: 'financial-dashboard-demo',
     title: 'Financial Data Dashboard Demo',
     liveUrl: '/demo/financial-dashboard',
@@ -853,6 +792,42 @@ export const projects: PortfolioProject[] = [
       'ETL pipeline log makes the architecture visible to non-technical stakeholders',
       'Allocation and performance charts use hand-written SVG — no runtime chart dependency',
       'Directly supports LinkedIn Services portfolio media with a public live URL',
+    ],
+  },
+  {
+    slug: 'query-lab-demo',
+    title: 'Portfolio Query Lab',
+    liveUrl: '/demo/query-lab',
+    visibility: 'demo-only',
+    featured: false,
+    categories: ['data-engineering', 'dashboard'],
+    summary:
+      'Interactive SQLite query lab running in the browser via sql.js/WebAssembly. Query synthetic portfolio holdings, monthly returns, and goals with plain SQL — no server, no backend.',
+    problem:
+      'Showing SQL and data-engineering skills on a portfolio requires either a live backend (operational cost, attack surface) or a restricted sandbox. Neither is ideal for an always-on public demo.',
+    solution:
+      'Embedded SQLite directly in the browser using sql.js (SQLite compiled to WASM). The engine loads once, populates three tables from synthetic portfolio data, and executes arbitrary SQL client-side — zero server required.',
+    deliverables: [
+      'In-browser SQLite via sql.js/WASM (no backend)',
+      'Three queryable tables: holdings, monthly_returns, goals',
+      'Seven preset queries covering aggregation, filtering, and alpha calculation',
+      'Live SQL editor with syntax-aware results table',
+      'Schema reference sidebar',
+      'Demo banner — all data synthetic',
+    ],
+    techStack: ['sql.js', 'WebAssembly', 'Next.js 16', 'TypeScript', 'Tailwind v4', 'React 19'],
+    servicesSupported: [
+      'Data Engineering',
+      'SQL Analytics',
+      'Dashboard Development',
+      'ETL Pipelines',
+      'Python Automation',
+    ],
+    businessValue: [
+      'Proves SQL fluency interactively — visitors run real queries, not just see screenshots',
+      'Zero backend means zero ops cost and no attack surface for a public demo',
+      'WASM-based SQLite is the same engine used in DuckDB-style analytical pipelines',
+      'Preset queries demonstrate aggregation, time-series, and goal-tracking patterns relevant to data-engineering clients',
     ],
   },
 ]

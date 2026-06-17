@@ -8,15 +8,15 @@
     </marker>
   </defs>
   <rect width="1120" height="540" fill="#0a0a0a" />
-  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">The candidate funnel — five free signals, then one cheap LLM call</text>
-  <text x="48" y="72" fill="#64748b" font-size="13">Every signal is deterministic and runs on data already in hand. The model never searches the VOD — it only adjudicates what the funnel surfaced.</text>
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">The candidate funnel: five free signals, then one cheap LLM call</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">Every signal is deterministic and runs on data already in hand. The model never searches the VOD; it only adjudicates what the funnel surfaced.</text>
 
   <!-- 5 signal rows -->
   <g font-size="12">
     <!-- existing clips -->
     <rect x="48" y="100" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
     <text x="68" y="122" fill="#67e8f9" font-size="12.5" font-weight="700">existing Twitch clips</text>
-    <text x="68" y="140" fill="#94a3b8" font-size="10.5">moments the audience already clipped, at their vod_offset</text>
+    <text x="68" y="140" fill="#94a3b8" font-size="10.5">moments the audience already clipped, at their timestamp in the VOD</text>
     <text x="424" y="130" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="700">+100</text>
 
     <!-- !clip -->
@@ -39,7 +39,7 @@
     <!-- audio rms -->
     <rect x="48" y="340" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
     <text x="68" y="362" fill="#67e8f9" font-size="12.5" font-weight="700">audio RMS spikes</text>
-    <text x="68" y="380" fill="#94a3b8" font-size="10.5">loudness ≥ mean + 2σ — reactions, hype, laughter</text>
+    <text x="68" y="380" fill="#94a3b8" font-size="10.5">loudness ≥ mean + 2σ: reactions, hype, laughter</text>
   </g>
 
   <!-- arrows into merge -->
@@ -61,18 +61,18 @@
   <rect x="816" y="206" width="256" height="84" rx="11" fill="#0d1117" stroke="#818cf8" stroke-width="1.5" />
   <text x="944" y="234" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">greedy time-spread</text>
   <text x="944" y="256" text-anchor="middle" fill="#cbd5e1" font-size="10.5">top 20 candidates, ≥ 120 s apart</text>
-  <text x="944" y="274" text-anchor="middle" fill="#64748b" font-size="10">— the only set the LLM ever sees —</text>
+  <text x="944" y="274" text-anchor="middle" fill="#64748b" font-size="10">the only set the LLM ever sees</text>
 
   <!-- LLM adjudicates -->
   <path d="M944 290 V330" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#sf-ar-i)" />
   <rect x="560" y="334" width="512" height="84" rx="11" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
-  <text x="584" y="362" fill="#a5b4fc" font-size="13" font-weight="700">LLM adjudicates — one call per candidate</text>
-  <text x="584" y="386" fill="#cbd5e1" font-size="11">±60 s transcript window → strict JSON {include, start, end, title_es, reason}</text>
+  <text x="584" y="362" fill="#a5b4fc" font-size="13" font-weight="700">LLM adjudicates: one call per candidate</text>
+  <text x="584" y="386" fill="#cbd5e1" font-size="11">±60 s transcript window → strict JSON: yes/no decision, clip boundaries, title</text>
   <text x="584" y="406" fill="#64748b" font-size="10.5">stable prefix prompt-cached → marginal cost is cents · rejected picks are skipped, pipeline continues</text>
 
   <!-- takeaway -->
   <line x1="48" y1="452" x2="1072" y2="452" stroke="#1e293b" stroke-width="1" />
   <text x="48" y="480" fill="#cbd5e1" font-size="12.5">The expensive stage is last and smallest: ≤ 20 cached calls per VOD, never a search over hours of footage.</text>
-  <text x="48" y="502" fill="#64748b" font-size="11.5">Sprint 5 added per-signal approval analytics + prompt A/B — instrumentation to find which signal earns its weight, rather than assume it.</text>
-  <text x="48" y="524" fill="#475569" font-size="11">Weights and thresholds above are the committed defaults (candidates/builder.py, candidates/math.py).</text>
+  <text x="48" y="502" fill="#64748b" font-size="11.5">Sprint 5 added per-signal approval analytics and prompt A/B; instrumentation to find which signal earns its weight, rather than assume it.</text>
+  <text x="48" y="524" fill="#475569" font-size="11">Weights and thresholds above are the committed defaults, verifiable in the repo.</text>
 </svg>

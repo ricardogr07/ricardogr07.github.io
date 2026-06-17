@@ -1,82 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
   <defs>
-    <radialGradient id="rg-glow" cx="50%" cy="34%" r="62%">
-      <stop offset="0%" stop-color="#0e2a33" />
-      <stop offset="55%" stop-color="#0a0a0a" />
-      <stop offset="100%" stop-color="#050505" />
-    </radialGradient>
-    <pattern id="rg-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 H0 V40" fill="none" stroke="#13181f" stroke-width="1" />
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
     </pattern>
-    <linearGradient id="rg-spine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="100%" stop-color="#818cf8" />
-    </linearGradient>
+    <radialGradient id="glow" cx="408" cy="252" r="504" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 88.2) scale(1 0.65)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.12"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#rg-glow)" />
-  <rect width="1200" height="630" fill="url(#rg-grid)" />
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
 
-  <!-- title block -->
-  <text x="100" y="118" fill="#f8fafc" font-size="62" font-weight="800" letter-spacing="-1.5">RepoSage</text>
-  <text x="100" y="158" fill="#94a3b8" font-size="22" font-weight="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Deterministic repo intelligence: not chat-with-your-repo.</text>
+  
+  <text x="100" y="112" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-1.55" fill="#ffffff">RepoSage</text>
+  <text x="100" y="160" font-size="22" fill="#7dd3fc">Deterministic repo intelligence, not chat-with-your-repo.</text>
 
-  <!-- zero-deps banner pill -->
-  <g transform="translate(100 196)">
-    <rect x="0" y="0" width="436" height="46" rx="23" fill="#0d1117" stroke="#22d3ee" stroke-width="1.4" />
-    <circle cx="30" cy="23" r="7" fill="#22d3ee" />
-    <text x="52" y="30" fill="#67e8f9" font-size="17" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">0 runtime deps · 0 API keys · 179 tests</text>
+  
+  <g>
+    
+    <rect x="100" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5"></rect>
+    <rect x="308.8" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"></rect>
+    <rect x="517.6" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"></rect>
+    <rect x="726.4" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#d9a441" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+    <rect x="935.2" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.5"></rect>
+  </g>
+  <g text-anchor="middle" font-size="16" font-weight="600" letter-spacing="1.28" fill="#f5f5f5">
+    <text x="182.4" y="269">SCAN</text>
+    <text x="391.2" y="269">DETECT</text>
+    <text x="600" y="269">SCORE</text>
+    <text x="808.8" y="261" fill="#e3b34d">ENRICH</text>
+    <text x="1017.6" y="269">REPORT</text>
+  </g>
+  <text x="808.8" y="280" text-anchor="middle" font-size="10.5" font-weight="500" letter-spacing="0.63" fill="#e3b34d" fill-opacity="0.78">optional · LLM</text>
+
+  
+  <g fill="#22d3ee" font-size="44" font-weight="700" letter-spacing="-0.44">
+    <text x="100" y="386">29</text>
+    <text x="266.2" y="386">32</text>
+    <text x="440.2" y="386">10</text>
+    <text x="661" y="386">6</text>
+  </g>
+  <g fill="#a3a3a3" font-size="13">
+    <text x="100" y="416">languages</text>
+    <text x="266.2" y="416">frameworks</text>
+    <text x="440.2" y="416">manifest parsers</text>
+    <text x="661" y="416">signal quality score</text>
   </g>
 
-  <!-- pipeline spine -->
-  <g transform="translate(100 300)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
-    <!-- connecting line -->
-    <line x1="78" y1="64" x2="922" y2="64" stroke="url(#rg-spine)" stroke-width="2.5" />
-
-    <!-- deterministic core: 4 cyan stages -->
-    <g>
-      <rect x="0"   y="34" width="156" height="60" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5" />
-      <text x="78"  y="70" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">SCAN</text>
-
-      <rect x="200" y="34" width="156" height="60" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5" />
-      <text x="278" y="70" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">DETECT</text>
-
-      <rect x="400" y="34" width="156" height="60" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5" />
-      <text x="478" y="70" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">SCORE</text>
-    </g>
-
-    <!-- optional ENRICH: dashed amber -->
-    <rect x="600" y="34" width="156" height="60" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 5" />
-    <text x="678" y="64" text-anchor="middle" fill="#fcd34d" font-size="18" font-weight="700">ENRICH</text>
-    <text x="678" y="84" text-anchor="middle" fill="#b08436" font-size="11">optional · LLM</text>
-
-    <!-- REPORT -->
-    <rect x="800" y="34" width="156" height="60" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.5" />
-    <text x="878" y="70" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">REPORT</text>
-
-    <text x="0" y="20" fill="#64748b" font-size="12.5">stdlib-only deterministic core</text>
-    <text x="956" y="20" text-anchor="end" fill="#64748b" font-size="12.5">Markdown / JSON</text>
-  </g>
-
-  <!-- capability row -->
-  <g transform="translate(100 470)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
-    <g>
-      <text x="0"   y="34" fill="#22d3ee" font-size="40" font-weight="800">29</text>
-      <text x="0"   y="58" fill="#94a3b8" font-size="13">languages</text>
-    </g>
-    <g transform="translate(220 0)">
-      <text x="0"   y="34" fill="#22d3ee" font-size="40" font-weight="800">32</text>
-      <text x="0"   y="58" fill="#94a3b8" font-size="13">frameworks</text>
-    </g>
-    <g transform="translate(440 0)">
-      <text x="0"   y="34" fill="#22d3ee" font-size="40" font-weight="800">10</text>
-      <text x="0"   y="58" fill="#94a3b8" font-size="13">manifest parsers</text>
-    </g>
-    <g transform="translate(710 0)">
-      <text x="0"   y="34" fill="#22d3ee" font-size="40" font-weight="800">6</text>
-      <text x="0"   y="58" fill="#94a3b8" font-size="13">signal quality score</text>
-    </g>
-  </g>
-
-  <text x="100" y="582" fill="#475569" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Structured evidence, safe to drop into CI — the LLM annotates a report that already exists, it never generates one.</text>
+  
+  <text x="100" y="567" font-size="14" fill="#737373">Structured evidence, safe to drop into CI. The LLM annotates a report that already exists, it never generates one.</text>
 </svg>
