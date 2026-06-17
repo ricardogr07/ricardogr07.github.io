@@ -237,30 +237,18 @@ export const projects: PortfolioProject[] = [
     caveat:
       "The 40% speedup holds only for the Rayon-parallel path at 50 MB+; below the crossover pure Python wins, and the live ingest path actually runs the sequential chunker.",
     status: 'active',
-    gallery: [
+    resultGallery: [
       {
         src: '/images/projects/rusty-rag-chunker/token-exact-guarantee.svg',
         alt: 'Token-aware chunking produces zero over-limit chunks at every scale, versus up to 13,100 for a character-count baseline.',
         caption:
-          'Token-exact by construction: a chunk is a window over token IDs, so the limit can never be exceeded. 0 violations at 1/10/50 MB vs 200/2,600/13,100 for a char-count splitter — all from committed benchmark output.',
-      },
-      {
-        src: '/images/projects/rusty-rag-chunker/benchmark-crossover.svg',
-        alt: 'Benchmark table showing Python winning below 10 MB and Rust winning at 50 MB, with a measured 10–50 MB crossover.',
-        caption:
-          'The Rust win is real but narrow. Python tiktoken wins through 10 MB; the Rayon-parallel Rust path wins at 50 MB by 40%. The crossover bracket (10–50 MB on this hardware) is read straight from results.csv.',
+          'Token-exact by construction: a chunk is a window over token IDs, so the limit can never be exceeded. 0 violations at 1/10/50 MB vs 200/2,600/13,100 for a char-count splitter; all from committed benchmark output.',
       },
       {
         src: '/images/projects/rusty-rag-chunker/hallucination-guard.svg',
         alt: 'Two-layer hallucination guard: a deterministic similarity cutoff before the LLM, and a strict context-only prompt.',
         caption:
-          'The guard declines before the model runs: a deterministic similarity cutoff (default 0.50) plus a strict context-only prompt. Honestly bounded — no citation verification or post-generation grounding check.',
-      },
-      {
-        src: '/images/projects/rusty-rag-chunker/scope-and-honesty.svg',
-        alt: 'Scope panel separating what is proven and committed from where the engineering depth ends.',
-        caption:
-          "What's proven sits next to where the depth ends: a verified guarantee and a working CLI on one side; no CI, no published wheels, no ingest-side error handling on the other — surfaced, not discovered later.",
+          'The guard declines before the model runs: a deterministic similarity cutoff (default 0.50) plus a strict context-only prompt. Honestly bounded; no citation verification or post-generation grounding check.',
       },
     ],
   },
