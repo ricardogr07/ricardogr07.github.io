@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="a-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+    <marker id="a-am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b08436" /></marker>
+  </defs>
+  <rect width="1120" height="540" fill="#0a0a0a" />
+
+  <text x="48" y="50" fill="#f8fafc" font-size="24" font-weight="700">How MarketLab is built</text>
+  <text x="48" y="80" fill="#94a3b8" font-size="15">One settings file goes in, a fair-testing engine sits at the core, and trading is fenced to a practice account.</text>
+
+  <!-- ways to run it -->
+  <rect x="48" y="106" width="1024" height="60" rx="10" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
+  <text x="68" y="142" fill="#94a3b8" font-size="13" font-weight="700">RUN IT YOUR WAY</text>
+  <g font-size="13.5">
+    <rect x="252" y="124" width="200" height="26" rx="7" fill="#0d1117" stroke="#334155" stroke-width="1" />
+    <text x="352" y="142" text-anchor="middle" fill="#cbd5e1">command line</text>
+    <rect x="468" y="124" width="200" height="26" rx="7" fill="#0d1117" stroke="#334155" stroke-width="1" />
+    <text x="568" y="142" text-anchor="middle" fill="#cbd5e1">AI assistant (MCP)</text>
+    <rect x="684" y="124" width="200" height="26" rx="7" fill="#0d1117" stroke="#334155" stroke-width="1" />
+    <text x="784" y="142" text-anchor="middle" fill="#cbd5e1">Docker container</text>
+  </g>
+
+  <!-- main flow -->
+  <!-- settings -->
+  <rect x="48" y="214" width="178" height="110" rx="12" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="137" y="262" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Settings</text>
+  <text x="137" y="288" text-anchor="middle" fill="#94a3b8" font-size="13">checked before</text>
+  <text x="137" y="306" text-anchor="middle" fill="#94a3b8" font-size="13">anything runs</text>
+
+  <!-- prepare data -->
+  <rect x="262" y="214" width="178" height="110" rx="12" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="351" y="262" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Prepare data</text>
+  <text x="351" y="288" text-anchor="middle" fill="#94a3b8" font-size="13">prices &#8594; signals</text>
+  <text x="351" y="306" text-anchor="middle" fill="#94a3b8" font-size="13">and targets</text>
+
+  <!-- fair testing (heart) -->
+  <rect x="476" y="200" width="210" height="138" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="2.2" />
+  <text x="581" y="240" text-anchor="middle" fill="#67e8f9" font-size="16" font-weight="700">Fair testing</text>
+  <text x="581" y="244" text-anchor="middle" fill="#67e8f9" font-size="0">.</text>
+  <text x="581" y="270" text-anchor="middle" fill="#cbd5e1" font-size="13">learn on the past,</text>
+  <text x="581" y="290" text-anchor="middle" fill="#cbd5e1" font-size="13">score on the future</text>
+  <text x="581" y="316" text-anchor="middle" fill="#94a3b8" font-size="12.5">the engine that keeps it honest</text>
+
+  <!-- reports -->
+  <rect x="722" y="214" width="160" height="110" rx="12" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="802" y="262" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Reports</text>
+  <text x="802" y="288" text-anchor="middle" fill="#94a3b8" font-size="13">charts &amp; risk</text>
+  <text x="802" y="306" text-anchor="middle" fill="#94a3b8" font-size="13">diagnostics</text>
+
+  <!-- paper trading (fenced) -->
+  <rect x="918" y="214" width="154" height="110" rx="12" fill="#140f02" stroke="#b08436" stroke-width="1.6" />
+  <text x="995" y="256" text-anchor="middle" fill="#e7c38a" font-size="15" font-weight="700">Practice</text>
+  <text x="995" y="276" text-anchor="middle" fill="#e7c38a" font-size="15" font-weight="700">trading</text>
+  <text x="995" y="302" text-anchor="middle" fill="#fcd34d" font-size="12.5">🛡 real money fenced off</text>
+
+  <!-- flow arrows -->
+  <path d="M226 269 H260" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#a-ar)" />
+  <path d="M440 269 H474" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#a-ar)" />
+  <path d="M686 269 H720" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#a-ar)" />
+  <path d="M882 269 H916" fill="none" stroke="#b08436" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a-am)" />
+
+  <!-- honest scope -->
+  <rect x="48" y="378" width="1024" height="124" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.1" />
+  <text x="68" y="408" fill="#94a3b8" font-size="14" font-weight="700">HONEST SCOPE</text>
+  <g font-size="14" fill="#94a3b8">
+    <text x="68" y="440">→ A research tool, not a money-maker — it never claims to beat the market.</text>
+    <text x="68" y="468">→ Results are re-run from the settings file, not saved as numbers you have to trust.</text>
+    <text x="68" y="496">→ Trading is locked to a practice account; two large files are flagged for future tidy-up.</text>
+  </g>
+</svg>

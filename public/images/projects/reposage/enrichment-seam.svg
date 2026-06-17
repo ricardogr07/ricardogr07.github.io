@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="es-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="440" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">The LLM seam — one Protocol, forced through a schema</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">The whole AI surface is ten lines of interface. The model annotates; it can never restructure.</text>
+
+  <!-- deterministic report in -->
+  <rect x="48" y="150" width="220" height="120" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.4" />
+  <text x="158" y="196" text-anchor="middle" fill="#67e8f9" font-size="14" font-weight="700">AuditReport</text>
+  <text x="158" y="220" text-anchor="middle" fill="#cbd5e1" font-size="12">already complete</text>
+  <text x="158" y="240" text-anchor="middle" fill="#64748b" font-size="11">deterministic, typed</text>
+
+  <path d="M268 210 H336" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#es-ar)" />
+
+  <!-- the protocol seam -->
+  <rect x="344" y="132" width="300" height="156" rx="12" fill="#0b0e14" stroke="#818cf8" stroke-width="1.4" />
+  <text x="494" y="162" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">EnrichmentProvider</text>
+  <text x="494" y="182" text-anchor="middle" fill="#64748b" font-size="11">structural Protocol · 10 lines</text>
+  <rect x="368" y="200" width="252" height="40" rx="8" fill="#0a0a0a" stroke="#334155" stroke-width="1" />
+  <text x="494" y="225" text-anchor="middle" fill="#e2e8f0" font-size="12.5">enrich(report) → annotated result</text>
+  <text x="494" y="266" text-anchor="middle" fill="#64748b" font-size="11">the only thing the core and the AI share</text>
+
+  <!-- forced schema gate -->
+  <path d="M644 210 H712" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#es-ar)" />
+  <rect x="720" y="132" width="160" height="156" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+  <text x="800" y="170" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">LLM</text>
+  <text x="800" y="192" text-anchor="middle" fill="#b08436" font-size="11">Anthropic / OpenAI</text>
+  <rect x="740" y="208" width="120" height="56" rx="8" fill="#1a1305" stroke="#f59e0b" stroke-width="1.1" />
+  <text x="800" y="232" text-anchor="middle" fill="#fcd34d" font-size="11.5" font-weight="700">forced tool-use</text>
+  <text x="800" y="250" text-anchor="middle" fill="#b08436" font-size="10.5">JSON schema</text>
+
+  <!-- annotated report out -->
+  <path d="M880 210 H948" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#es-ar)" />
+  <rect x="900" y="150" width="172" height="120" rx="12" fill="#0d1117" stroke="#67e8f9" stroke-width="1.4" />
+  <text x="986" y="196" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">+ enrichment</text>
+  <text x="986" y="218" text-anchor="middle" fill="#cbd5e1" font-size="11.5">same structure,</text>
+  <text x="986" y="236" text-anchor="middle" fill="#cbd5e1" font-size="11.5">annotated fields</text>
+
+  <!-- guarantees row -->
+  <g font-size="12.5">
+    <text x="48" y="338" fill="#22d3ee">✓ no key: exits cleanly, deterministic report still emitted</text>
+    <text x="48" y="364" fill="#22d3ee">✓ non-schema response rejected · output structure enforced · debt items capped at 5</text>
+  </g>
+  <text x="48" y="404" fill="#b08436" font-size="12">⚠ honest limit: the structure can’t hallucinate, but the free-text strings inside it aren’t fact-checked against the report.</text>
+</svg>

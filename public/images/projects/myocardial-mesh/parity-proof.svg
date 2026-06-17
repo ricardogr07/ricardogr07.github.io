@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="460" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">The refactor changed the code, not the answer</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">The library is pinned to the original research notebook's output — and a test fails the build if they ever drift apart.</text>
+
+  <!-- original notebook trace -->
+  <rect x="56" y="138" width="488" height="190" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="84" y="174" fill="#94a3b8" font-size="15" font-weight="700">Original notebook</text>
+  <text x="84" y="196" fill="#64748b" font-size="13">the trusted ground truth</text>
+  <polyline points="84,270 150,270 168,250 186,270 230,270 248,294 266,210 284,300 302,270 360,270 380,246 404,270 516,270"
+    fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- library trace -->
+  <rect x="576" y="138" width="488" height="190" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+  <text x="604" y="174" fill="#67e8f9" font-size="15" font-weight="700">The new library</text>
+  <text x="604" y="196" fill="#64748b" font-size="13">same inputs, clean code</text>
+  <polyline points="604,270 670,270 688,250 706,270 750,270 768,294 786,210 804,300 822,270 880,270 900,246 924,270 1036,270"
+    fill="none" stroke="#67e8f9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- equals seal -->
+  <circle cx="560" cy="233" r="30" fill="#0a0a0a" stroke="#22d3ee" stroke-width="2" />
+  <text x="560" y="242" text-anchor="middle" fill="#67e8f9" font-size="26" font-weight="800">=</text>
+
+  <!-- difference badge -->
+  <rect x="56" y="360" width="1008" height="64" rx="12" fill="#0d1117" stroke="#a5b4fc" stroke-width="1.4" />
+  <circle cx="92" cy="392" r="15" fill="none" stroke="#22d3ee" stroke-width="2" />
+  <path d="M84 392 l6 6 l11 -13" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="124" y="388" fill="#e2e8f0" font-size="15" font-weight="700">Identical to within one-millionth.</text>
+  <text x="124" y="410" fill="#94a3b8" font-size="13.5">All 12 ECG leads match the notebook (RMSE &lt; 1e-6), reproduced from data committed in the repo.</text>
+</svg>

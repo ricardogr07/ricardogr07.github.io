@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="pf-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8" /></marker>
+  </defs>
+  <rect width="1120" height="440" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">It physically refuses to touch real money</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">The trading code is real and places genuine orders — but a built-in guard rejects any real-money account.</text>
+
+  <!-- order -->
+  <rect x="56" y="170" width="220" height="120" rx="14" fill="#0d1117" stroke="#334155" stroke-width="1.5" />
+  <text x="166" y="220" text-anchor="middle" fill="#cbd5e1" font-size="16" font-weight="700">a trade order</text>
+  <text x="166" y="248" text-anchor="middle" fill="#64748b" font-size="13.5">buy / sell request</text>
+
+  <!-- the guard / shield (centered on x=560) -->
+  <path d="M490 156 H630 V212 C630 254 598 278 560 296 C522 278 490 254 490 212 Z" fill="#140f02" stroke="#f59e0b" stroke-width="2.2" />
+  <path d="M536 222 l16 16 l34 -38" fill="none" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="560" y="328" text-anchor="middle" fill="#fcd34d" font-size="15" font-weight="700">safety gate</text>
+  <text x="560" y="350" text-anchor="middle" fill="#e7c38a" font-size="13">checks the account type</text>
+
+  <!-- allowed -->
+  <rect x="832" y="150" width="232" height="92" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+  <text x="864" y="186" fill="#67e8f9" font-size="16" font-weight="700">Practice account</text>
+  <path d="M864 206 l7 7 l13 -15" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="896" y="213" fill="#cbd5e1" font-size="14">allowed — order goes through</text>
+
+  <!-- blocked -->
+  <rect x="832" y="262" width="232" height="92" rx="14" fill="#160a0a" stroke="#7f1d1d" stroke-width="1.8" />
+  <text x="864" y="298" fill="#ef6b6b" font-size="16" font-weight="700">Real-money account</text>
+  <path d="M866 316 l16 16 M882 316 l-16 16" stroke="#ef6b6b" stroke-width="2.6" stroke-linecap="round" />
+  <text x="896" y="333" fill="#fca5a5" font-size="14">blocked — refuses to connect</text>
+
+  <!-- arrows -->
+  <path d="M276 226 H482" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#pf-ar)" />
+  <path d="M636 200 H826" fill="none" stroke="#22d3ee" stroke-width="2" marker-end="url(#pf-ar)" />
+  <path d="M636 300 H826" fill="none" stroke="#7f1d1d" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#pf-ar)" />
+
+  <text x="56" y="412" fill="#64748b" font-size="14">Safety here is a property of the code, not a matter of remembering to be careful — a costly mistake is impossible by construction.</text>
+</svg>

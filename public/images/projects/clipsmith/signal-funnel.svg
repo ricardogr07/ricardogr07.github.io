@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="sf-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" />
+    </marker>
+    <marker id="sf-ar-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="540" fill="#0a0a0a" />
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">The candidate funnel: five free signals, then one cheap LLM call</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">Every signal is deterministic and runs on data already in hand. The model never searches the VOD; it only adjudicates what the funnel surfaced.</text>
+
+  <!-- 5 signal rows -->
+  <g font-size="12">
+    <!-- existing clips -->
+    <rect x="48" y="100" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="68" y="122" fill="#67e8f9" font-size="12.5" font-weight="700">existing Twitch clips</text>
+    <text x="68" y="140" fill="#94a3b8" font-size="10.5">moments the audience already clipped, at their timestamp in the VOD</text>
+    <text x="424" y="130" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="700">+100</text>
+
+    <!-- !clip -->
+    <rect x="48" y="158" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="68" y="180" fill="#67e8f9" font-size="12.5" font-weight="700">!clip chat commands</text>
+    <text x="68" y="198" fill="#94a3b8" font-size="10.5">explicit viewer signal in the chat replay</text>
+    <text x="424" y="188" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="700">+25 each</text>
+
+    <!-- chat density -->
+    <rect x="48" y="216" width="396" height="58" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="68" y="238" fill="#67e8f9" font-size="12.5" font-weight="700">chat density burst</text>
+    <text x="68" y="256" fill="#94a3b8" font-size="10.5">15 s window / 5 s step · fires at ≥ 4× baseline rate</text>
+    <text x="68" y="270" fill="#64748b" font-size="10">score = msgs + 0.5 × hype emotes</text>
+
+    <!-- hype keywords -->
+    <rect x="48" y="282" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="68" y="304" fill="#67e8f9" font-size="12.5" font-weight="700">transcript hype keywords</text>
+    <text x="68" y="322" fill="#94a3b8" font-size="10.5">jaja · increíble · tremendo … + ! / ¡ counts</text>
+
+    <!-- audio rms -->
+    <rect x="48" y="340" width="396" height="50" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="68" y="362" fill="#67e8f9" font-size="12.5" font-weight="700">audio RMS spikes</text>
+    <text x="68" y="380" fill="#94a3b8" font-size="10.5">loudness ≥ mean + 2σ: reactions, hype, laughter</text>
+  </g>
+
+  <!-- arrows into merge -->
+  <path d="M444 125 H560 V232" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#sf-ar)" />
+  <path d="M444 183 H548 V232" fill="none" stroke="#22d3ee" stroke-width="1.5" />
+  <path d="M444 245 H560" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#sf-ar)" />
+  <path d="M444 307 H548 V258" fill="none" stroke="#22d3ee" stroke-width="1.5" />
+  <path d="M444 365 H560 V258" fill="none" stroke="#22d3ee" stroke-width="1.5" />
+
+  <!-- merge / normalize -->
+  <rect x="560" y="206" width="216" height="84" rx="11" fill="#0d1117" stroke="#67e8f9" stroke-width="1.5" />
+  <text x="668" y="234" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">dedupe + normalize</text>
+  <text x="668" y="256" text-anchor="middle" fill="#cbd5e1" font-size="10.5">accumulate within 60 s</text>
+  <text x="668" y="274" text-anchor="middle" fill="#cbd5e1" font-size="10.5">scale scores → [1, 100]</text>
+
+  <path d="M776 248 H812" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#sf-ar-i)" />
+
+  <!-- time-spread -->
+  <rect x="816" y="206" width="256" height="84" rx="11" fill="#0d1117" stroke="#818cf8" stroke-width="1.5" />
+  <text x="944" y="234" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">greedy time-spread</text>
+  <text x="944" y="256" text-anchor="middle" fill="#cbd5e1" font-size="10.5">top 20 candidates, ≥ 120 s apart</text>
+  <text x="944" y="274" text-anchor="middle" fill="#64748b" font-size="10">the only set the LLM ever sees</text>
+
+  <!-- LLM adjudicates -->
+  <path d="M944 290 V330" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#sf-ar-i)" />
+  <rect x="560" y="334" width="512" height="84" rx="11" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+  <text x="584" y="362" fill="#a5b4fc" font-size="13" font-weight="700">LLM adjudicates: one call per candidate</text>
+  <text x="584" y="386" fill="#cbd5e1" font-size="11">±60 s transcript window → strict JSON: yes/no decision, clip boundaries, title</text>
+  <text x="584" y="406" fill="#64748b" font-size="10.5">stable prefix prompt-cached → marginal cost is cents · rejected picks are skipped, pipeline continues</text>
+
+  <!-- takeaway -->
+  <line x1="48" y1="452" x2="1072" y2="452" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="480" fill="#cbd5e1" font-size="12.5">The expensive stage is last and smallest: ≤ 20 cached calls per VOD, never a search over hours of footage.</text>
+  <text x="48" y="502" fill="#64748b" font-size="11.5">Sprint 5 added per-signal approval analytics and prompt A/B; instrumentation to find which signal earns its weight, rather than assume it.</text>
+  <text x="48" y="524" fill="#475569" font-size="11">Weights and thresholds above are the committed defaults, verifiable in the repo.</text>
+</svg>

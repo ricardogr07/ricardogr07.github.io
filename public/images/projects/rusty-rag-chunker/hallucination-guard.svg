@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="hg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="460" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Hallucination guard — decline before the model, not after</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">Two layers. The first is deterministic and runs before any token is generated; the second instructs the model.</text>
+
+  <!-- layer 1 -->
+  <rect x="48" y="108" width="498" height="178" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.4" />
+  <text x="72" y="140" fill="#67e8f9" font-size="14" font-weight="700">LAYER 1 · pre-retrieval cutoff</text>
+  <text x="72" y="162" fill="#64748b" font-size="11.5">deterministic — runs before the LLM is called</text>
+  <rect x="72" y="178" width="450" height="40" rx="8" fill="#0a0a0a" stroke="#334155" stroke-width="1" />
+  <text x="92" y="203" fill="#e2e8f0" font-size="12.5">if similarity score &lt; threshold: decline</text>
+  <text x="72" y="244" fill="#cbd5e1" font-size="12.5">default threshold 0.50; returns the score + the cutoff,</text>
+  <text x="72" y="264" fill="#cbd5e1" font-size="12.5">prints "I don't have information about this." and stops.</text>
+
+  <!-- layer 2 -->
+  <rect x="574" y="108" width="498" height="178" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+  <text x="598" y="140" fill="#fcd34d" font-size="14" font-weight="700">LAYER 2 · context-only prompt</text>
+  <text x="598" y="162" fill="#b08436" font-size="11.5">LLM-dependent — instruction, not enforcement</text>
+  <rect x="598" y="178" width="450" height="64" rx="8" fill="#1a1305" stroke="#f59e0b" stroke-width="1" />
+  <text x="618" y="202" fill="#e7c38a" font-size="12">"Answer ONLY using the information provided</text>
+  <text x="618" y="222" fill="#e7c38a" font-size="12"> in the context… Do NOT use outside knowledge."</text>
+  <text x="598" y="266" fill="#b08436" font-size="12.5">sent to gpt-4o-mini with the retrieved chunks</text>
+
+  <!-- honest boundary -->
+  <rect x="48" y="312" width="1024" height="104" rx="12" fill="#0b0e14" stroke="#475569" stroke-width="1.2" />
+  <text x="72" y="344" fill="#94a3b8" font-size="13.5" font-weight="700">What it is NOT — stated plainly</text>
+  <g font-size="12.5" fill="#64748b">
+    <text x="72" y="372">✗ no citation verification</text>
+    <text x="420" y="372">✗ no post-generation grounding check</text>
+    <text x="800" y="372">✗ no answer-vs-context scoring</text>
+  </g>
+  <text x="72" y="400" fill="#94a3b8" font-size="12.5">It's a similarity gate plus a strict instruction — effective at refusing off-corpus questions, not a proof of groundedness.</text>
+</svg>

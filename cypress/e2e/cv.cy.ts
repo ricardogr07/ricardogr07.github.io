@@ -49,9 +49,4 @@ describe('CV Page', () => {
     cy.contains(/publications/i).should('be.visible')
     cy.contains('a', /DOI/i).should('be.visible')
   })
-
-  it('renders the Selected Projects section with GitHub links', () => {
-    cy.contains(/selected projects/i).should('be.visible')
-    cy.contains('a', /github/i).should('be.visible')
-  })
 })

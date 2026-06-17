@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="sc-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" /></marker>
+  </defs>
+  <rect width="1120" height="500" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Shipped like a library, not a script</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">Research fractal-Purkinje code, repackaged: tokenless release automation, typed + linted, gated under CI.</text>
+
+  <!-- release flow -->
+  <text x="48" y="116" fill="#94a3b8" font-size="13" font-weight="700">Release — tokenless, automated</text>
+  <g>
+    <rect x="48" y="132" width="158" height="74" rx="11" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="127" y="162" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">git tag v*</text>
+    <text x="127" y="184" text-anchor="middle" fill="#64748b" font-size="10.5">conventional commits</text>
+    <path d="M206 169 H232" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#sc-ar)" />
+
+    <rect x="236" y="132" width="186" height="74" rx="11" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="329" y="162" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">release-please</text>
+    <text x="329" y="184" text-anchor="middle" fill="#64748b" font-size="10.5">auto bump + changelog</text>
+    <path d="M422 169 H448" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#sc-ar)" />
+
+    <rect x="452" y="132" width="206" height="74" rx="11" fill="#0d1117" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="555" y="162" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">release.yml · OIDC</text>
+    <text x="555" y="184" text-anchor="middle" fill="#64748b" font-size="10.5">gh-action-pypi-publish, no token</text>
+    <path d="M658 169 H684" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#sc-ar)" />
+
+    <rect x="688" y="132" width="186" height="74" rx="11" fill="#0b1f24" stroke="#67e8f9" stroke-width="1.6" />
+    <text x="781" y="162" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">PyPI · 0.4.0</text>
+    <text x="781" y="184" text-anchor="middle" fill="#cbd5e1" font-size="10.5">purkinje-uv · MIT</text>
+  </g>
+
+  <!-- CI box -->
+  <text x="48" y="252" fill="#94a3b8" font-size="13" font-weight="700">CI — test.yml (tox)</text>
+  <rect x="48" y="268" width="500" height="160" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
+  <text x="72" y="300" fill="#cbd5e1" font-size="12"><tspan fill="#67e8f9" font-weight="700">dual-Python</tspan> — py3.10.6 + py3.12.3</text>
+  <text x="72" y="328" fill="#cbd5e1" font-size="12"><tspan fill="#67e8f9" font-weight="700">lint</tspan> — black · ruff · mypy · pydocstyle</text>
+  <text x="72" y="356" fill="#cbd5e1" font-size="12"><tspan fill="#67e8f9" font-weight="700">pytest</tspan> — coverage gate enforced at ≥ 90%</text>
+  <text x="72" y="384" fill="#cbd5e1" font-size="12"><tspan fill="#67e8f9" font-weight="700">optional</tspan> — GPU (cupy) + e2e suites, marker-gated</text>
+  <text x="72" y="412" fill="#64748b" font-size="10.5">runs on PRs to main; green status not asserted here</text>
+
+  <!-- tests box -->
+  <text x="572" y="252" fill="#94a3b8" font-size="13" font-weight="700">Tests — 107 across 19 files</text>
+  <rect x="572" y="268" width="500" height="160" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
+  <g font-size="12" fill="#cbd5e1">
+    <text x="596" y="300">✓ growth algorithm — test_fractal_tree.py</text>
+    <text x="596" y="324">✓ mesh geometry + FEM — core_methods, fem</text>
+    <text x="596" y="348">✓ UV mapping · projection · parameters</text>
+    <text x="596" y="372">✓ I/O round-trips — IGB, ParaView, VTK utils</text>
+    <text x="596" y="396">✓ Edge / Branch / Nodes · PurkinjeTree</text>
+  </g>
+  <text x="596" y="418" fill="#64748b" font-size="10.5">no golden/numerical test — e2e asserts the network is non-empty + parseable</text>
+
+  <text x="48" y="466" fill="#64748b" font-size="12.5">The deliverable isn't a finding — it's the method, made installable, typed, and reproducible. <tspan fill="#94a3b8">pip install purkinje-uv</tspan> and a collaborator is running.</text>
+</svg>

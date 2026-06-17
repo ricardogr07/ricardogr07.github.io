@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="pb-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+  </defs>
+  <rect width="1120" height="500" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">The compute / IO boundary — enforced by a test</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">The model is a pure function. The cloud is wrapped around it. A contract test fails the build if the two ever leak into each other.</text>
+
+  <!-- PURE zone -->
+  <rect x="48" y="108" width="468" height="300" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
+  <text x="72" y="140" fill="#67e8f9" font-size="14" font-weight="700">PURE — the simulation engine</text>
+  <g font-size="12">
+    <text x="72" y="174" fill="#cbd5e1">run_simulation(state, n_runs=10000, seed?)</text>
+    <text x="72" y="202" fill="#cbd5e1">· stdlib random (Mersenne Twister) — no NumPy</text>
+    <text x="72" y="228" fill="#cbd5e1">· Pydantic models in → Pydantic result out</text>
+    <text x="72" y="254" fill="#cbd5e1">· deterministic under a seed (tested)</text>
+    <text x="72" y="280" fill="#cbd5e1">· no network, no disk, no clock</text>
+  </g>
+  <rect x="72" y="300" width="420" height="88" rx="10" fill="#0d1117" stroke="#1e3a42" stroke-width="1" />
+  <text x="88" y="326" fill="#f8fafc" font-size="11.5" font-weight="700">imports NONE of:</text>
+  <text x="88" y="350" fill="#94a3b8" font-size="12">azure · cosmos · httpx · the Functions runtime</text>
+  <text x="88" y="374" fill="#64748b" font-size="10.5">you can run and reason about the whole model offline</text>
+
+  <!-- the test, middle -->
+  <rect x="540" y="208" width="160" height="100" rx="12" fill="#0d1117" stroke="#a5b4fc" stroke-width="1.4" />
+  <text x="620" y="236" text-anchor="middle" fill="#a5b4fc" font-size="11.5" font-weight="700">purity</text>
+  <text x="620" y="254" text-anchor="middle" fill="#a5b4fc" font-size="11.5" font-weight="700">contract test</text>
+  <text x="620" y="278" text-anchor="middle" fill="#94a3b8" font-size="10">fails CI if "azure"</text>
+  <text x="620" y="293" text-anchor="middle" fill="#94a3b8" font-size="10">appears in the engine</text>
+  <path d="M516 258 H536" fill="none" stroke="#818cf8" stroke-width="1.6" marker-end="url(#pb-ar)" />
+  <path d="M700 258 H720" fill="none" stroke="#818cf8" stroke-width="1.6" marker-end="url(#pb-ar)" />
+
+  <!-- IO zone -->
+  <rect x="724" y="108" width="348" height="300" rx="14" fill="#0b0e14" stroke="#475569" stroke-width="1.3" />
+  <text x="748" y="140" fill="#94a3b8" font-size="14" font-weight="700">IO — the serverless shell</text>
+  <g font-size="12" fill="#cbd5e1">
+    <text x="748" y="176">the /simulate handler:</text>
+    <text x="764" y="202">· reads / writes Cosmos</text>
+    <text x="764" y="226">· checks + upserts the cache</text>
+    <text x="764" y="250">· validates the request body</text>
+    <text x="748" y="284">the sync job:</text>
+    <text x="764" y="310">· pulls TheSportsDB over httpx</text>
+    <text x="764" y="334">· applies the K=32 Elo update</text>
+  </g>
+  <text x="748" y="376" fill="#64748b" font-size="10.5">all the messy, stateful, failable parts live here —</text>
+  <text x="748" y="392" fill="#64748b" font-size="10.5">and only here.</text>
+
+  <text x="48" y="446" fill="#475569" font-size="12.5">Why it matters: the model is unit-testable offline, the IO is swappable around it, and "the engine accidentally grew a cloud dependency" is a <tspan fill="#94a3b8">red build</tspan>, not a code review.</text>
+</svg>

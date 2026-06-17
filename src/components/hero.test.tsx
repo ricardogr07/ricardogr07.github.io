@@ -26,7 +26,7 @@ describe('Hero', () => {
 
   it('renders the four-pillar badge', () => {
     render(<Hero />)
-    expect(screen.getByText(/AI\/ML · Data Engineering · Cloud · Full-Stack/i)).toBeInTheDocument()
+    expect(screen.getByText(/AI\/ML · Data Science · Cloud · Full-Stack/i)).toBeInTheDocument()
   })
 
   it('renders the credential-anchored sub-copy', () => {
@@ -34,9 +34,11 @@ describe('Hero', () => {
     expect(screen.getByText(/M\.Sc\. Data Science/i)).toBeInTheDocument()
   })
 
-  it('renders the sub-copy with open roles positioning', () => {
+  it('renders the sub-copy with availability positioning', () => {
     render(<Hero />)
-    expect(screen.getByText(/Open to senior roles and select freelance work/i)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Available for senior engineering roles and freelance projects/i)
+    ).toBeInTheDocument()
   })
 
   it('renders the View projects CTA linking to /projects', () => {

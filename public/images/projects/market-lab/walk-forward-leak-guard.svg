@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <pattern id="wf-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#140f02" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#b08436" stroke-width="2" opacity="0.7" />
+    </pattern>
+    <marker id="wf-time" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#475569" /></marker>
+  </defs>
+  <rect width="1120" height="460" fill="#0a0a0a" />
+
+  <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">Tested only on data it couldn't have seen</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">The model learns from the past and is scored on the future — with a gap in between, so it can never peek ahead.</text>
+
+  <!-- timeline -->
+  <line x1="56" y1="232" x2="1064" y2="232" stroke="#334155" stroke-width="2" marker-end="url(#wf-time)" />
+  <text x="1064" y="214" text-anchor="end" fill="#475569" font-size="13">time →</text>
+
+  <!-- TRAIN block -->
+  <rect x="56" y="180" width="470" height="104" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="2" />
+  <text x="291" y="222" text-anchor="middle" fill="#67e8f9" font-size="18" font-weight="700">LEARNS FROM THE PAST</text>
+  <text x="291" y="250" text-anchor="middle" fill="#cbd5e1" font-size="14">history whose outcomes are already known</text>
+
+  <!-- GAP block -->
+  <rect x="542" y="180" width="120" height="104" rx="12" fill="url(#wf-hatch)" stroke="#b08436" stroke-width="2" />
+  <text x="602" y="226" text-anchor="middle" fill="#fcd34d" font-size="16" font-weight="700">GAP</text>
+  <text x="602" y="250" text-anchor="middle" fill="#e7c38a" font-size="12.5">no overlap</text>
+
+  <!-- TEST block -->
+  <rect x="678" y="180" width="386" height="104" rx="12" fill="#141a2e" stroke="#818cf8" stroke-width="2" />
+  <text x="871" y="222" text-anchor="middle" fill="#a5b4fc" font-size="18" font-weight="700">SCORED ON THE FUTURE</text>
+  <text x="871" y="250" text-anchor="middle" fill="#cbd5e1" font-size="14">data it has never seen</text>
+
+  <!-- window slides note -->
+  <text x="56" y="332" fill="#94a3b8" font-size="14">The training window is a fixed length that slides forward as time passes — old data drops off, so each test is judged against recent history.</text>
+
+  <!-- proven badge -->
+  <rect x="56" y="362" width="1008" height="66" rx="12" fill="#0d1117" stroke="#a5b4fc" stroke-width="1.4" />
+  <circle cx="92" cy="395" r="15" fill="none" stroke="#22d3ee" stroke-width="2" />
+  <path d="M84 395 l6 6 l11 -13" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="124" y="390" fill="#e2e8f0" font-size="15" font-weight="700">Proven, not promised.</text>
+  <text x="124" y="412" fill="#94a3b8" font-size="13.5">An automated test builds a sneaky row that &#8220;peeks&#8221; at the future and checks the system throws it out.</text>
+</svg>

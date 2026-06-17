@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="cs-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+    <marker id="cs-ar-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" />
+    </marker>
+  </defs>
+  <rect width="1120" height="660" fill="#0a0a0a" />
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Pipeline — a deterministic funnel, the LLM at the end</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">Six stages run in sequence; the LLM only ever sees ≤20 pre-ranked candidates.</text>
+
+  <!-- chat feed (above candidates) -->
+  <rect x="472" y="108" width="176" height="64" rx="10" fill="#0d1117" stroke="#475569" stroke-width="1.2" />
+  <text x="560" y="134" text-anchor="middle" fill="#cbd5e1" font-size="12.5" font-weight="700">chat downloader</text>
+  <text x="560" y="153" text-anchor="middle" fill="#64748b" font-size="10.5">Twitch GQL · httpx</text>
+  <path d="M560 172 V214" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#cs-ar-c)" />
+
+  <!-- webcam detect aside (above render) -->
+  <rect x="896" y="108" width="176" height="64" rx="10" fill="#0d1117" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 3" />
+  <text x="984" y="134" text-anchor="middle" fill="#94a3b8" font-size="12.5" font-weight="700">detect webcam</text>
+  <text x="984" y="153" text-anchor="middle" fill="#64748b" font-size="10.5">OpenCV Haar · optional</text>
+  <path d="M984 172 V214" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#cs-ar)" />
+
+  <!-- main spine -->
+  <g>
+    <!-- download -->
+    <rect x="48" y="220" width="176" height="100" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="136" y="252" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">VOD downloader</text>
+    <text x="136" y="274" text-anchor="middle" fill="#cbd5e1" font-size="10.5">twitch-dl · subprocess</text>
+    <text x="136" y="292" text-anchor="middle" fill="#64748b" font-size="10">quality ladder</text>
+    <text x="136" y="308" text-anchor="middle" fill="#64748b" font-size="10">1080p60 → 160p</text>
+
+    <path d="M224 270 H256" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#cs-ar)" />
+
+    <!-- transcribe -->
+    <rect x="260" y="220" width="176" height="100" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="348" y="252" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">transcriber</text>
+    <text x="348" y="274" text-anchor="middle" fill="#cbd5e1" font-size="10.5">faster-whisper · word ts</text>
+    <text x="348" y="292" text-anchor="middle" fill="#64748b" font-size="10">30-min chunks ∥, overlap-</text>
+    <text x="348" y="308" text-anchor="middle" fill="#64748b" font-size="10">deduped · lang auto-detect</text>
+
+    <path d="M436 270 H468" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#cs-ar)" />
+
+    <!-- candidates (the heart) -->
+    <rect x="472" y="214" width="176" height="112" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.9" />
+    <text x="560" y="244" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">candidate builder</text>
+    <text x="560" y="263" text-anchor="middle" fill="#f8fafc" font-size="10.5" font-weight="700">5 deterministic signals</text>
+    <text x="560" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">dedupe within 60 s</text>
+    <text x="560" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">normalize → [1, 100]</text>
+    <text x="560" y="316" text-anchor="middle" fill="#64748b" font-size="9.5">fallback: even transcript samples</text>
+
+    <path d="M648 270 H680" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#cs-ar)" />
+
+    <!-- select -->
+    <rect x="684" y="220" width="176" height="100" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+    <text x="772" y="252" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">clip selector</text>
+    <text x="772" y="274" text-anchor="middle" fill="#cbd5e1" font-size="10.5">LLM · top 20, ≥120 s apart</text>
+    <text x="772" y="292" text-anchor="middle" fill="#64748b" font-size="10">1 call / candidate · 90 s window</text>
+    <text x="772" y="308" text-anchor="middle" fill="#64748b" font-size="10">strict JSON · retry → skip</text>
+
+    <path d="M860 270 H892" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#cs-ar)" />
+
+    <!-- render -->
+    <rect x="896" y="220" width="176" height="100" rx="12" fill="#0d1117" stroke="#67e8f9" stroke-width="1.3" />
+    <text x="984" y="252" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">clip cutter</text>
+    <text x="984" y="274" text-anchor="middle" fill="#cbd5e1" font-size="10.5">FFmpeg · subprocess</text>
+    <text x="984" y="292" text-anchor="middle" fill="#64748b" font-size="10">libx264 crf 23; or stream-copy</text>
+    <text x="984" y="308" text-anchor="middle" fill="#64748b" font-size="10">9:16 stack + ASS captions: opt-in</text>
+  </g>
+
+  <!-- delivery surfaces -->
+  <text x="48" y="388" fill="#94a3b8" font-size="13" font-weight="700">Three launchers, one pipeline; the same six stages run in all three.</text>
+  <g>
+    <rect x="48" y="408" width="328" height="120" rx="12" fill="#0b0e14" stroke="#22d3ee" stroke-width="1.2" />
+    <text x="72" y="438" fill="#67e8f9" font-size="13" font-weight="700">Local CLI · Typer</text>
+    <text x="72" y="462" fill="#cbd5e1" font-size="11.5">process / run-vod / watch</text>
+    <text x="72" y="484" fill="#cbd5e1" font-size="11.5">checkpoint files · --resume</text>
+    <text x="72" y="508" fill="#64748b" font-size="10.5">zero-key end-to-end on Ollama</text>
+
+    <rect x="396" y="408" width="328" height="120" rx="12" fill="#0b0e14" stroke="#818cf8" stroke-width="1.2" />
+    <text x="420" y="438" fill="#a5b4fc" font-size="13" font-weight="700">API + dashboard</text>
+    <text x="420" y="462" fill="#cbd5e1" font-size="11.5">FastAPI worker → same pipeline</text>
+    <text x="420" y="484" fill="#cbd5e1" font-size="11.5">SQLite/Postgres · SSE progress</text>
+    <text x="420" y="508" fill="#64748b" font-size="10.5">Next.js: video player · approve/reject</text>
+
+    <rect x="744" y="408" width="328" height="120" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.2" />
+    <text x="768" y="438" fill="#fcd34d" font-size="13" font-weight="700">Cloud batch · Azure ACI</text>
+    <text x="768" y="462" fill="#e7c38a" font-size="11.5">clipsmith cloud run</text>
+    <text x="768" y="484" fill="#e7c38a" font-size="11.5">ephemeral ACI · same Docker image</text>
+    <text x="768" y="508" fill="#b08436" font-size="10.5">Drive upload → teardown</text>
+  </g>
+
+  <!-- honest footnotes -->
+  <line x1="48" y1="566" x2="1072" y2="566" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="594" fill="#64748b" font-size="12">Honest scope: the default run produces a <tspan fill="#94a3b8">source-aspect stream-copy</tspan>; 9:16 vertical + burned-in captions are opt-in (<tspan fill="#94a3b8">--reframe</tspan>).</text>
+  <text x="48" y="616" fill="#64748b" font-size="12">No throughput number is committed to the repo. The cloud path is built and manually exercised, but has no recorded CI run; CD is in progress (Sprint 10).</text>
+</svg>

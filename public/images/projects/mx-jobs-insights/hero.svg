@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
+  <defs>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"></path>
+    </pattern>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"></stop>
+      <stop offset="1" stop-color="#22d3ee"></stop>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
+
+  
+  <text x="600" y="69" text-anchor="middle" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="44" font-weight="700" letter-spacing="-0.88" fill="#ffffff">Mexico Jobs Analytics Pipeline</text>
+
+  
+  <rect x="140" y="104" width="920" height="54" rx="27" fill="#38bdf8" fill-opacity="0.1" stroke="#38bdf8" stroke-opacity="0.5" stroke-width="1"></rect>
+  <text x="600" y="131" text-anchor="middle" dominant-baseline="middle" font-size="19" fill="#7dd3fc">A <tspan fill="#ffffff" font-weight="600">zero-server</tspan> pipeline scheduled to run weekly</text>
+
+  
+  
+  <g fill="#0d1117" stroke="#20262e" stroke-width="1">
+    <rect x="48" y="198" width="249" height="292" rx="18"></rect>
+    <rect x="333" y="198" width="249" height="292" rx="18"></rect>
+    <rect x="618" y="198" width="249" height="292" rx="18"></rect>
+    <rect x="903" y="198" width="249" height="292" rx="18"></rect>
+  </g>
+
+  
+  <g fill="none" stroke="#22d3ee" stroke-width="1.6">
+    <g transform="translate(304,338)"><path d="M0 6 H16"></path><path d="M14 1 L20 6 L14 11"></path></g>
+    <g transform="translate(589,338)"><path d="M0 6 H16"></path><path d="M14 1 L20 6 L14 11"></path></g>
+    <g transform="translate(874,338)"><path d="M0 6 H16"></path><path d="M14 1 L20 6 L14 11"></path></g>
+  </g>
+
+  
+  <g transform="translate(102.5,239)">
+    <path d="M6 18 H30 L37 27 H78 A4 4 0 0 1 82 31 V62 A4 4 0 0 1 78 66 H10 A4 4 0 0 1 6 62 Z" fill="none" stroke="#22d3ee" stroke-width="1.6"></path>
+  </g>
+  <g transform="translate(198.5,239)" fill="none" stroke="#38bdf8" stroke-width="1.5">
+    <rect x="14" y="6" width="26" height="22" rx="4" transform="rotate(8 27 17)"></rect>
+    <rect x="4" y="28" width="26" height="22" rx="4" transform="rotate(-6 17 39)"></rect>
+    <rect x="14" y="48" width="26" height="22" rx="4" transform="rotate(6 27 59)"></rect>
+  </g>
+  <text x="172.5" y="364" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="-0.3" fill="#38bdf8">9,661</text>
+  <text x="172.5" y="385" text-anchor="middle" font-size="13.5" fill="#e5e5e5">job snapshots</text>
+
+  
+  <g transform="translate(407.5,230)" fill="none" stroke="#38bdf8" stroke-width="1.6">
+    <ellipse cx="50" cy="22" rx="32" ry="10"></ellipse>
+    <path d="M18 22 V70 A32 10 0 0 0 82 70 V22"></path>
+    <path d="M18 46 A32 10 0 0 0 82 46" opacity="0.5"></path>
+  </g>
+  <rect x="351" y="334" width="213" height="27" rx="7" fill="none" stroke="#38bdf8" stroke-opacity="0.5" stroke-width="1"></rect>
+  <text x="457.5" y="348.5" text-anchor="middle" dominant-baseline="middle" font-size="10.5" letter-spacing="1.26" fill="#38bdf8">CREATE OR REPLACE</text>
+  <g fill="none" stroke="#404040" stroke-width="1">
+    <rect x="351" y="371" width="213" height="28" rx="7"></rect>
+    <rect x="351" y="406" width="213" height="28" rx="7"></rect>
+    <rect x="351" y="441" width="213" height="28" rx="7"></rect>
+  </g>
+  <g text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#d4d4d4">
+    <text x="457.5" y="385">source_runs</text>
+    <text x="457.5" y="420">job_observations</text>
+    <text x="457.5" y="455">job_entities</text>
+  </g>
+
+  
+  <g transform="translate(714.5,237)">
+    <circle cx="28" cy="28" r="22" fill="none" stroke="#38bdf8" stroke-width="1.6"></circle>
+    <text x="28" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8">LLM</text>
+  </g>
+  <text x="742.5" y="315" text-anchor="middle" font-size="12.5" fill="#d4d4d4">1 OpenAI call</text>
+  
+  <g fill="none" stroke="#2a3340" stroke-width="1">
+    <rect x="636" y="340" width="101.5" height="67" rx="9"></rect>
+    <rect x="747.5" y="340" width="101.5" height="67" rx="9"></rect>
+  </g>
+  <text x="645" y="362" font-size="10.5" letter-spacing="1.05" fill="#38bdf8">EN</text>
+  <text x="756.5" y="362" font-size="10.5" letter-spacing="1.05" fill="#38bdf8">ES</text>
+  <g>
+    <rect x="645" y="369" width="66.8" height="5" rx="2.5" fill="#38bdf8"></rect>
+    <rect x="645" y="381" width="83.5" height="5" rx="2.5" fill="#404040"></rect>
+    <rect x="645" y="393" width="50.1" height="5" rx="2.5" fill="#404040"></rect>
+    <rect x="756.5" y="369" width="66.8" height="5" rx="2.5" fill="#38bdf8"></rect>
+    <rect x="756.5" y="381" width="83.5" height="5" rx="2.5" fill="#404040"></rect>
+    <rect x="756.5" y="393" width="50.1" height="5" rx="2.5" fill="#404040"></rect>
+  </g>
+
+  
+  <g transform="translate(952.5,226)">
+    <rect x="6" y="8" width="138" height="84" rx="8" fill="none" stroke="#2a3340" stroke-width="1.5"></rect>
+    <path d="M6 26 H144" stroke="#2a3340" stroke-width="1.5"></path>
+    <circle cx="18" cy="17" r="2.5" fill="#3a4452"></circle>
+    <circle cx="28" cy="17" r="2.5" fill="#3a4452"></circle>
+    <circle cx="38" cy="17" r="2.5" fill="#3a4452"></circle>
+    <rect x="18" y="38" width="52" height="9" rx="3" fill="#38bdf8"></rect>
+    <rect x="18" y="54" width="114" height="6" rx="3" fill="#2f3947"></rect>
+    <rect x="18" y="66" width="98" height="6" rx="3" fill="#2f3947"></rect>
+    <rect x="18" y="78" width="74" height="6" rx="3" fill="#2f3947"></rect>
+  </g>
+  <g fill="none" stroke="#404040" stroke-width="1">
+    <rect x="921" y="344" width="213" height="28" rx="7"></rect>
+    <rect x="921" y="379" width="213" height="28" rx="7"></rect>
+  </g>
+  <g text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#d4d4d4">
+    <text x="1027.5" y="358">0 14 * * 1 · weekly</text>
+    <text x="1027.5" y="393">0 15 1 * * · monthly</text>
+  </g>
+
+  
+  <g text-anchor="middle" font-size="11" letter-spacing="1.54" fill="#a3a3a3">
+    <text x="172.5" y="519"><tspan font-weight="600" fill="#38bdf8">1</tspan> · RAW INPUT</text>
+    <text x="457.5" y="519"><tspan font-weight="600" fill="#38bdf8">2</tspan> · CURATED STORE</text>
+    <text x="742.5" y="519"><tspan font-weight="600" fill="#38bdf8">3</tspan> · BILINGUAL NARRATIVE</text>
+    <text x="1027.5" y="519"><tspan font-weight="600" fill="#38bdf8">4</tspan> · PUBLIC SITE</text>
+  </g>
+
+  
+  <rect x="48" y="534" width="1104" height="2" rx="1" fill="url(#rule)"></rect>
+</svg>

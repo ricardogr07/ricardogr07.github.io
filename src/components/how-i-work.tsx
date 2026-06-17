@@ -1,25 +1,25 @@
 const steps = [
   {
     number: '01',
-    title: 'Clarify scope and expected deliverables',
+    title: 'Define scope, constraints, and what done looks like',
     description:
       'Define exactly what gets built, what does not, and what done looks like before writing a single line of code.',
   },
   {
     number: '02',
-    title: 'Define inputs, outputs, and edge cases',
+    title: 'Map data contracts, failure modes, and edge cases',
     description:
       'Map the data contracts, failure modes, and edge cases upfront. Surprises at delivery are avoidable.',
   },
   {
     number: '03',
-    title: 'Build a small working version first',
+    title: 'Prototype the critical path first',
     description:
-      'Ship a working slice quickly to validate assumptions and surface real integration issues early.',
+      'Build a PoC or MVP that runs the critical path against real inputs. Integration failures surface here, not at delivery.',
   },
   {
     number: '04',
-    title: 'Add validation, tests, and documentation',
+    title: 'Harden with tests, input validation, and documentation',
     description:
       'Wrap working code in tests, add input validation, and write documentation that makes the tool usable by someone else.',
   },

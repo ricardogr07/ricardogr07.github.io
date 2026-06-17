@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { GraduationCap, PenLine } from 'lucide-react'
+import Link from 'next/link'
+import { GraduationCap, PenLine, BookOpen, FlaskConical } from 'lucide-react'
 import Footer from '@/components/footer'
+import { experienceCondensed } from '@/content/experience'
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'About Ricardo García Ramírez — Senior Software Engineer focused on Python, Data Science, and AI/ML systems. M.Sc. Data Science, 5 publications, former professor.',
+    'About Ricardo García Ramírez — full-stack engineer and data scientist building AI/ML systems that run in production on the cloud. M.Sc. Data Science, peer-reviewed research, former professor.',
   openGraph: {
     images: [
       {
@@ -88,7 +90,7 @@ function SocialIcon({ icon }: { icon: SocialLink['icon'] }) {
 
 const skillGroups = [
   {
-    category: 'Python & Data Engineering',
+    category: 'Data & Analytics',
     skills: ['Python', 'pandas', 'NumPy', 'DuckDB', 'SQLite', 'Parquet', 'ETL', 'CLI tooling'],
   },
   {
@@ -96,142 +98,72 @@ const skillGroups = [
     skills: [
       'scikit-learn',
       'JAX',
-      'PyTorch',
       'Bayesian inference',
       'Gaussian Processes',
       'Bayesian Optimization',
-      'Time series',
-      'Feature engineering',
     ],
   },
   {
-    category: 'AI / LLM & RAG',
-    skills: [
-      'RAG pipelines',
-      'Qdrant',
-      'OpenAI',
-      'Anthropic',
-      'Ollama',
-      'Embeddings',
-      'faster-whisper',
-      'Vector search',
-    ],
+    category: 'AI / LLM & Agents',
+    skills: ['RAG pipelines', 'FastMCP', 'Qdrant', 'OpenAI', 'Anthropic', 'Ollama', 'Embeddings'],
   },
   {
-    category: 'Scientific Computing',
-    skills: ['PyVista', 'VTK', 'GMSH', 'COMSOL', 'Simulation', 'Computational modeling'],
+    category: 'Backend Engineering',
+    skills: ['FastAPI', 'C#', 'ASP.NET Core', 'Azure Functions', 'PyVista'],
   },
   {
-    category: 'Backend & APIs',
-    skills: ['FastAPI', 'C#', 'ASP.NET Core', 'Azure Functions', 'Rust (PyO3)', 'REST APIs'],
+    category: 'Frontend',
+    skills: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
   },
   {
-    category: 'DevOps & Tooling',
+    category: 'Infrastructure',
     skills: ['Docker', 'GitHub Actions', 'Azure DevOps', 'PyPI', 'Splunk', 'Power BI'],
   },
 ]
 
-const timeline = [
-  {
-    role: 'Aggregation Services Senior Developer',
-    context: 'MSCI',
-    dates: 'Sep 2023 – Present',
-    bullets: [
-      'Build and maintain backend services, APIs, analytics tooling, dashboards, and data workflows for large-scale financial data systems.',
-      'Design telemetry and monitoring solutions using Splunk, Azure DevOps data, and database-backed reporting.',
-      'Develop automation and agent-assisted workflows for operational analytics, documentation, and engineering productivity.',
-      'Contributed to enterprise initiatives with approximately USD 1M in business impact.',
-    ],
-  },
-  {
-    role: 'Software Developer II',
-    context: 'Rackspace Technology',
-    dates: 'Aug 2022 – Sep 2023',
-    bullets: [
-      'Developed APIs, enterprise services, and serverless applications using C#, .NET, and Azure Functions.',
-      'Implemented automated tests, Jenkins CI/CD workflows, monitoring, telemetry tooling, and production troubleshooting.',
-    ],
-  },
-  {
-    role: '.NET Middle Software Engineer',
-    context: 'Parallel Staff / Softeq',
-    dates: 'Jan 2022 – Aug 2022',
-    bullets: [
-      'Built backend services and desktop automation tooling using C# and .NET.',
-      'Developed automated test scenarios, validation workflows, and technical documentation.',
-    ],
-  },
-  {
-    role: 'Hardware and Software Development Specialist',
-    context: 'Delee Corp',
-    dates: 'Feb 2020 – Dec 2021',
-    bullets: [
-      'Built C#/.NET backend services and WPF/XAML desktop tools for laboratory automation and biomedical workflows.',
-      'Designed reusable software components for data acquisition, device control, and automated testing.',
-    ],
-  },
-]
+type MediumArticle = {
+  title: string
+  url: string
+  image: string
+  publication: string
+}
 
-const publications = [
+const mediumArticles: MediumArticle[] = [
   {
-    authors: 'Beduk, T., Gomes, M., et al., Garcia-Ramirez, R., et al.',
-    year: '2022',
-    title:
-      'A Portable Molecularly Imprinted Sensor for On-Site and Wireless Environmental Bisphenol A Monitoring',
-    venue: 'Frontiers in Chemistry, 10, 833899',
-    doi: 'https://doi.org/10.3389/fchem.2022.833899',
-  },
-  {
-    authors: 'Garcia-Ramirez, R., Cerda-Kipper, A. S., Alvarez, D., et al.',
-    year: '2021',
-    title:
-      'Latest Updates on the Advancement of Polymer-Based Biomicroelectromechanical Systems for Animal Cell Studies',
-    venue: 'Advances in Polymer Technology, 2021, Article 8816564',
-    doi: 'https://doi.org/10.1155/2021/8816564',
-  },
-  {
-    authors: 'González-González, E., Garcia-Ramirez, R., et al.',
-    year: '2021',
-    title: 'Automated ELISA On-Chip for the Detection of Anti-SARS-CoV-2 Antibodies',
-    venue: 'Sensors, 21(20), 6785',
-    doi: 'https://doi.org/10.3390/s21206785',
-  },
-  {
-    authors: 'Garcia-Ramirez, R., & Hosseini, S.',
-    year: '2021',
-    title: 'History of Bio-microelectromechanical Systems (BioMEMS)',
-    venue: 'In: BioMEMS. Lecture Notes in Bioengineering. Springer, Singapore',
-    doi: 'https://doi.org/10.1007/978-981-15-6382-9_1',
-  },
-  {
-    authors: 'Hosseini, S., Espinosa-Hernandez, M., Garcia-Ramirez, R., et al.',
-    year: '2020',
-    title: 'BioMEMS: Biosensing Applications',
-    venue: 'Springer Nature (Book, p. 178)',
-    doi: null,
-  },
-]
-
-const mediumArticles = [
-  {
-    title: 'Your utils.py Is a Symptom, Not a Solution',
-    url: 'https://medium.com/python-in-plain-english/your-utils-py-is-a-symptom-not-a-solution-bb6101c0d31b',
-  },
-  {
-    title: 'Stop Testing Components. Start Testing Outputs.',
-    url: 'https://medium.com/write-a-catalyst/stop-testing-components-start-testing-outputs-9120d8728455',
+    title: 'The Common Ground That Matters: Clean Code meets A Philosophy of Software Design',
+    url: 'https://medium.com/write-a-catalyst/the-common-ground-that-matters-clean-code-meets-a-philosophy-of-software-design-b487e430b212',
+    image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*n7-HDjUJG7DyuWmxsqnZGQ.png',
+    publication: 'Write A Catalyst',
   },
   {
     title: 'What Clean Code Gets Wrong About Data Science',
     url: 'https://medium.com/write-a-catalyst/what-clean-code-gets-wrong-about-data-science-8ec35a1f8711',
+    image: 'https://cdn-images-1.medium.com/max/1024/1*iJVe2IgiP-3SQ7fGl_go_A.png',
+    publication: 'Write A Catalyst',
   },
   {
-    title: 'YAGNI: Your Best Defense Against Scope Creep',
-    url: 'https://medium.com/dev-genius/yagni-your-best-defense-against-scope-creep-3efe0e36a8b7',
+    title: 'Why Your Notebook Lies to You (and How to Stop It)',
+    url: 'https://medium.com/write-a-catalyst/why-your-notebook-lies-to-you-and-how-to-stop-it-a34f47cc2f37',
+    image: 'https://cdn-images-1.medium.com/max/1024/1*C5XAkS9dcd-3VLutllVBjA.png',
+    publication: 'Write A Catalyst',
   },
   {
-    title: "DRY: The Principle You're Probably Applying Wrong",
-    url: 'https://medium.com/dev-genius/dry-the-principle-youre-probably-applying-wrong-a33ff11b41c8',
+    title: 'Stop Testing Components. Start Testing Outputs.',
+    url: 'https://medium.com/write-a-catalyst/stop-testing-components-start-testing-outputs-9120d8728455',
+    image: 'https://cdn-images-1.medium.com/max/1024/1*iErgTBN20v6_2nRGCvgLnw.png',
+    publication: 'Write A Catalyst',
+  },
+  {
+    title: 'How to Validate Models Without Lying to Yourself',
+    url: 'https://python.plainenglish.io/how-to-validate-models-without-lying-to-yourself-01c434f29ee3',
+    image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*bPDF_7akxx4Wyr8WymUnfg.png',
+    publication: 'Python in Plain English',
+  },
+  {
+    title: "If You Can't Debug It, You Can't Model It",
+    url: 'https://medium.com/python-in-plain-english/if-you-cant-debug-it-you-can-t-model-it-fb7a649b24a8',
+    image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*1T7nmnnV4tkee4yOKF8PqQ.png',
+    publication: 'Python in Plain English',
   },
 ]
 
@@ -255,7 +187,7 @@ export default function AboutPage() {
                 Ricardo García Ramírez
               </h1>
               <p className="mb-2 text-lg text-neutral-400">
-                Senior Software Engineer · Python · Data Science · AI/ML
+                AI/ML · Data Science · Cloud · Full-Stack
               </p>
             </div>
           </div>
@@ -273,52 +205,84 @@ export default function AboutPage() {
                 <span className={`text-neutral-500 transition-colors ${link.hoverColor}`}>
                   <SocialIcon icon={link.icon} />
                 </span>
-                <div>
-                  <p className="text-sm font-medium text-white">{link.label}</p>
-                  <p className="text-xs text-neutral-600">{link.handle}</p>
-                </div>
+                <p className="text-sm font-medium text-white">{link.label}</p>
               </a>
             ))}
           </div>
 
-          {/* Bio */}
+          {/* Bio — four-pillar tone (draft, flagged for Ricardo's review) */}
           <section className="mb-16" aria-labelledby="bio-heading">
             <h2 id="bio-heading" className="mb-6 text-2xl font-bold text-white">
-              About
+              About Me
             </h2>
-            <div className="space-y-4 text-base leading-relaxed text-neutral-400">
+            <div className="space-y-4 text-base leading-relaxed text-neutral-400 text-justify">
               <p>
-                I&apos;m a Senior Software Engineer with 7+ years of experience building data
-                systems, ML pipelines, automation tooling, and backend services across enterprise
-                and scientific environments. M.Sc. in Data Science from Pontificia Universidad
-                Católica de Chile (Distinction) — thesis on probabilistic reconstruction of cardiac
-                networks from ECG signals using Bayesian inference and computational modeling.
-                Biomedical Engineering background from Tec de Monterrey. Currently at MSCI designing
-                analytics and monitoring tools for large-scale financial data systems.
+                Hey there! I&apos;m a full-stack engineer and data scientist. I build AI/ML systems
+                that run in production on the cloud, across machine learning, data engineering,
+                cloud infrastructure, and full-stack delivery.
               </p>
               <p>
-                My technical depth sits at the intersection of data engineering, machine learning,
-                and practical software delivery. I&apos;ve built reproducible ML pipelines using JAX
-                and scikit-learn for real research problems, designed ETL workflows that go from raw
-                file formats to queryable analytics assets, and implemented RAG systems from the
-                vector chunking layer (Rust/PyO3) all the way through to retrieval and LLM
-                orchestration. I take Bayesian approaches seriously — the thesis work on Gaussian
-                processes and probabilistic inference wasn&apos;t academic detour, it informs how I
-                think about uncertainty in ML systems today.
+                I&apos;m currently a Senior Developer at MSCI, building backend services, analytics
+                tooling, and data workflows for large-scale financial data systems. I hold an M.Sc.
+                in Data Science from Pontificia Universidad Católica de Chile, with a thesis on
+                probabilistic reconstruction of the Purkinje network from an electrocardiogram using
+                computational modeling and Bayesian inference.
               </p>
               <p>
-                My freelance work focuses on Python tools with clear scope and real handoff:
-                automation pipelines, data extraction workflows, RAG/LLM applications, dashboards,
-                and scientific Python packages. If you have defined inputs, expected outputs, and a
-                deadline — I can work with that.
+                My depth sits where data engineering, machine learning, and practical software
+                delivery meet. I&apos;ve built reproducible ML pipelines in JAX and scikit-learn for
+                real research problems, ETL workflows that take raw files all the way to queryable
+                analytics assets, and RAG systems from the vector-chunking layer through retrieval
+                and LLM orchestration.
               </p>
               <p>
-                I taught bioinstrumentation at Tec de Monterrey, have 5 peer-reviewed publications
-                in biosensing and BioMEMS, and write about software engineering and Python on
-                Medium. The research background isn&apos;t decoration — it&apos;s why the scientific
-                Python work (PurkinjeUV, JAX-BO) exists, and why I default to reproducible,
-                documented, tested code over notebooks.
+                My background is in biomedical engineering, where the gap between &quot;works in
+                theory&quot; and &quot;works on a patient&quot; has real consequences. That&apos;s
+                why my thesis work was not a detour from that engineering mindset: it is where I
+                sharpened my approach to uncertainty, reproducibility, and proving a system is
+                correct rather than assuming it.
               </p>
+              <p>
+                My freelance work focuses on Python tools with clear scope and a real handoff:
+                automation pipelines, data-extraction workflows, RAG/LLM applications, dashboards,
+                and scientific Python packages.
+              </p>
+              <p>
+                Underneath my software development work is a research and teaching track:
+                peer-reviewed publications in biosensing and BioMEMS, teaching bioinstrumentation
+                courses at Tec de Monterrey, and regularly writing on software engineering best
+                practices and Data Science workflows. That background is why I default to
+                documented, tested, reproducible code over notebooks.
+              </p>
+            </div>
+          </section>
+
+          {/* Experience (condensed — full version on the CV) */}
+          <section className="mb-16" aria-labelledby="experience-heading">
+            <div className="mb-8 flex items-baseline justify-between gap-4">
+              <h2 id="experience-heading" className="text-2xl font-bold text-white">
+                Professional Experience
+              </h2>
+              <Link
+                href="/cv"
+                className="shrink-0 text-sm font-medium text-neutral-400 transition-colors hover:text-cyan-400"
+              >
+                Full CV →
+              </Link>
+            </div>
+            <div className="space-y-6">
+              {experienceCondensed.map((entry) => (
+                <div key={`${entry.company}-${entry.role}`}>
+                  <div className="mb-1 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                    <div>
+                      <span className="font-semibold text-white">{entry.role}</span>
+                      <span className="ml-2 text-sm text-neutral-500">{entry.company}</span>
+                    </div>
+                    <span className="shrink-0 text-sm text-neutral-600">{entry.period}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-neutral-400">{entry.summary}</p>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -348,131 +312,88 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Teaching */}
-          <section className="mb-16" aria-labelledby="teaching-heading">
-            <h2 id="teaching-heading" className="mb-8 text-2xl font-bold text-white">
-              Teaching
+          {/* Teaching & Research hub */}
+          <section className="mb-16" aria-labelledby="more-heading">
+            <h2 id="more-heading" className="mb-8 text-2xl font-bold text-white">
+              Teaching &amp; Research
             </h2>
-            <div className="space-y-6">
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-6">
-                <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-semibold text-white">
-                    Adjunct Assistant Professor — Biomedical Engineering Dept.
-                  </h3>
-                  <span className="shrink-0 text-sm text-neutral-600">Aug 2022 – Dec 2023</span>
-                </div>
-                <p className="mb-3 text-sm text-neutral-500">
-                  Tecnológico de Monterrey (ITESM), Mexico
-                </p>
-                <p className="mb-3 text-sm text-neutral-400">
-                  Taught lectures and lab components for the Biomedical Engineering Major with
-                  emphasis on bioinstrumentation (Tec20 and TEC21 curricula).
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {['BI2001B', 'BI2005B', 'BI3010', 'BI3011', 'BI3014'].map((code) => (
-                    <span
-                      key={code}
-                      className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-0.5 text-xs text-neutral-400"
-                    >
-                      {code}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-6">
-                <div className="mb-2 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-semibold text-white">Physics Laboratory Instructor</h3>
-                  <span className="shrink-0 text-sm text-neutral-600">Aug 2018 – Dec 2019</span>
-                </div>
-                <p className="text-sm text-neutral-500">
-                  Tecnológico de Monterrey (ITESM) — Physics Department, Mexico
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Publications */}
-          <section className="mb-16" aria-labelledby="publications-heading">
-            <h2 id="publications-heading" className="mb-8 text-2xl font-bold text-white">
-              Publications
-            </h2>
-            <div className="space-y-5">
-              {publications.map((pub, i) => (
-                <div key={i} className="flex gap-4">
-                  <span className="mt-0.5 shrink-0 text-sm font-bold text-cyan-400">[{i + 1}]</span>
-                  <div>
-                    <p className="text-sm leading-relaxed text-neutral-300">
-                      {pub.authors} ({pub.year}).{' '}
-                      {pub.doi ? (
-                        <a
-                          href={pub.doi}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-medium text-white transition-colors hover:text-cyan-400"
-                        >
-                          {pub.title}
-                        </a>
-                      ) : (
-                        <span className="font-medium text-white">{pub.title}</span>
-                      )}
-                      . <span className="italic text-neutral-500">{pub.venue}.</span>
-                      {pub.doi && (
-                        <>
-                          {' '}
-                          <a
-                            href={pub.doi}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-neutral-600 transition-colors hover:text-cyan-400"
-                          >
-                            DOI ↗
-                          </a>
-                        </>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6">
-              <a
-                href="https://scholar.google.com/citations?user=l71XTncAAAAJ&hl=es&oi=ao"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium text-neutral-400 transition-colors hover:text-cyan-400"
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <Link
+                href="/teaching"
+                className="group flex items-start gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-neutral-700 hover:bg-neutral-800/50"
               >
-                View all on Google Scholar →
-              </a>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-400/10 transition-colors group-hover:bg-cyan-400/20">
+                  <BookOpen className="h-5 w-5 text-cyan-400" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white">Teaching →</p>
+                  <p className="mt-1 text-sm text-neutral-400">
+                    Teaching bioinstrumentation at Tec de Monterrey is where I learned that
+                    explaining something clearly is the hardest proof you actually understand it. It
+                    made me a better engineer.
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href="/research"
+                className="group flex items-start gap-4 rounded-xl border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-neutral-700 hover:bg-neutral-800/50"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-400/10 transition-colors group-hover:bg-cyan-400/20">
+                  <FlaskConical className="h-5 w-5 text-cyan-400" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white">Research →</p>
+                  <p className="mt-1 text-sm text-neutral-400">
+                    My research is where I learned to take uncertainty seriously. Publications in
+                    biosensing and BioMEMS, a Springer book chapter, and a thesis that asked: can
+                    you reconstruct how a heart conducts electricity from a surface ECG?
+                  </p>
+                </div>
+              </Link>
             </div>
           </section>
 
           {/* Writing */}
           <section aria-labelledby="writing-heading">
-            <h2 id="writing-heading" className="mb-8 text-2xl font-bold text-white">
+            <h2 id="writing-heading" className="mb-4 text-2xl font-bold text-white">
               Writing
             </h2>
-            <p className="mb-6 text-sm text-neutral-500">
-              Software engineering and Python on Medium — design principles, testing, data science
-              workflow.
+            <p className="mb-8 text-base leading-relaxed text-neutral-400">
+              Medium is where I work through ideas that don&apos;t fit in a commit message and are
+              too practical for a paper. I focus on software engineering for data scientists: clean
+              code, testing, reproducibility, and the debugging mindset that separates a working
+              model from a trusted one.
             </p>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {mediumArticles.map((article) => (
                 <a
                   key={article.url}
                   href={article.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 transition-colors hover:border-neutral-700 hover:bg-neutral-800/50"
                 >
-                  <span className="text-neutral-700">→</span>
-                  {article.title}
+                  {article.image && (
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-1 p-4">
+                    <p className="text-xs text-neutral-500">{article.publication}</p>
+                    <p className="text-sm font-semibold leading-snug text-white">{article.title}</p>
+                  </div>
                 </a>
               ))}
             </div>
             <div className="mt-6">
               <a
-                href="https://medium.com/@rgr5882"
+                href="https://medium.com/@ricardogr07"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-neutral-400 transition-colors hover:text-cyan-400"

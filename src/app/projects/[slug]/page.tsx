@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import DiagramZoom from '@/components/diagram-zoom'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
+import type { PortfolioProject } from '@/lib/types'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -30,11 +32,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+const linkButtonClass =
+  'inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white'
+
+const statusLabels: Record<NonNullable<PortfolioProject['status']>, string> = {
+  live: 'Live',
+  pypi: 'On PyPI',
+  active: 'Active',
+  archived: 'Archived',
+}
+
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params
-  const project = visibleProjects.find((p) => p.slug === slug)
+  const index = visibleProjects.findIndex((p) => p.slug === slug)
+  const project = index === -1 ? undefined : visibleProjects[index]
 
   if (!project) return notFound()
+
+  // STARL beats with legacy fallback — degradation logic lives here so the JSX stays clean.
+  const situation = project.situation ?? project.problem
+  const action = project.action ?? project.solution
+  const { task, result, learning } = project
+  const hasDeliverables = project.deliverables.length > 0
+  const showTldr = Boolean(project.tldr || project.headlineMetric)
+
+  const prev = index > 0 ? visibleProjects[index - 1] : undefined
+  const next = index < visibleProjects.length - 1 ? visibleProjects[index + 1] : undefined
 
   return (
     <main>
@@ -82,7 +105,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -99,7 +122,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
                 Live Demo
               </a>
@@ -109,9 +132,77 @@ export default async function CaseStudyPage({ params }: Props) {
                 href={project.docsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-300 transition-all hover:border-neutral-500 hover:text-white"
+                className={linkButtonClass}
               >
-                Documentation
+                {project.docsLabel ? (
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path
+                      strokeLinecap="round"
+                      d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                )}
+                {project.docsLabel ?? 'Documentation'}
+              </a>
+            )}
+            {project.pypiUrl && (
+              <a
+                href={project.pypiUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C8.746 0 9 1.53 9 1.53V4.5h6V5.4H5.748C5.748 5.4 3 5.148 3 8.448c0 3.3 2.55 3.15 2.55 3.15H7.2V9.9s-.1-2.55 2.55-2.55h4.2s2.4.05 2.4-2.3V1.55S16.6 0 12 0zM8.85 1.5c.45 0 .75.3.75.75s-.3.75-.75.75-.75-.3-.75-.75.3-.75.75-.75zM12 24c3.254 0 3-1.53 3-1.53V19.5H9v-.9h9.252C18.252 18.6 21 18.852 21 15.552c0-3.3-2.55-3.15-2.55-3.15H16.8v1.698s.1 2.55-2.55 2.55H10.05s-2.4-.05-2.4 2.3v3.5S7.4 24 12 24zm3.15-1.5c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z" />
+                </svg>
+                PyPI
+              </a>
+            )}
+            {project.marketplaceUrl && (
+              <a
+                href={project.marketplaceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  />
+                </svg>
+                GitHub Action
               </a>
             )}
           </div>
@@ -151,47 +242,129 @@ export default async function CaseStudyPage({ params }: Props) {
             </div>
           )}
 
+          {/* TL;DR block */}
+          {showTldr && (
+            <div className="mb-12 rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
+              {project.headlineMetric && (
+                <p className="mb-2 text-2xl font-bold tracking-tight text-cyan-400 sm:text-3xl">
+                  {project.headlineMetric}
+                </p>
+              )}
+              {project.tldr && (
+                <p className="text-lg leading-relaxed text-justify text-neutral-200">
+                  {project.tldr}
+                </p>
+              )}
+              {project.caveat && (
+                <p className="mt-3 text-sm italic text-neutral-500">{project.caveat}</p>
+              )}
+            </div>
+          )}
+
           {/* Content grid */}
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* Main content */}
             <div className="space-y-10 lg:col-span-2">
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Problem</h2>
-                <p className="text-base leading-relaxed text-neutral-400">{project.problem}</p>
-              </section>
-
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Solution</h2>
-                <p className="text-base leading-relaxed text-neutral-400">{project.solution}</p>
-              </section>
-
-              {project.diagram && (
+              {situation && (
                 <section>
-                  <h2 className="mb-4 text-xl font-semibold text-white">How it works</h2>
-                  <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/60 p-6">
-                    <Image
-                      src={project.diagram}
-                      alt={`${project.title} architecture diagram`}
-                      width={900}
-                      height={80}
-                      className="max-w-full"
-                      unoptimized
-                    />
-                  </div>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Situation</h2>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {situation}
+                  </p>
                 </section>
               )}
 
-              <section>
-                <h2 className="mb-3 text-xl font-semibold text-white">Deliverables</h2>
-                <ul className="space-y-2">
-                  {project.deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-neutral-400">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              {task && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Task</h2>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">{task}</p>
+                </section>
+              )}
+
+              {(action || hasDeliverables) && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Action</h2>
+                  {action &&
+                    (Array.isArray(action) ? (
+                      <ul className="space-y-3">
+                        {action.map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400"
+                          >
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-base leading-relaxed text-justify text-neutral-400">
+                        {action}
+                      </p>
+                    ))}
+                  {hasDeliverables && (
+                    <ul className="mt-4 space-y-2">
+                      {project.deliverables.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-neutral-400">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              )}
+
+              {/* How it works — directly after the Action beat */}
+              {project.diagram && (
+                <section>
+                  <h2 className="mb-4 text-xl font-semibold text-white">How it works</h2>
+                  <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60">
+                    <DiagramZoom
+                      src={project.diagram}
+                      alt={`${project.title} architecture diagram`}
+                    />
+                  </div>
+                  {project.diagramCaption && (
+                    <p className="mt-3 text-sm text-neutral-500">{project.diagramCaption}</p>
+                  )}
+                </section>
+              )}
+
+              {result && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Result</h2>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {result}
+                  </p>
+                  {project.resultGallery && project.resultGallery.length > 0 && (
+                    <div className="mt-6 space-y-4">
+                      {project.resultGallery.map((shot) => (
+                        <figure key={shot.src}>
+                          <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60">
+                            {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG chart */}
+                            <img src={shot.src} alt={shot.alt} className="h-auto w-full" />
+                          </div>
+                          {shot.caption && (
+                            <figcaption className="mt-2 text-sm text-neutral-500">
+                              {shot.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              )}
+
+              {learning && (
+                <section>
+                  <h2 className="mb-3 text-xl font-semibold text-white">Learning</h2>
+                  <p className="text-base leading-relaxed text-justify text-neutral-400">
+                    {learning}
+                  </p>
+                </section>
+              )}
 
               {project.businessValue.length > 0 && (
                 <section>
@@ -205,6 +378,53 @@ export default async function CaseStudyPage({ params }: Props) {
                     ))}
                   </ul>
                 </section>
+              )}
+
+              {/* Gallery — stacked full-width figures, each at its intrinsic aspect */}
+              {project.gallery && project.gallery.length > 0 && (
+                <section className="space-y-8">
+                  {project.gallery.map((shot) => (
+                    <figure key={shot.src}>
+                      <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/60 p-4">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- inline SVG diagram, render at its intrinsic aspect ratio */}
+                        <img src={shot.src} alt={shot.alt} className="h-auto w-full" />
+                      </div>
+                      {shot.caption && (
+                        <figcaption className="mt-2 text-sm text-neutral-500">
+                          {shot.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </section>
+              )}
+
+              {/* CLI snippet */}
+              {project.cliSnippet && (
+                <section>
+                  <pre className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900 p-4 text-sm text-neutral-300">
+                    <code>{project.cliSnippet}</code>
+                  </pre>
+                </section>
+              )}
+
+              {/* Limitations disclaimer */}
+              {project.limitations && (
+                <section>
+                  <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5">
+                    <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-amber-400/90">
+                      Limitations
+                    </h2>
+                    <p className="text-sm leading-relaxed text-neutral-400">
+                      {project.limitations}
+                    </p>
+                  </div>
+                </section>
+              )}
+
+              {/* Artifact note */}
+              {project.artifactNote && (
+                <p className="text-xs italic text-neutral-600">{project.artifactNote}</p>
               )}
             </div>
 
@@ -226,20 +446,81 @@ export default async function CaseStudyPage({ params }: Props) {
                 </div>
               </section>
 
-              <section>
-                <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
-                  Services
-                </h2>
-                <div className="flex flex-col gap-2">
-                  {project.servicesSupported.map((svc) => (
-                    <span key={svc} className="text-sm text-neutral-400">
-                      {svc}
-                    </span>
-                  ))}
-                </div>
-              </section>
+              {project.servicesSupported && project.servicesSupported.length > 0 && (
+                <section>
+                  <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Services
+                  </h2>
+                  <div className="flex flex-col gap-2">
+                    {project.servicesSupported.map((svc) => (
+                      <span key={svc} className="text-sm text-neutral-400">
+                        {svc}
+                      </span>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {project.status && (
+                <section>
+                  <h2 className="mb-1.5 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Status
+                  </h2>
+                  <p className="text-sm text-neutral-300">{statusLabels[project.status]}</p>
+                </section>
+              )}
+
+              {project.metrics && project.metrics.length > 0 && (
+                <section>
+                  <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                    Metrics
+                  </h2>
+                  <dl className="space-y-3">
+                    {project.metrics.map((m) => (
+                      <div key={m.label}>
+                        <dt className="text-xs text-neutral-500">{m.label}</dt>
+                        <dd className="text-base font-semibold text-white">{m.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </section>
+              )}
             </div>
           </div>
+
+          {/* Prev / next nav */}
+          <nav
+            aria-label="Project navigation"
+            className="mt-16 flex items-center justify-between gap-4 border-t border-neutral-800 pt-8"
+          >
+            {prev ? (
+              <Link
+                href={`/projects/${prev.slug}`}
+                className="group flex max-w-[45%] flex-col text-sm text-neutral-500 transition-colors hover:text-white"
+              >
+                <span className="text-xs uppercase tracking-wider text-neutral-600">Previous</span>
+                <span className="mt-1 font-medium text-neutral-300 group-hover:text-white">
+                  {prev.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+
+            {next ? (
+              <Link
+                href={`/projects/${next.slug}`}
+                className="group flex max-w-[45%] flex-col text-right text-sm text-neutral-500 transition-colors hover:text-white"
+              >
+                <span className="text-xs uppercase tracking-wider text-neutral-600">Next</span>
+                <span className="mt-1 font-medium text-neutral-300 group-hover:text-white">
+                  {next.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
         </div>
       </article>
 

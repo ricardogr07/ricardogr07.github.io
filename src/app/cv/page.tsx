@@ -1,17 +1,19 @@
 import type { Metadata } from 'next'
+import { Mail } from 'lucide-react'
 import Footer from '@/components/footer'
+import { experience } from '@/content/experience'
 
 export const metadata: Metadata = {
   title: 'CV',
   description:
-    'Ricardo García Ramírez — Senior Software Engineer. Resume with experience at MSCI, Rackspace, Python/data engineering, scientific computing, M.Sc. Data Science.',
+    'Ricardo García Ramírez: full-stack engineer and data scientist. CV with experience at MSCI, Rackspace, and Delee Corp. M.Sc. in Data Science, publications in biosensing and BioMEMS.',
   openGraph: {
     images: [
       {
         url: 'https://ricardogr07.github.io/og/cv.png',
         width: 1200,
         height: 630,
-        alt: 'CV — Ricardo García Ramírez',
+        alt: 'CV, Ricardo García Ramírez',
       },
     ],
   },
@@ -20,77 +22,27 @@ export const metadata: Metadata = {
   },
 }
 
-const experience = [
-  {
-    role: 'Aggregation Services Senior Developer',
-    company: 'MSCI',
-    dates: 'Sep 2023 – Present',
-    bullets: [
-      'Build and maintain enterprise backend services, APIs, analytics tooling, operational scripts, dashboards, and data workflows supporting large-scale financial data systems.',
-      'Develop Python-oriented automation and data workflows for operational analytics, reporting, validation, documentation, and engineering productivity.',
-      'Design telemetry and monitoring solutions using Splunk, Azure DevOps data, database-backed reporting, and Power BI.',
-      'Contribute to modernization and technical debt reduction, including Java refactoring and upgrade-readiness work while preserving behavior and release stability.',
-      'Contributed to enterprise initiatives with approximately USD 1M in business impact.',
-    ],
-  },
-  {
-    role: 'Software Developer II',
-    company: 'Rackspace Technology',
-    dates: 'Aug 2022 – Sep 2023',
-    bullets: [
-      'Developed internal and customer-facing APIs, enterprise services, and serverless applications using C#, .NET, and Azure Functions.',
-      'Translated functional requirements into conceptual designs, estimates, prototypes, and production-grade software.',
-      'Implemented automated tests, Jenkins CI/CD workflows, monitoring, telemetry tooling, and production troubleshooting.',
-    ],
-  },
-  {
-    role: '.NET Middle Software Engineer',
-    company: 'Parallel Staff / Softeq',
-    dates: 'Jan 2022 – Aug 2022',
-    bullets: [
-      'Built backend services and desktop automation tooling using C#, .NET Core, and .NET Framework.',
-      'Performed requirements analysis, authored test scenarios, wrote test scripts, and contributed to code reviews and documentation.',
-    ],
-  },
-  {
-    role: 'Hardware and Software Development Specialist',
-    company: 'Delee Corp',
-    dates: 'Feb 2020 – Dec 2021',
-    bullets: [
-      'Built C#/.NET backend services and WPF/XAML MVVM desktop tools for laboratory automation, device control, data acquisition, and automated biomedical testing workflows.',
-      'Worked with cross-functional stakeholders to capture requirements, deliver reusable software, and support Agile delivery.',
-    ],
-  },
-]
-
 const education = [
   {
     degree: 'M.Sc. in Data Science',
     institution: 'Pontificia Universidad Católica de Chile',
     location: 'Santiago, Chile',
-    notes:
-      'Graduated with Distinction for outstanding academic performance and thesis excellence. Thesis: Probabilistic reconstruction of the Purkinje network from electrocardiogram signals using computational modeling and Bayesian inference.',
+    notes: 'Graduated with Distinction.',
   },
   {
     degree: 'B.Sc. in Biomedical Engineering',
     institution: 'Tecnológico de Monterrey (ITESM)',
     location: 'Monterrey, Mexico',
-    notes: 'Minor in Biomedical Microtechnology. Academic Excellence Award — Top 5% GPA.',
+    notes: 'Minor in Biomedical Microtechnology. Academic Excellence Award, Top 5% GPA.',
   },
 ]
 
 const teaching = [
   {
-    role: 'Adjunct Assistant Professor — Biomedical Engineering Dept.',
+    role: 'Adjunct Assistant Professor, Biomedical Engineering Dept.',
     institution: 'Tecnológico de Monterrey (ITESM)',
     dates: 'Aug 2022 – Dec 2023',
     notes: 'Bioinstrumentation courses (TEC20/TEC21): BI2001B, BI2005B, BI3010, BI3011, BI3014.',
-  },
-  {
-    role: 'Physics Laboratory Instructor',
-    institution: 'Tecnológico de Monterrey (ITESM)',
-    dates: 'Aug 2018 – Dec 2019',
-    notes: 'TA for undergraduate Physics lab courses.',
   },
 ]
 
@@ -122,47 +74,15 @@ const publications = [
   {
     ref: '[5]',
     text: 'Hosseini, S., Espinosa-Hernandez, M., Garcia-Ramirez, R., et al. (2020). BioMEMS: Biosensing Applications.',
-    venue: 'Springer Nature (1st ed., p. 178).',
+    venue: 'Springer Nature (1st ed., 178 pp.).',
     doi: null,
-  },
-]
-
-const selectedProjects = [
-  {
-    title: 'LinkedIn Job Scraping & Data Export Pipeline',
-    summary:
-      'Python scraping pipeline with SQLite persistence, CLI, and optional OpenAI enrichment.',
-    repo: 'https://github.com/ricardogr07/LinkedInWebScraper',
-  },
-  {
-    title: 'Rust + Python RAG Chunking Pipeline',
-    summary: 'Token-aware RAG pipeline using Rust/PyO3 for chunking, Qdrant for vector search.',
-    repo: 'https://github.com/ricardogr07/rusty-rag-chunker',
-  },
-  {
-    title: 'Clipsmith: AI-Assisted Media Pipeline',
-    summary:
-      'Local media automation: VOD ingestion, Spanish transcription, LLM clip selection, FFmpeg output.',
-    repo: 'https://github.com/ricardogr07/clipsmith',
-  },
-  {
-    title: 'RepoSage: AI-Assisted Repository Audit Tool',
-    summary:
-      'Codebase scanner that detects language/framework signals and outputs structured audit reports.',
-    repo: 'https://github.com/ricardogr07/reposage',
-  },
-  {
-    title: 'PurkinjeUV: Scientific Python Package',
-    summary:
-      'Modular scientific package for generating Purkinje network geometries over cardiac meshes. Published on PyPI.',
-    repo: 'https://github.com/ricardogr07/purkinje-uv',
   },
 ]
 
 const skills = [
   {
-    category: 'Languages',
-    items: ['Python', 'C#', 'Java', 'TypeScript', 'Rust (PyO3)', 'SQL', 'Bash'],
+    category: 'Programming Languages',
+    items: ['Python', 'C#', 'Java', 'TypeScript', 'SQL', 'Bash', 'C'],
   },
   {
     category: 'Backend / Cloud',
@@ -174,10 +94,10 @@ const skills = [
   },
   {
     category: 'AI / ML',
-    items: ['RAG', 'Qdrant', 'OpenAI', 'Anthropic', 'scikit-learn', 'JAX', 'PyTorch'],
+    items: ['RAG', 'Qdrant', 'OpenAI', 'Anthropic', 'FastMCP', 'scikit-learn', 'JAX'],
   },
-  { category: 'Scientific', items: ['NumPy', 'PyVista', 'VTK', 'GMSH', 'Bayesian Optimization'] },
-  { category: 'Tooling', items: ['GitHub Actions', 'Azure DevOps', 'PyPI', 'pnpm', 'Next.js'] },
+  { category: 'Scientific', items: ['NumPy', 'PyVista', 'Bayesian Optimization'] },
+  { category: 'Tooling', items: ['GitHub Actions', 'Azure DevOps', 'PyPI', 'Next.js'] },
 ]
 
 export default function CVPage() {
@@ -189,9 +109,7 @@ export default function CVPage() {
           <div className="mb-10 flex items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold text-white">Ricardo García Ramírez</h1>
-              <p className="text-neutral-400">
-                Senior Software Engineer · Python · .NET · Data · AI
-              </p>
+              <p className="text-neutral-400">AI/ML · Data Science · Cloud · Full-Stack</p>
             </div>
             {/* PDF link — place cv.pdf at public/resume/cv.pdf when ready */}
             <a
@@ -219,25 +137,45 @@ export default function CVPage() {
           </div>
 
           {/* Contact */}
-          <div className="mb-10 flex flex-wrap gap-x-6 gap-y-1 border-b border-neutral-800 pb-8 text-sm text-neutral-400">
-            <a href="mailto:rgr5882@gmail.com" className="hover:text-white">
-              rgr5882@gmail.com
+          <div className="mb-10 flex flex-wrap gap-x-5 gap-y-2 border-b border-neutral-800 pb-8 text-sm text-neutral-400">
+            <a
+              href="mailto:rgr.5882@gmail.com"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+              rgr.5882@gmail.com
             </a>
             <a
               href="https://github.com/ricardogr07"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              github.com/ricardogr07
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              ricardogr07
             </a>
             <a
               href="https://www.linkedin.com/in/ricardogarciaramirez/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              linkedin.com/in/ricardogarciaramirez
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+              ricardogarciaramirez
             </a>
           </div>
 
@@ -247,12 +185,12 @@ export default function CVPage() {
               Summary
             </h2>
             <p className="text-base leading-relaxed text-neutral-300">
-              Senior Software Engineer with 7+ years of experience building backend services, APIs,
-              data pipelines, automation tooling, and cloud-based applications across enterprise and
-              scientific environments. Strong Python background through data engineering, ETL, ML,
-              scientific computing, CLI tooling, and reproducible pipelines. M.Sc. in Data Science
-              (PUC Chile, Distinction) with thesis work in Bayesian inference and computational
-              cardiac modeling.
+              Full-stack engineer and data scientist with 7+ years of experience at the intersection
+              of backend systems, cloud infrastructure, and applied AI/ML. I build production
+              systems: backend services and APIs in Python and C#/.NET, data pipelines from raw
+              files to queryable analytics assets, and RAG systems from the vector-chunking layer
+              through LLM orchestration. M.Sc. in Data Science with thesis work in Bayesian
+              inference and computational modeling.
             </p>
           </section>
 
@@ -269,7 +207,7 @@ export default function CVPage() {
                       <span className="font-semibold text-white">{entry.role}</span>
                       <span className="ml-2 text-sm text-neutral-500">{entry.company}</span>
                     </div>
-                    <span className="text-sm text-neutral-600">{entry.dates}</span>
+                    <span className="text-sm text-neutral-600">{entry.period}</span>
                   </div>
                   <ul className="mt-2 space-y-1">
                     {entry.bullets.map((b) => (
@@ -347,7 +285,7 @@ export default function CVPage() {
               Languages
             </h2>
             <p className="text-sm text-neutral-300">
-              Spanish (Native) · English (Full Professional — TOEFL iBT 109 / ITP 653)
+              Spanish (Native) · English (Full Professional: TOEFL iBT 109 / ITP 653)
             </p>
           </section>
 

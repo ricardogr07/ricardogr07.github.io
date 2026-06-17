@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section
-      className="relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center overflow-hidden bg-neutral-950 px-6 py-24 text-center"
+      className="relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center overflow-hidden bg-neutral-950 px-6 pt-12 pb-20 text-center"
       aria-label="Hero"
     >
       {/* Subtle grid background */}
@@ -18,26 +18,28 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl">
         {/* Badge */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5">
           <span className="text-sm font-medium tracking-wide text-cyan-400">
-            AI/ML · Data Engineering · Cloud · Full-Stack
+            AI/ML · Data Science · Cloud · Full-Stack
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-          Full-Stack engineer &amp; Data Scientist building{' '}
+        <h1 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Full-Stack Developer &amp; Data Scientist
+          <br className="hidden lg:block" /> building{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-            AI/ML systems
-          </span>{' '}
-          that run in production on the cloud.
+            AI/ML systems.
+          </span>
         </h1>
 
         {/* Sub-copy */}
-        <p className="mx-auto mb-12 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-          M.Sc. Data Science. 7+ years enterprise engineering. Open to senior roles and select
-          freelance work.
+        <p className="mx-auto mb-0 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
+          M.Sc. Data Science. 7+ years enterprise engineering.
+        </p>
+        <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
+          Available for senior engineering roles and freelance projects in Python, ML systems, and
+          data products.
         </p>
 
         {/* CTAs */}

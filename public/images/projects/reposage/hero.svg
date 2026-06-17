@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
+  <defs>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
+    </pattern>
+    <radialGradient id="glow" cx="408" cy="252" r="504" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 88.2) scale(1 0.65)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.12"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
+
+  
+  <text x="100" y="112" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-1.55" fill="#ffffff">RepoSage</text>
+  <text x="100" y="160" font-size="22" fill="#7dd3fc">Deterministic repo intelligence, not chat-with-your-repo.</text>
+
+  
+  <g>
+    
+    <rect x="100" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5"></rect>
+    <rect x="308.8" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"></rect>
+    <rect x="517.6" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"></rect>
+    <rect x="726.4" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#d9a441" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+    <rect x="935.2" y="232.8" width="164.8" height="62" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.5"></rect>
+  </g>
+  <g text-anchor="middle" font-size="16" font-weight="600" letter-spacing="1.28" fill="#f5f5f5">
+    <text x="182.4" y="269">SCAN</text>
+    <text x="391.2" y="269">DETECT</text>
+    <text x="600" y="269">SCORE</text>
+    <text x="808.8" y="261" fill="#e3b34d">ENRICH</text>
+    <text x="1017.6" y="269">REPORT</text>
+  </g>
+  <text x="808.8" y="280" text-anchor="middle" font-size="10.5" font-weight="500" letter-spacing="0.63" fill="#e3b34d" fill-opacity="0.78">optional · LLM</text>
+
+  
+  <g fill="#22d3ee" font-size="44" font-weight="700" letter-spacing="-0.44">
+    <text x="100" y="386">29</text>
+    <text x="266.2" y="386">32</text>
+    <text x="440.2" y="386">10</text>
+    <text x="661" y="386">6</text>
+  </g>
+  <g fill="#a3a3a3" font-size="13">
+    <text x="100" y="416">languages</text>
+    <text x="266.2" y="416">frameworks</text>
+    <text x="440.2" y="416">manifest parsers</text>
+    <text x="661" y="416">signal quality score</text>
+  </g>
+
+  
+  <text x="100" y="567" font-size="14" fill="#737373">Structured evidence, safe to drop into CI. The LLM annotates a report that already exists, it never generates one.</text>
+</svg>

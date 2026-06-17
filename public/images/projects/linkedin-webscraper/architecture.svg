@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="322" viewBox="0 0 1120 322" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
+  <defs>
+    
+    <marker id="ahc" markerWidth="8" markerHeight="7" refX="6.5" refY="3.5" orient="auto"><polygon points="0 0, 8 3.5, 0 7" fill="#22d3ee"></polygon></marker>
+    <marker id="ahi" markerWidth="8" markerHeight="7" refX="6.5" refY="3.5" orient="auto"><polygon points="0 0, 8 3.5, 0 7" fill="#818cf8"></polygon></marker>
+  </defs>
+
+  <rect width="1120" height="322" fill="#0a0a0a"></rect>
+
+  
+  <g fill="none" stroke="#818cf8" stroke-width="1.4">
+    <path d="M193 105 H293"></path>
+    <path d="M193 183 H293"></path>
+    <path d="M193 263 H293"></path>
+    <path d="M293 105 V263"></path>
+    <path d="M293 186 H345"></path>
+  </g>
+
+  
+  <g>
+    <rect x="38" y="86" width="155" height="38" rx="8" fill="#0c1016" stroke="#22d3ee" stroke-width="1.5"></rect>
+    <text x="115.5" y="105.5" text-anchor="middle" dominant-baseline="middle" font-size="13" fill="#e5e5e5">CLI [argparse]</text>
+
+    <rect x="38" y="164" width="155" height="38" rx="8" fill="#0c1016" stroke="#404040" stroke-width="1.4"></rect>
+    <text x="115.5" y="183.5" text-anchor="middle" dominant-baseline="middle" font-size="13" fill="#e5e5e5">Library API</text>
+
+    <rect x="38" y="240" width="155" height="46" rx="8" fill="#0c1016" stroke="#404040" stroke-width="1.4"></rect>
+    <text x="115.5" y="258" text-anchor="middle" dominant-baseline="middle" font-size="13" fill="#e5e5e5">CRON</text>
+    <text x="115.5" y="274" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#737373">30 12 * * *</text>
+  </g>
+
+  
+  <rect x="345" y="92" width="510" height="198" rx="16" fill="#0b0e13" stroke="#20262e" stroke-width="1"></rect>
+  <text x="600" y="114" text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="600" letter-spacing="0.3" fill="#e5e5e5">DailyScrapeService</text>
+  <text x="600" y="134" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#6b7280">isolated domain logic</text>
+
+  
+  <rect x="362" y="168" width="143" height="56" rx="9" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <text x="433.5" y="196" text-anchor="middle" dominant-baseline="middle" font-size="13.5" fill="#f5f5f5">JobScraper</text>
+
+  <rect x="540" y="168" width="143" height="56" rx="9" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <text x="611.5" y="196" text-anchor="middle" dominant-baseline="middle" font-size="13.5" fill="#f5f5f5">JobDataCleaner</text>
+
+  <rect x="701" y="168" width="146" height="56" rx="9" fill="#0d1117" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <text x="774" y="190" text-anchor="middle" dominant-baseline="middle" font-size="13.5" fill="#f5f5f5">JobTitleClassifier</text>
+  <text x="774" y="208" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#737373">conditional</text>
+
+  
+  <line x1="509" y1="196" x2="534" y2="196" stroke="#22d3ee" stroke-width="1.6" marker-end="url(#ahc)"></line>
+  <line x1="687" y1="196" x2="698" y2="196" stroke="#22d3ee" stroke-width="1.6" marker-end="url(#ahc)"></line>
+
+  
+  <path d="M796 168 C 812 122, 838 92, 864 78" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ahc)"></path>
+
+  
+  <line x1="855" y1="196" x2="906" y2="196" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ahi)"></line>
+
+  
+  <text x="973" y="32" text-anchor="middle" font-size="11" letter-spacing="1.8" fill="#737373">OPTIONAL ENRICHMENT</text>
+
+  <rect x="868" y="46" width="210" height="52" rx="10" fill="#0b0e13" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6 4"></rect>
+  <text x="973" y="70" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#f5f5f5">OpenAIHandler</text>
+  <text x="973" y="87" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#737373">(gpt-4o-mini)</text>
+
+  
+  <path d="M980 98 C 988 126, 996 146, 1001 167" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ahc)"></path>
+
+  <rect x="912" y="170" width="176" height="52" rx="8" fill="#0b0e13" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <text x="1000" y="192" text-anchor="middle" dominant-baseline="middle" font-size="13.5" fill="#f5f5f5">SQLite store</text>
+  <text x="1000" y="209" text-anchor="middle" dominant-baseline="middle" font-size="10.5" fill="#737373">SQLAlchemy 2.x</text>
+
+  
+  <line x1="1000" y1="222" x2="1000" y2="246" stroke="#818cf8" stroke-width="1.6" marker-end="url(#ahi)"></line>
+
+  <rect x="912" y="250" width="176" height="40" rx="8" fill="#0c1016" stroke="#404040" stroke-width="1.4"></rect>
+  <text x="1000" y="270.5" text-anchor="middle" dominant-baseline="middle" font-size="12.5" fill="#d4d4d4">CSV exports (dated)</text>
+</svg>

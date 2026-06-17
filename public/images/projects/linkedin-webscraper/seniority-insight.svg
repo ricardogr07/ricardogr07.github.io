@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290">
+  <rect width="900" height="290" fill="#0a0a0a"/>
+
+  <text x="450" y="30" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="600" fill="#f8fafc">Seniority distribution</text>
+  <text x="450" y="50" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#737373">285 postings · Mexico</text>
+
+  <!-- Axes -->
+  <line x1="200" y1="62" x2="200" y2="208" stroke="#262626" stroke-width="1"/>
+  <line x1="200" y1="208" x2="860" y2="208" stroke="#262626" stroke-width="1"/>
+
+  <!-- Grid lines at 50, 100 jobs (scale: 660/143 = 4.615 px/job) -->
+  <line x1="431" y1="62" x2="431" y2="208" stroke="#1c1c1c" stroke-width="1"/>
+  <line x1="662" y1="62" x2="662" y2="208" stroke="#1c1c1c" stroke-width="1"/>
+
+  <!-- X-axis ticks -->
+  <text x="200" y="223" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">0</text>
+  <text x="431" y="223" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">50</text>
+  <text x="662" y="223" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">100</text>
+  <text x="860" y="223" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">143</text>
+
+  <text x="530" y="244" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">job postings</text>
+
+  <!-- Mid-Senior: 143 → 660px (50%) -->
+  <text x="192" y="84" text-anchor="end" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#e2e8f0">Mid-Senior</text>
+  <rect x="200" y="62" width="660" height="32" rx="3" fill="#22d3ee"/>
+  <text x="870" y="84" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#22d3ee">50%</text>
+
+  <!-- Entry level: 109 → 503px (38%) -->
+  <text x="192" y="132" text-anchor="end" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#e2e8f0">Entry level</text>
+  <rect x="200" y="110" width="503" height="32" rx="3" fill="#818cf8"/>
+  <text x="713" y="132" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#818cf8">38%</text>
+
+  <!-- Associate: 27 → 125px (10%) -->
+  <text x="192" y="180" text-anchor="end" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#e2e8f0">Associate</text>
+  <rect x="200" y="158" width="125" height="32" rx="3" fill="#22d3ee" fill-opacity="0.35"/>
+  <text x="335" y="180" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#737373">10%</text>
+
+  <text x="450" y="270" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#525252">Executive and Internship combined: 2% (6 postings)</text>
+</svg>

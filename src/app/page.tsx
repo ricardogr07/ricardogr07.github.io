@@ -51,9 +51,7 @@ export default function Home() {
             >
               Featured Work
             </h2>
-            <p className="text-neutral-500">
-              One flagship per pillar — AI/ML · Data Engineering · Cloud · Full-Stack.
-            </p>
+            <p className="text-neutral-500">AI/ML · Data Science · Cloud · Full-Stack</p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

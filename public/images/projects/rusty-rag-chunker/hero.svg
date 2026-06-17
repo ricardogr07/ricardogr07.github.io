@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
+  <defs>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
+    </pattern>
+    <radialGradient id="glow" cx="768" cy="264.6" r="552" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 95.5) scale(1 0.639)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.13"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
+
+  
+  <text x="84" y="104" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="60" font-weight="700" letter-spacing="-1.5" fill="#ffffff">Rusty RAG Chunker</text>
+  <text x="84" y="152" font-size="22" fill="#a3a3a3">Token-exact chunking. The hot path in Rust, the guarantee in the math.</text>
+
+  
+  <text x="84" y="218" font-size="14" fill="#737373">chunks are windows over token IDs, max_tokens can never be exceeded</text>
+
+  <rect x="84" y="240.4" width="234" height="46" rx="11" fill="#22d3ee" fill-opacity="0.06" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <rect x="330" y="240.4" width="34" height="46" rx="7" fill="#ffffff" fill-opacity="0.02" stroke="#525252" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+  <rect x="376" y="240.4" width="234" height="46" rx="11" fill="#22d3ee" fill-opacity="0.06" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <g font-size="14" fill="#7dd3fc">
+    <text x="102" y="268">tok  tok  tok  tok  tok  <tspan fill="#737373">…</tspan></text>
+    <text x="394" y="268">tok  tok  tok  tok  tok  <tspan fill="#737373">…</tspan></text>
+  </g>
+  <g font-size="12" fill="#525252">
+    <text x="84" y="305">window = max_tokens</text>
+    <text x="347" y="305" text-anchor="middle">overlap</text>
+  </g>
+
+  
+  <g text-anchor="middle">
+    <g font-size="13" font-weight="700" letter-spacing="1.56" fill="#f5f5f5">
+      <text x="213" y="361">TOKENIZE</text>
+      <text x="471" y="361">CHUNK</text>
+      <text x="729" y="361">EMBED</text>
+      <text x="987" y="361">QDRANT</text>
+    </g>
+    <g fill="none" stroke-width="2">
+      <circle cx="213" cy="387.9" r="6.5" stroke="#22d3ee"></circle>
+      <circle cx="471" cy="387.9" r="6.5" stroke="#22d3ee"></circle>
+      <circle cx="729" cy="387.9" r="6.5" stroke="#818cf8"></circle>
+      <circle cx="987" cy="387.9" r="6.5" stroke="#818cf8"></circle>
+    </g>
+    <g font-size="12.5" fill="#737373">
+      <text x="213" y="418">tiktoken-rs</text>
+      <text x="471" y="418">Rust · PyO3 boundary</text>
+      <text x="729" y="418">MiniLM 384d / OpenAI 1536d</text>
+      <text x="987" y="418">cosine · UUID5 IDs</text>
+    </g>
+  </g>
+
+  
+  <rect x="84" y="454.2" width="1032" height="1" fill="#262626"></rect>
+  <line x1="428" y1="487" x2="428" y2="552" stroke="#262626" stroke-width="1"></line>
+  <line x1="772" y1="487" x2="772" y2="552" stroke="#262626" stroke-width="1"></line>
+  <g text-anchor="middle">
+    <g fill="#22d3ee" font-size="40" font-weight="700" letter-spacing="-0.4">
+      <text x="256" y="518">0</text>
+      <text x="600" y="518">40%</text>
+      <text x="944" y="518">25</text>
+    </g>
+    <g fill="#737373" font-size="13">
+      <text x="256" y="548">over-limit chunks (vs 13,100)</text>
+      <text x="600" y="548">faster than Python tiktoken @ 50 MB</text>
+      <text x="944" y="548">tests · 8 Rust + 17 Python</text>
+    </g>
+  </g>
+</svg>
