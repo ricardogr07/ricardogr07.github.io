@@ -156,9 +156,8 @@ export const projects: PortfolioProject[] = [
       'Technical Documentation',
     ],
     businessValue: [],
-    tldr: 'Deterministic codebase audit tool: structured evidence, not vibes.',
-    headlineMetric:
-      'Zero runtime dependencies, zero API keys: 29 languages, 32 frameworks, 10 manifest parsers, all deterministic',
+    tldr: 'Zero runtime dependencies, zero API keys: 29 languages, 32 frameworks, 10 manifest parsers, all deterministic',
+    headlineMetric: 'Deterministic codebase audit tool: structured evidence, not vibes.',
     situation:
       "Teams want quick codebase audits, but 'chat with your repo' tools give fluent but ungrounded output: no deterministic evidence you can put in a CI gate, a PR review, or a ticket.",
     task: 'A scanner that emits structured, evidence-backed audit reports (Markdown or JSON), reproducible run-to-run, useful with or without an LLM, and safe to drop into CI.',
@@ -168,19 +167,13 @@ export const projects: PortfolioProject[] = [
       'Ships three ways: a PyPI package (v0.3.0), a published GitHub Actions marketplace action, and an MCP server. All three drive the same pipeline.',
     ],
     result:
-      'Shipped to PyPI (v0.3.0) with a published GitHub Action, on zero runtime dependencies: 29 languages, 32 frameworks, and 10 dependency-manifest parsers feed a 6-signal quality score and Markdown/JSON reports. Guarded by 179 tests across a 5-environment CI matrix, with strict mypy, Ruff, and a custom 400-line-per-file gate enforced on every run.',
+      'Shipped to PyPI (v0.3.0) with a published GitHub Action and an MCP server. The real use cases: auditing every repo in this portfolio and doing instant health checks on vibecoded projects from non-technical collaborators, where the structured Markdown report replaces an hour of code archaeology. The meta proof: RepoSage audits itself and scores 100/100, with 179 tests, strict mypy, Ruff, docs, and CI all detected. The tool works, or it would say so.',
     learning:
       'Deterministic heuristics first, LLM as enrichment, not the other way around. The tool produces a complete, byte-identical report with no API key; the LLM only annotates it. Forcing that enrichment through a JSON-schema tool call meant the AI layer could never break the report schema: the deterministic core and the AI layer share a single ten-line Protocol and nothing else.',
     caveat:
       'Heuristics are signal, not proof: every check is file-presence or regex-based, with no semantic understanding unless you opt into the LLM layer. And LLM output is schema-constrained but not fact-checked against the deterministic report.',
     status: 'active',
-    gallery: [
-      {
-        src: '/images/projects/reposage/detection-coverage.svg',
-        alt: '29 languages, 32 frameworks, and 10 dependency-manifest parsers',
-        caption:
-          'Detection coverage, all deterministic: 29 languages (extension + special-filename map), 32 frameworks (exact + prefix + file signals like manage.py / next.config), and 10 dependency-manifest formats: pyproject.toml, package.json, Cargo.toml, *.csproj, and more.',
-      },
+    resultGallery: [
       {
         src: '/images/projects/reposage/quality-score.svg',
         alt: 'Six scored quality checks producing an X/100 score, plus five risk rules',
@@ -192,12 +185,6 @@ export const projects: PortfolioProject[] = [
         alt: 'The LLM plugs in at one Protocol seam and is forced through a JSON schema',
         caption:
           'The whole AI surface is one structural Protocol: enrich(report) -> EnrichmentResult. The LLM receives a report that is already complete and is forced through a JSON tool-use schema, so it can annotate but never break the structure. The core and the AI share ten lines of interface and nothing else.',
-      },
-      {
-        src: '/images/projects/reposage/fail-open.svg',
-        alt: 'Fail-open scanning: every parser catches errors; the scan always completes',
-        caption:
-          'Fail-open by design: every manifest parser catches I/O and decode errors and returns empty rather than crashing, and every tool failure is logged. A repo it cannot fully parse still produces a valid, partial report instead of an exception.',
       },
     ],
   },
