@@ -38,7 +38,7 @@ export interface PortfolioProject {
   // STARL case-study fields (all optional — partial migration stays type-safe)
   situation?: string
   task?: string
-  action?: string
+  action?: string | string[]
   /** Contains a number when shipped; else omit */
   result?: string
   learning?: string
@@ -52,6 +52,7 @@ export interface PortfolioProject {
   status?: 'live' | 'pypi' | 'active' | 'archived'
   pypiUrl?: string
   gallery?: { src: string; alt: string; caption?: string }[]
+  resultGallery?: { src: string; alt: string; caption?: string }[]
   /** Optional caption under the existing diagram */
   diagramCaption?: string
   /** Finance/medical projects only */
