@@ -403,7 +403,7 @@ export const projects: PortfolioProject[] = [
     tldr: 'Now pip install jaxbo resolves to a real, current release',
     headlineMetric: 'Modernized an academic JAX Bayesian-optimization library into an installable PyPI package',
     situation:
-      'A JAX Bayesian-optimization library from the Predictive Intelligence Lab had bit-rotted: the manifest claimed Python 3.6 compatibility but the package no longer installed on current Python or JAX, putting the research effectively out of reach.',
+      'A JAX Bayesian-optimization library from the Predictive Intelligence Lab had stopped working on modern Python and JAX: the manifest claimed Python 3.6 compatibility but the package no longer installed, putting the research effectively out of reach.',
     task: 'Fork it, restore modern Python/JAX compatibility, and ship it as a properly packaged, tested, automatically released PyPI library; credit the upstream research, claim only the distribution engineering.',
     action: [
       'Forked the upstream library and restored Python and JAX compatibility; the manifest claimed Python 3.6, which was never real, and the actual working floor is ~3.10.',
