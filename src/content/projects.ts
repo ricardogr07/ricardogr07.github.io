@@ -322,9 +322,9 @@ export const projects: PortfolioProject[] = [
     ],
     servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
     businessValue: [],
-    tldr: '10,000 runs of the full 104-match tournament in under 3 s; baseline odds cached by completed-match count and served instantly until the next real result lands. Shipped in 3 days.',
+    tldr: '10,000 runs of the full 104-match tournament in under 3 s; odds cached in Cosmos by completed-match count so they serve instantly between real matches and always refresh when one lands.',
     headlineMetric:
-      'Live pool odds for a real 5-person World Cup quiniela: Elo-driven Monte Carlo updated every time a match finishes.',
+      'Shows each of 5 quiniela players their live odds of winning the pool, updated on every real match result; with a what-if builder for any hypothetical.',
     situation:
       "Five of us run a World Cup quiniela: each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.",
     task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool, and lets anyone explore what-if scenarios.',
