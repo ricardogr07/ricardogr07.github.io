@@ -526,10 +526,10 @@ export const projects: PortfolioProject[] = [
       'Simulation Tooling',
       'Package Refactoring',
     ],
-    headlineMetric: 'From fragile research notebook to a CI-gated, bit-exact Python library',
-    tldr: 'Bit-level parity with the original research notebook: all 12 ECG leads within RMSE < 1e-6, reproduced from committed ground truth by an automated baseline test; strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
+    headlineMetric: 'From a research notebook to a CI-gated, bit-exact Python library',
+    tldr: 'Bit-level parity with the original research notebook: all 12 ECG leads within RMSE < 1e-6, reproduced from committed ground truth by an automated baseline test.',
     situation:
-      'The M.Sc. thesis on probabilistic Purkinje-network reconstruction needed a reliable forward simulation: given a Purkinje geometry and a myocardial mesh, produce a 12-lead ECG to compare against measured signals. That pipeline lived in Jupyter notebooks, fragile across Python environments and impossible to validate in CI.',
+      'The M.Sc. thesis on probabilistic Purkinje-network reconstruction needed a reliable forward simulation: given a Purkinje geometry and a myocardial mesh, produce a 12-lead ECG to compare against measured signals. That pipeline lived in Jupyter notebooks, difficult to share across Python environments and impossible to validate in CI.',
     task: 'Package the notebook simulation as an installable Python library any researcher can import in one line, prove it is identical to the original notebook output, and gate that proof in CI so it can never silently drift.',
     action: [
       'Extracted the notebook into a single-entry-point library (MyocardialMesh): load a 3D myocardial mesh, a Purkinje wiring tree, and electrode positions.',
