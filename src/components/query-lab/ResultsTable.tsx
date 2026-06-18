@@ -26,9 +26,7 @@ export default function ResultsTable({ columns, rows, error }: ResultsTableProps
 
   if (columns.length === 0) {
     return (
-      <p className="py-8 text-center text-sm text-neutral-600">
-        Query executed — no rows returned.
-      </p>
+      <p className="py-8 text-center text-sm text-neutral-600">Query executed; no rows returned.</p>
     )
   }
 

@@ -7,14 +7,14 @@ import Footer from '@/components/footer'
 export const metadata: Metadata = {
   title: 'Research',
   description:
-    'Research by Ricardo Garcia-Ramirez — M.Sc. Data Science (PUC Chile, Distinction), peer-reviewed publications in biosensing and BioMEMS, a Springer book chapter, and research positions across KAUST, UVic, and Tec de Monterrey.',
+    'Research by Ricardo Garcia-Ramirez: M.Sc. Data Science (PUC Chile, Distinction), peer-reviewed publications in biosensing and BioMEMS, a Springer book chapter, and research positions across KAUST, UVic, and Tec de Monterrey.',
   openGraph: {
     images: [
       {
         url: 'https://ricardogr07.github.io/og/research.png',
         width: 1200,
         height: 630,
-        alt: 'Research — Ricardo García Ramírez',
+        alt: 'Research: Ricardo García Ramírez',
       },
     ],
   },
@@ -89,9 +89,9 @@ const researchPositions = [
 ]
 
 const scientificProjects = [
-  { slug: 'purkinje-uv', label: 'PurkinjeUV — cardiac Purkinje network generation' },
-  { slug: 'myocardial-mesh', label: 'Myocardial Mesh — heart activation & 12-lead ECG synthesis' },
-  { slug: 'jax-bo', label: 'JAX-BO — Bayesian optimization library (maintenance)' },
+  { slug: 'purkinje-uv', label: 'PurkinjeUV: cardiac Purkinje network generation' },
+  { slug: 'myocardial-mesh', label: 'Myocardial Mesh: heart activation & 12-lead ECG synthesis' },
+  { slug: 'jax-bo', label: 'JAX-BO: Bayesian optimization library (maintenance)' },
 ]
 
 export default function ResearchPage() {
@@ -260,7 +260,7 @@ export default function ResearchPage() {
               Scientific software
             </h2>
             <p className="mb-4 text-sm text-neutral-400">
-              The research carries into code — these projects come straight out of the cardiac and
+              The research carries into code: these projects come straight out of the cardiac and
               biomedical modeling work:
             </p>
             <div className="space-y-2">

@@ -19,7 +19,7 @@ export default function DemoBanner() {
         />
       </svg>
       <span>
-        <strong className="font-semibold">Demo</strong> — all data is synthetic. No real financial
+        <strong className="font-semibold">Demo:</strong> all data is synthetic. No real financial
         information is displayed.
       </span>
     </div>

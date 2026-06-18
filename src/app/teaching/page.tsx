@@ -6,14 +6,14 @@ import Footer from '@/components/footer'
 export const metadata: Metadata = {
   title: 'Teaching',
   description:
-    'Ricardo García Ramírez — Adjunct Assistant Professor of Biomedical Engineering at Tec de Monterrey, teaching bioinstrumentation lecture and laboratory courses across the Tec20 and TEC21 curricula.',
+    'Ricardo García Ramírez: Adjunct Assistant Professor of Biomedical Engineering at Tec de Monterrey, teaching bioinstrumentation lecture and laboratory courses across the Tec20 and TEC21 curricula.',
   openGraph: {
     images: [
       {
         url: 'https://ricardogr07.github.io/og/teaching.png',
         width: 1200,
         height: 630,
-        alt: 'Teaching — Ricardo García Ramírez',
+        alt: 'Teaching: Ricardo García Ramírez',
       },
     ],
   },
@@ -40,7 +40,7 @@ const courses = [
     code: 'BI3010',
     title: 'Bioinstrumentation',
     blurb:
-      'Core theory of measuring physiological signals — transducers, electrodes, noise, and safe acquisition.',
+      'Core theory of measuring physiological signals: transducers, electrodes, noise, and safe acquisition.',
   },
   {
     code: 'BI3011',
