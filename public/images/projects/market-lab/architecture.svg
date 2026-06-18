@@ -63,7 +63,7 @@
   <rect x="48" y="378" width="1024" height="124" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.1" />
   <text x="68" y="408" fill="#94a3b8" font-size="14" font-weight="700">HONEST SCOPE</text>
   <g font-size="14" fill="#94a3b8">
-    <text x="68" y="440">→ A research tool, not a money-maker — it never claims to beat the market.</text>
+    <text x="68" y="440">→ A research tool, not a money-maker: it never claims to beat the market.</text>
     <text x="68" y="468">→ Results are re-run from the settings file, not saved as numbers you have to trust.</text>
     <text x="68" y="496">→ Trading is locked to a practice account; two large files are flagged for future tidy-up.</text>
   </g>
