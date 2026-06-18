@@ -300,7 +300,6 @@ export const projects: PortfolioProject[] = [
   {
     slug: 'wc26-dashboard',
     title: 'WC26 Dashboard: Live World Cup Pool Forecasting',
-    repo: 'https://github.com/ricardogr07/wc26-dashboard',
     liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',
     visibility: 'public',
     featured: true,
@@ -597,9 +596,9 @@ export const projects: PortfolioProject[] = [
     summary:
       'End-to-end demo of a personal finance dashboard: synthetic brokerage statements ingested by a Python ETL pipeline into DuckDB, surfaced as a React/Next.js allocation and performance dashboard.',
     problem:
-      'Personal finance data is highly sensitive — demonstrating a real brokerage dashboard publicly is not an option. Yet the engineering challenge of ingesting, normalizing, and visualizing statement data is real and worth showing.',
+      'Personal finance data is highly sensitive: demonstrating a real brokerage dashboard publicly is not an option. Yet the engineering challenge of ingesting, normalizing, and visualizing statement data is real and worth showing.',
     solution:
-      'Built a fully synthetic version of the private dashboard: a pipeline that parses fake PDF statements, normalizes holdings, and publishes a Next.js dashboard with allocation charts, monthly return charts, goal tracking, and an animated ETL pipeline log — all using fabricated data.',
+      'Built a fully synthetic version of the private dashboard: a pipeline that parses fake PDF statements, normalizes holdings, and publishes a Next.js dashboard with allocation charts, monthly return charts, goal tracking, and an animated ETL pipeline log, all using fabricated data.',
     deliverables: [
       'Synthetic brokerage statement dataset (18 months, 8 positions)',
       'Normalized holdings and monthly-returns schema (DuckDB pattern)',
@@ -628,7 +627,7 @@ export const projects: PortfolioProject[] = [
     businessValue: [
       'Proves dashboard + data pipeline skills without exposing any real financial data',
       'ETL pipeline log makes the architecture visible to non-technical stakeholders',
-      'Allocation and performance charts use hand-written SVG — no runtime chart dependency',
+      'Allocation and performance charts use hand-written SVG; no runtime chart dependency',
       'Directly supports LinkedIn Services portfolio media with a public live URL',
     ],
   },
@@ -640,18 +639,18 @@ export const projects: PortfolioProject[] = [
     featured: false,
     categories: ['data-engineering', 'dashboard'],
     summary:
-      'Interactive SQLite query lab running in the browser via sql.js/WebAssembly. Query synthetic portfolio holdings, monthly returns, and goals with plain SQL — no server, no backend.',
+      'Interactive SQLite query lab running in the browser via sql.js/WebAssembly. Query synthetic portfolio holdings, monthly returns, and goals with plain SQL; no server, no backend.',
     problem:
       'Showing SQL and data-engineering skills on a portfolio requires either a live backend (operational cost, attack surface) or a restricted sandbox. Neither is ideal for an always-on public demo.',
     solution:
-      'Embedded SQLite directly in the browser using sql.js (SQLite compiled to WASM). The engine loads once, populates three tables from synthetic portfolio data, and executes arbitrary SQL client-side — zero server required.',
+      'Embedded SQLite directly in the browser using sql.js (SQLite compiled to WASM). The engine loads once, populates three tables from synthetic portfolio data, and executes arbitrary SQL client-side; zero server required.',
     deliverables: [
       'In-browser SQLite via sql.js/WASM (no backend)',
       'Three queryable tables: holdings, monthly_returns, goals',
       'Seven preset queries covering aggregation, filtering, and alpha calculation',
       'Live SQL editor with syntax-aware results table',
       'Schema reference sidebar',
-      'Demo banner — all data synthetic',
+      'Demo banner: all data synthetic',
     ],
     techStack: ['sql.js', 'WebAssembly', 'Next.js 16', 'TypeScript', 'Tailwind v4', 'React 19'],
     servicesSupported: [
@@ -662,7 +661,7 @@ export const projects: PortfolioProject[] = [
       'Python Automation',
     ],
     businessValue: [
-      'Proves SQL fluency interactively — visitors run real queries, not just see screenshots',
+      'Proves SQL fluency interactively; visitors run real queries, not just see screenshots',
       'Zero backend means zero ops cost and no attack surface for a public demo',
       'WASM-based SQLite is the same engine used in DuckDB-style analytical pipelines',
       'Preset queries demonstrate aggregation, time-series, and goal-tracking patterns relevant to data-engineering clients',

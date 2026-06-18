@@ -8,14 +8,14 @@ import { experienceCondensed } from '@/content/experience'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'About Ricardo García Ramírez — full-stack engineer and data scientist building AI/ML systems that run in production on the cloud. M.Sc. Data Science, peer-reviewed research, former professor.',
+    'About Ricardo García Ramírez: full-stack developer and data scientist building AI/ML systems that run in production on the cloud. M.Sc. Data Science, peer-reviewed research, former professor.',
   openGraph: {
     images: [
       {
         url: 'https://ricardogr07.github.io/og/about.png',
         width: 1200,
         height: 630,
-        alt: 'About — Ricardo García Ramírez',
+        alt: 'About: Ricardo García Ramírez',
       },
     ],
   },
@@ -217,7 +217,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-base leading-relaxed text-neutral-400 text-justify">
               <p>
-                Hey there! I&apos;m a full-stack engineer and data scientist. I build AI/ML systems
+                Hey there! I&apos;m a full-stack developer and data scientist. I build AI/ML systems
                 that run in production on the cloud, across machine learning, data engineering,
                 cloud infrastructure, and full-stack delivery.
               </p>

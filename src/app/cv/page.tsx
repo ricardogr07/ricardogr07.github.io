@@ -6,7 +6,7 @@ import { experience } from '@/content/experience'
 export const metadata: Metadata = {
   title: 'CV',
   description:
-    'Ricardo García Ramírez: full-stack engineer and data scientist. CV with experience at MSCI, Rackspace, and Delee Corp. M.Sc. in Data Science, publications in biosensing and BioMEMS.',
+    'Ricardo García Ramírez: full-stack developer and data scientist. CV with experience at MSCI, Rackspace, and Delee Corp. M.Sc. in Data Science, publications in biosensing and BioMEMS.',
   openGraph: {
     images: [
       {

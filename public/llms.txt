@@ -1,0 +1,33 @@
+# Ricardo García Ramírez
+
+> Full-Stack Developer & Data Scientist building AI/ML systems, data pipelines, and Python tools that run in production. M.Sc. Data Science (PUC Chile, Distinction). 7+ years enterprise engineering. Open to senior engineering roles and select freelance work.
+
+## Pages
+
+- [Home](https://ricardogr07.github.io/): Portfolio overview with featured projects, expertise areas (AI/ML, Data Science, Cloud, Full-Stack), methodology, and proof of work.
+- [Projects](https://ricardogr07.github.io/projects/): Full gallery of 14 shipped projects across automation, data engineering, AI/ML tooling, and scientific Python. Filterable by category.
+- [About](https://ricardogr07.github.io/about/): Background, technical skill groups, social links (GitHub, LinkedIn, Medium, Google Scholar), and 6 published essays on software engineering.
+- [CV](https://ricardogr07.github.io/cv/): Work history at MSCI (Senior Developer), Rackspace (Software Developer II), Parallel Staff/Softeq (.NET Engineer), and Delee Corp; M.Sc. Data Science (PUC Chile) and B.Sc. Biomedical Engineering (Tec de Monterrey); 4 peer-reviewed journal articles and 1 Springer book chapter; 5 courses taught.
+- [Services](https://ricardogr07.github.io/freelance/): Productized consulting: AI/RAG pipeline build or audit, data pipeline to reporting site, and engineering/repo audit. Each offer backed by a shipped project.
+- [Teaching](https://ricardogr07.github.io/teaching/): Adjunct Assistant Professor of Biomedical Engineering at Tec de Monterrey (Aug 2022 to Dec 2023). Courses: BI2001B, BI2005B, BI3010, BI3011, BI3014.
+- [Research](https://ricardogr07.github.io/research/): M.Sc. thesis on probabilistic Purkinje network reconstruction from ECG signals; 4 peer-reviewed publications in biosensing and BioMEMS; 1 Springer book chapter; research positions at KAUST, University of Victoria (Mitacs), and Tec de Monterrey.
+
+## Projects
+
+- [LinkedIn Webscraper](https://ricardogr07.github.io/projects/linkedin-webscraper): Daily LinkedIn job-posting scraper; Python CI pipeline; PyPI package; 14 consecutive successful runs capturing 9,661 snapshots.
+- [MX Jobs Insights](https://ricardogr07.github.io/projects/mx-jobs-insights): Analytics pipeline on 9,661 Mexico data-science postings; DuckDB/Parquet storage; automated bilingual MkDocs report site; 14/14 CI runs clean.
+- [RepoSage](https://ricardogr07.github.io/projects/reposage): AI-assisted repository audit tool; deterministic quality scoring (0-100) plus optional LLM enrichment via a protocol interface; PyPI package and GitHub Actions marketplace action.
+- [Rusty RAG Chunker](https://ricardogr07.github.io/projects/rusty-rag-chunker): Token-aware RAG ingestion library; Rust hot-path via PyO3 for 5x throughput gain; zero over-limit chunks at every scale; Qdrant vector search integration.
+- [Clipsmith](https://ricardogr07.github.io/projects/clipsmith): Twitch VOD clip automation pipeline; multi-LLM provider support (OpenAI, Anthropic, Ollama); FastAPI backend; Next.js dashboard; 9:16 vertical clip generation.
+- [WC26 Dashboard](https://ricardogr07.github.io/projects/wc26-dashboard): Live World Cup 2026 pool forecasting dashboard; Elo-logistic Monte Carlo simulation (10,000 runs); Azure Functions API; Cosmos DB cache keyed by match progress; static Next.js frontend on Azure SWA.
+- [JAX-BO](https://ricardogr07.github.io/projects/jax-bo): Bayesian optimization library maintenance fork; JAX backend; PyPI package; active community of 30+ dependent users.
+- [PurkinjeUV](https://ricardogr07.github.io/projects/purkinje-uv): Cardiac Purkinje network generation library using UV parameterization for anatomically realistic 3D-to-2D mapping; PyPI package; peer-reviewed arXiv preprint.
+- [Myocardial Mesh](https://ricardogr07.github.io/projects/myocardial-mesh): Cardiac simulation Python library; 12-lead ECG synthesis; 4-step myocardial activation coupling loop; PyPI package.
+- [MarketLab](https://ricardogr07.github.io/projects/market-lab): Reproducible market experiment platform; walk-forward backtesting with strict leak-guard; Alpaca paper trading integration; PyPI package v0.2.0.
+- [Financial Dashboard Demo](https://ricardogr07.github.io/projects/financial-dashboard-demo): Synthetic brokerage dashboard demonstrating Python ETL pipeline, DuckDB data layer, and hand-written SVG charts in Next.js; all data fabricated.
+- [Portfolio Query Lab](https://ricardogr07.github.io/projects/query-lab-demo): In-browser SQLite query lab via sql.js/WASM; zero backend; 3 queryable tables; 7 preset queries; live SQL editor.
+
+## Demos
+
+- [Financial Dashboard](https://ricardogr07.github.io/demo/financial-dashboard): Live demo of the synthetic brokerage dashboard.
+- [Portfolio Query Lab](https://ricardogr07.github.io/demo/query-lab): Live in-browser SQL environment.

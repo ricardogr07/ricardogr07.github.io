@@ -213,7 +213,7 @@ export const dashboardData: DashboardSnapshot = {
     {
       ts: '2024-07-01 07:00:06',
       level: 'INFO',
-      message: 'Parsing PDF — extracting transaction table...',
+      message: 'Parsing PDF: extracting transaction table...',
     },
     {
       ts: '2024-07-01 07:00:08',
@@ -228,7 +228,7 @@ export const dashboardData: DashboardSnapshot = {
     {
       ts: '2024-07-01 07:00:11',
       level: 'WARN',
-      message: 'DEMO-LAM: no benchmark match — using proxy',
+      message: 'DEMO-LAM: no benchmark match; using proxy',
     },
     { ts: '2024-07-01 07:00:13', level: 'INFO', message: 'Computing cost basis per holding...' },
     {
@@ -250,7 +250,7 @@ export const dashboardData: DashboardSnapshot = {
     },
     { ts: '2024-07-01 07:00:25', level: 'INFO', message: 'Writing monthly-returns table...' },
     { ts: '2024-07-01 07:00:27', level: 'INFO', message: 'Generating goal-progress metrics...' },
-    { ts: '2024-07-01 07:00:29', level: 'INFO', message: 'Validating schema integrity — 0 errors' },
+    { ts: '2024-07-01 07:00:29', level: 'INFO', message: 'Validating schema integrity: 0 errors' },
     { ts: '2024-07-01 07:00:31', level: 'INFO', message: 'Exporting dashboard snapshot JSON...' },
     {
       ts: '2024-07-01 07:00:33',
@@ -261,7 +261,7 @@ export const dashboardData: DashboardSnapshot = {
     {
       ts: '2024-07-01 07:00:35',
       level: 'SUCCESS',
-      message: 'Pipeline complete — 34s elapsed. All checks passed.',
+      message: 'Pipeline complete: 34s elapsed. All checks passed.',
     },
   ],
 }

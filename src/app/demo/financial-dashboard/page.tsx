@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         url: 'https://ricardogr07.github.io/og/demo-financial-dashboard.png',
         width: 1200,
         height: 630,
-        alt: 'Financial Data Dashboard Demo — Ricardo García Ramírez',
+        alt: 'Financial Data Dashboard Demo: Ricardo García Ramírez',
       },
     ],
   },
