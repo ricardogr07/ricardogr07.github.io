@@ -326,10 +326,10 @@ export const projects: PortfolioProject[] = [
     headlineMetric:
       'Shows each of 5 quiniela players their live odds of winning the pool, updated on every real match result; with a what-if builder for any hypothetical.',
     situation:
-      "Five of us run a World Cup quiniela: each picks five teams from a hat out of the best 25 we think could win, and whoever’s teams wins the world cup, wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.",
+      'Five of us run a World Cup quiniela: each picks five teams from a hat out of the best 25 we think could win, and whoever’s teams wins the world cup, wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.',
     task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool, and lets anyone explore what-if scenarios.',
     action: [
-      "Built a pure, seedable simulation engine: a standard Elo win-probability drives a Monte Carlo over every remaining match, run 10,000× to tally each player’s finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does.",
+      'Built a pure, seedable simulation engine: a standard Elo win-probability drives a Monte Carlo over every remaining match, run 10,000× to tally each player’s finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does.',
       'Wrapped the engine in a Python Azure Functions handler with a Cosmos DB cache keyed by the completed-match count: baseline results are served instantly from the cache; a scenario override always recomputes fresh and is never cached.',
       'A timer-triggered job pulls live results from a sports API and updates team Elo ratings (K=32) after each match. The front end is a static-exported Next.js app on Azure Static Web Apps, bilingual es/en, with a scenario builder that lets anyone fix a hypothetical result and watch the pool odds shift.',
     ],
