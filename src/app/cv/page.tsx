@@ -184,11 +184,11 @@ export default function CVPage() {
               Summary
             </h2>
             <p className="text-base leading-relaxed text-neutral-300">
-              Full-stack developer and data scientist with 7+ years of experience at the intersection
-              of backend systems, cloud infrastructure, and applied AI/ML. I build production
-              systems: backend services and APIs in Python and C#/.NET, data pipelines from raw
-              files to queryable analytics assets, and RAG systems from the vector-chunking layer
-              through LLM orchestration. M.Sc. in Data Science with thesis work in Bayesian
+              Full-stack developer and data scientist with 7+ years of experience at the
+              intersection of backend systems, cloud infrastructure, and applied AI/ML. I build
+              production systems: backend services and APIs in Python and C#/.NET, data pipelines
+              from raw files to queryable analytics assets, and RAG systems from the vector-chunking
+              layer through LLM orchestration. M.Sc. in Data Science with thesis work in Bayesian
               inference and computational modeling.
             </p>
           </section>
