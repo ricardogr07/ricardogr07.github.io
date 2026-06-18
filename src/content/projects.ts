@@ -538,23 +538,12 @@ export const projects: PortfolioProject[] = [
     visibility: 'public',
     featured: false,
     diagram: '/images/projects/market-lab/architecture.svg',
-    diagramCaption:
-      'A config-driven research harness: one validated contract layer in, a leak-free rolling walk-forward evaluator at the core, and a deliberately fenced paper-trading edge.',
     heroImage: '/images/projects/market-lab/hero.svg',
     categories: ['ml', 'data-engineering', 'automation'],
     summary:
       'Package-first research toolkit for market experiments: validated YAML configs, data preparation, baselines, scikit-learn training, a leak-free rolling walk-forward evaluator, diagnostics, reports, and a paper-only Alpaca trading path.',
-    deliverables: [
-      'Validated YAML experiment configs',
-      'Data preparation pipeline',
-      'Baseline strategies',
-      'ML model training workflows',
-      'Leak-free rolling walk-forward folds',
-      'Diagnostics and calibration',
-      'Reports and plots',
-      'Paper-only Alpaca trading path',
-      'FastMCP server + Docker',
-    ],
+    deliverables: [],
+    businessValue: [],
     techStack: [
       'Python',
       'pandas',
@@ -573,52 +562,28 @@ export const projects: PortfolioProject[] = [
       'Financial Analytics',
       'Python Automation',
     ],
-    businessValue: [
-      'Package-first structure means experiments are reproducible — not just notebooks that ran once',
-      'Walk-forward evaluation avoids look-ahead bias that invalidates most notebook backtests',
-      'YAML configs make it easy to hand off experiments to another engineer or stakeholder',
-    ],
-    tldr: 'A pip-installable research harness for reproducible market experiments: a leak-free rolling walk-forward evaluator, a hand-validated config contract, and an Alpaca path fenced to paper-only in code.',
+    headlineMetric: 'A config-driven, leak-free walk-forward harness that ships as a real package',
+    tldr: 'A leak-free walk-forward harness packaged into Docker, deployable to Azure, and wired to an Alpaca paper-trading bot that runs experiments end-to-end and reports results via Telegram.',
     situation:
-      'Financial experiments rot into messy notebooks with weak validation and unreproducible results. The subtle killer is look-ahead leakage — training on information that would not have existed at decision time — which silently inflates every amateur backtest into optimism.',
-    task: 'A package-first toolkit for reproducible market experiments — installable, config-driven, CI-gated, and published. Framed explicitly as research/experimentation, NOT a money-making system: the engineering goal is trustworthiness, not returns.',
-    action:
-      'Validated YAML config → data prep → scikit-learn training → rolling walk-forward evaluation (fixed-width window that slides and drops old data, NOT expanding), with a leak guard that trains only on rows whose label resolved before the cutoff plus a configurable embargo → calibration/diagnostics → reports + plots → a paper-only Alpaca path whose client refuses any non-paper endpoint in code → packaged behind three CLIs, a FastMCP server, and Docker.',
-    headlineMetric:
-      'A config-driven, leak-free walk-forward harness that ships as a real package — on PyPI (0.1.0 → 0.2.0), 678 tests across 77 files green on an 8-job tox CI, with look-ahead leakage caught by an executable test rather than a code review.',
+      'Financial experiments rot into messy notebooks with weak validation and unreproducible results. The subtle killer is look-ahead leakage: training on information that would not have existed at decision time, which silently inflates every amateur backtest into optimism.',
+    task: 'A package-first toolkit for reproducible market experiments: installable, config-driven, CI-gated, and published. Framed explicitly as a research tool, not a money-making system; the engineering goal is trustworthiness, not returns.',
+    action: [
+      'Built a validated YAML config layer: experiments are defined as hand-checked dataclass specs where weights must sum to 1.0, caps stay in range, and invalid configs raise before any compute runs.',
+      'Implemented a rolling walk-forward evaluator with a built-in leak guard: the training window is fixed-width and slides forward; any row whose label resolves after the cutoff is excluded, and an executable test proves it cannot peek ahead.',
+      'Added a paper-only Alpaca trading path whose client raises on any non-paper endpoint in code: the refusal to connect to live money is an enforced invariant, not a README disclaimer.',
+      'Packaged the full pipeline behind three CLIs, a FastMCP server, and Docker; shipped to PyPI as marketlab 0.2.0 via OIDC trusted-publisher release.',
+    ],
     result:
-      'Shipped to PyPI as marketlab 0.2.0 via an OIDC trusted-publisher release; 678 tests / 77 files green on an 8-job tox CI; three CLIs, a real FastMCP server, and a Docker image. Results are reproduced from config rather than committed — there is no checked-in P&L number, by design.',
+      'Shipped to PyPI as marketlab; Docker image deployable to Azure, an Alpaca paper-trading bot that runs experiments end-to-end and sends results via Telegram, three CLIs, and a real FastMCP server. Since April 2026, the bot has been running ML models on auto: the portfolio is green, though not yet ahead of buy-and-hold. Results are reproduced from config rather than committed; there is no checked-in P&L number, by design.',
     status: 'pypi',
     learning:
-      "The model is the cheap part; the contract around it is the expensive part. The sklearn estimators are one-line imports with a fixed random_state — but the config validation, the leak-free fold builder, and the paper-trading fence are where the real engineering went. In quant tooling, the work that earns trust isn't the model: it's the harness that makes a result trustworthy and a mistake impossible.",
-    caveat:
-      'It is a research harness, not a forecaster — no calibration/backtest claim and no alpha claim. The walk-forward is rolling (fixed-width, drops old data), not expanding. No coverage is measured and CI runs a single Python version (3.12). No result artifact is committed (reproduced from config, by design). pipeline.py (277 KB) and config.py (88 KB) are acknowledged monoliths — the repo ships its own SOLID-audit and extraction-readiness docs.',
-    limitations:
-      'Walk-forward results reflect historical data only. The Alpaca path is fenced to paper endpoints in code and has no live-account integration. Educational and paper-trading use only. Past backtest performance does not guarantee future results.',
-    gallery: [
+      'The model is the cheap part; the contract around it is the expensive part. The sklearn estimators are one-line imports with a fixed random_state, but the config validation, the leak-free fold builder, and the paper-trading fence are where the real engineering went. In quant tooling, the work that earns trust is not the model: it is the harness that makes a result trustworthy and a mistake impossible. Walk-forward results reflect historical data only; the Alpaca path is fenced to paper endpoints and has no live-account integration.',
+    resultGallery: [
       {
         src: '/images/projects/market-lab/walk-forward-leak-guard.svg',
         alt: 'A timeline split into a train block (learns from the past), a gap, and a test block (scored on the future), with a note that a test proves the model cannot peek ahead',
         caption:
-          'The leak guard: training is gated on target_end_date ≤ cutoff (not just signal_date), so a row whose label resolves after the cutoff is excluded — and an executable test proves it.',
-      },
-      {
-        src: '/images/projects/market-lab/config-contract.svg',
-        alt: 'A three-step flow: your settings file, then a checked stage (weights add up, limits in range, known options only), then anything invalid stops immediately with no quiet wrong results',
-        caption:
-          'The config contract: YAML becomes a hand-validated dataclass spec. Weights must sum to 1.0, caps stay in range, calibration modes are checked — invalid configs raise before any compute.',
-      },
-      {
-        src: '/images/projects/market-lab/paper-safety-fence.svg',
-        alt: 'A trade order passing through a shield-shaped safety gate that allows a practice account and blocks a real-money account',
-        caption:
-          'The safety fence: a real Alpaca client whose _ensure_paper_endpoint() raises on any non-paper host. The refusal to touch real money is an enforced invariant, not a README disclaimer.',
-      },
-      {
-        src: '/images/projects/market-lab/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (installable package, fair testing, validated settings, refuses real money) against where it stops (no claim it makes money, results re-run not saved, single Python version, large files flagged for tidy-up)",
-        caption:
-          'Honest scope: strong as a shipped engineering story (PyPI, 678 tests, leak-proof, fenced); deliberately modest as a forecaster — every boundary named, all verifiable from the repo.',
+          'The leak guard: training is gated on target_end_date <= cutoff (not just signal_date), so a row whose label resolves after the cutoff is excluded, and an executable test proves it.',
       },
     ],
   },

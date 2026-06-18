@@ -9,7 +9,7 @@
   <rect width="1120" height="460" fill="#0a0a0a" />
 
   <text x="56" y="58" fill="#f8fafc" font-size="26" font-weight="700">Tested only on data it couldn't have seen</text>
-  <text x="56" y="92" fill="#94a3b8" font-size="16">The model learns from the past and is scored on the future — with a gap in between, so it can never peek ahead.</text>
+  <text x="56" y="92" fill="#94a3b8" font-size="16">The model learns from the past and is scored on the future, with a gap in between, so it can never peek ahead.</text>
 
   <!-- timeline -->
   <line x1="56" y1="232" x2="1064" y2="232" stroke="#334155" stroke-width="2" marker-end="url(#wf-time)" />
@@ -31,7 +31,7 @@
   <text x="871" y="250" text-anchor="middle" fill="#cbd5e1" font-size="14">data it has never seen</text>
 
   <!-- window slides note -->
-  <text x="56" y="332" fill="#94a3b8" font-size="14">The training window is a fixed length that slides forward as time passes — old data drops off, so each test is judged against recent history.</text>
+  <text x="56" y="332" fill="#94a3b8" font-size="14">The training window is a fixed length that slides forward as time passes; old data drops off, so each test is judged against recent history.</text>
 
   <!-- proven badge -->
   <rect x="56" y="362" width="1008" height="66" rx="12" fill="#0d1117" stroke="#a5b4fc" stroke-width="1.4" />
