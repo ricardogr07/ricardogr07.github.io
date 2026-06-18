@@ -563,7 +563,7 @@ export const projects: PortfolioProject[] = [
       'Python Automation',
     ],
     headlineMetric: 'A config-driven, leak-free walk-forward harness that ships as a real package',
-    tldr: 'marketlab 0.2.0 on PyPI: 678 tests across 77 files, 8-job tox CI, look-ahead leakage caught by an executable test, and an Alpaca paper-trading path fenced in code.',
+    tldr: 'A leak-free walk-forward harness packaged into Docker, deployable to Azure, and wired to an Alpaca paper-trading bot that runs experiments end-to-end and reports results via Telegram.',
     situation:
       'Financial experiments rot into messy notebooks with weak validation and unreproducible results. The subtle killer is look-ahead leakage: training on information that would not have existed at decision time, which silently inflates every amateur backtest into optimism.',
     task: 'A package-first toolkit for reproducible market experiments: installable, config-driven, CI-gated, and published. Framed explicitly as a research tool, not a money-making system; the engineering goal is trustworthiness, not returns.',
@@ -574,7 +574,7 @@ export const projects: PortfolioProject[] = [
       'Packaged the full pipeline behind three CLIs, a FastMCP server, and Docker; shipped to PyPI as marketlab 0.2.0 via OIDC trusted-publisher release.',
     ],
     result:
-      'Shipped to PyPI as marketlab 0.2.0 via an OIDC trusted-publisher release; 678 tests across 77 files green on an 8-job tox CI; three CLIs, a real FastMCP server, and a Docker image. Since April 2026, an Alpaca paper account has been running ML models on auto: the portfolio is green, though not yet ahead of buy-and-hold. Results are reproduced from config rather than committed; there is no checked-in P&L number, by design.',
+      'Shipped to PyPI as marketlab; Docker image deployable to Azure, an Alpaca paper-trading bot that runs experiments end-to-end and sends results via Telegram, three CLIs, and a real FastMCP server. Since April 2026, the bot has been running ML models on auto: the portfolio is green, though not yet ahead of buy-and-hold. Results are reproduced from config rather than committed; there is no checked-in P&L number, by design.',
     status: 'pypi',
     learning:
       'The model is the cheap part; the contract around it is the expensive part. The sklearn estimators are one-line imports with a fixed random_state, but the config validation, the leak-free fold builder, and the paper-trading fence are where the real engineering went. In quant tooling, the work that earns trust is not the model: it is the harness that makes a result trustworthy and a mistake impossible. Walk-forward results reflect historical data only; the Alpaca path is fenced to paper endpoints and has no live-account integration.',
