@@ -182,6 +182,21 @@ export default function ProjectCard({ project, featured = false, href }: Project
               PyPI
             </a>
           )}
+          {project.colabUrl && (
+            <a
+              href={project.colabUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open in Google Colab"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- Colab badge */}
+              <img
+                src="https://colab.research.google.com/assets/colab-badge.svg"
+                alt="Open in Colab"
+                className="h-4 w-auto"
+              />
+            </a>
+          )}
           {project.marketplaceUrl && (
             <a
               href={project.marketplaceUrl}

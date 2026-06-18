@@ -181,6 +181,22 @@ export default async function CaseStudyPage({ params }: Props) {
                 PyPI
               </a>
             )}
+            {project.colabUrl && (
+              <a
+                href={project.colabUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+                aria-label="Open demo in Google Colab"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- Colab badge */}
+                <img
+                  src="https://colab.research.google.com/assets/colab-badge.svg"
+                  alt="Open in Colab"
+                  className="h-5 w-auto"
+                />
+              </a>
+            )}
             {project.marketplaceUrl && (
               <a
                 href={project.marketplaceUrl}
@@ -271,6 +287,27 @@ export default async function CaseStudyPage({ params }: Props) {
                   <p className="text-base leading-relaxed text-justify text-neutral-400">
                     {situation}
                   </p>
+                  {project.references && project.references.length > 0 && (
+                    <ol className="mt-4 space-y-1.5 list-none">
+                      {project.references.map((ref, i) => (
+                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-neutral-600">
+                          <span className="shrink-0">[{i + 1}]</span>
+                          {ref.url ? (
+                            <a
+                              href={ref.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline underline-offset-2 decoration-neutral-700 hover:text-neutral-400"
+                            >
+                              {ref.citation}
+                            </a>
+                          ) : (
+                            <span>{ref.citation}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ol>
+                  )}
                 </section>
               )}
 

@@ -54,6 +54,8 @@ export interface PortfolioProject {
   /** Lifecycle; distinct from visibility */
   status?: 'live' | 'pypi' | 'active' | 'archived'
   pypiUrl?: string
+  colabUrl?: string
+  references?: { citation: string; url?: string }[]
   gallery?: { src: string; alt: string; caption?: string }[]
   resultGallery?: { src: string; alt: string; caption?: string }[]
   /** Optional caption under the existing diagram */
