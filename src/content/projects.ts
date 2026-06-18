@@ -307,14 +307,7 @@ export const projects: PortfolioProject[] = [
     categories: ['ml', 'dashboard', 'backend-api'],
     summary:
       'Live World Cup 2026 dashboard for a 5-person quiniela: it Monte-Carlo-simulates the rest of the tournament 10,000 times from live Elo ratings to give each player their odds of finishing 1st–5th, with completed results pinned and a scenario builder for what-ifs.',
-    deliverables: [
-      'Pure Monte Carlo simulation engine (10,000 tournament runs)',
-      'Elo-based win-probability model with live K=32 updates',
-      'Pool standings UI + scenario builder, bilingual es/en',
-      'Azure Cosmos DB cache keyed by tournament progress',
-      'Azure Static Web Apps + Functions deployment',
-      'Timer-triggered results sync from a sports API',
-    ],
+    deliverables: [],
     techStack: [
       'Next.js',
       'TypeScript',
@@ -328,54 +321,39 @@ export const projects: PortfolioProject[] = [
       'Elo Rating System',
     ],
     servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
-    businessValue: [
-      'Real-time bracket probabilities update automatically when new match results arrive',
-      'Cosmos DB caching prevents redundant simulation re-runs — results served instantly until standings change',
-      'Elo ratings provide a principled, data-driven baseline for team strength without manual tuning',
-    ],
-    tldr: 'A live World Cup 2026 dashboard for a 5-person pool — it simulates the rest of the tournament 10,000× from live Elo ratings to show each player their odds of finishing 1st–5th.',
+    businessValue: [],
+    tldr: '10,000 runs of the full 104-match tournament in under 3 s; odds cached in Cosmos by completed-match count so they serve instantly between real matches and always refresh when one lands.',
     headlineMetric:
-      'The full 104-match tournament simulated 10,000× in under 3 s — pure Python on a free-tier serverless function, with baseline odds cached until the next real match finishes',
+      'Shows each of 5 quiniela players their live odds of winning the pool, updated on every real match result; with a what-if builder for any hypothetical.',
     situation:
-      'Five of us run a World Cup quiniela — each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.',
-    task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool — and lets anyone explore what-if scenarios.',
-    action:
-      "A Next.js 16 dashboard (static-exported to Azure Static Web Apps) talks to a Python Azure Functions API. The compute core is a pure, seedable simulation engine — an Elo logistic win-probability (1 / (1 + 10^(Δ/400))) driving a Monte Carlo over every remaining match, run 10,000× to tally each player's finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does. The Functions handler wraps it with state: baseline results are cached in Cosmos DB keyed by the completed-match count and served instantly, while a scenario override always recomputes fresh and is never cached. A timer-triggered job syncs real results from a sports API and live-updates team Elo (K=32).",
+      'Five of us run a World Cup quiniela: each picks five teams from a hat out of the best 25 we think could win, and whoever’s teams wins the world cup, wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.',
+    task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool, and lets anyone explore what-if scenarios.',
+    action: [
+      'Built a pure, seedable simulation engine: a standard Elo win-probability drives a Monte Carlo over every remaining match, run 10,000× to tally each player’s finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does.',
+      'Wrapped the engine in a Python Azure Functions handler with a Cosmos DB cache keyed by the completed-match count: baseline results are served instantly from the cache; a scenario override always recomputes fresh and is never cached.',
+      'A timer-triggered job pulls live results from a sports API and updates team Elo ratings (K=32) after each match. The front end is a static-exported Next.js app on Azure Static Web Apps, bilingual es/en, with a scenario builder that lets anyone fix a hypothetical result and watch the pool odds shift.',
+    ],
     result:
-      'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds — a bound enforced on every CI run — so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
+      'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds (a bound enforced on every CI run), so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
     learning:
-      'The value here was never model sophistication — a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word "azure" ever appears in the engine — it keeps the model something you can test and reason about offline, no cloud attached.',
-    caveat:
-      "It's a fast-shipped product for a real pool — strong as engineering, modest as a forecast. The probabilities are modelled, not calibrated; there's no backtest against bookmaker odds or outcomes, and the match model is deliberately simple (a fixed 25% group-draw rate, a random 1–3 goal margin, knockouts as an Elo coin-flip, and random selection among third-place qualifiers rather than the FIFA criteria). Production runs are unseeded (the seed exists only for tests), /simulate is anonymous with an unbounded run count, and deployment is still a manual trigger.",
+      'The value here was never model sophistication: a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word \"azure\" ever appears in the engine. It keeps the model something you can test and reason about offline, no cloud attached.',
     status: 'live',
     diagram: '/images/projects/wc26-dashboard/architecture.svg',
     diagramCaption:
       'A pure simulation engine (Elo logistic + Monte Carlo, importing no cloud) behind a Python Azure Functions API, with a Cosmos cache keyed by tournament progress and a timer job that live-updates Elo from a sports feed. The front end is a static-exported Next.js app on Azure SWA.',
     heroImage: '/images/projects/wc26-dashboard/hero.svg',
-    gallery: [
+    resultGallery: [
       {
         src: '/images/projects/wc26-dashboard/caching-and-state.svg',
         alt: 'A flowchart: scenario overrides bypass the cache; otherwise a baseline request is served from Cosmos when the completed-match count is unchanged, or recomputed when a real match has finished.',
         caption:
-          'The most interesting part: the cache is keyed by the number of completed matches, so baseline odds stay cached exactly as long as the real tournament stands still — and a what-if never touches the cache.',
+          'The most interesting part: the cache is keyed by the number of completed matches, so baseline odds stay cached exactly as long as the real tournament stands still; a what-if never touches the cache.',
       },
       {
         src: '/images/projects/wc26-dashboard/purity-boundary.svg',
-        alt: 'Two zones — a pure simulation engine that imports no cloud, and the serverless IO shell around it — separated by a purity contract test.',
+        alt: 'Two zones: a pure simulation engine that imports no cloud, and the serverless IO shell around it, separated by a purity contract test.',
         caption:
           'The compute/IO boundary, enforced by a test: the engine imports no azure/cosmos/httpx, so the model stays unit-testable offline and an accidental cloud dependency becomes a red build, not a code review.',
-      },
-      {
-        src: '/images/projects/wc26-dashboard/simulation-engine.svg',
-        alt: 'The match model — Elo logistic win probability, group-stage draw rate, qualification rules, knockout coin-flip, and live Elo ratings — beside the 10,000-run Monte Carlo loop and per-player finish bars.',
-        caption:
-          "The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player's finish distribution. The probabilities are modelled, not calibrated.",
-      },
-      {
-        src: '/images/projects/wc26-dashboard/scope-and-honesty.svg',
-        alt: 'Two panels contrasting what is proven and shipped against where the depth ends.',
-        caption:
-          'What is proven versus where the depth ends — live on Azure with green CI and a real cache, but no calibration, a simple match model, unseeded production runs, and a manual deploy. Named, not hidden.',
       },
     ],
   },

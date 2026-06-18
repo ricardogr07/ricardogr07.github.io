@@ -10,9 +10,9 @@
   <!-- front end -->
   <rect x="42" y="92" width="1038" height="66" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
   <text x="64" y="120" fill="#67e8f9" font-size="13.5" font-weight="700">Front end — Next.js 16, static export → Azure Static Web Apps (Free tier)</text>
-  <text x="64" y="142" fill="#94a3b8" font-size="11.5">Recharts · bilingual es/en · Scenario Builder (fix hypothetical winners, watch pool odds shift) · web/out/</text>
+  <text x="64" y="142" fill="#94a3b8" font-size="11.5">Recharts · bilingual es/en · Scenario Builder (fix hypothetical winners, watch pool odds shift)</text>
   <path d="M260 158 V196" fill="none" stroke="#22d3ee" stroke-width="1.7" marker-end="url(#wa-ar-c)" />
-  <text x="272" y="182" fill="#64748b" font-size="10.5">HTTPS · web/lib/api.ts</text>
+  <text x="272" y="182" fill="#64748b" font-size="10.5">HTTPS</text>
 
   <!-- functions container -->
   <rect x="42" y="200" width="648" height="214" rx="13" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="5 4" />
@@ -31,7 +31,7 @@
 
   <!-- pure engine (the heart) -->
   <rect x="296" y="240" width="374" height="100" rx="11" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.9" />
-  <text x="483" y="266" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">run_simulation(seed?, n_runs = 10000)</text>
+  <text x="483" y="266" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">pure simulation engine</text>
   <text x="483" y="288" text-anchor="middle" fill="#cbd5e1" font-size="11">Elo logistic win-prob → Monte Carlo over remaining matches</text>
   <text x="483" y="308" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">pure &amp; seedable — stdlib random only</text>
   <text x="483" y="328" text-anchor="middle" fill="#94a3b8" font-size="10.5">imports no azure · cosmos · httpx</text>
@@ -63,7 +63,7 @@
   <!-- sync loop -->
   <text x="42" y="524" fill="#94a3b8" font-size="13" font-weight="700">Live updates</text>
   <rect x="42" y="536" width="1038" height="34" rx="9" fill="#0b0e14" stroke="#1e293b" stroke-width="1" />
-  <text x="60" y="557" fill="#cbd5e1" font-size="11">timer-triggered <tspan fill="#a5b4fc">sync_matches</tspan> → pulls results from TheSportsDB (httpx) → <tspan fill="#a5b4fc">compute_elo_update</tspan> (K=32) → writes teams + matches back to Cosmos</text>
+  <text x="60" y="557" fill="#cbd5e1" font-size="11">timer-triggered match sync → pulls results from TheSportsDB → applies Elo update (K=32) → writes teams + matches back to Cosmos</text>
 
   <!-- honest footnotes -->
   <line x1="42" y1="592" x2="1078" y2="592" stroke="#1e293b" stroke-width="1" />

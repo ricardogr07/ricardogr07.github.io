@@ -10,7 +10,7 @@
   <rect x="48" y="108" width="468" height="300" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.6" />
   <text x="72" y="140" fill="#67e8f9" font-size="14" font-weight="700">PURE — the simulation engine</text>
   <g font-size="12">
-    <text x="72" y="174" fill="#cbd5e1">run_simulation(state, n_runs=10000, seed?)</text>
+    <text x="72" y="174" fill="#cbd5e1">simulation engine (pure function)</text>
     <text x="72" y="202" fill="#cbd5e1">· stdlib random (Mersenne Twister) — no NumPy</text>
     <text x="72" y="228" fill="#cbd5e1">· Pydantic models in → Pydantic result out</text>
     <text x="72" y="254" fill="#cbd5e1">· deterministic under a seed (tested)</text>
