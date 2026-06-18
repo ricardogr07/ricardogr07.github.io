@@ -5,7 +5,7 @@
 ## Pages
 
 - [Home](https://ricardogr07.github.io/): Portfolio overview with featured projects, expertise areas (AI/ML, Data Science, Cloud, Full-Stack), methodology, and proof of work.
-- [Projects](https://ricardogr07.github.io/projects/): Full gallery of 14 shipped projects across automation, data engineering, AI/ML tooling, and scientific Python. Filterable by category.
+- [Projects](https://ricardogr07.github.io/projects/): Full gallery of 12 shipped projects across automation, data engineering, AI/ML tooling, and scientific Python. Filterable by category.
 - [About](https://ricardogr07.github.io/about/): Background, technical skill groups, social links (GitHub, LinkedIn, Medium, Google Scholar), and 6 published essays on software engineering.
 - [CV](https://ricardogr07.github.io/cv/): Work history at MSCI (Senior Developer), Rackspace (Software Developer II), Parallel Staff/Softeq (.NET Engineer), and Delee Corp; M.Sc. Data Science (PUC Chile) and B.Sc. Biomedical Engineering (Tec de Monterrey); 4 peer-reviewed journal articles and 1 Springer book chapter; 5 courses taught.
 - [Services](https://ricardogr07.github.io/freelance/): Productized consulting: AI/RAG pipeline build or audit, data pipeline to reporting site, and engineering/repo audit. Each offer backed by a shipped project.
