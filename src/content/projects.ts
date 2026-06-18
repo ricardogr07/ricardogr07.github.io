@@ -498,26 +498,18 @@ export const projects: PortfolioProject[] = [
   },
   {
     slug: 'myocardial-mesh',
-    title: 'Myocardial Mesh Scientific Python Library',
+    title: 'Myocardial Mesh: Cardiac Simulation Python Library',
     repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
     visibility: 'public',
     featured: false,
     diagram: '/images/projects/myocardial-mesh/architecture.svg',
-    diagramCaption:
-      "You provide a 3D heart-muscle model, its electrical 'wiring' tree, and sensor positions; an iterative coupling loop simulates the electrical wave and synthesises a 12-lead ECG. The heavy wave-speed math is delegated to an external solver — the library is the orchestration and the proof.",
     heroImage: '/images/projects/myocardial-mesh/hero.svg',
+    pypiUrl: 'https://pypi.org/project/myocardial-mesh/',
     categories: ['scientific-python'],
+    deliverables: [],
+    businessValue: [],
     summary:
-      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as a single import (no CLI or service), refactored out of legacy notebooks and pinned to their output within RMSE < 1e-6.',
-    deliverables: [
-      'Single-entry-point installable library (MyocardialMesh)',
-      'Iterative Purkinje-myocardium coupling loop',
-      '12-lead ECG synthesis (lead-field assembly)',
-      'Optional JAX fast-path Purkinje solver',
-      'Baseline parity test vs the original notebook (RMSE < 1e-6)',
-      'tox CI on Python 3.10 & 3.12 with strict typing, lint, docs, coverage >= 80%',
-      'Release automation (release-please) — not yet deployed',
-    ],
+      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as the forward-simulation backbone in an M.Sc. thesis on probabilistic Purkinje-network reconstruction.',
     techStack: [
       'Python',
       'NumPy / SciPy',
@@ -534,55 +526,28 @@ export const projects: PortfolioProject[] = [
       'Simulation Tooling',
       'Package Refactoring',
     ],
-    businessValue: [
-      'Installable package structure replaces copy-paste scripts that break between collaborators',
-      'pytest-compatible layout means the library can be validated in CI alongside other tools',
-    ],
-    tldr: "A Python library that refactors legacy heart-simulation notebooks (a Purkinje 'wiring' tree + a 3D muscle mesh → a 12-lead ECG) into a tested, versioned package — pinned to the original notebook's output within RMSE < 1e-6.",
+    headlineMetric: 'From fragile research notebook to a CI-gated, bit-exact Python library',
+    tldr: 'Bit-level parity with the original research notebook: all 12 ECG leads within RMSE < 1e-6, reproduced from committed ground truth by an automated baseline test; strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
     situation:
-      "Valuable computational-cardiology research — simulating how the heart's electrical wave spreads through the muscle and synthesising a 12-lead ECG — lived in fragile Jupyter notebooks: hard to reuse, easy to break between collaborators, and impossible to validate in CI.",
-    task: 'Refactor that notebook code into a maintainable, installable, CI-gated library without changing the physics — and prove the rewrite is correct rather than assume it.',
-    action:
-      "Extracted the notebook into a single-entry-point library: load a 3D myocardial mesh, a Purkinje 'wiring' tree, and electrode positions; run an iterative Purkinje-muscle coupling loop; synthesise a 12-lead ECG. Delegated the heavy wave-speed math to an external FIM solver and kept the library focused on orchestration and I/O glue. Pinned ground truth from the original notebook (committed reference data) and asserted bit-level parity — all 12 ECG leads within RMSE < 1e-6 — as a baseline regression test, gated behind tox on Python 3.10 & 3.12 with strict typing, lint, docstring checks, and coverage >= 80%.",
-    headlineMetric:
-      'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
+      'The M.Sc. thesis on probabilistic Purkinje-network reconstruction needed a reliable forward simulation: given a Purkinje geometry and a myocardial mesh, produce a 12-lead ECG to compare against measured signals. That pipeline lived in Jupyter notebooks, fragile across Python environments and impossible to validate in CI.',
+    task: 'Package the notebook simulation as an installable Python library any researcher can import in one line, prove it is identical to the original notebook output, and gate that proof in CI so it can never silently drift.',
+    action: [
+      'Extracted the notebook into a single-entry-point library (MyocardialMesh): load a 3D myocardial mesh, a Purkinje wiring tree, and electrode positions.',
+      'Built an iterative Purkinje-muscle coupling loop: fire the wiring, spread the activation wave through the muscle, synthesise the 12-lead ECG, check convergence, repeat.',
+      'Delegated the wave-speed math to an external FIM solver; the library owns orchestration, I/O, coupling, and ECG assembly.',
+      'Committed the original notebook output as ground truth and added a baseline regression test asserting RMSE < 1e-6 across all 12 ECG leads, gated in tox on Python 3.10 & 3.12 with strict typing and coverage above 80%.',
+    ],
     result:
-      "The library reproduces the notebook's 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.",
-    status: 'active',
+      'Published to PyPI as myocardial-mesh. The library became the forward-simulation backbone for the M.Sc. thesis: PurkinjeUV generates the Purkinje network geometry; myocardial-mesh loads that geometry, runs the coupling loop, and reads out the 12-lead ECG, forming the full simulation pipeline the thesis depends on. The parity test pins the library to within RMSE < 1e-6 of the original notebook across all 12 ECG leads.',
     learning:
-      "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
-    caveat:
-      'A research library, not a clinical or diagnostic tool, and not yet published to PyPI (release automation is set up; nothing deployed). It is the orchestration-and-proof glue: the wave-speed math is delegated to an external FIM solver (no pure-Python fallback), and the GPU path is plumbed but only the CPU path is exercised in CI. It packages and proves earlier notebook research behind a deliberately narrow, single-entry-point surface.',
-    gallery: [
-      {
-        src: '/images/projects/myocardial-mesh/parity-proof.svg',
-        alt: 'Two ECG traces side by side — the original notebook and the new library — joined by an equals sign, with a badge stating they match to within one-millionth across all 12 leads',
-        caption:
-          "Parity-first refactoring: the library is pinned to the original notebook's 12-lead ECG, and a baseline test fails the build if they ever drift — bit-level parity (RMSE < 1e-6), reproduced from data committed in the repo.",
-      },
+      'Parity-first refactoring: research code becomes trustworthy not by assuming the rewrite is correct, but by pinning the original output as ground truth and asserting bit-level equivalence, which catches the silent numerical drift that domain-specific code hides.',
+    status: 'active',
+    resultGallery: [
       {
         src: '/images/projects/myocardial-mesh/coupling-loop.svg',
-        alt: 'A four-step cycle — fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled — with a dashed arrow looping back to repeat',
+        alt: 'A four-step cycle: fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled, with a dashed arrow looping back to repeat',
         caption:
-          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges — and can inject an early extra beat (a PVC) to study irregular rhythms.',
-      },
-      {
-        src: '/images/projects/myocardial-mesh/ecg-synthesis.svg',
-        alt: 'A 3D electrical wave on the heart feeding a distance-weighting step (nearer regions count for more) that produces a 12-lead ECG',
-        caption:
-          "How the ECG is built: each electrode sums the heart's activity with a simple one-over-distance weighting, assembling the standard 12 leads — the same physics as a real body-surface ECG.",
-      },
-      {
-        src: '/images/projects/myocardial-mesh/delegate-and-own.svg',
-        alt: 'Two columns: delegated (the external FIM solver handles how fast the wave travels, as a black box) versus owned (the library handles mesh I/O, Purkinje-muscle coupling, 12-lead ECG assembly, and the parity test)',
-        caption:
-          'Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.',
-      },
-      {
-        src: '/images/projects/myocardial-mesh/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (matches the original, two Python versions, coverage above 80%, installable package, delegates the heavy math) against where it stops (not clinical, not published, local-only single import, leans on an external solver, you supply the model and wiring)",
-        caption:
-          'Honest scope: strong as a research-engineering story (proven equal to the original, strictly typed, CI-gated) and deliberately narrow — a local-only library import (no CLI or service), not a clinical tool, wrapping an external solver for the heavy math.',
+          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges, and can inject an early extra beat (a PVC) to study irregular rhythms.',
       },
     ],
   },

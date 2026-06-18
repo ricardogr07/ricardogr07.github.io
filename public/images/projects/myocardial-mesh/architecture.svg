@@ -40,8 +40,8 @@
   <rect x="48" y="346" width="1024" height="156" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.1" />
   <text x="68" y="376" fill="#94a3b8" font-size="14" font-weight="700">HONEST SCOPE</text>
   <g font-size="14" fill="#94a3b8">
-    <text x="68" y="406">→ It is the <tspan fill="#cbd5e1">glue and the proof</tspan>, not the heavy math — the wave-speed solving is delegated to an external library.</text>
-    <text x="68" y="434">→ Not a heart-model builder, not a clinical tool — you supply the model and wiring; it stays a research library.</text>
+    <text x="68" y="406">→ It is the <tspan fill="#cbd5e1">glue and the proof</tspan>, not the heavy math: the wave-speed solving is delegated to an external library.</text>
+    <text x="68" y="434">→ Not a heart-model builder, not a clinical tool: you supply the model and wiring; it stays a research library.</text>
     <text x="68" y="462">→ <tspan fill="#cbd5e1">Not published</tspan> yet (release automation is set up, nothing shipped); GPU path is plumbed but only the CPU path is tested.</text>
     <text x="68" y="490">→ A small, focused surface (one main entry point) with a deliberately narrow, well-tested job.</text>
   </g>
