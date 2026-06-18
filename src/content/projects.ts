@@ -365,20 +365,11 @@ export const projects: PortfolioProject[] = [
     visibility: 'public',
     featured: false,
     diagram: '/images/projects/jax-bo/architecture.svg',
-    diagramCaption:
-      'Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.',
     heroImage: '/images/projects/jax-bo/hero.svg',
     categories: ['ml', 'scientific-python', 'developer-tooling'],
     summary:
-      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork — the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
-    deliverables: [
-      'Modern Python & JAX compatibility (real floor ~3.10)',
-      'Installable PyPI package (pip install jaxbo)',
-      'CI tests on Python 3.10 & 3.12',
-      'Linting with Black + Ruff',
-      'Automated releases (release-please + PyPI OIDC Trusted Publisher)',
-      'Restored documentation and demo notebooks',
-    ],
+      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork: the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
+    deliverables: [],
     techStack: ['Python', 'JAX', 'Gaussian Processes', 'PyPI', 'GitHub Actions', 'Black / Ruff'],
     servicesSupported: [
       'ML Research Tooling',
@@ -386,76 +377,47 @@ export const projects: PortfolioProject[] = [
       'Scientific Python',
       'Package Maintenance',
     ],
-    businessValue: [
-      'Keeps the library usable as Python and JAX versions advance — installable again with one command',
-      'Token-less automated releases mean any maintainer can ship a version safely, no stored secrets',
-    ],
-    tldr: 'Rescued a bit-rotted academic JAX Bayesian-optimization library into an installable, CI-linted, auto-published PyPI package. A maintenance-and-packaging fork — the math is upstream, the distribution engineering is mine.',
-    situation:
-      "A useful Gaussian-process Bayesian-optimization library written in JAX (the Predictive Intelligence Lab's) had bit-rotted: it no longer installed on current Python or JAX, so the research inside it was effectively unreachable.",
-    task: 'Fork it, restore modern Python/JAX compatibility, and make it a properly packaged, tested, automatically released PyPI library — without claiming the optimization research as my own.',
-    action:
-      'Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.',
+    businessValue: [],
+    tldr: 'Now pip install jaxbo resolves to a real, current release',
     headlineMetric:
-      'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
+      'Modernized an academic JAX Bayesian-optimization library into an installable PyPI package',
+    situation:
+      'A JAX Bayesian-optimization library from the Predictive Intelligence Lab had stopped working on modern Python and JAX: the manifest claimed Python 3.6 compatibility but the package no longer installed, putting the research effectively out of reach.',
+    task: 'Fork it, restore modern Python/JAX compatibility, and ship it as a properly packaged, tested, automatically released PyPI library; credit the upstream research, claim only the distribution engineering.',
+    action: [
+      'Forked the upstream library and restored Python and JAX compatibility; the manifest claimed Python 3.6, which was never real, and the actual working floor is ~3.10.',
+      'Packaged it for PyPI with Black and Ruff linting, plus CI on Python 3.10 and 3.12.',
+      'Wired up automated releases: release-please reads commits and bumps the version, a tag triggers the publish job, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Left the Gaussian-process and acquisition math credited to the upstream authors throughout.',
+    ],
     result:
-      'pip install jaxbo works today — two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
+      'pip install jaxbo works today: two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
     status: 'pypi',
     learning:
-      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood — it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN — and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
-    caveat:
-      "A maintenance-and-packaging fork of the Predictive Intelligence Lab's research library — not a production Bayesian-optimization framework and not original research. The optimization math is upstream and credited. Where it stops: a standard exact Gaussian process (dense Cholesky, best for small / low-dimensional problems), float32 by default, the search loop is hand-assembled (there is no one-call optimize() driver), and the surrogate/acquisition core is only lightly tested. The defensible claim is that I made the research installable on modern Python — not that I built the research.",
-    gallery: [
-      {
-        src: '/images/projects/jax-bo/own-vs-upstream.svg',
-        alt: 'Two columns: upstream (the prediction model, the rules for choosing the next test, the kernels and variants, the original JAX implementation — credited to the Predictive Intelligence Lab) versus mine (fixed it to install on modern Python, a clean installable package, continuous testing and linting, automated token-less releases, restored docs and demos)',
-        caption:
-          "Honest credit: the Bayesian-optimization research is the Predictive Intelligence Lab's; the work here is the distribution engineering — making it install, lint, test, and ship. The defensible claim is “I made the research installable,” not “I built the research.”",
-      },
-      {
-        src: '/images/projects/jax-bo/publish-pipeline.svg',
-        alt: 'A four-step pipeline — merge a change, a bot picks the version from the commits, a version tag triggers publish, and PyPI publishes proven by identity (OIDC) with no stored token — ending at pip install jaxbo',
-        caption:
-          'Releases that ship themselves: release-please reads the commits and bumps the version, a tag triggers publishing, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Two real versions (0.1.1, 0.1.2) shipped this way — the cleanest, most reusable part of the project.',
-      },
+      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood: it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN, and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
+    resultGallery: [
       {
         src: '/images/projects/jax-bo/how-bo-works.svg',
-        alt: 'A chart showing a few tested points, a predicted curve through them, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try — high and still uncertain',
+        alt: 'A chart showing a few tested points, a predicted curve, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try: high and still uncertain.',
         caption:
-          'What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.',
-      },
-      {
-        src: '/images/projects/jax-bo/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (installs on modern Python and JAX, two real PyPI releases, tested on two Python versions and linted, releases publish themselves token-less, upstream credited) against where it stops (a fork, not a new framework, best for small low-dimensional problems, you assemble the loop yourself, the core math is only lightly tested)",
-        caption:
-          'Honest scope: strong as distribution engineering — installable, linted, tested, auto-released — and deliberately not a new framework. A fork whose research math is upstream, suited to small low-dimensional problems, with the search loop left in the caller’s hands.',
+          'What Bayesian optimization does in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising, homing in on the best setting in far fewer tries than a brute-force sweep.',
       },
     ],
   },
   {
     slug: 'purkinje-uv',
-    title: 'PurkinjeUV: Scientific Python Package for Cardiac Simulation',
+    title: 'PurkinjeUV: Python Package for Cardiac Simulation',
     repo: 'https://github.com/ricardogr07/purkinje-uv',
+    docsUrl: 'https://ricardogr07.github.io/purkinje-uv/main/',
+    colabUrl:
+      'https://colab.research.google.com/github/ricardogr07/purkinje-uv/blob/feat%2Fcreate-examples-tutorials/examples/02_crt_demo.ipynb',
     visibility: 'public',
     featured: true,
     diagram: '/images/projects/purkinje-uv/architecture.svg',
-    diagramCaption:
-      'Mesh.uvmap flattens the surface into a 2D chart, FractalTree.grow_tree runs the deterministic growth there, then the network is mapped back to 3D — with an opt-in eikonal activation solve as a separate stage. The geometry-only path is a valid endpoint.',
     heroImage: '/images/projects/purkinje-uv/hero.svg',
     categories: ['scientific-python', 'automation'],
     summary:
-      'Modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
-    deliverables: [
-      'Python package',
-      'Fractal network generation',
-      'Mesh support',
-      'UV mapping workflow',
-      'Eikonal solver path',
-      'Visualization utilities',
-      'Docs',
-      'CI',
-      'PyPI release',
-    ],
+      'Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
+    deliverables: [],
     techStack: [
       'Python',
       'NumPy',
@@ -468,85 +430,65 @@ export const projects: PortfolioProject[] = [
       'PyPI',
     ],
     servicesSupported: [
-      'Scientific Python',
       'Simulation Tools',
       'Research Software Engineering',
       'Package Development',
       'Computational Modeling',
     ],
-    businessValue: [
-      'Installable package means collaborators reproduce results without re-reading your setup notes',
-      'PyPI release makes the work citable and verifiable outside the lab',
-      'Fractal generation + UV mapping handles geometry that pure FEM mesh tools cannot address',
-      'Tests + CI keep the package reliable as scientific dependencies evolve',
-    ],
-    tldr: 'Packaged scientific Python library for generating Purkinje-network geometries over cardiac meshes.',
+    businessValue: [],
+    tldr: 'Python library for generating Purkinje-network geometries over cardiac meshes.',
+    headlineMetric: 'The fractal-Purkinje method as an installable library',
     situation:
-      'Computational modeling of cardiac conduction needs reusable, tested, documented packages — not fragile research scripts that only run on one machine.',
-    task: 'Package Purkinje-network geometry generation over cardiac surface meshes for reuse, release, and reproducibility.',
-    action:
-      'A modular scientific-Python package built around one idea: grow the surface-constrained tree in a flattened 2D UV chart, then map it back to 3D. Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric (0.5·trace(FᵀF)) so 2D steps stay correct on the curved surface; FractalTree.grow_tree runs the deterministic fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination); PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity. Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK. Released to PyPI through an OIDC trusted-publisher pipeline with release-please automation, 107 tests across 19 files, and a dual-Python tox CI.',
+      'This package repackages the Purkinje-network growth algorithm from Sahli Costabal et al. [2] as an installable Python library. The method was central to an M.Sc. thesis at PUC Chile on probabilistic reconstruction of the Purkinje network from ECG signals [1]: the research produced working geometry code that needed to be tested, shared, and reproducible beyond a single lab environment.',
+    references: [
+      {
+        citation:
+          'Felipe Álvarez-Barrientos, Mariana Salinas-Camus, Simone Pezzuto, and Francisco Sahli Costabal. Probabilistic learning of the Purkinje network from the electrocardiogram. arXiv:2312.09887, 2023.',
+        url: 'https://arxiv.org/abs/2312.09887',
+      },
+      {
+        citation:
+          'Francisco Sahli Costabal, Daniel E. Hurtado, and Ellen Kuhl. Generating Purkinje networks in the human heart. Journal of Biomechanics, 49(12):2455–2465, 2016.',
+        url: 'https://doi.org/10.1016/j.jbiomech.2015.12.025',
+      },
+    ],
+    task: 'Take a published computational method for generating Purkinje networks and turn it into something any researcher can install in one command, run on their own mesh, and cite: a proper Python package with documentation, worked examples, and an automated release pipeline.',
+    action: [
+      'Built around one idea: grow the tree in a flattened 2D UV chart, then map it back to 3D.',
+      'Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric $\\tfrac{1}{2}\\operatorname{trace}(\\mathbf{F}^\\top\\mathbf{F})$ so 2D steps stay correct on the curved surface.',
+      'FractalTree.grow_tree runs the fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination).',
+      'PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity.',
+      'Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK.',
+    ],
     status: 'pypi',
-    headlineMetric:
-      'The fractal-Purkinje method as an installable library — PyPI 0.4.0, OIDC-released, 107 tests on dual-Python CI',
     result:
-      'Published to PyPI as purkinje-uv 0.4.0 through a tokenless OIDC trusted-publisher pipeline (release-please + gh-action-pypi-publish, no stored tokens), with 107 tests across 19 files covering the growth algorithm, mesh FEM, UV mapping, and I/O round-trips, gated at ≥90% coverage on a dual-Python (3.10/3.12) tox CI. The committed end-to-end artifact grows a 3,094-node / 3,093-segment fractal Purkinje network on the ellipsoid demo mesh and runs it through the eikonal activation solve.',
+      'Published to PyPI as purkinje-uv. The committed end-to-end artifact grows a 3,094-node / 3,093-segment fractal Purkinje network on the ellipsoid demo mesh and runs it through the eikonal activation solve. The package ships with worked examples and a Google Colab notebook, so the method is reproducible without a local install.',
     learning:
-      'The hard part was never a model — it was the parameterization. Growing a surface-constrained tree directly in 3D is a misery of projection and collision tests; flattening the surface into a Laplacian UV chart and carrying a per-triangle arc-length metric turns it into tractable 2D geometry you map back at the end. The honest sub-lesson: the growth is deterministic by construction — no RNG on the path — so the seeding and reproducibility scaffolding around it was redundant. The determinism was structural all along.',
-    caveat:
-      "A faithful repackaging of an existing research method (Sahli Costabal et al.), actively developed but not yet a benchmarked product. No throughput number is committed to the repo — the real-ventricle figures live in an untracked local log — and there is no golden/numerical test (the end-to-end check only asserts the network is non-empty and parseable). Part of the public API (Branch/Nodes) is a legacy parallel path the grower no longer uses; the surface must have a boundary loop (closed meshes won't parameterize); conduction velocity is a fixed isotropic constant; and the dependencies are unpinned against a stale 3.8 floor, so a clean install today isn't guaranteed.",
+      'The hard part was never a model: it was the parameterization. Growing the tree directly in 3D is a misery of projection and collision tests; flattening the surface into a Laplacian UV chart and carrying a per-triangle arc-length metric turns it into tractable 2D geometry you map back at the end.',
     pypiUrl: 'https://pypi.org/project/purkinje-uv/',
-    artifactNote:
-      "Developed from M.Sc. thesis: 'Probabilistic reconstruction of the Purkinje network from ECG signals using computational modeling and Bayesian inference.' PUC Chile, Distinction.",
-    gallery: [
+    resultGallery: [
       {
         src: '/images/projects/purkinje-uv/uv-parameterization.svg',
         alt: 'A 3D cardiac surface flattened into a 2D Laplacian UV chart, where the fractal tree is grown, then mapped back onto the 3D surface.',
         caption:
-          'The core idea — solve the hard 3D problem once with a Laplace UV solve and an arc-length metric, grow on a flat chart, map the result back. No ML step anywhere.',
-      },
-      {
-        src: '/images/projects/purkinje-uv/growth-algorithm.svg',
-        alt: 'The five deterministic fractal-growth rules — trunk, fascicles, ±angle bifurcation, repulsion-gradient growth, and collision termination — beside a grown tree.',
-        caption:
-          'Deterministic fractal growth: five geometric rules, no RNG. The PCG64 seed in config is never rolled on the growth path, so the same mesh and params always yield the same tree.',
-      },
-      {
-        src: '/images/projects/purkinje-uv/shipping-and-ci.svg',
-        alt: 'The release pipeline (tag → release-please → OIDC publish → PyPI 0.4.0) alongside the dual-Python tox CI and the 107-test suite breakdown.',
-        caption:
-          'Shipped like a library: a tokenless OIDC release, release-please automation, dual-Python tox CI with a ≥90% coverage gate, and 107 tests across 19 files.',
-      },
-      {
-        src: '/images/projects/purkinje-uv/scope-and-honesty.svg',
-        alt: 'Two panels contrasting what is proven and committed against where the depth ends.',
-        caption:
-          'What is proven versus where the depth ends — no committed throughput number, no golden test, a legacy Branch/Nodes path, a boundary-loop requirement, unpinned deps. Named, not hidden.',
+          'The core idea: solve the hard 3D problem once with a Laplace UV solve and an arc-length metric, grow on a flat chart, map the result back. No ML step anywhere.',
       },
     ],
   },
   {
     slug: 'myocardial-mesh',
-    title: 'Myocardial Mesh Scientific Python Library',
+    title: 'Myocardial Mesh: Cardiac Simulation Python Library',
     repo: 'https://github.com/ricardogr07/purkinje-learning-myocardial-mesh',
     visibility: 'public',
     featured: false,
     diagram: '/images/projects/myocardial-mesh/architecture.svg',
-    diagramCaption:
-      "You provide a 3D heart-muscle model, its electrical 'wiring' tree, and sensor positions; an iterative coupling loop simulates the electrical wave and synthesises a 12-lead ECG. The heavy wave-speed math is delegated to an external solver — the library is the orchestration and the proof.",
     heroImage: '/images/projects/myocardial-mesh/hero.svg',
+    pypiUrl: 'https://pypi.org/project/myocardial-mesh/',
     categories: ['scientific-python'],
+    deliverables: [],
+    businessValue: [],
     summary:
-      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as a single import (no CLI or service), refactored out of legacy notebooks and pinned to their output within RMSE < 1e-6.',
-    deliverables: [
-      'Single-entry-point installable library (MyocardialMesh)',
-      'Iterative Purkinje-myocardium coupling loop',
-      '12-lead ECG synthesis (lead-field assembly)',
-      'Optional JAX fast-path Purkinje solver',
-      'Baseline parity test vs the original notebook (RMSE < 1e-6)',
-      'tox CI on Python 3.10 & 3.12 with strict typing, lint, docs, coverage >= 80%',
-      'Release automation (release-please) — not yet deployed',
-    ],
+      'A Python research library for computational cardiology: load a myocardial mesh, a Purkinje fibre tree, and electrode positions, run an iterative Purkinje-muscle coupling loop, and synthesise a 12-lead ECG. Used as the forward-simulation backbone in an M.Sc. thesis on probabilistic Purkinje-network reconstruction.',
     techStack: [
       'Python',
       'NumPy / SciPy',
@@ -563,55 +505,28 @@ export const projects: PortfolioProject[] = [
       'Simulation Tooling',
       'Package Refactoring',
     ],
-    businessValue: [
-      'Installable package structure replaces copy-paste scripts that break between collaborators',
-      'pytest-compatible layout means the library can be validated in CI alongside other tools',
-    ],
-    tldr: "A Python library that refactors legacy heart-simulation notebooks (a Purkinje 'wiring' tree + a 3D muscle mesh → a 12-lead ECG) into a tested, versioned package — pinned to the original notebook's output within RMSE < 1e-6.",
+    headlineMetric: 'From a research notebook to a CI-gated, bit-exact Python library',
+    tldr: 'Bit-level parity with the original research notebook: all 12 ECG leads within RMSE < 1e-6, reproduced from committed ground truth by an automated baseline test.',
     situation:
-      "Valuable computational-cardiology research — simulating how the heart's electrical wave spreads through the muscle and synthesising a 12-lead ECG — lived in fragile Jupyter notebooks: hard to reuse, easy to break between collaborators, and impossible to validate in CI.",
-    task: 'Refactor that notebook code into a maintainable, installable, CI-gated library without changing the physics — and prove the rewrite is correct rather than assume it.',
-    action:
-      "Extracted the notebook into a single-entry-point library: load a 3D myocardial mesh, a Purkinje 'wiring' tree, and electrode positions; run an iterative Purkinje-muscle coupling loop; synthesise a 12-lead ECG. Delegated the heavy wave-speed math to an external FIM solver and kept the library focused on orchestration and I/O glue. Pinned ground truth from the original notebook (committed reference data) and asserted bit-level parity — all 12 ECG leads within RMSE < 1e-6 — as a baseline regression test, gated behind tox on Python 3.10 & 3.12 with strict typing, lint, docstring checks, and coverage >= 80%.",
-    headlineMetric:
-      'Bit-level parity with the original research notebook — all 12 ECG leads within RMSE < 1e-6 — reproduced from committed ground truth by an automated baseline test, on a library that is strictly type-checked and held above 80% coverage across Python 3.10 & 3.12.',
+      'The M.Sc. thesis on probabilistic Purkinje-network reconstruction needed a reliable forward simulation: given a Purkinje geometry and a myocardial mesh, produce a 12-lead ECG to compare against measured signals. That pipeline lived in Jupyter notebooks, difficult to share across Python environments and impossible to validate in CI.',
+    task: 'Package the notebook simulation as an installable Python library any researcher can import in one line, prove it is identical to the original notebook output, and gate that proof in CI so it can never silently drift.',
+    action: [
+      'Extracted the notebook into a single-entry-point library (MyocardialMesh): load a 3D myocardial mesh, a Purkinje wiring tree, and electrode positions.',
+      'Built an iterative Purkinje-muscle coupling loop: fire the wiring, spread the activation wave through the muscle, synthesise the 12-lead ECG, check convergence, repeat.',
+      'Delegated the wave-speed math to an external FIM solver; the library owns orchestration, I/O, coupling, and ECG assembly.',
+      'Committed the original notebook output as ground truth and added a baseline regression test asserting RMSE < 1e-6 across all 12 ECG leads, gated in tox on Python 3.10 & 3.12 with strict typing and coverage above 80%.',
+    ],
     result:
-      "The library reproduces the notebook's 12-lead ECG to within RMSE < 1e-6, proven by an automated baseline test; 12 test files run green on Python 3.10 & 3.12 with coverage held above 80% and strict typing enforced. Not yet published to PyPI — release automation is in place, nothing deployed.",
-    status: 'active',
+      'Published to PyPI as myocardial-mesh. The library became the forward-simulation backbone for the M.Sc. thesis: PurkinjeUV generates the Purkinje network geometry; myocardial-mesh loads that geometry, runs the coupling loop, and reads out the 12-lead ECG, forming the full simulation pipeline the thesis depends on. The parity test pins the library to within RMSE < 1e-6 of the original notebook across all 12 ECG leads.',
     learning:
-      "Parity-first refactoring: you make research code trustworthy not by guessing the rewrite is correct, but by pinning the original's output as ground truth and asserting bit-level equivalence — which catches the silent numerical drift that domain-specific code hides. The companion lesson is restraint: delegate the heavy math (the FIM solve, the tree search) to proven external solvers and let the library be the orchestration-and-proof glue, not a reimplementation.",
-    caveat:
-      'A research library, not a clinical or diagnostic tool, and not yet published to PyPI (release automation is set up; nothing deployed). It is the orchestration-and-proof glue: the wave-speed math is delegated to an external FIM solver (no pure-Python fallback), and the GPU path is plumbed but only the CPU path is exercised in CI. It packages and proves earlier notebook research behind a deliberately narrow, single-entry-point surface.',
-    gallery: [
-      {
-        src: '/images/projects/myocardial-mesh/parity-proof.svg',
-        alt: 'Two ECG traces side by side — the original notebook and the new library — joined by an equals sign, with a badge stating they match to within one-millionth across all 12 leads',
-        caption:
-          "Parity-first refactoring: the library is pinned to the original notebook's 12-lead ECG, and a baseline test fails the build if they ever drift — bit-level parity (RMSE < 1e-6), reproduced from data committed in the repo.",
-      },
+      'Parity-first refactoring: research code becomes trustworthy not by assuming the rewrite is correct, but by pinning the original output as ground truth and asserting bit-level equivalence, which catches the silent numerical drift that domain-specific code hides.',
+    status: 'active',
+    resultGallery: [
       {
         src: '/images/projects/myocardial-mesh/coupling-loop.svg',
-        alt: 'A four-step cycle — fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled — with a dashed arrow looping back to repeat',
+        alt: 'A four-step cycle: fire the wiring, spread the wave through the muscle, read the ECG, check whether it settled, with a dashed arrow looping back to repeat',
         caption:
-          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges — and can inject an early extra beat (a PVC) to study irregular rhythms.',
-      },
-      {
-        src: '/images/projects/myocardial-mesh/ecg-synthesis.svg',
-        alt: 'A 3D electrical wave on the heart feeding a distance-weighting step (nearer regions count for more) that produces a 12-lead ECG',
-        caption:
-          "How the ECG is built: each electrode sums the heart's activity with a simple one-over-distance weighting, assembling the standard 12 leads — the same physics as a real body-surface ECG.",
-      },
-      {
-        src: '/images/projects/myocardial-mesh/delegate-and-own.svg',
-        alt: 'Two columns: delegated (the external FIM solver handles how fast the wave travels, as a black box) versus owned (the library handles mesh I/O, Purkinje-muscle coupling, 12-lead ECG assembly, and the parity test)',
-        caption:
-          'Delegate and own: the specialised numerics (the FIM wave-speed solve) are handed to a proven external solver as a black box; the library owns the orchestration, the I/O, the coupling, the 12-lead assembly — and the test that proves it stayed equal to the original.',
-      },
-      {
-        src: '/images/projects/myocardial-mesh/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (matches the original, two Python versions, coverage above 80%, installable package, delegates the heavy math) against where it stops (not clinical, not published, local-only single import, leans on an external solver, you supply the model and wiring)",
-        caption:
-          'Honest scope: strong as a research-engineering story (proven equal to the original, strictly typed, CI-gated) and deliberately narrow — a local-only library import (no CLI or service), not a clinical tool, wrapping an external solver for the heavy math.',
+          'The heart of the library: an iterative Purkinje-muscle coupling loop that runs a beat, reads the ECG, and repeats until activation converges, and can inject an early extra beat (a PVC) to study irregular rhythms.',
       },
     ],
   },

@@ -182,6 +182,25 @@ export default function ProjectCard({ project, featured = false, href }: Project
               PyPI
             </a>
           )}
+          {project.colabUrl && (
+            <a
+              href={project.colabUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 transition-colors hover:text-orange-400"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4.5 9.5 2 7a7 7 0 0 0 0 10l2.5-2.5a3.5 3.5 0 0 1 0-5z" fill="#E8710A" />
+                <path d="M12 5l-2 3a3.5 3.5 0 0 1 0 5.5l2 3a7 7 0 0 0 0-11.5z" fill="#F9AB00" />
+                <path d="M2 7l2.5 2.5a3.5 3.5 0 0 1 5 0L12 7a7 7 0 0 0-10 0z" fill="#F9AB00" />
+                <path
+                  d="M9.5 14.5a3.5 3.5 0 0 1-5 0L2 17a7 7 0 0 0 10 0l-2.5-2.5z"
+                  fill="#E8710A"
+                />
+              </svg>
+              Demo
+            </a>
+          )}
           {project.marketplaceUrl && (
             <a
               href={project.marketplaceUrl}

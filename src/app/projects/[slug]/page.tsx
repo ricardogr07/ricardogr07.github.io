@@ -2,10 +2,23 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import katex from 'katex'
 import DiagramZoom from '@/components/diagram-zoom'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
 import type { PortfolioProject } from '@/lib/types'
+
+function renderWithMath(text: string) {
+  const parts = text.split(/(\$[^$]+\$)/g)
+  if (parts.length === 1) return text
+  return parts.map((part, i) => {
+    if (part.startsWith('$') && part.endsWith('$')) {
+      const html = katex.renderToString(part.slice(1, -1), { throwOnError: false, output: 'html' })
+      return <span key={i} dangerouslySetInnerHTML={{ __html: html }} />
+    }
+    return <span key={i}>{part}</span>
+  })
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -181,6 +194,25 @@ export default async function CaseStudyPage({ params }: Props) {
                 PyPI
               </a>
             )}
+            {project.colabUrl && (
+              <a
+                href={project.colabUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4.5 9.5 2 7a7 7 0 0 0 0 10l2.5-2.5a3.5 3.5 0 0 1 0-5z" fill="#E8710A" />
+                  <path d="M12 5l-2 3a3.5 3.5 0 0 1 0 5.5l2 3a7 7 0 0 0 0-11.5z" fill="#F9AB00" />
+                  <path d="M2 7l2.5 2.5a3.5 3.5 0 0 1 5 0L12 7a7 7 0 0 0-10 0z" fill="#F9AB00" />
+                  <path
+                    d="M9.5 14.5a3.5 3.5 0 0 1-5 0L2 17a7 7 0 0 0 10 0l-2.5-2.5z"
+                    fill="#E8710A"
+                  />
+                </svg>
+                Demo
+              </a>
+            )}
             {project.marketplaceUrl && (
               <a
                 href={project.marketplaceUrl}
@@ -271,6 +303,27 @@ export default async function CaseStudyPage({ params }: Props) {
                   <p className="text-base leading-relaxed text-justify text-neutral-400">
                     {situation}
                   </p>
+                  {project.references && project.references.length > 0 && (
+                    <ol className="mt-4 space-y-1.5 list-none">
+                      {project.references.map((ref, i) => (
+                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-neutral-600">
+                          <span className="shrink-0">[{i + 1}]</span>
+                          {ref.url ? (
+                            <a
+                              href={ref.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline underline-offset-2 decoration-neutral-700 hover:text-neutral-400"
+                            >
+                              {ref.citation}
+                            </a>
+                          ) : (
+                            <span>{ref.citation}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ol>
+                  )}
                 </section>
               )}
 
@@ -293,7 +346,7 @@ export default async function CaseStudyPage({ params }: Props) {
                             className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                            {point}
+                            <span>{renderWithMath(point)}</span>
                           </li>
                         ))}
                       </ul>

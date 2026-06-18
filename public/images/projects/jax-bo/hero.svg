@@ -1,69 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
   <defs>
-    <radialGradient id="jb-glow" cx="40%" cy="36%" r="80%">
-      <stop offset="0%" stop-color="#0e2a2f" />
-      <stop offset="100%" stop-color="#0a0a0a" />
-    </radialGradient>
-    <pattern id="jb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 H0 V40" fill="none" stroke="#16202a" stroke-width="1" />
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
     </pattern>
-    <marker id="jb-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
-    </marker>
+    <radialGradient id="glow" cx="900" cy="300" r="520" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 108) scale(1 0.64)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.12"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"></stop>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </linearGradient>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#jb-glow)" />
-  <rect width="1200" height="630" fill="url(#jb-grid)" />
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
 
-  <!-- title -->
-  <text x="64" y="92" fill="#f8fafc" font-size="48" font-weight="800" letter-spacing="-1">JAX-BO</text>
-  <text x="66" y="130" fill="#94a3b8" font-size="20">An academic Bayesian-optimization library, rescued into a published, installable package.</text>
-  <rect x="66" y="148" width="392" height="3" fill="#22d3ee" opacity="0.6" />
+  
+  <text x="64" y="104" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="60" font-weight="700" letter-spacing="-1.8" fill="#ffffff">JAX-BO</text>
+  <text x="64" y="152" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-size="22" fill="#a3a3a3">An academic Bayesian-optimization library, modernized into an installable package.</text>
+  <rect x="64" y="171" width="400" height="2" fill="url(#rule)"></rect>
 
-  <!-- ===== before -> after ===== -->
-  <!-- before -->
-  <rect x="64" y="212" width="404" height="186" rx="14" fill="#0d1117" stroke="#7f5418" stroke-width="1.6" />
-  <text x="266" y="250" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">BEFORE</text>
-  <text x="266" y="284" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">Research code, bit-rotted</text>
-  <text x="266" y="316" text-anchor="middle" fill="#94a3b8" font-size="14.5">a clone-and-run academic repo</text>
-  <text x="266" y="340" text-anchor="middle" fill="#94a3b8" font-size="14.5">that no longer installed on</text>
-  <text x="266" y="364" text-anchor="middle" fill="#94a3b8" font-size="14.5">current Python &amp; JAX</text>
+  
+  <rect x="64" y="236" width="404" height="190" rx="16" fill="#ffffff" fill-opacity="0.012" stroke="#fbbf24" stroke-opacity="0.55" stroke-width="1.5"></rect>
+  <rect x="732" y="236" width="404" height="190" rx="16" fill="#ffffff" fill-opacity="0.012" stroke="#22d3ee" stroke-width="1.5"></rect>
 
-  <!-- after -->
-  <rect x="732" y="212" width="404" height="186" rx="14" fill="#0b1f24" stroke="#22d3ee" stroke-width="2.2" />
-  <text x="934" y="250" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">AFTER</text>
-  <text x="934" y="286" text-anchor="middle" fill="#67e8f9" font-size="22" font-weight="700">pip install jaxbo</text>
-  <text x="934" y="318" text-anchor="middle" fill="#cbd5e1" font-size="14.5">modern Python, linted, tested,</text>
-  <text x="934" y="342" text-anchor="middle" fill="#cbd5e1" font-size="14.5">and automatically published</text>
-  <text x="934" y="366" text-anchor="middle" fill="#cbd5e1" font-size="14.5">to PyPI on every release</text>
+  <g text-anchor="middle">
+    
+    <text x="266" y="272" font-size="13" font-weight="700" letter-spacing="2.34" fill="#fbbf24">BEFORE</text>
+    <g font-family="&#39;Geist&#39;, system-ui, sans-serif" font-weight="700" font-size="27" letter-spacing="-0.3" fill="#f5f5f5">
+      <text x="266" y="312">Research code, hard to</text>
+      <text x="266" y="343">install</text>
+    </g>
+    <g font-size="15" fill="#a3a3a3">
+      <text x="266" y="378">An academic repo that no longer</text>
+      <text x="266" y="399">installed on current Python and JAX.</text>
+    </g>
 
-  <!-- arrow -->
-  <path d="M476 305 H724" fill="none" stroke="#818cf8" stroke-width="2.4" marker-end="url(#jb-ar)" />
-  <text x="600" y="296" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">modernize · package · publish</text>
+    
+    <text x="934" y="272" font-size="13" font-weight="700" letter-spacing="2.34" fill="#22d3ee">AFTER</text>
+    <text x="934" y="326" font-family="&#39;Geist&#39;, system-ui, sans-serif" font-weight="700" font-size="27" letter-spacing="-0.3" fill="#7dd3fc">pip install jaxbo</text>
+    <g font-size="15" fill="#a3a3a3">
+      <text x="934" y="378">Modern Python, linted and tested,</text>
+      <text x="934" y="399">published to PyPI on release.</text>
+    </g>
+  </g>
 
-  <!-- credit-split band -->
-  <rect x="64" y="424" width="1072" height="80" rx="14" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
-  <rect x="64" y="424" width="536" height="80" rx="14" fill="#140f02" opacity="0.55" />
-  <text x="92" y="456" fill="#fcd34d" font-size="13" font-weight="700">THE MATH — UPSTREAM</text>
-  <text x="92" y="484" fill="#cbd5e1" font-size="15">Gaussian-process Bayesian optimization, by the Predictive Intelligence Lab.</text>
-  <line x1="600" y1="440" x2="600" y2="488" stroke="#1e293b" stroke-width="1.2" />
-  <text x="628" y="456" fill="#67e8f9" font-size="13" font-weight="700">THE PACKAGING — THE CONTRIBUTION</text>
-  <text x="628" y="484" fill="#cbd5e1" font-size="15">Made it install, lint, test, and ship itself on modern Python.</text>
+  
+  <text x="596" y="315" text-anchor="middle" font-size="13" letter-spacing="0.78" fill="#818cf8">modernize · package · publish</text>
+  <line x1="486" y1="331" x2="703" y2="331" stroke="#818cf8" stroke-width="2"></line>
+  <path d="M703 324 L715 331 L703 338 Z" fill="#818cf8"></path>
 
-  <!-- reliability strip -->
-  <rect x="0" y="540" width="1200" height="90" fill="#0b0e14" />
-  <line x1="0" y1="540" x2="1200" y2="540" stroke="#1e293b" stroke-width="1" />
-  <g>
-    <text x="64" y="586" fill="#67e8f9" font-size="16" font-weight="700">Published on PyPI</text>
-    <text x="64" y="608" fill="#64748b" font-size="13">versions 0.1.1 &amp; 0.1.2 · July 2025</text>
+  
+  <rect x="64" y="470" width="1072" height="96" rx="14" fill="#ffffff" fill-opacity="0.012" stroke="#262626" stroke-width="1"></rect>
+  <line x1="600" y1="470" x2="600" y2="566" stroke="#262626" stroke-width="1"></line>
 
-    <text x="380" y="586" fill="#67e8f9" font-size="16" font-weight="700">Python 3.10 &amp; 3.12</text>
-    <text x="380" y="608" fill="#64748b" font-size="13">tested in CI · Black + Ruff lint</text>
+  <text x="92" y="503" font-size="12.5" font-weight="700" letter-spacing="1.25" fill="#fbbf24">THE MATH · UPSTREAM</text>
+  <g font-size="16" fill="#d4d4d4">
+    <text x="92" y="529">Gaussian-process Bayesian optimization, by the</text>
+    <text x="92" y="550">Predictive Intelligence Lab.</text>
+  </g>
 
-    <text x="700" y="586" fill="#67e8f9" font-size="16" font-weight="700">Token-less releases</text>
-    <text x="700" y="608" fill="#64748b" font-size="13">PyPI OIDC Trusted Publisher</text>
-
-    <text x="1000" y="586" fill="#e7c38a" font-size="16" font-weight="700">Apache-2.0 · a fork</text>
-    <text x="1000" y="608" fill="#64748b" font-size="13">maintenance, not new research</text>
+  <text x="628" y="503" font-size="12.5" font-weight="700" letter-spacing="1.25" fill="#22d3ee">THE PACKAGING · THE CONTRIBUTION</text>
+  <g font-size="16" fill="#d4d4d4">
+    <text x="628" y="529">Made it install, lint, test, and ship itself</text>
+    <text x="628" y="550">on modern Python.</text>
   </g>
 </svg>

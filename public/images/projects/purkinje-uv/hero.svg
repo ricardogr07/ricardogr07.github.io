@@ -1,107 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="&#39;Geist&#39;, system-ui, sans-serif">
   <defs>
-    <radialGradient id="pk-glow" cx="50%" cy="28%" r="75%">
-      <stop offset="0%" stop-color="#0e2a2f" />
-      <stop offset="55%" stop-color="#0a0a0a" />
-      <stop offset="100%" stop-color="#0a0a0a" />
-    </radialGradient>
-    <pattern id="pk-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 H0 V40" fill="none" stroke="#16202a" stroke-width="1" />
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#7dd3fc" fill-opacity="0.10"></circle>
     </pattern>
-    <marker id="pk-ar-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" /></marker>
+    <radialGradient id="glow" cx="50%" cy="6%" r="55%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.16"></stop>
+      <stop offset="72%" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="hotglow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDev="14" flood-color="#22d3ee" flood-opacity="0.40"></feDropShadow>
+    </filter>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#pk-glow)" />
-  <rect width="1200" height="630" fill="url(#pk-grid)" />
+  
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#dots)"></rect>
+  <rect width="1200" height="630" fill="url(#glow)"></rect>
 
-  <!-- title -->
-  <text x="64" y="92" fill="#f8fafc" font-size="54" font-weight="800" letter-spacing="-1">PurkinjeUV</text>
-  <text x="372" y="92" fill="#67e8f9" font-size="21" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">fractal Purkinje networks on cardiac surfaces</text>
-  <text x="64" y="128" fill="#94a3b8" font-size="20" font-weight="500">Grow the tree where it's easy — in a flattened UV chart — then map it back to 3D.</text>
+  
+  <text x="64" y="92" font-size="52" font-weight="700" letter-spacing="-1.5" fill="#ffffff">PurkinjeUV</text>
+  <text x="378" y="91" font-size="19" font-weight="500" fill="#22d3ee">fractal Purkinje networks on cardiac surfaces</text>
+  <text x="64" y="138" font-size="21" fill="#a3a3a3">Grow the tree where it&#39;s easy, in a flattened UV chart, then map it back to 3D.</text>
 
-  <!-- 4-stage flow -->
-  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
-    <!-- card 1: cardiac surface 3D -->
-    <rect x="64" y="232" width="240" height="170" rx="13" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
-    <path d="M108 338 A 76 64 0 0 1 260 338" fill="none" stroke="#67e8f9" stroke-width="1.6" />
-    <line x1="108" y1="338" x2="260" y2="338" stroke="#67e8f9" stroke-width="1.6" />
-    <path d="M132 338 Q184 296 184 280" fill="none" stroke="#2c6470" stroke-width="1" />
-    <path d="M236 338 Q184 296 184 280" fill="none" stroke="#2c6470" stroke-width="1" />
-    <path d="M124 330 Q184 312 244 330" fill="none" stroke="#2c6470" stroke-width="1" />
-    <line x1="184" y1="338" x2="184" y2="280" stroke="#2c6470" stroke-width="1" />
-    <text x="184" y="372" text-anchor="middle" fill="#e2e8f0" font-size="13.5" font-weight="700">cardiac surface</text>
-    <text x="184" y="390" text-anchor="middle" fill="#64748b" font-size="11">triangulated 3D mesh</text>
-
-    <path d="M304 317 H326" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#pk-ar-c)" />
-
-    <!-- card 2: UV chart 2D -->
-    <rect x="330" y="232" width="240" height="170" rx="13" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
-    <rect x="416" y="274" width="68" height="68" rx="3" fill="none" stroke="#67e8f9" stroke-width="1.5" />
-    <line x1="438.7" y1="274" x2="438.7" y2="342" stroke="#2c6470" stroke-width="1" />
-    <line x1="461.3" y1="274" x2="461.3" y2="342" stroke="#2c6470" stroke-width="1" />
-    <line x1="416" y1="296.7" x2="484" y2="296.7" stroke="#2c6470" stroke-width="1" />
-    <line x1="416" y1="319.3" x2="484" y2="319.3" stroke="#2c6470" stroke-width="1" />
-    <text x="450" y="372" text-anchor="middle" fill="#e2e8f0" font-size="13.5" font-weight="700">UV chart (2D)</text>
-    <text x="450" y="390" text-anchor="middle" fill="#64748b" font-size="10.5">Laplace + arc-length metric</text>
-
-    <path d="M570 317 H592" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#pk-ar-c)" />
-
-    <!-- card 3: fractal growth (the heart) -->
-    <rect x="596" y="232" width="240" height="170" rx="13" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.9" />
-    <g stroke="#67e8f9" stroke-width="1.5" fill="none" stroke-linecap="round">
-      <line x1="716" y1="344" x2="716" y2="320" />
-      <line x1="716" y1="320" x2="694" y2="302" />
-      <line x1="716" y1="320" x2="738" y2="302" />
-      <line x1="694" y1="302" x2="680" y2="286" />
-      <line x1="694" y1="302" x2="704" y2="284" />
-      <line x1="738" y1="302" x2="728" y2="284" />
-      <line x1="738" y1="302" x2="752" y2="286" />
-    </g>
-    <text x="716" y="372" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">fractal growth</text>
-    <text x="716" y="390" text-anchor="middle" fill="#94a3b8" font-size="10.5">deterministic · no RNG</text>
-
-    <path d="M836 317 H858" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#pk-ar-c)" />
-
-    <!-- card 4: map back to 3D -->
-    <rect x="862" y="232" width="240" height="170" rx="13" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
-    <path d="M926 338 A 76 64 0 0 1 1078 338" fill="none" stroke="#3a5560" stroke-width="1.5" />
-    <line x1="926" y1="338" x2="1078" y2="338" stroke="#3a5560" stroke-width="1.5" />
-    <g stroke="#67e8f9" stroke-width="1.4" fill="none" stroke-linecap="round">
-      <line x1="1002" y1="338" x2="1002" y2="318" />
-      <line x1="1002" y1="318" x2="986" y2="304" />
-      <line x1="1002" y1="318" x2="1018" y2="304" />
-      <line x1="986" y1="304" x2="976" y2="292" />
-      <line x1="1018" y1="304" x2="1028" y2="292" />
-    </g>
-    <text x="1002" y="372" text-anchor="middle" fill="#e2e8f0" font-size="13.5" font-weight="700">map back to 3D</text>
-    <text x="1002" y="390" text-anchor="middle" fill="#64748b" font-size="10.5">barycentric interpolation</text>
+  
+  <g fill="none">
+    <rect x="64" y="233" width="230.5" height="160" rx="16" stroke="#262626" stroke-width="1.5" fill="#ffffff" fill-opacity="0.012"></rect>
+    <rect x="344.5" y="233" width="230.5" height="160" rx="16" stroke="#262626" stroke-width="1.5" fill="#ffffff" fill-opacity="0.012"></rect>
+    <rect x="625" y="233" width="230.5" height="160" rx="16" stroke="#22d3ee" stroke-width="1.5" fill="#ffffff" fill-opacity="0.012" filter="url(#hotglow)"></rect>
+    <rect x="905.5" y="233" width="230.5" height="160" rx="16" stroke="#262626" stroke-width="1.5" fill="#ffffff" fill-opacity="0.012"></rect>
   </g>
 
-  <!-- eikonal tail + bounded line -->
-  <text x="64" y="446" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">then, opt-in: <tspan fill="#a5b4fc">eikonal activation</tspan> on the line network — FIM solver, fixed conduction velocity <tspan fill="#a5b4fc">cv 2.5 m/s</tspan></text>
-  <text x="64" y="470" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">deterministic by construction — <tspan fill="#67e8f9">same mesh + params → same tree</tspan>, the seed never gets rolled</text>
-
-  <!-- reliability strip -->
-  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
-    <rect x="64" y="500" width="1072" height="74" rx="14" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
-    <g>
-      <text x="190" y="534" fill="#67e8f9" font-size="24" font-weight="800">0.4.0</text>
-      <text x="190" y="556" fill="#64748b" font-size="11.5">PyPI · purkinje-uv</text>
-    </g>
-    <g>
-      <text x="430" y="534" fill="#67e8f9" font-size="24" font-weight="800">107</text>
-      <text x="430" y="556" fill="#64748b" font-size="11.5">tests · 19 files</text>
-    </g>
-    <g>
-      <text x="676" y="534" fill="#67e8f9" font-size="24" font-weight="800">3.10 · 3.12</text>
-      <text x="676" y="556" fill="#64748b" font-size="11.5">dual-Python tox CI · cov ≥ 90%</text>
-    </g>
-    <g>
-      <text x="952" y="534" fill="#67e8f9" font-size="24" font-weight="800">OIDC</text>
-      <text x="952" y="556" fill="#64748b" font-size="11.5">trusted-publisher release · no tokens</text>
-    </g>
-    <line x1="300" y1="516" x2="300" y2="560" stroke="#1e293b" stroke-width="1" />
-    <line x1="544" y1="516" x2="544" y2="560" stroke="#1e293b" stroke-width="1" />
-    <line x1="820" y1="516" x2="820" y2="560" stroke="#1e293b" stroke-width="1" />
+  
+  <g transform="translate(133.25,255)" fill="none" stroke="#3f5560" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 52 A40 40 0 0 1 86 52"></path>
+    <line x1="6" y1="52" x2="86" y2="52"></line>
+    <path d="M46 12 L18 52 M46 12 L34 52 M46 12 L58 52 M46 12 L74 52"></path>
+    <path d="M22 38 Q46 30 70 38"></path>
   </g>
+  <text x="179.25" y="345" font-size="16" font-weight="700" fill="#e8eef0" text-anchor="middle">cardiac surface</text>
+  <text x="179.25" y="368" font-size="12.5" fill="#737373" text-anchor="middle">triangulated 3D mesh</text>
+
+  
+  <g transform="translate(302.5,306)" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="2" y1="7" x2="28" y2="7"></line>
+    <path d="M22 2 L30 7 L22 12"></path>
+  </g>
+
+  
+  <g transform="translate(429.75,255)" fill="none" stroke="#3f5560" stroke-width="1.5">
+    <rect x="6" y="6" width="48" height="48" rx="2"></rect>
+    <line x1="22" y1="6" x2="22" y2="54"></line>
+    <line x1="38" y1="6" x2="38" y2="54"></line>
+    <line x1="6" y1="22" x2="54" y2="22"></line>
+    <line x1="6" y1="38" x2="54" y2="38"></line>
+  </g>
+  <text x="459.75" y="345" font-size="16" font-weight="700" fill="#e8eef0" text-anchor="middle">UV chart (2D)</text>
+  <text x="459.75" y="368" font-size="12.5" fill="#737373" text-anchor="middle">Laplace + arc-length metric</text>
+
+  
+  <g transform="translate(583,306)" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="2" y1="7" x2="28" y2="7"></line>
+    <path d="M22 2 L30 7 L22 12"></path>
+  </g>
+
+  
+  <g transform="translate(710.25,255)" fill="none" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 56 L30 36"></path>
+    <path d="M30 36 L16 22 M30 36 L44 22"></path>
+    <path d="M16 22 L9 10 M16 22 L21 10 M44 22 L39 10 M44 22 L51 10"></path>
+  </g>
+  <text x="740.25" y="345" font-size="16" font-weight="700" fill="#22d3ee" text-anchor="middle">fractal growth</text>
+  <text x="740.25" y="368" font-size="12.5" fill="#737373" text-anchor="middle">deterministic · no RNG</text>
+
+  
+  <g transform="translate(863.5,306)" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="2" y1="7" x2="28" y2="7"></line>
+    <path d="M22 2 L30 7 L22 12"></path>
+  </g>
+
+  
+  <g transform="translate(974.75,255)" fill="none" stroke="#3f5560" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 52 A40 40 0 0 1 86 52"></path>
+    <line x1="6" y1="52" x2="86" y2="52"></line>
+    <path d="M46 50 L46 34 M46 34 L36 22 M46 34 L56 22"></path>
+  </g>
+  <text x="1020.75" y="345" font-size="16" font-weight="700" fill="#e8eef0" text-anchor="middle">map back to 3D</text>
+  <text x="1020.75" y="368" font-size="12.5" fill="#737373" text-anchor="middle">barycentric interpolation</text>
+
+  
+  <rect x="64" y="486" width="1072" height="94" rx="14" stroke="#262626" stroke-width="1" fill="#ffffff" fill-opacity="0.012"></rect>
+  <text x="600" y="521" font-size="21" fill="#d4d4d4" text-anchor="middle">A modular scientific-Python package built on one idea:</text>
+  <text x="600" y="553" font-size="21" font-weight="600" fill="#7dd3fc" text-anchor="middle">grow the surface-constrained tree in a flattened 2D UV chart, then map it back to 3D.</text>
 </svg>
