@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
   <rect width="1120" height="460" fill="#0a0a0a" />
 
-  <text x="56" y="56" fill="#f8fafc" font-size="26" font-weight="700">The idea: don't guess everywhere — guess smartly</text>
+  <text x="56" y="56" fill="#f8fafc" font-size="26" font-weight="700">The idea: don't guess everywhere, guess where it counts</text>
   <text x="56" y="90" fill="#94a3b8" font-size="16">When every test is expensive, model what you've learned, then test where the payoff is most uncertain-but-promising.</text>
 
   <!-- chart frame -->
@@ -55,7 +55,7 @@
     <text x="856" y="258">how unsure it still is (the band)</text>
 
     <circle cx="836" cy="296" r="6" fill="#f59e0b" />
-    <text x="856" y="301">the next test it picks —</text>
+    <text x="856" y="301">the next test it picks:</text>
     <text x="856" y="323">promising, and still uncertain</text>
   </g>
 

@@ -387,20 +387,11 @@ export const projects: PortfolioProject[] = [
     visibility: 'public',
     featured: false,
     diagram: '/images/projects/jax-bo/architecture.svg',
-    diagramCaption:
-      'Bayesian optimization searches for the best setting when each test is expensive: model the outcome and how unsure it is, pick the next test, measure, repeat. The search math is upstream (the Predictive Intelligence Lab); the contribution is the maintenance layer that makes it install, lint, test, and ship on modern Python.',
     heroImage: '/images/projects/jax-bo/hero.svg',
     categories: ['ml', 'scientific-python', 'developer-tooling'],
     summary:
-      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork — the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
-    deliverables: [
-      'Modern Python & JAX compatibility (real floor ~3.10)',
-      'Installable PyPI package (pip install jaxbo)',
-      'CI tests on Python 3.10 & 3.12',
-      'Linting with Black + Ruff',
-      'Automated releases (release-please + PyPI OIDC Trusted Publisher)',
-      'Restored documentation and demo notebooks',
-    ],
+      'Took an academic JAX Bayesian-optimization library that no longer installed on modern Python and turned it into an installable, CI-linted, automatically published PyPI package. A maintenance-and-packaging fork: the optimization math is upstream (Predictive Intelligence Lab); the distribution engineering is the contribution.',
+    deliverables: [],
     techStack: ['Python', 'JAX', 'Gaussian Processes', 'PyPI', 'GitHub Actions', 'Black / Ruff'],
     servicesSupported: [
       'ML Research Tooling',
@@ -408,49 +399,28 @@ export const projects: PortfolioProject[] = [
       'Scientific Python',
       'Package Maintenance',
     ],
-    businessValue: [
-      'Keeps the library usable as Python and JAX versions advance — installable again with one command',
-      'Token-less automated releases mean any maintainer can ship a version safely, no stored secrets',
-    ],
-    tldr: 'Rescued a bit-rotted academic JAX Bayesian-optimization library into an installable, CI-linted, auto-published PyPI package. A maintenance-and-packaging fork — the math is upstream, the distribution engineering is mine.',
+    businessValue: [],
+    tldr: 'Now pip install jaxbo resolves to a real, current release',
+    headlineMetric: 'Modernized an academic JAX Bayesian-optimization library into an installable PyPI package',
     situation:
-      "A useful Gaussian-process Bayesian-optimization library written in JAX (the Predictive Intelligence Lab's) had bit-rotted: it no longer installed on current Python or JAX, so the research inside it was effectively unreachable.",
-    task: 'Fork it, restore modern Python/JAX compatibility, and make it a properly packaged, tested, automatically released PyPI library — without claiming the optimization research as my own.',
-    action:
-      'Forked the upstream library and brought it back to current Python & JAX (the manifest claimed Python 3.6, which was never real — the working floor is ~3.10). Packaged it for PyPI, added Black + Ruff linting and CI on Python 3.10 & 3.12, and wired up automated releases with release-please for versioning and a PyPI OIDC Trusted Publisher so versions ship token-less on a tag. Credited the upstream authors throughout; left the Gaussian-process and acquisition math as the research it is.',
-    headlineMetric:
-      'pip install jaxbo resolves to a real, current release — two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
+      'A JAX Bayesian-optimization library from the Predictive Intelligence Lab had stopped working on modern Python and JAX: the manifest claimed Python 3.6 compatibility but the package no longer installed, putting the research effectively out of reach.',
+    task: 'Fork it, restore modern Python/JAX compatibility, and ship it as a properly packaged, tested, automatically released PyPI library; credit the upstream research, claim only the distribution engineering.',
+    action: [
+      'Forked the upstream library and restored Python and JAX compatibility; the manifest claimed Python 3.6, which was never real, and the actual working floor is ~3.10.',
+      'Packaged it for PyPI with Black and Ruff linting, plus CI on Python 3.10 and 3.12.',
+      'Wired up automated releases: release-please reads commits and bumps the version, a tag triggers the publish job, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Left the Gaussian-process and acquisition math credited to the upstream authors throughout.',
+    ],
     result:
-      'pip install jaxbo works today — two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
+      'pip install jaxbo works today: two releases on PyPI (0.1.1 and 0.1.2, July 2025), shipped automatically via release-please versioning and a PyPI OIDC Trusted Publisher, with CI tests on Python 3.10 & 3.12 and Black + Ruff linting. An academic clone-and-run repo is now an installable, modern-Python package.',
     status: 'pypi',
     learning:
-      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood — it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN — and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
-    caveat:
-      "A maintenance-and-packaging fork of the Predictive Intelligence Lab's research library — not a production Bayesian-optimization framework and not original research. The optimization math is upstream and credited. Where it stops: a standard exact Gaussian process (dense Cholesky, best for small / low-dimensional problems), float32 by default, the search loop is hand-assembled (there is no one-call optimize() driver), and the surrogate/acquisition core is only lightly tested. The defensible claim is that I made the research installable on modern Python — not that I built the research.",
-    gallery: [
-      {
-        src: '/images/projects/jax-bo/own-vs-upstream.svg',
-        alt: 'Two columns: upstream (the prediction model, the rules for choosing the next test, the kernels and variants, the original JAX implementation — credited to the Predictive Intelligence Lab) versus mine (fixed it to install on modern Python, a clean installable package, continuous testing and linting, automated token-less releases, restored docs and demos)',
-        caption:
-          "Honest credit: the Bayesian-optimization research is the Predictive Intelligence Lab's; the work here is the distribution engineering — making it install, lint, test, and ship. The defensible claim is “I made the research installable,” not “I built the research.”",
-      },
-      {
-        src: '/images/projects/jax-bo/publish-pipeline.svg',
-        alt: 'A four-step pipeline — merge a change, a bot picks the version from the commits, a version tag triggers publish, and PyPI publishes proven by identity (OIDC) with no stored token — ending at pip install jaxbo',
-        caption:
-          'Releases that ship themselves: release-please reads the commits and bumps the version, a tag triggers publishing, and a PyPI OIDC Trusted Publisher authenticates by identity instead of a stored token. Two real versions (0.1.1, 0.1.2) shipped this way — the cleanest, most reusable part of the project.',
-      },
+      "In a JAX Gaussian process the hard part isn't differentiating the marginal likelihood: it's keeping that gradient finite. The closed form and its derivative have different domains of numerical safety, so the engineering goes into defending the second one: using a vector-Jacobian product instead of value-and-grad to dodge NaNs, epsilons under every square root, jitter on the Cholesky, and nanargmin across restarts because individual restarts will return NaN, and JIT will propagate that NaN silently through the whole loop before you see it. The surrogate is easy; the differentiable, JIT-able, multi-restart surrogate is where the work lives.",
+    resultGallery: [
       {
         src: '/images/projects/jax-bo/how-bo-works.svg',
-        alt: 'A chart showing a few tested points, a predicted curve through them, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try — high and still uncertain',
+        alt: 'A chart showing a few tested points, a predicted curve, a shaded uncertainty band that is wide where there is no data, and an orange marker pointing to the next setting to try: high and still uncertain.',
         caption:
-          'What Bayesian optimization does, in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising — homing in on the best setting in far fewer tries than a brute-force sweep.',
-      },
-      {
-        src: '/images/projects/jax-bo/scope-and-honesty.svg',
-        alt: "Two columns contrasting what's solid (installs on modern Python and JAX, two real PyPI releases, tested on two Python versions and linted, releases publish themselves token-less, upstream credited) against where it stops (a fork, not a new framework, best for small low-dimensional problems, you assemble the loop yourself, the core math is only lightly tested)",
-        caption:
-          'Honest scope: strong as distribution engineering — installable, linted, tested, auto-released — and deliberately not a new framework. A fork whose research math is upstream, suited to small low-dimensional problems, with the search loop left in the caller’s hands.',
+          'What Bayesian optimization does in plain terms: when each test is expensive, model both the predicted outcome and how unsure that prediction is, then test where the payoff is most uncertain-but-promising, homing in on the best setting in far fewer tries than a brute-force sweep.',
       },
     ],
   },
