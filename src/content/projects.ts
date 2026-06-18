@@ -400,9 +400,8 @@ export const projects: PortfolioProject[] = [
       'Package Maintenance',
     ],
     businessValue: [],
-    tldr: 'pip install jaxbo resolves to a real, current release: two versions (0.1.1, 0.1.2) shipped to PyPI through a token-less GitHub Actions OIDC Trusted-Publisher pipeline, tested on Python 3.10 & 3.12.',
-    headlineMetric:
-      'Rescued a bit-rotted academic JAX Bayesian-optimization library into an installable, CI-linted, auto-published PyPI package: a maintenance-and-packaging fork where the math is upstream and the distribution engineering is mine.',
+    tldr: 'Now pip install jaxbo resolves to a real, current release',
+    headlineMetric: 'Modernized an academic JAX Bayesian-optimization library into an installable PyPI package',
     situation:
       'A JAX Bayesian-optimization library from the Predictive Intelligence Lab had bit-rotted: the manifest claimed Python 3.6 compatibility but the package no longer installed on current Python or JAX, putting the research effectively out of reach.',
     task: 'Fork it, restore modern Python/JAX compatibility, and ship it as a properly packaged, tested, automatically released PyPI library; credit the upstream research, claim only the distribution engineering.',
