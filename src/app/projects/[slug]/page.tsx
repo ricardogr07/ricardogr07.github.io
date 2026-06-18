@@ -187,14 +187,14 @@ export default async function CaseStudyPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkButtonClass}
-                aria-label="Open demo in Google Colab"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element -- Colab badge */}
-                <img
-                  src="https://colab.research.google.com/assets/colab-badge.svg"
-                  alt="Open in Colab"
-                  className="h-5 w-auto"
-                />
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4.5 9.5 2 7a7 7 0 0 0 0 10l2.5-2.5a3.5 3.5 0 0 1 0-5z" fill="#E8710A" />
+                  <path d="M12 5l-2 3a3.5 3.5 0 0 1 0 5.5l2 3a7 7 0 0 0 0-11.5z" fill="#F9AB00" />
+                  <path d="M2 7l2.5 2.5a3.5 3.5 0 0 1 5 0L12 7a7 7 0 0 0-10 0z" fill="#F9AB00" />
+                  <path d="M9.5 14.5a3.5 3.5 0 0 1-5 0L2 17a7 7 0 0 0 10 0l-2.5-2.5z" fill="#E8710A" />
+                </svg>
+                Demo
               </a>
             )}
             {project.marketplaceUrl && (

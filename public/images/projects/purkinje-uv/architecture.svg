@@ -1,72 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" font-family="&#39;Geist Mono&#39;, ui-monospace, monospace">
   <defs>
-    <marker id="pa-ar-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#22d3ee" /></marker>
-    <marker id="pa-ar-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#818cf8" /></marker>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#7dd3fc" fill-opacity="0.08"></circle>
+    </pattern>
+    <radialGradient id="glow" cx="32%" cy="2%" r="46%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.13"></stop>
+      <stop offset="70%" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="hotglow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDev="14" flood-color="#22d3ee" flood-opacity="0.40"></feDropShadow>
+    </filter>
   </defs>
-  <rect width="1120" height="600" fill="#0a0a0a" />
-  <text x="42" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Pipeline: grow in UV space, map back, then optionally activate</text>
-  <text x="42" y="72" fill="#64748b" font-size="13">The growth runs deterministically in a flattened 2D chart; the eikonal activation is a separate, opt-in stage.</text>
 
-  <!-- spine -->
-  <!-- box1: mesh / uvmap -->
-  <rect x="42" y="150" width="196" height="134" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
-  <text x="140" y="182" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">Mesh.uvmap</text>
-  <text x="140" y="208" text-anchor="middle" fill="#cbd5e1" font-size="11">OBJ / VTU surface in</text>
-  <text x="140" y="228" text-anchor="middle" fill="#cbd5e1" font-size="11">two Laplace solves →</text>
-  <text x="140" y="246" text-anchor="middle" fill="#cbd5e1" font-size="11">(u, v) per vertex</text>
-  <text x="140" y="268" text-anchor="middle" fill="#64748b" font-size="10">+ arc-length metric 0.5·tr(FᵀF)</text>
+  
+  <rect width="1120" height="600" fill="#0a0a0a"></rect>
+  <rect width="1120" height="600" fill="url(#dots)"></rect>
+  <rect width="1120" height="600" fill="url(#glow)"></rect>
 
-  <path d="M238 217 H266" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#pa-ar-c)" />
+  
+  <text x="40" y="46" font-size="25" font-weight="700" letter-spacing="-0.3" fill="#ffffff">Pipeline: grow in UV space, map back, then optionally activate</text>
 
-  <!-- box2: grow_tree (the heart) -->
-  <rect x="270" y="142" width="232" height="150" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.9" />
-  <text x="386" y="174" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">FractalTree.grow_tree</text>
-  <text x="386" y="194" text-anchor="middle" fill="#f8fafc" font-size="10.5" font-weight="700">deterministic, runs in 2D UV</text>
-  <text x="386" y="216" text-anchor="middle" fill="#cbd5e1" font-size="11">trunk → fascicles</text>
-  <text x="386" y="234" text-anchor="middle" fill="#cbd5e1" font-size="11">bifurcate ±branch_angle</text>
-  <text x="386" y="252" text-anchor="middle" fill="#cbd5e1" font-size="11">grow along repulsion gradient</text>
-  <text x="386" y="272" text-anchor="middle" fill="#64748b" font-size="10">terminate on collision / domain exit</text>
+  
+  <rect x="40" y="170" width="216" height="108" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <rect x="288" y="161" width="248" height="126" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#22d3ee" stroke-width="1.5" filter="url(#hotglow)"></rect>
+  <rect x="568" y="170" width="188" height="108" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#22d3ee" stroke-width="1.5"></rect>
+  <rect x="794" y="179" width="254" height="90" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+  <rect x="628" y="312" width="340" height="72" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#22d3ee" stroke-width="1.5"></rect>
 
-  <path d="M502 217 H530" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#pa-ar-c)" />
+  
+  <g text-anchor="middle">
+    <text x="148" y="198" font-size="15" font-weight="700" fill="#22d3ee">Mesh.uvmap</text>
+    <text x="148" y="221" font-size="12" fill="#d4d4d4">OBJ / VTU surface in</text>
+    <text x="148" y="239" font-size="12" fill="#d4d4d4">two Laplace solves →</text>
+    <text x="148" y="257" font-size="12" fill="#d4d4d4">(u, v) per vertex</text>
+  </g>
 
-  <!-- box3: map back -->
-  <rect x="534" y="150" width="196" height="134" rx="12" fill="#0d1117" stroke="#22d3ee" stroke-width="1.3" />
-  <text x="632" y="182" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">_finalize_outputs</text>
-  <text x="632" y="210" text-anchor="middle" fill="#cbd5e1" font-size="11">barycentric interp</text>
-  <text x="632" y="230" text-anchor="middle" fill="#cbd5e1" font-size="11">UV → XYZ</text>
-  <text x="632" y="250" text-anchor="middle" fill="#cbd5e1" font-size="11">network on the surface</text>
-  <text x="632" y="270" text-anchor="middle" fill="#64748b" font-size="10">line mesh of edges + nodes</text>
+  
+  <g text-anchor="middle">
+    <text x="412" y="189" font-size="15" font-weight="700" fill="#22d3ee">FractalTree.grow_tree</text>
+    <text x="412" y="212" font-size="12" font-weight="700" fill="#ffffff">deterministic, runs in 2D UV</text>
+    <text x="412" y="230" font-size="12" fill="#d4d4d4">trunk → fascicles</text>
+    <text x="412" y="248" font-size="12" fill="#d4d4d4">bifurcate ±branch_angle</text>
+    <text x="412" y="266" font-size="12" fill="#d4d4d4">grow along repulsion gradient</text>
+  </g>
 
-  <!-- branch: geometry-only endpoint goes straight down to outputs (cyan) -->
-  <path d="M632 284 V310" fill="none" stroke="#22d3ee" stroke-width="1.6" marker-end="url(#pa-ar-c)" />
-  <text x="646" y="302" fill="#64748b" font-size="10">geometry-only ✓</text>
+  
+  <g text-anchor="middle">
+    <text x="662" y="198" font-size="15" font-weight="700" fill="#ffffff">_finalize_outputs</text>
+    <text x="662" y="221" font-size="12" fill="#d4d4d4">barycentric interp</text>
+    <text x="662" y="239" font-size="12" fill="#d4d4d4">UV → XYZ</text>
+    <text x="662" y="257" font-size="12" fill="#d4d4d4">network on the surface</text>
+  </g>
 
-  <!-- opt-in activation (indigo, dashed) -->
-  <path d="M730 244 H762" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#pa-ar-i)" />
-  <rect x="766" y="186" width="196" height="116" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" stroke-dasharray="5 3" />
-  <text x="864" y="216" text-anchor="middle" fill="#a5b4fc" font-size="13.5" font-weight="700">PurkinjeTree.activate_fim</text>
-  <text x="864" y="240" text-anchor="middle" fill="#cbd5e1" font-size="11">FIM eikonal solve</text>
-  <text x="864" y="260" text-anchor="middle" fill="#cbd5e1" font-size="11">fixed cv = 2.5 m/s · isotropic D</text>
-  <text x="864" y="282" text-anchor="middle" fill="#64748b" font-size="10">opt-in · separate stage</text>
+  
+  <g text-anchor="middle">
+    <text x="921" y="207" font-size="15" font-weight="700" fill="#22d3ee">PurkinjeTree.activate_fim</text>
+    <text x="921" y="230" font-size="12" fill="#d4d4d4">FIM eikonal solve</text>
+    <text x="921" y="248" font-size="12" fill="#d4d4d4">fixed cv = 2.5 m/s · isotropic D</text>
+  </g>
 
-  <path d="M864 302 V310" fill="none" stroke="#818cf8" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#pa-ar-i)" />
+  
+  <g text-anchor="middle">
+    <text x="798" y="340" font-size="15" font-weight="700" fill="#22d3ee">outputs · meshio + VTK</text>
+    <text x="798" y="363" font-size="12" fill="#d4d4d4">VTU / VTP line mesh · PMJs (degree-1 leaves)</text>
+  </g>
 
-  <!-- outputs -->
-  <rect x="630" y="312" width="252" height="92" rx="12" fill="#0b0e14" stroke="#67e8f9" stroke-width="1.3" />
-  <text x="756" y="342" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">outputs · meshio + VTK</text>
-  <text x="756" y="366" text-anchor="middle" fill="#cbd5e1" font-size="11">VTU / VTP line mesh · PMJs (degree-1 leaves)</text>
-  <text x="756" y="386" text-anchor="middle" fill="#64748b" font-size="10.5">activation times written only if activate_fim ran</text>
+  
+  <g fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(258,217)"><line x1="2" y1="7" x2="26" y2="7"></line><path d="M20 2 L28 7 L20 12"></path></g>
+    <g transform="translate(538,217)"><line x1="2" y1="7" x2="26" y2="7"></line><path d="M20 2 L28 7 L20 12"></path></g>
+    <g transform="translate(758,217)" stroke-dasharray="3 3"><line x1="2" y1="7" x2="26" y2="7"></line></g>
+    <g transform="translate(758,217)"><path d="M20 2 L28 7 L20 12"></path></g>
+    <g transform="translate(650,280)"><line x1="7" y1="2" x2="7" y2="20"></line><path d="M2 14 L7 22 L12 14"></path></g>
+  </g>
+  <text x="672" y="294" font-size="12" fill="#737373">geometry-only ✓</text>
 
-  <!-- public API + shipping band -->
-  <text x="42" y="356" fill="#94a3b8" font-size="13" font-weight="700">Public API</text>
-  <rect x="42" y="372" width="540" height="98" rx="12" fill="#0b0e14" stroke="#1e293b" stroke-width="1.2" />
-  <text x="64" y="400" fill="#cbd5e1" font-size="11.5"><tspan fill="#67e8f9" font-weight="700">FractalTreeParameters</tspan> · FractalTree(params).grow_tree().save()</text>
-  <text x="64" y="424" fill="#cbd5e1" font-size="11.5"><tspan fill="#67e8f9" font-weight="700">Mesh</tspan>(filename | verts, conn): geometry · FEM · UV mapping</text>
-  <text x="64" y="448" fill="#cbd5e1" font-size="11.5"><tspan fill="#67e8f9" font-weight="700">PurkinjeTree</tspan>(nodes, conn, end_nodes).activate_fim() / .save_pmjs()</text>
-
-  <!-- honest footnotes -->
-  <line x1="42" y1="500" x2="1078" y2="500" stroke="#1e293b" stroke-width="1" />
-  <text x="42" y="528" fill="#64748b" font-size="12">Honest scope: growth uses <tspan fill="#94a3b8">no RNG</tspan>: determinism is structural, not seeded. The surface must have a <tspan fill="#94a3b8">boundary loop</tspan> (closed meshes won't parameterize).</text>
-  <text x="42" y="550" fill="#64748b" font-size="12">No throughput number is committed (real-ventricle figures live in an untracked log). <tspan fill="#94a3b8">Branch / Nodes</tspan> are exported + tested but a legacy path grow_tree doesn't use.</text>
-  <text x="42" y="572" fill="#64748b" font-size="12">Conduction velocity is a fixed isotropic constant; the e2e test checks the network is non-empty + parseable, not numerically exact.</text>
+  
+  <text x="40" y="360" font-size="14" font-weight="700" fill="#22d3ee">Public API</text>
+  <rect x="40" y="374" width="560" height="117" rx="11" fill="#ffffff" fill-opacity="0.014" stroke="#262626" stroke-width="1"></rect>
+  <g font-size="13.5" fill="#d4d4d4">
+    <text x="62" y="410"><tspan fill="#22d3ee" font-weight="700">FractalTreeParameters</tspan> · FractalTree(params).grow_tree().save()</text>
+    <text x="62" y="437"><tspan fill="#22d3ee" font-weight="700">Mesh</tspan>(filename | verts, conn): geometry · FEM · UV mapping</text>
+    <text x="62" y="464"><tspan fill="#22d3ee" font-weight="700">PurkinjeTree</tspan>(nodes, conn, end_nodes).activate_fim() / .save_pmjs()</text>
+  </g>
 </svg>
