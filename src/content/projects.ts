@@ -322,9 +322,9 @@ export const projects: PortfolioProject[] = [
     ],
     servicesSupported: ['Data Engineering', 'Backend API', 'Dashboard & Reporting'],
     businessValue: [],
-    tldr: 'A live World Cup 2026 dashboard for a 5-person pool; simulates the rest of the tournament 10,000× from live Elo ratings to show each player their odds of finishing 1st–5th.',
+    tldr: '10,000 runs of the full 104-match tournament in under 3 s; baseline odds cached by completed-match count and served instantly until the next real result lands. Shipped in 3 days.',
     headlineMetric:
-      'Full 104-match World Cup simulated 10,000× in under 3 s: pure Python, free-tier serverless, baseline odds cached until the next real result comes in.',
+      'Live pool odds for a real 5-person World Cup quiniela: Elo-driven Monte Carlo updated every time a match finishes.',
     situation:
       "Five of us run a World Cup quiniela: each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.",
     task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool, and lets anyone explore what-if scenarios.',
@@ -337,8 +337,6 @@ export const projects: PortfolioProject[] = [
       'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds (a bound enforced on every CI run), so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
     learning:
       'The value here was never model sophistication: a 400-point Elo logistic with a flat draw rate is the whole match model. It was engineering the boundary: a pure, seedable, dependency-free simulation engine wrapped in a serverless handler that caches by real-world state and recomputes only for hypotheticals. The artifact I\'m proudest of is the contract test that fails the build if the word \"azure\" ever appears in the engine. It keeps the model something you can test and reason about offline, no cloud attached.',
-    caveat:
-      "It’s a fast-shipped product for a real pool: strong as engineering, modest as a forecast. The probabilities are modelled, not calibrated; there’s no backtest against bookmaker odds or outcomes, and the match model is deliberately simple (a fixed 25% group-draw rate, a random 1–3 goal margin, knockouts as an Elo coin-flip, and random selection among third-place qualifiers rather than the FIFA criteria). Production runs are unseeded (the seed exists only for tests), /simulate is anonymous with an unbounded run count, and deployment is still a manual trigger.",
     status: 'live',
     diagram: '/images/projects/wc26-dashboard/architecture.svg',
     diagramCaption:
