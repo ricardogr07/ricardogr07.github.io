@@ -326,12 +326,12 @@ export const projects: PortfolioProject[] = [
     headlineMetric:
       'Shows each of 5 quiniela players their live odds of winning the pool, updated on every real match result; with a what-if builder for any hypothetical.',
     situation:
-      "Five of us run a World Cup quiniela: each picks five teams, and whoever’s teams score the most points wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.",
+      "Five of us run a World Cup quiniela: each picks five teams from a hat out of the best 25 we think could win, and whoever’s teams wins the world cup, wins the pool. Everyone wanted to know their live odds, and there was no public, inspectable model that updates as the real tournament unfolds.",
     task: 'Build and ship a live dashboard that, as real results come in, gives each player their probability of finishing 1st–5th in the pool, and lets anyone explore what-if scenarios.',
     action: [
-      "Built a pure, seedable simulation engine: an Elo logistic win-probability (1 / (1 + 10^(Δ/400))) drives a Monte Carlo over every remaining match, run 10,000× to tally each player’s finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does.",
+      "Built a pure, seedable simulation engine: a standard Elo win-probability drives a Monte Carlo over every remaining match, run 10,000× to tally each player’s finish distribution. It imports no cloud or IO, and a contract test fails the build if it ever does.",
       'Wrapped the engine in a Python Azure Functions handler with a Cosmos DB cache keyed by the completed-match count: baseline results are served instantly from the cache; a scenario override always recomputes fresh and is never cached.',
-      'A timer-triggered job pulls live results from a sports API and updates team Elo ratings (K=32) after each match. The front end is a static-exported Next.js 16 app on Azure Static Web Apps, bilingual es/en, with a scenario builder that lets anyone fix a hypothetical result and watch the pool odds shift.',
+      'A timer-triggered job pulls live results from a sports API and updates team Elo ratings (K=32) after each match. The front end is a static-exported Next.js app on Azure Static Web Apps, bilingual es/en, with a scenario builder that lets anyone fix a hypothetical result and watch the pool odds shift.',
     ],
     result:
       'Live in three days from conception and serving a real World Cup pool: a Next.js + Azure Functions app with 116 tests across 9 files, green on every CI push. The pure engine simulates the full 104-match tournament 10,000× in under 3 seconds (a bound enforced on every CI run), so baseline odds are cached in Cosmos and recomputed only when a real match finishes, while scenario what-ifs run fresh.',
@@ -354,20 +354,6 @@ export const projects: PortfolioProject[] = [
         alt: 'Two zones: a pure simulation engine that imports no cloud, and the serverless IO shell around it, separated by a purity contract test.',
         caption:
           'The compute/IO boundary, enforced by a test: the engine imports no azure/cosmos/httpx, so the model stays unit-testable offline and an accidental cloud dependency becomes a red build, not a code review.',
-      },
-    ],
-    gallery: [
-      {
-        src: '/images/projects/wc26-dashboard/simulation-engine.svg',
-        alt: 'The match model: Elo logistic win probability, group-stage draw rate, qualification rules, knockout coin-flip, and live Elo ratings, beside the 10,000-run Monte Carlo loop and per-player finish bars.',
-        caption:
-          "The match model, kept deliberately simple: one Elo logistic and a draw rate, run 10,000× to tally each player’s finish distribution. The probabilities are modelled, not calibrated.",
-      },
-      {
-        src: '/images/projects/wc26-dashboard/scope-and-honesty.svg',
-        alt: 'Two panels contrasting what is proven and shipped against where the depth ends.',
-        caption:
-          'What is proven versus where the depth ends: live on Azure with green CI and a real cache, but no calibration, a simple match model, unseeded production runs, and a manual deploy. Named, not hidden.',
       },
     ],
   },
