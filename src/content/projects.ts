@@ -456,7 +456,7 @@ export const projects: PortfolioProject[] = [
   },
   {
     slug: 'purkinje-uv',
-    title: 'PurkinjeUV: Scientific Python Package for Cardiac Simulation',
+    title: 'PurkinjeUV: Python Package for Cardiac Simulation',
     repo: 'https://github.com/ricardogr07/purkinje-uv',
     visibility: 'public',
     featured: true,
@@ -464,7 +464,7 @@ export const projects: PortfolioProject[] = [
     heroImage: '/images/projects/purkinje-uv/hero.svg',
     categories: ['scientific-python', 'automation'],
     summary:
-      'Modular scientific Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
+      'Python package for generating Purkinje-network geometries over cardiac surface meshes, with simulation, visualization, and PyPI packaging.',
     deliverables: [],
     techStack: [
       'Python',
@@ -478,25 +478,24 @@ export const projects: PortfolioProject[] = [
       'PyPI',
     ],
     servicesSupported: [
-      'Scientific Python',
       'Simulation Tools',
       'Research Software Engineering',
       'Package Development',
       'Computational Modeling',
     ],
     businessValue: [],
-    tldr: 'Packaged scientific Python library for generating Purkinje-network geometries over cardiac meshes.',
+    tldr: 'Python library for generating Purkinje-network geometries over cardiac meshes.',
     headlineMetric: 'The fractal-Purkinje method as an installable library: PyPI 0.4.0, OIDC-released, 107 tests on dual-Python CI',
     situation:
       'The Purkinje-network geometry code at the heart of this project was developed for an M.Sc. thesis on probabilistic reconstruction of the Purkinje network from ECG signals (PUC Chile). Computational research on cardiac conduction produces working methods that are hard to share: geometry generation lived in research notebooks tied to one environment, making results difficult to reproduce or build on.',
     task: 'Package Purkinje-network geometry generation over cardiac surface meshes for reuse, release, and reproducibility.',
     action:
-      'A modular scientific-Python package built around one idea: grow the surface-constrained tree in a flattened 2D UV chart, then map it back to 3D. Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric (0.5·trace(FᵀF)) so 2D steps stay correct on the curved surface; FractalTree.grow_tree runs the deterministic fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination); PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity. Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK. Released to PyPI through an OIDC trusted-publisher pipeline with release-please automation, 107 tests across 19 files, and a dual-Python tox CI.',
+      'A Python package built around one idea: grow the tree in a flattened 2D UV chart, then map it back to 3D. Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric (0.5·trace(FᵀF)) so 2D steps stay correct on the curved surface; FractalTree.grow_tree runs the fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination); PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity. Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK. Released to PyPI through an OIDC trusted-publisher pipeline with release-please automation, 107 tests across 19 files, and a dual-Python tox CI.',
     status: 'pypi',
     result:
       'Published to PyPI as purkinje-uv 0.4.0 through a tokenless OIDC trusted-publisher pipeline (release-please + gh-action-pypi-publish, no stored tokens), with 107 tests across 19 files covering the growth algorithm, mesh FEM, UV mapping, and I/O round-trips, gated at ≥90% coverage on a dual-Python (3.10/3.12) tox CI. The committed end-to-end artifact grows a 3,094-node / 3,093-segment fractal Purkinje network on the ellipsoid demo mesh and runs it through the eikonal activation solve.',
     learning:
-      'The hard part was never a model: it was the parameterization. Growing a surface-constrained tree directly in 3D is a misery of projection and collision tests; flattening the surface into a Laplacian UV chart and carrying a per-triangle arc-length metric turns it into tractable 2D geometry you map back at the end. The honest sub-lesson: the growth is deterministic by construction, no RNG on the path, so the seeding and reproducibility scaffolding around it was redundant. The determinism was structural all along.',
+      'The hard part was never a model: it was the parameterization. Growing the tree directly in 3D is a misery of projection and collision tests; flattening the surface into a Laplacian UV chart and carrying a per-triangle arc-length metric turns it into tractable 2D geometry you map back at the end. The honest sub-lesson: the growth runs the same way every time: no RNG on the path, so the seeding and reproducibility scaffolding around it was redundant. That was structural all along.',
     pypiUrl: 'https://pypi.org/project/purkinje-uv/',
     resultGallery: [
       {
