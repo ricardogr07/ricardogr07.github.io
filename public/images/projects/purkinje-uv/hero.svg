@@ -17,7 +17,7 @@
   <!-- title -->
   <text x="64" y="92" fill="#f8fafc" font-size="54" font-weight="800" letter-spacing="-1">PurkinjeUV</text>
   <text x="372" y="92" fill="#67e8f9" font-size="21" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">fractal Purkinje networks on cardiac surfaces</text>
-  <text x="64" y="128" fill="#94a3b8" font-size="20" font-weight="500">Grow the tree where it's easy — in a flattened UV chart — then map it back to 3D.</text>
+  <text x="64" y="128" fill="#94a3b8" font-size="20" font-weight="500">Grow the tree where it's easy, in a flattened UV chart, then map it back to 3D.</text>
 
   <!-- 4-stage flow -->
   <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
@@ -78,8 +78,8 @@
   </g>
 
   <!-- eikonal tail + bounded line -->
-  <text x="64" y="446" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">then, opt-in: <tspan fill="#a5b4fc">eikonal activation</tspan> on the line network — FIM solver, fixed conduction velocity <tspan fill="#a5b4fc">cv 2.5 m/s</tspan></text>
-  <text x="64" y="470" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">deterministic by construction — <tspan fill="#67e8f9">same mesh + params → same tree</tspan>, the seed never gets rolled</text>
+  <text x="64" y="446" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">then, opt-in: <tspan fill="#a5b4fc">eikonal activation</tspan> on the line network; FIM solver, fixed conduction velocity <tspan fill="#a5b4fc">cv 2.5 m/s</tspan></text>
+  <text x="64" y="470" fill="#475569" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">deterministic by construction: <tspan fill="#67e8f9">same mesh + params → same tree</tspan>, the seed never gets rolled</text>
 
   <!-- reliability strip -->
   <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
