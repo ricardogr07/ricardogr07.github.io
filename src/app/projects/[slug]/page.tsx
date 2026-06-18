@@ -2,10 +2,23 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import katex from 'katex'
 import DiagramZoom from '@/components/diagram-zoom'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
 import type { PortfolioProject } from '@/lib/types'
+
+function renderWithMath(text: string) {
+  const parts = text.split(/(\$[^$]+\$)/g)
+  if (parts.length === 1) return text
+  return parts.map((part, i) => {
+    if (part.startsWith('$') && part.endsWith('$')) {
+      const html = katex.renderToString(part.slice(1, -1), { throwOnError: false, output: 'html' })
+      return <span key={i} dangerouslySetInnerHTML={{ __html: html }} />
+    }
+    return <span key={i}>{part}</span>
+  })
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -330,7 +343,7 @@ export default async function CaseStudyPage({ params }: Props) {
                             className="flex items-start gap-2 text-base leading-relaxed text-justify text-neutral-400"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                            {point}
+                            <span>{renderWithMath(point)}</span>
                           </li>
                         ))}
                       </ul>

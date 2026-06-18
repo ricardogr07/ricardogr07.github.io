@@ -506,7 +506,7 @@ export const projects: PortfolioProject[] = [
     task: 'Take a published computational method for generating Purkinje networks and turn it into something any researcher can install in one command, run on their own mesh, and cite: a proper Python package with documentation, worked examples, and an automated release pipeline.',
     action: [
       'Built around one idea: grow the tree in a flattened 2D UV chart, then map it back to 3D.',
-      'Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric (0.5·trace(FᵀF)) so 2D steps stay correct on the curved surface.',
+      'Mesh.uvmap solves two Laplace problems and carries a per-triangle arc-length metric $\\tfrac{1}{2}\\operatorname{trace}(\\mathbf{F}^\\top\\mathbf{F})$ so 2D steps stay correct on the curved surface.',
       'FractalTree.grow_tree runs the fractal growth (trunk → fascicles → ±angle bifurcation → repulsion-gradient growth → collision termination).',
       'PurkinjeTree.activate_fim adds an opt-in eikonal activation solve at a fixed conduction velocity.',
       'Reads OBJ/VTU, emits VTU/VTP line meshes via meshio and VTK.',
