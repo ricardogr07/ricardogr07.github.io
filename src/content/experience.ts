@@ -24,10 +24,10 @@ export const experience: WorkExperience[] = [
       'Backend services, APIs, analytics tooling, and data workflows for large-scale financial data systems.',
     bullets: [
       'Build and maintain Python-based backend services, APIs, data pipelines, analytics tooling, and operational workflows for large-scale financial data systems, including 3rd-tier production support.',
-      'Design observability and monitoring solutions using Splunk, Power BI, and Azure DevOps data to surface throughput, failure, and latency trends across production systems.',
-      'Apply AI-assisted development tooling (Claude Code, Cursor, Copilot) across the full SDLC: planning, refactoring, test generation, code review, and documentation.',
-      'Lead Java modernization and technical debt reduction: refactoring legacy services for upgrade-readiness while preserving behavior, testability, and release stability.',
       'Contributed to cross-team initiatives with ~$1M in business impact.',
+      'Designed observability and monitoring solutions using Splunk, Power BI, and Azure DevOps data surfacing throughput, failure rate, and latency trends across production systems, enabling data-driven incident response and capacity planning.',
+      'Introduced AI-assisted development workflows (Claude Code, Cursor, Copilot) for refactoring, test generation, and documentation, accelerating the Java modernization initiative.',
+      'Lead Java modernization and technical debt reduction: refactoring legacy services for upgrade-readiness while preserving behavior, testability, and release stability.',
     ],
   },
   {

@@ -24,7 +24,7 @@ const stats = [
   },
   {
     icon: PenLine,
-    label: 'Medium writing',
+    label: 'Medium articles',
     value: '127',
     href: 'https://medium.com/@ricardogr07',
     external: true,

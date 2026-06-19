@@ -79,6 +79,44 @@ export default function FreelancePage() {
         </div>
       </section>
 
+      {/* Typical deliverables */}
+      <section className="bg-neutral-950 px-6 pt-8 pb-0 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <p className="mb-6 text-sm font-semibold uppercase tracking-widest text-neutral-500">
+            What a typical engagement delivers
+          </p>
+          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {[
+              {
+                service: 'RAG pipeline',
+                deliverable:
+                  'Working ingestion pipeline with chunking benchmarks, a vector store, retrieval eval harness, and a handoff README runnable on day one.',
+              },
+              {
+                service: 'Data pipeline',
+                deliverable:
+                  'Clean, queryable analytics assets, automated report publishing, CI-scheduled runs, and full documentation.',
+              },
+              {
+                service: 'Repo audit',
+                deliverable:
+                  'Structured findings across types, tests, CI, and docs — with a prioritized fix list organized by effort and impact.',
+              },
+            ].map(({ service, deliverable }) => (
+              <div
+                key={service}
+                className="rounded-lg border border-neutral-800 bg-neutral-900/50 p-4"
+              >
+                <dt className="mb-1 text-xs font-semibold uppercase tracking-wide text-cyan-400">
+                  {service}
+                </dt>
+                <dd className="text-sm leading-relaxed text-neutral-400">{deliverable}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* Productized offers */}
       <section
         className="bg-neutral-950 px-6 pt-12 lg:px-8 lg:pt-16"
