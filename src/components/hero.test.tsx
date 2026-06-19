@@ -36,9 +36,7 @@ describe('Hero', () => {
 
   it('renders the sub-copy with availability positioning', () => {
     render(<Hero />)
-    expect(
-      screen.getByText(/Open to select freelance/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Open to select freelance/i)).toBeInTheDocument()
   })
 
   it('renders the View projects CTA linking to /projects', () => {
