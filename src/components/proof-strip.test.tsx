@@ -14,7 +14,7 @@ describe('ProofStrip', () => {
     expect(screen.getByText('GitHub repos')).toBeInTheDocument()
     expect(screen.getByText('PyPI packages')).toBeInTheDocument()
     expect(screen.getByText('Publications')).toBeInTheDocument()
-    expect(screen.getByText('Medium writing')).toBeInTheDocument()
+    expect(screen.getByText('Medium articles')).toBeInTheDocument()
   })
 
   it('GitHub link points to profile', () => {
