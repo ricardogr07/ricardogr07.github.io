@@ -37,7 +37,7 @@ describe('Hero', () => {
   it('renders the sub-copy with availability positioning', () => {
     render(<Hero />)
     expect(
-      screen.getByText(/Available for senior engineering roles and freelance projects/i)
+      screen.getByText(/Open to select freelance/i)
     ).toBeInTheDocument()
   })
 
