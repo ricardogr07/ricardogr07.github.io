@@ -29,8 +29,8 @@ export default function PersonaRouter() {
         <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-neutral-400">
           At MSCI I build data pipelines, APIs, and analytics tooling for large-scale financial data
           systems. Outside of that: 7 published Python packages, select freelance engagements, and a
-          research track through an M.Sc. in Data Science. Here&apos;s where to go depending on
-          what brought you here.
+          research track through an M.Sc. in Data Science. Here&apos;s where to go depending on what
+          brought you here.
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {personas.map(({ icon: Icon, label, subtitle, href }) => (
