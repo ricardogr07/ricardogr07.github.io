@@ -1,0 +1,561 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import { viridis } from './colormap'
+
+// 2.5D biventricular activation map on a 2D canvas (dependency-light, no three.js).
+// The surface is painted by local activation time (LAT) via viridis; a turntable spin
+// plus a wavefront time-sweep make it read as a propagating depolarization. Ported from
+// the ecg-purkinje-npe (Conduction Lens) demo; fed a fixed geometry + results via props.
+
+type Vec3 = [number, number, number]
+
+export interface PurkinjeTree {
+  nodes: Vec3[]
+  edges: [number, number][]
+  n_pmj?: number
+}
+
+export interface Geometry {
+  geometry_id: string
+  vertices: Vec3[]
+  faces: Vec3[]
+  chamber?: number[]
+  purkinje?: { lv: PurkinjeTree; rv: PurkinjeTree }
+}
+
+export interface ResultsArtifact {
+  run_id: string
+  activation_map?: { values?: number[] }
+}
+
+const LIGHT = normalize([0.3, 0.55, 0.75])
+
+function normalize(v: number[]): [number, number, number] {
+  const n = Math.hypot(v[0], v[1], v[2]) || 1
+  return [v[0] / n, v[1] / n, v[2] / n]
+}
+
+// Small pill toggle for a render layer. Active = filled in the layer's colour.
+function LayerBtn({
+  active,
+  tone = 'zinc',
+  onClick,
+  children,
+}: {
+  active: boolean
+  tone?: 'zinc' | 'cyan' | 'amber'
+  onClick: () => void
+  children: React.ReactNode
+}) {
+  const onCls = {
+    zinc: 'border-zinc-500 bg-zinc-700/40 text-zinc-100',
+    cyan: 'border-cyan-500/60 bg-cyan-500/15 text-cyan-200',
+    amber: 'border-amber-500/60 bg-amber-500/15 text-amber-200',
+  }[tone]
+  return (
+    <button
+      onClick={onClick}
+      aria-pressed={active}
+      className={`rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors ${
+        active ? onCls : 'border-zinc-700 text-zinc-500 hover:text-zinc-300'
+      }`}
+    >
+      {children}
+    </button>
+  )
+}
+
+type ActivationMapProps = { geometry: Geometry; results: ResultsArtifact }
+
+export default function ActivationMap({ geometry, results }: ActivationMapProps) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const angleRef = useRef(0.5) // azimuth (orbit about the long axis), damped toward the target
+  const elevRef = useRef(1.32) // elevation (view tilt), damped toward the target
+  const targetAzRef = useRef(0.5) // orbit target: drag and auto-orbit move this, the camera eases to it
+  const targetPolRef = useRef(1.32) // polar/elevation target (clamped away from the poles)
+  const lastTimeRef = useRef(0) // last frame timestamp, for frame-rate-independent damping
+  const zoomRef = useRef(1) // wheel zoom multiplier
+  const sweepRef = useRef(1) // 1 = fully activated (whole map shown)
+  const playingRef = useRef(false)
+  const rotatingRef = useRef(false) // auto-orbit defaults to PAUSED
+  const draggingRef = useRef(false)
+  const lastPointer = useRef<{ x: number; y: number } | null>(null)
+  const panRef = useRef({ x: 0, y: 0 }) // screen-space pan offset
+  const panningRef = useRef(false)
+  const [playing, setPlaying] = useState(false)
+  const [rotating, setRotating] = useState(false)
+  const [sweepPct, setSweepPct] = useState(100)
+  const [layers, setLayers] = useState({ surface: true, lv: true, rv: true })
+  const surfRef = useRef(true)
+  const lvRef = useRef(true)
+  const rvRef = useRef(true)
+
+  const verts = geometry?.vertices
+  const faces = geometry?.faces
+  const lat = results.activation_map?.values
+  const chamber = geometry?.chamber
+  const isStrocchi = (geometry?.geometry_id ?? '').toLowerCase().includes('strocchi')
+  const purk = geometry?.purkinje
+
+  const hasGeom = !!(verts?.length && faces?.length)
+  const hasLat = !!(lat?.length && lat.length === verts?.length)
+
+  useEffect(() => {
+    if (!hasGeom) return
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const reduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
+    // center + scale
+    const V = verts as [number, number, number][]
+    const cx = V.reduce((a, p) => a + p[0], 0) / V.length
+    const cy = V.reduce((a, p) => a + p[1], 0) / V.length
+    const cz = V.reduce((a, p) => a + p[2], 0) / V.length
+    let radius = 0
+    for (const p of V) radius = Math.max(radius, Math.hypot(p[0] - cx, p[1] - cy, p[2] - cz))
+    radius = radius || 1
+
+    let latMin = Infinity
+    let latMax = -Infinity
+    if (hasLat) {
+      for (const v of lat as number[]) {
+        latMin = Math.min(latMin, v)
+        latMax = Math.max(latMax, v)
+      }
+    }
+    const latRange = latMax - latMin || 1
+
+    const F = faces as [number, number, number][]
+
+    // scratch buffers
+    const sx = new Float32Array(V.length)
+    const syb = new Float32Array(V.length)
+    const sz = new Float32Array(V.length)
+    const order = new Uint32Array(F.length)
+    const fdepth = new Float32Array(F.length)
+
+    // Purkinje network (real LV + RV fractal trees, same coord frame as the surface).
+    const pkNodes: [number, number, number][] = []
+    const pkEdges: [number, number][] = []
+    const pkRv: boolean[] = []
+    if (purk) {
+      for (const [tree, isRv] of [[purk.lv, false] as const, [purk.rv, true] as const]) {
+        const off = pkNodes.length
+        for (const n of tree.nodes) pkNodes.push(n)
+        for (const [a, b] of tree.edges) {
+          pkEdges.push([off + a, off + b])
+          pkRv.push(isRv)
+        }
+      }
+    }
+    const pkx = new Float32Array(pkNodes.length)
+    const pky = new Float32Array(pkNodes.length)
+    const pkz = new Float32Array(pkNodes.length)
+
+    let raf = 0
+    let frame = 0
+
+    let lastW = -1
+    let lastH = -1
+    function resize() {
+      if (!canvas) return { w: 0, h: 0, dpr: 1 }
+      const dpr = Math.min(2, window.devicePixelRatio || 1)
+      const w = canvas.clientWidth
+      const h = canvas.clientHeight
+      if (w !== lastW || h !== lastH) {
+        canvas.width = Math.max(1, Math.round(w * dpr))
+        canvas.height = Math.max(1, Math.round(h * dpr))
+        lastW = w
+        lastH = h
+      }
+      return { w, h, dpr }
+    }
+
+    function draw() {
+      if (!canvas || !ctx) return
+      const { w, h, dpr } = resize()
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.clearRect(0, 0, w, h)
+
+      const a = angleRef.current
+      const ca = Math.cos(a)
+      const sa = Math.sin(a)
+      const st = Math.sin(elevRef.current)
+      const ctil = Math.cos(elevRef.current)
+      const fit = ((Math.min(w, h) * 0.42) / radius) * zoomRef.current
+      const ox = w / 2 + panRef.current.x
+      const oy = h / 2 + panRef.current.y
+
+      if (surfRef.current) {
+        // transform vertices: spin about long axis (z), then view tilt about x.
+        for (let i = 0; i < V.length; i++) {
+          const px = V[i][0] - cx
+          const py = V[i][1] - cy
+          const pz = V[i][2] - cz
+          const x1 = px * ca - py * sa
+          const y1 = px * sa + py * ca
+          const z1 = pz
+          const y2 = y1 * ctil - z1 * st
+          const z2 = y1 * st + z1 * ctil
+          sx[i] = ox + x1 * fit
+          syb[i] = oy + y2 * fit // apex (z<0) -> larger y -> down
+          sz[i] = z2 // depth toward camera
+        }
+
+        // painter's sort by face depth (far first)
+        for (let f = 0; f < F.length; f++) {
+          const [i0, i1, i2] = F[f]
+          fdepth[f] = (sz[i0] + sz[i1] + sz[i2]) / 3
+          order[f] = f
+        }
+        order.sort((p, q) => fdepth[p] - fdepth[q])
+
+        const thresh = hasLat ? latMin + sweepRef.current * latRange : Infinity
+
+        for (let k = 0; k < order.length; k++) {
+          const f = order[k]
+          const [i0, i1, i2] = F[f]
+          const ax = sx[i1] - sx[i0]
+          const ay = syb[i1] - syb[i0]
+          const bx = sx[i2] - sx[i0]
+          const by = syb[i2] - syb[i0]
+          const az = sz[i1] - sz[i0]
+          const bz = sz[i2] - sz[i0]
+          const nx = ay * bz - az * by
+          const ny = az * bx - ax * bz
+          const nz = ax * by - ay * bx
+          const nn = Math.hypot(nx, ny, nz) || 1
+          const ndl = Math.abs((nx * LIGHT[0] + ny * LIGHT[1] + nz * LIGHT[2]) / nn)
+          const shade = 0.45 + 0.55 * ndl
+
+          let r: number
+          let g: number
+          let b: number
+          if (hasLat) {
+            const flat = ((lat as number[])[i0] + (lat as number[])[i1] + (lat as number[])[i2]) / 3
+            const activated = flat <= thresh
+            if (activated) {
+              const t = (flat - latMin) / latRange
+              ;[r, g, b] = viridis(t)
+              const edge = (thresh - flat) / latRange
+              if (sweepRef.current < 0.999 && edge >= 0 && edge < 0.06) {
+                const m = 1 - edge / 0.06
+                r = r + (255 - r) * 0.7 * m
+                g = g + (255 - g) * 0.7 * m
+                b = b + (255 - b) * 0.7 * m
+              }
+            } else {
+              r = 40
+              g = 40
+              b = 48
+            }
+          } else {
+            const isRv = chamber ? chamber[i0] === 1 : false
+            ;[r, g, b] = isRv ? [120, 113, 108] : [113, 113, 122]
+          }
+          ctx.fillStyle = `rgb(${Math.round(r * shade)},${Math.round(g * shade)},${Math.round(b * shade)})`
+          ctx.beginPath()
+          ctx.moveTo(sx[i0], syb[i0])
+          ctx.lineTo(sx[i1], syb[i1])
+          ctx.lineTo(sx[i2], syb[i2])
+          ctx.closePath()
+          ctx.fill()
+        }
+      }
+
+      // Purkinje network overlay: project the tree nodes with the same transform.
+      if ((lvRef.current || rvRef.current) && pkEdges.length) {
+        for (let i = 0; i < pkNodes.length; i++) {
+          const px = pkNodes[i][0] - cx
+          const py = pkNodes[i][1] - cy
+          const pz = pkNodes[i][2] - cz
+          const x1 = px * ca - py * sa
+          const y1 = px * sa + py * ca
+          const y2 = y1 * ctil - pz * st
+          const z2 = y1 * st + pz * ctil
+          pkx[i] = ox + x1 * fit
+          pky[i] = oy + y2 * fit
+          pkz[i] = z2
+        }
+        ctx.lineWidth = 1
+        for (let e = 0; e < pkEdges.length; e++) {
+          if (pkRv[e] ? !rvRef.current : !lvRef.current) continue
+          const [a, b] = pkEdges[e]
+          const depth = Math.max(0, Math.min(1, ((pkz[a] + pkz[b]) / 2 + radius) / (2 * radius)))
+          const alpha = 0.12 + 0.65 * depth
+          ctx.strokeStyle = pkRv[e] ? `rgba(255,176,80,${alpha})` : `rgba(110,220,255,${alpha})`
+          ctx.beginPath()
+          ctx.moveTo(pkx[a], pky[a])
+          ctx.lineTo(pkx[b], pky[b])
+          ctx.stroke()
+        }
+      }
+    }
+
+    function tick() {
+      frame++
+      if (frame === 1 && reduced) {
+        rotatingRef.current = false
+        setRotating(false)
+      }
+      const now = performance.now()
+      const dt = lastTimeRef.current ? Math.min(3, (now - lastTimeRef.current) / 16.667) : 1
+      lastTimeRef.current = now
+      if (rotatingRef.current) targetAzRef.current += 0.006 * dt
+      const k = 1 - Math.pow(1 - 0.2, dt)
+      angleRef.current += (targetAzRef.current - angleRef.current) * k
+      elevRef.current += (targetPolRef.current - elevRef.current) * k
+      if (playingRef.current) {
+        sweepRef.current += 0.006 * dt
+        if (sweepRef.current >= 1) {
+          sweepRef.current = 1
+          playingRef.current = false
+          setPlaying(false)
+        }
+        if (frame % 4 === 0) setSweepPct(Math.round(sweepRef.current * 100))
+      }
+      draw()
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    const onResize = () => draw()
+    window.addEventListener('resize', onResize)
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      const f = Math.exp(-e.deltaY * 0.0015)
+      zoomRef.current = Math.max(0.4, Math.min(5, zoomRef.current * f))
+    }
+    canvas.addEventListener('wheel', onWheel, { passive: false })
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', onResize)
+      canvas.removeEventListener('wheel', onWheel)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasGeom, hasLat, results.run_id, geometry.geometry_id])
+
+  if (!hasGeom) {
+    return (
+      <div className="flex h-64 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 text-sm text-zinc-500">
+        No geometry in this run (vertices/faces missing).
+      </div>
+    )
+  }
+
+  const latMin = hasLat ? Math.min(...(lat as number[])) : 0
+  const latMax = hasLat ? Math.max(...(lat as number[])) : 0
+
+  function playSweep() {
+    if (sweepRef.current >= 0.999) sweepRef.current = 0
+    playingRef.current = true
+    setPlaying(true)
+  }
+  function pauseSweep() {
+    playingRef.current = false
+    setPlaying(false)
+  }
+  function onScrub(v: number) {
+    playingRef.current = false
+    setPlaying(false)
+    sweepRef.current = v / 100
+    setSweepPct(v)
+  }
+  function toggleRotate() {
+    rotatingRef.current = !rotatingRef.current
+    setRotating(rotatingRef.current)
+  }
+  function zoomBy(factor: number) {
+    zoomRef.current = Math.max(0.4, Math.min(5, zoomRef.current * factor))
+  }
+  function resetView() {
+    angleRef.current = 0.5
+    elevRef.current = 1.32
+    targetAzRef.current = 0.5
+    targetPolRef.current = 1.32
+    zoomRef.current = 1
+    panRef.current = { x: 0, y: 0 }
+  }
+  function toggleLayer(key: 'surface' | 'lv' | 'rv') {
+    const ref = key === 'surface' ? surfRef : key === 'lv' ? lvRef : rvRef
+    ref.current = !ref.current
+    setLayers((s) => ({ ...s, [key]: ref.current }))
+  }
+
+  function onPointerDown(e: React.PointerEvent<HTMLCanvasElement>) {
+    draggingRef.current = true
+    panningRef.current = e.shiftKey || e.button === 1 || e.button === 2
+    lastPointer.current = { x: e.clientX, y: e.clientY }
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+    if (rotatingRef.current) {
+      rotatingRef.current = false
+      setRotating(false)
+    }
+  }
+  function onPointerMove(e: React.PointerEvent<HTMLCanvasElement>) {
+    if (!draggingRef.current || !lastPointer.current) return
+    const dx = e.clientX - lastPointer.current.x
+    const dy = e.clientY - lastPointer.current.y
+    lastPointer.current = { x: e.clientX, y: e.clientY }
+    if (panningRef.current) {
+      panRef.current = { x: panRef.current.x + dx, y: panRef.current.y + dy }
+    } else {
+      targetAzRef.current += dx * 0.005
+      targetPolRef.current = Math.max(
+        0.26,
+        Math.min(Math.PI - 0.26, targetPolRef.current + dy * 0.005)
+      )
+    }
+  }
+  function onPointerUp(e: React.PointerEvent<HTMLCanvasElement>) {
+    draggingRef.current = false
+    lastPointer.current = null
+    e.currentTarget.releasePointerCapture?.(e.pointerId)
+  }
+
+  return (
+    <div>
+      <div
+        className="relative overflow-hidden rounded-xl border border-zinc-800 bg-linear-to-b from-zinc-950 to-zinc-900"
+        style={{ aspectRatio: '4 / 3' }}
+      >
+        <canvas
+          ref={canvasRef}
+          className="h-full w-full cursor-grab touch-none active:cursor-grabbing"
+          role="img"
+          aria-label="Biventricular surface colored by local activation time. Drag to orbit, shift-drag or right-drag to pan, scroll or the zoom buttons to zoom, and play the wavefront sweep to reveal the depolarization order."
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
+          onContextMenu={(e) => e.preventDefault()}
+        />
+        {hasLat ? (
+          <div className="absolute left-2 top-2 rounded-md bg-black/40 px-2 py-1 font-mono text-[10px] text-zinc-300">
+            LAT sweep: {sweepPct}%{' '}
+            {sweepPct < 100
+              ? `(${(latMin + (sweepPct / 100) * (latMax - latMin)).toFixed(0)} ms)`
+              : '(full map)'}
+          </div>
+        ) : (
+          <div className="absolute left-2 top-2 rounded-md bg-black/40 px-2 py-1 font-mono text-[10px] text-amber-300">
+            activation_map missing: showing bare surface
+          </div>
+        )}
+      </div>
+
+      {/* controls */}
+      <div className="mt-3 space-y-2">
+        {hasLat ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={playing ? pauseSweep : playSweep}
+              className="rounded-lg border border-indigo-500/50 bg-indigo-500/10 px-3 py-1.5 text-sm font-medium text-indigo-200 hover:bg-indigo-500/20"
+            >
+              {playing ? 'Pause' : 'Play wavefront'}
+            </button>
+            <label className="flex flex-1 items-center gap-2 text-xs text-zinc-400">
+              <span className="font-mono">t</span>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={sweepPct}
+                onChange={(e) => onScrub(Number(e.target.value))}
+                className="flex-1 accent-indigo-400"
+                aria-label="Activation-time sweep"
+              />
+            </label>
+          </div>
+        ) : null}
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={toggleRotate}
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 hover:bg-zinc-800"
+            aria-pressed={rotating}
+          >
+            {rotating ? 'Pause auto-orbit' : 'Auto-orbit'}
+          </button>
+          <button
+            onClick={() => zoomBy(1 / 1.25)}
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 hover:bg-zinc-800"
+            aria-label="Zoom out"
+          >
+            Zoom -
+          </button>
+          <button
+            onClick={() => zoomBy(1.25)}
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 hover:bg-zinc-800"
+            aria-label="Zoom in"
+          >
+            Zoom +
+          </button>
+          <button
+            onClick={resetView}
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 hover:bg-zinc-800"
+          >
+            Reset view
+          </button>
+          <span className="text-[11px] text-zinc-500">drag orbit, shift-drag pan, scroll zoom</span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">
+            layers
+          </span>
+          <LayerBtn active={layers.surface} onClick={() => toggleLayer('surface')}>
+            Surface
+          </LayerBtn>
+          {purk ? (
+            <>
+              <LayerBtn active={layers.lv} tone="cyan" onClick={() => toggleLayer('lv')}>
+                LV Purkinje
+              </LayerBtn>
+              <LayerBtn active={layers.rv} tone="amber" onClick={() => toggleLayer('rv')}>
+                RV Purkinje
+              </LayerBtn>
+            </>
+          ) : null}
+        </div>
+      </div>
+
+      {purk ? (
+        <p className="mt-2 text-[11px] text-zinc-500">
+          <span className="text-cyan-300">LV</span> and <span className="text-amber-300">RV</span>{' '}
+          fractal Purkinje networks (the real trees that seed this activation:{' '}
+          {purk.lv.nodes.length + purk.rv.nodes.length} nodes,{' '}
+          {(purk.lv.n_pmj ?? 0) + (purk.rv.n_pmj ?? 0)} Purkinje-muscle junctions).
+        </p>
+      ) : isStrocchi ? (
+        <p className="mt-2 text-[11px] text-zinc-500">
+          Myocardial surface and activation map only; the Purkinje tree geometry is not bundled for
+          this heart.
+        </p>
+      ) : null}
+
+      {/* colorbar */}
+      {hasLat ? (
+        <div className="mt-3 flex items-center gap-2 font-mono text-[10px] text-zinc-500">
+          <span>{latMin.toFixed(0)} ms</span>
+          <div
+            className="h-2 flex-1 rounded-full"
+            style={{
+              background:
+                'linear-gradient(90deg, rgb(68,1,84), rgb(49,104,142), rgb(31,158,137), rgb(110,206,88), rgb(253,231,37))',
+            }}
+            aria-hidden="true"
+          />
+          <span>{latMax.toFixed(0)} ms</span>
+          <span className="ml-1 text-zinc-600">early to late</span>
+        </div>
+      ) : null}
+    </div>
+  )
+}
