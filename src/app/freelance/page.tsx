@@ -35,7 +35,7 @@ const offers = [
       'Vector search + retrieval that returns the right context',
       'Hallucination guards and an evaluation harness',
     ],
-    proof: { label: 'Example: rusty-rag-chunker', slug: 'rusty-rag-chunker' },
+    proof: { label: 'Example: rusty-rag-chunker', href: '/projects/rusty-rag-chunker' },
   },
   {
     icon: Database,
@@ -47,7 +47,10 @@ const offers = [
       'Automated reports + a published docs/dashboard site',
       'Scheduled and unattended: no manual refresh',
     ],
-    proof: { label: 'Example: mx-jobs-insights', slug: 'mx-jobs-insights' },
+    proof: {
+      label: 'Read the case study: mx-jobs-insights',
+      href: '/case-studies/mx-jobs-insights',
+    },
   },
   {
     icon: ClipboardCheck,
@@ -59,7 +62,7 @@ const offers = [
       'Covers types, tests, dependencies, CI, docs, and structure',
       'Delivers a prioritized fix list you can act on or hand off',
     ],
-    proof: { label: 'Example: RepoSage', slug: 'reposage' },
+    proof: { label: 'Example: RepoSage', href: '/projects/reposage' },
   },
 ]
 
@@ -149,7 +152,7 @@ export default function FreelancePage() {
                 </ul>
                 <div className="mt-auto border-t border-neutral-800 pt-4">
                   <Link
-                    href={`/projects/${offer.proof.slug}`}
+                    href={offer.proof.href}
                     className="text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300"
                   >
                     {offer.proof.label} →

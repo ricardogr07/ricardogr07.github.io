@@ -36,6 +36,10 @@ const staticPages: OgPage[] = [
   { slug: 'teaching', subtitle: 'Teaching — Bioinstrumentation at Tec de Monterrey' },
   { slug: 'research', subtitle: 'Research — Publications, Thesis & Scientific Software' },
   { slug: 'book', subtitle: 'Production-Grade Data Science, coming December 2026' },
+  {
+    slug: 'case-mx-jobs-insights',
+    subtitle: 'Case study: a data pipeline to a self-updating report site, for $0 a month',
+  },
   { slug: 'demo-financial-dashboard', subtitle: 'Financial Data Dashboard Demo — Synthetic Data' },
   { slug: 'demo-query-lab', subtitle: 'Portfolio Query Lab — SQLite / WASM in the Browser' },
 ]
