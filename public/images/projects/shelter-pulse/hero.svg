@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Geist Mono', ui-monospace, monospace">
+  <defs>
+    <pattern id="sp-grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
+    </pattern>
+    <radialGradient id="sp-glow" cx="768" cy="264.6" r="552" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 95.5) scale(1 0.639)">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.13"></stop>
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"></rect>
+  <rect width="1200" height="630" fill="url(#sp-glow)"></rect>
+  <rect width="1200" height="630" fill="url(#sp-grid)"></rect>
+
+  <text x="84" y="104" font-family="'Geist', system-ui, sans-serif" font-size="60" font-weight="700" letter-spacing="-1.5" fill="#ffffff">ShelterPulse</text>
+  <text x="84" y="152" font-size="22" fill="#a3a3a3">Simulating kitten season so shelters can budget before the surge.</text>
+
+  <text x="84" y="218" font-size="14" fill="#737373">fixed budget → four interventions → seeded discrete-event simulation → overflow cat-days</text>
+
+  <!-- four intervention chips -->
+  <g font-size="13">
+    <rect x="84" y="240" width="228" height="46" rx="11" fill="#ffffff" fill-opacity="0.02" stroke="#525252" stroke-width="1.5"></rect>
+    <text x="198" y="268" text-anchor="middle" fill="#a3a3a3">foster support</text>
+    <rect x="324" y="240" width="228" height="46" rx="11" fill="#ffffff" fill-opacity="0.02" stroke="#525252" stroke-width="1.5"></rect>
+    <text x="438" y="268" text-anchor="middle" fill="#a3a3a3">extra clinic hours</text>
+    <rect x="564" y="240" width="228" height="46" rx="11" fill="#ffffff" fill-opacity="0.02" stroke="#525252" stroke-width="1.5"></rect>
+    <text x="678" y="268" text-anchor="middle" fill="#a3a3a3">isolation capacity</text>
+    <rect x="804" y="240" width="312" height="46" rx="11" fill="#22d3ee" fill-opacity="0.07" stroke="#22d3ee" stroke-width="1.5"></rect>
+    <text x="960" y="268" text-anchor="middle" fill="#7dd3fc">adoption events — the only exit</text>
+  </g>
+
+  <!-- lifecycle stage row -->
+  <g text-anchor="middle">
+    <g font-size="13" font-weight="700" letter-spacing="1.4" fill="#f5f5f5">
+      <text x="180" y="361">INTAKE</text>
+      <text x="414" y="361">ISOLATE</text>
+      <text x="648" y="361">TREAT</text>
+      <text x="882" y="361">HOUSE</text>
+      <text x="1080" y="361">ADOPT</text>
+    </g>
+    <g fill="none" stroke-width="2">
+      <circle cx="180" cy="387.9" r="6.5" stroke="#818cf8"></circle>
+      <circle cx="414" cy="387.9" r="6.5" stroke="#818cf8"></circle>
+      <circle cx="648" cy="387.9" r="6.5" stroke="#818cf8"></circle>
+      <circle cx="882" cy="387.9" r="6.5" stroke="#f59e0b"></circle>
+      <circle cx="1080" cy="387.9" r="6.5" stroke="#22d3ee"></circle>
+    </g>
+    <g font-size="12" fill="#737373">
+      <text x="180" y="418">seasonal Poisson</text>
+      <text x="414" y="418">medical hold</text>
+      <text x="648" y="418">clearance</text>
+      <text x="882" y="418" fill="#b98a3a">the bottleneck</text>
+      <text x="1080" y="418" fill="#5ba7b5">rate of leaving</text>
+    </g>
+  </g>
+
+  <!-- stats -->
+  <rect x="84" y="454.2" width="1032" height="1" fill="#262626"></rect>
+  <line x1="428" y1="487" x2="428" y2="552" stroke="#262626" stroke-width="1"></line>
+  <line x1="772" y1="487" x2="772" y2="552" stroke="#262626" stroke-width="1"></line>
+  <g text-anchor="middle">
+    <g fill="#22d3ee" font-size="40" font-weight="700" letter-spacing="-0.4">
+      <text x="256" y="518">50.2</text>
+      <text x="600" y="518">~17×</text>
+      <text x="944" y="518">243.2 s</text>
+    </g>
+    <g fill="#737373" font-size="13">
+      <text x="256" y="548">best mean overflow cat-days</text>
+      <text x="600" y="548">worse for an equal split</text>
+      <text x="944" y="548">full sweep · 5 baselines + 20 BO</text>
+    </g>
+  </g>
+</svg>

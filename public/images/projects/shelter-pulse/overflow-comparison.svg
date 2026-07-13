@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="440" fill="#0a0a0a" />
+  <text x="48" y="48" fill="#e2e8f0" font-size="20" font-weight="700">Allocation is the whole game — mean overflow cat-days by strategy</text>
+  <text x="48" y="74" fill="#64748b" font-size="13">Same simulation, same seeds (common random numbers); only the budget split changes. Lower is better. Whisker Haven scenario, 32 replications.</text>
+
+  <!-- baseline grid at x0=316, scale 740px = 874.4 -->
+  <line x1="316" y1="104" x2="316" y2="330" stroke="#1e293b" stroke-width="1" />
+
+  <!-- Row A: all-in adoption events (best) -->
+  <text x="300" y="144" text-anchor="end" fill="#cbd5e1" font-size="12.5">all-in adoption events</text>
+  <text x="300" y="160" text-anchor="end" fill="#64748b" font-size="10.5">named baseline · winner</text>
+  <rect x="316" y="126" width="42.5" height="40" rx="5" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+  <text x="372" y="151" fill="#67e8f9" font-size="20" font-weight="700">50.2</text>
+
+  <!-- Row B: best BO candidate -->
+  <text x="300" y="216" text-anchor="end" fill="#cbd5e1" font-size="12.5">best BO candidate</text>
+  <text x="300" y="232" text-anchor="end" fill="#64748b" font-size="10.5">GP + EI optimizer</text>
+  <rect x="316" y="198" width="69.5" height="40" rx="5" fill="#0d1117" stroke="#818cf8" stroke-width="1.4" />
+  <text x="399" y="223" fill="#a5b4fc" font-size="20" font-weight="700">82.1</text>
+
+  <!-- Row C: equal split (worst) -->
+  <text x="300" y="288" text-anchor="end" fill="#cbd5e1" font-size="12.5">equal split</text>
+  <text x="300" y="304" text-anchor="end" fill="#64748b" font-size="10.5">even quarter each</text>
+  <rect x="316" y="270" width="740" height="40" rx="5" fill="#140404" stroke="#ef4444" stroke-width="1.3" />
+  <text x="1040" y="295" text-anchor="end" fill="#f87171" font-size="20" font-weight="700">874.4</text>
+
+  <!-- takeaways -->
+  <line x1="48" y1="352" x2="1072" y2="352" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="380" fill="#cbd5e1" font-size="12.5">The optimizer's best (82.1) sits <tspan fill="#a5b4fc" font-weight="700">above</tspan> a named baseline (50.2): an honest negative result the project kept, not hid.</text>
+  <text x="48" y="402" fill="#cbd5e1" font-size="12.5">Concentrating budget on adoption events beats an equal split by <tspan fill="#67e8f9" font-weight="700">~17×</tspan> — only that lever changes the rate cats leave.</text>
+  <text x="48" y="424" fill="#475569" font-size="11.5">Synthetic, model-dependent figures from docs/whitepaper/evidence/whisker-haven.json — regenerated on the release commit.</text>
+</svg>

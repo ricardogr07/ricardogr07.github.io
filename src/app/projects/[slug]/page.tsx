@@ -194,6 +194,30 @@ export default async function CaseStudyPage({ params }: Props) {
                 PyPI
               </a>
             )}
+            {project.doiUrl && (
+              <a
+                href={project.doiUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M20 7H4m16 0v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7m16 0l-1.6-3.2A1 1 0 0017.5 3h-11a1 1 0 00-.9.55L4 7m6 5h4"
+                  />
+                </svg>
+                Zenodo
+              </a>
+            )}
             {project.colabUrl && (
               <a
                 href={project.colabUrl}

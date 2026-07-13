@@ -298,6 +298,75 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
+    slug: 'shelter-pulse',
+    title: 'ShelterPulse: Simulating Kitten Season for Shelter Budget Allocation',
+    repo: 'https://github.com/ricardogr07/shelter-pulse',
+    liveUrl: 'https://shelter-pulse.com/en',
+    docsUrl: 'https://shelter-pulse.com/api/docs',
+    docsLabel: 'API Docs',
+    doiUrl: 'https://doi.org/10.5281/zenodo.21173654',
+    visibility: 'public',
+    featured: true,
+    diagram: '/images/projects/shelter-pulse/architecture.svg',
+    diagramCaption:
+      'nginx + uvicorn in one ECS Fargate task behind a single HTTPS URL. The sync request path and the async BO-sweep lane (queue → worker) reuse the same pure simulation core, which imports nothing from the API or CLI — enforced by a CI test.',
+    heroImage: '/images/projects/shelter-pulse/hero.svg',
+    categories: ['ml', 'backend-api', 'dashboard'],
+    summary:
+      "Discrete-event simulation and Bayesian-optimization lab that answers a shelter's budget question: given a fixed budget split across foster support, clinic hours, isolation capacity, and adoption events, which allocation minimizes overflow during kitten season?",
+    deliverables: [],
+    techStack: [
+      'SimPy',
+      'JAX / jaxbo',
+      'FastAPI',
+      'Next.js',
+      'TypeScript',
+      'Docker',
+      'AWS ECS Fargate',
+      'RabbitMQ / SQS',
+    ],
+    servicesSupported: [
+      'Discrete-Event Simulation',
+      'Bayesian Optimization',
+      'Backend API',
+      'Cloud Deployment',
+      'Dashboard & Reporting',
+    ],
+    businessValue: [],
+    tldr: "ShelterPulse plays out a shelter's kitten season on a computer and tries different ways of splitting one fixed budget across foster support, clinic hours, isolation space, and adoption events, to see which split leaves the fewest cats with nowhere to go. Every plan runs through the same simulated conditions so the comparison is fair, gets checked against simple rule-of-thumb plans, and is ranked — a way to test a budget before spending real money on it. The numbers come from a made-up shelter, so they show the method rather than a real-world result.",
+    headlineMetric:
+      'A simulation + optimization lab for shelter budget allocation under uncertainty.',
+    status: 'live',
+    situation:
+      'Every spring, kitten season floods cat shelters: intake surges two to three times, isolation queues fill, and housing overflows. Managers face a fixed budget split across four interventions (foster support, extra clinic hours, temporary isolation capacity, adoption events) with no way to model outcomes before committing real staff and dollars, so allocation stays gut-feel and routinely leaves overflow on the table.',
+    task: "Build a fast, honest, reproducible lab that answers one question: given a shelter's constraints and budget, what allocation minimizes overflow? The requirements were concrete: a full experiment in under five minutes, comparison against honest baselines, quantified uncertainty, and open source.",
+    action: [
+      'Modeled the full cat lifecycle (intake, isolation, medical clearance, housing, foster, adoption) as a SimPy discrete-event simulation, with intake as a non-homogeneous Poisson process that spikes for kitten season. Every run is fully seeded and reproducible.',
+      'Paired every allocation against the same seed set and pre-generated intake schedule (common random numbers) so comparisons see identical exogenous variation, then evaluated five named baselines (equal split, all-in foster, all-in events, a domain heuristic, and zero) alongside the search so a baseline can honestly win.',
+      'Searched the budget-share simplex with Gaussian-process + Expected-Improvement Bayesian optimization when JAX/jaxbo is available, falling back to a seeded Dirichlet random search otherwise.',
+      'Shipped it behind one HTTPS URL: nginx + uvicorn in a single ECS Fargate task serving a Next.js UI (tornado sensitivity chart, day-by-day housing timeline, ranked results) over a FastAPI backend, with BO sweeps dispatched to background workers through a queue abstraction (RabbitMQ locally, SQS + Lambda in production). Pushing to main auto-releases and deploys.',
+    ],
+    result:
+      'Live at shelter-pulse.com. A recorded sweep evaluated 5 baselines plus 20 BO candidates at 32 replications each in 243.2 s. On the Whisker Haven scenario the all-events baseline reached 50.2 mean overflow cat-days, the best BO candidate 82.1, and an equal split 874.4. Backed by 133 unit tests and 73% coverage on the core package, with a CI test that fails the build if the simulation core ever imports the API or CLI layers.',
+    learning:
+      'The most valuable result was a negative one worth keeping: of the four levers, only adoption events change the rate at which cats leave the shelter; the other three only add capacity upstream of that exit. So concentrating budget on adoption events consistently beat everything the project tested, including what Bayesian optimization found. That is a structural property of the levers, not a search failure, and the honest move was to label the winning baseline as a baseline instead of dressing the optimizer up as the hero.',
+    resultGallery: [
+      {
+        src: '/images/projects/shelter-pulse/overflow-comparison.svg',
+        alt: 'Horizontal bar chart of mean overflow cat-days: all-in adoption events 50.2, best Bayesian-optimization candidate 82.1, equal split 874.4. Lower is better.',
+        caption:
+          "Only the budget split changes across runs (same seeds). The all-in-adoption baseline (50.2) beats the optimizer's best (82.1) and an equal split (874.4) by ~17× — allocation, not model sophistication, is what moves overflow.",
+      },
+      {
+        src: '/images/projects/shelter-pulse/bottleneck-displacement.svg',
+        alt: 'Cat lifecycle from intake to adoption, with housing marked as the full-queue bottleneck and adoption as the only exit; three upstream levers add capacity while only adoption events raise the exit rate.',
+        caption:
+          'Why the baseline wins: of the four levers, only adoption events change the rate cats leave. Relieving an upstream resource just feeds a housing queue that is already full — bottleneck displacement, confirmed (not caused) by the optimizer.',
+      },
+    ],
+    artifactNote: 'Apache-2.0, built for #hackthekitty 2026.',
+  },
+  {
     slug: 'wc26-dashboard',
     title: 'WC26 Dashboard: Live World Cup Pool Forecasting',
     liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',

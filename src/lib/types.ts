@@ -55,6 +55,8 @@ export interface PortfolioProject {
   status?: 'live' | 'pypi' | 'active' | 'archived'
   pypiUrl?: string
   colabUrl?: string
+  /** Zenodo / DOI archive link — rendered as a badge button */
+  doiUrl?: string
   references?: { citation: string; url?: string }[]
   gallery?: { src: string; alt: string; caption?: string }[]
   resultGallery?: { src: string; alt: string; caption?: string }[]

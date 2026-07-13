@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="bd-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#818cf8" />
+    </marker>
+  </defs>
+  <rect width="1120" height="500" fill="#0a0a0a" />
+  <text x="48" y="46" fill="#e2e8f0" font-size="20" font-weight="700">Why a baseline beat the optimizer: only one lever touches the exit</text>
+  <text x="48" y="72" fill="#64748b" font-size="13">Overflow is a full housing queue. Three levers add capacity upstream of it; one drains it. Relieving a non-binding resource just moves cats faster into a queue that was already full.</text>
+
+  <!-- lifecycle boxes: x = 48 + i*212, w=176 -->
+  <!-- intake -->
+  <rect x="48" y="150" width="176" height="86" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+  <text x="136" y="186" text-anchor="middle" fill="#a5b4fc" font-size="13.5" font-weight="700">intake</text>
+  <text x="136" y="210" text-anchor="middle" fill="#64748b" font-size="10.5">seasonal arrivals</text>
+  <path d="M224 193 H256" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#bd-ar)" />
+
+  <!-- isolation -->
+  <rect x="260" y="150" width="176" height="86" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+  <text x="348" y="186" text-anchor="middle" fill="#a5b4fc" font-size="13.5" font-weight="700">isolation</text>
+  <text x="348" y="210" text-anchor="middle" fill="#64748b" font-size="10.5">medical hold</text>
+  <path d="M436 193 H468" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#bd-ar)" />
+
+  <!-- treat -->
+  <rect x="472" y="150" width="176" height="86" rx="12" fill="#0d1117" stroke="#818cf8" stroke-width="1.3" />
+  <text x="560" y="186" text-anchor="middle" fill="#a5b4fc" font-size="13.5" font-weight="700">medical clearance</text>
+  <text x="560" y="210" text-anchor="middle" fill="#64748b" font-size="10.5">clinic throughput</text>
+  <path d="M648 193 H680" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#bd-ar)" />
+
+  <!-- housing (bottleneck) -->
+  <rect x="684" y="150" width="176" height="86" rx="12" fill="#140f02" stroke="#f59e0b" stroke-width="1.6" />
+  <text x="772" y="186" text-anchor="middle" fill="#fcd34d" font-size="13.5" font-weight="700">housing</text>
+  <text x="772" y="210" text-anchor="middle" fill="#b98a3a" font-size="10.5">queue already full</text>
+  <path d="M860 193 H892" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#bd-ar)" />
+
+  <!-- adoption (exit) -->
+  <rect x="896" y="150" width="176" height="86" rx="12" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.8" />
+  <text x="984" y="186" text-anchor="middle" fill="#67e8f9" font-size="13.5" font-weight="700">adoption</text>
+  <text x="984" y="210" text-anchor="middle" fill="#5ba7b5" font-size="10.5">the only exit</text>
+
+  <!-- lever tags under stages -->
+  <text x="772" y="120" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="700">← overflow accrues here</text>
+
+  <!-- upstream levers -->
+  <text x="48" y="286" fill="#94a3b8" font-size="12.5" font-weight="700">Three levers only add capacity upstream — they feed the bottleneck faster:</text>
+  <g font-size="12">
+    <rect x="48" y="300" width="264" height="52" rx="9" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
+    <text x="66" y="322" fill="#cbd5e1" font-size="12.5" font-weight="700">foster support</text>
+    <text x="66" y="340" fill="#64748b" font-size="10.5">diverts arrivals — capacity, not exit</text>
+
+    <rect x="332" y="300" width="264" height="52" rx="9" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
+    <text x="350" y="322" fill="#cbd5e1" font-size="12.5" font-weight="700">extra clinic hours</text>
+    <text x="350" y="340" fill="#64748b" font-size="10.5">speeds clearance — capacity, not exit</text>
+
+    <rect x="616" y="300" width="264" height="52" rx="9" fill="#0d1117" stroke="#334155" stroke-width="1.2" />
+    <text x="634" y="322" fill="#cbd5e1" font-size="12.5" font-weight="700">isolation capacity</text>
+    <text x="634" y="340" fill="#64748b" font-size="10.5">more holding — capacity, not exit</text>
+  </g>
+
+  <!-- the one exit lever -->
+  <rect x="896" y="300" width="176" height="52" rx="9" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+  <text x="984" y="322" text-anchor="middle" fill="#67e8f9" font-size="12.5" font-weight="700">adoption events</text>
+  <text x="984" y="340" text-anchor="middle" fill="#5ba7b5" font-size="10.5">↑ rate of leaving</text>
+
+  <!-- takeaways -->
+  <line x1="48" y1="392" x2="1072" y2="392" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="420" fill="#cbd5e1" font-size="12.5">This is <tspan fill="#fcd34d" font-weight="700">bottleneck displacement</tspan>: relieving a non-binding upstream resource moves cats faster into a housing queue that was already full.</text>
+  <text x="48" y="442" fill="#cbd5e1" font-size="12.5">Bayesian optimization searched the full budget simplex and <tspan fill="#67e8f9" font-weight="700">confirmed it</tspan>: the adoption-events baseline wins. A structural property of the levers, not a search failure.</text>
+  <text x="48" y="464" fill="#475569" font-size="11.5">Full mechanism, a multi-objective search that confirms it, and the honest negative result for BO: docs/whitepaper.</text>
+</svg>
