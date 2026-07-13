@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" font-family="'Geist', system-ui, sans-serif">
+  <defs>
+    <pattern id="bk-grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0 H0 V46" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1" />
+    </pattern>
+    <radialGradient id="bk-glow" cx="400" cy="300" r="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.16" />
+      <stop offset="0.7" stop-color="#22d3ee" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="1200" fill="#0a0a0a" />
+  <rect width="800" height="1200" fill="url(#bk-glow)" />
+  <rect width="800" height="1200" fill="url(#bk-grid)" />
+  <rect x="24" y="24" width="752" height="1152" rx="10" fill="none" stroke="#1f2937" stroke-width="1.5" />
+  <rect x="24" y="24" width="752" height="6" fill="#22d3ee" />
+
+  <!-- eyebrow -->
+  <text x="400" y="168" text-anchor="middle" font-size="19" font-weight="500" letter-spacing="4.5" fill="#67e8f9">AN ENGINEERING HANDBOOK</text>
+
+  <!-- title -->
+  <text x="400" y="292" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-2" fill="#ffffff">Production-Grade</text>
+  <text x="400" y="378" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-2" fill="#ffffff">Data Science</text>
+
+  <line x1="330" y1="424" x2="470" y2="424" stroke="#22d3ee" stroke-width="2" />
+
+  <!-- subtitle -->
+  <text x="400" y="470" text-anchor="middle" font-size="22" fill="#a3a3a3">For working data scientists whose code</text>
+  <text x="400" y="500" text-anchor="middle" font-size="22" fill="#a3a3a3">has to survive contact with production.</text>
+
+  <!-- six-standards card -->
+  <rect x="150" y="566" width="500" height="356" rx="14" fill="#ffffff" fill-opacity="0.02" stroke="#262626" stroke-width="1.5" />
+  <text x="400" y="612" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="3.5" fill="#67e8f9">THE SIX STANDARDS</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, monospace" font-size="15" fill="#38bdf8">
+    <text x="250" y="662">0</text>
+    <text x="250" y="704">1</text>
+    <text x="250" y="746">2</text>
+    <text x="250" y="788">3</text>
+    <text x="250" y="830">4</text>
+    <text x="250" y="872">5</text>
+  </g>
+  <g font-size="21" fill="#e5e5e5">
+    <text x="286" y="663">Reproducible</text>
+    <text x="286" y="705">Legible</text>
+    <text x="286" y="747">Structured</text>
+    <text x="286" y="789">Proven</text>
+    <text x="286" y="831">Shipped</text>
+    <text x="286" y="873">Accountable</text>
+  </g>
+
+  <!-- author + release -->
+  <text x="400" y="1004" text-anchor="middle" font-size="26" font-weight="600" fill="#ffffff">Ricardo García Ramírez</text>
+  <rect x="286" y="1044" width="228" height="42" rx="21" fill="#22d3ee" fill-opacity="0.08" stroke="#22d3ee" stroke-opacity="0.4" stroke-width="1.5" />
+  <text x="400" y="1071" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="2.5" fill="#67e8f9">COMING DECEMBER 2026</text>
+</svg>

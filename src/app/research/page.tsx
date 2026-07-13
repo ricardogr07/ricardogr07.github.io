@@ -223,6 +223,41 @@ export default function ResearchPage() {
             </div>
           </section>
 
+          {/* Book in progress (distinct from the peer-reviewed publications above) */}
+          <section className="mb-12" aria-labelledby="book-heading">
+            <h2
+              id="book-heading"
+              className="mb-6 text-xs font-semibold uppercase tracking-widest text-neutral-500"
+            >
+              Book in progress
+            </h2>
+            <Link
+              href="/book"
+              className="flex flex-col gap-4 rounded-xl border border-cyan-400/20 bg-cyan-400/3 p-6 transition-colors hover:border-cyan-400/40 sm:flex-row sm:items-center"
+            >
+              <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-md border border-neutral-800">
+                <Image
+                  src="/images/book/cover.svg"
+                  alt="Production-Grade Data Science cover"
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                  unoptimized
+                />
+              </div>
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                  Coming December 2026
+                </p>
+                <h3 className="font-semibold text-white">Production-Grade Data Science</h3>
+                <p className="mt-1 text-sm text-neutral-400">
+                  An engineering handbook for working data scientists, organized as six standards
+                  from reproducible to accountable. Read the introduction →
+                </p>
+              </div>
+            </Link>
+          </section>
+
           {/* Research positions */}
           <section className="mb-12" aria-labelledby="positions-heading">
             <h2

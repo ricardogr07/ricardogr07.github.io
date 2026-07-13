@@ -4,6 +4,7 @@ import Hero from '@/components/hero'
 import PersonaRouter from '@/components/persona-router'
 import FourPillars from '@/components/four-pillars'
 import ProofStrip from '@/components/proof-strip'
+import BookTeaser from '@/components/book-teaser'
 import ProjectCard from '@/components/project-card'
 import Footer from '@/components/footer'
 import { projects } from '@/content/projects'
@@ -86,6 +87,7 @@ export default function Home() {
         </div>
       </section>
 
+      <BookTeaser />
       <ProofStrip />
       <Footer />
     </main>
