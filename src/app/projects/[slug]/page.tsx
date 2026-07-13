@@ -112,6 +112,17 @@ export default async function CaseStudyPage({ params }: Props) {
             ))}
           </div>
 
+          {/* Buyer case-study cross-link (deep-dive pages that back an offer) */}
+          {project.slug === 'mx-jobs-insights' && (
+            <Link
+              href="/case-studies/mx-jobs-insights"
+              className="mb-6 inline-flex items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-400/5 px-4 py-2 text-sm text-cyan-400 transition-all hover:border-cyan-400/60 hover:bg-cyan-400/10"
+            >
+              Evaluating this as a service? Read the case study
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+
           {/* Links */}
           <div className="mb-10 flex flex-wrap items-center gap-4">
             {project.repo && (
