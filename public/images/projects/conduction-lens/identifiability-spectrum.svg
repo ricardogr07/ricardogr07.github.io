@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1120" height="470" fill="#0a0a0a" />
+  <text x="48" y="44" fill="#e2e8f0" font-size="20" font-weight="700">What a 12-lead ECG can identify: 4 of 7 conduction parameters</text>
+  <text x="48" y="70" fill="#64748b" font-size="13">Posterior contraction (post-conformal) = posterior std / prior std. Lower is tighter; at or above 1.0 the ECG adds nothing beyond the prior.</text>
+  <g font-size="12">
+    <rect x="48" y="84" width="12" height="12" rx="3" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.3" />
+    <text x="66" y="94" fill="#94a3b8">identifiable</text>
+    <rect x="168" y="84" width="12" height="12" rx="3" fill="#140f02" stroke="#f59e0b" stroke-width="1.3" />
+    <text x="186" y="94" fill="#94a3b8">diffuse (formally unidentified)</text>
+  </g>
+
+  <!-- axis baseline at x0=360 -->
+  <line x1="360" y1="112" x2="360" y2="410" stroke="#1e293b" stroke-width="1" />
+  <!-- prior-width reference at contraction 1.0 -> x=920 -->
+  <line x1="920" y1="112" x2="920" y2="410" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5 4" />
+  <text x="920" y="106" text-anchor="middle" fill="#94a3b8" font-size="11">prior width = 1.0</text>
+
+  <!-- rows -->
+  <g>
+    <!-- delta_iv -->
+    <text x="344" y="134" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">delta_iv</text>
+    <text x="344" y="149" text-anchor="end" fill="#64748b" font-size="10">interventricular delay</text>
+    <rect x="360" y="118" width="84" height="30" rx="5" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+    <text x="454" y="138" fill="#67e8f9" font-size="14" font-weight="700">0.15</text>
+
+    <!-- cv_myo -->
+    <text x="344" y="176" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">cv_myo</text>
+    <text x="344" y="191" text-anchor="end" fill="#64748b" font-size="10">myocardial conduction velocity</text>
+    <rect x="360" y="160" width="196" height="30" rx="5" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+    <text x="566" y="180" fill="#67e8f9" font-size="14" font-weight="700">0.35</text>
+
+    <!-- init_length_rv -->
+    <text x="344" y="218" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">init_length_rv</text>
+    <text x="344" y="233" text-anchor="end" fill="#64748b" font-size="10">RV initial Purkinje extent</text>
+    <rect x="360" y="202" width="353" height="30" rx="5" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+    <text x="723" y="222" fill="#67e8f9" font-size="14" font-weight="700">0.63</text>
+
+    <!-- cv -->
+    <text x="344" y="260" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">cv</text>
+    <text x="344" y="275" text-anchor="end" fill="#64748b" font-size="10">system conduction velocity</text>
+    <rect x="360" y="244" width="375" height="30" rx="5" fill="#0b1f24" stroke="#22d3ee" stroke-width="1.4" />
+    <text x="745" y="264" fill="#67e8f9" font-size="14" font-weight="700">0.67</text>
+
+    <!-- branch_angle -->
+    <text x="344" y="302" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">branch_angle</text>
+    <text x="344" y="317" text-anchor="end" fill="#64748b" font-size="10">tree branch angle</text>
+    <rect x="360" y="286" width="588" height="30" rx="5" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+    <text x="958" y="306" fill="#fcd34d" font-size="13" font-weight="700">≈1.05</text>
+
+    <!-- w -->
+    <text x="344" y="344" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">w</text>
+    <text x="344" y="359" text-anchor="end" fill="#64748b" font-size="10">diffuse-block width</text>
+    <rect x="360" y="328" width="616" height="30" rx="5" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+    <text x="986" y="348" fill="#fcd34d" font-size="13" font-weight="700">≈1.10</text>
+
+    <!-- init_length_lv -->
+    <text x="344" y="386" text-anchor="end" fill="#cbd5e1" font-size="12.5" font-weight="700">init_length_lv</text>
+    <text x="344" y="401" text-anchor="end" fill="#64748b" font-size="10">LV initial Purkinje extent</text>
+    <rect x="360" y="370" width="644" height="30" rx="5" fill="#140f02" stroke="#f59e0b" stroke-width="1.4" />
+    <text x="1014" y="390" fill="#fcd34d" font-size="13" font-weight="700">≈1.15</text>
+  </g>
+
+  <!-- footnotes -->
+  <line x1="48" y1="424" x2="1072" y2="424" stroke="#1e293b" stroke-width="1" />
+  <text x="48" y="448" fill="#64748b" font-size="12">Calibrated: SBC passes; the joint TARP ATC moves from <tspan fill="#94a3b8">-0.057 (overconfident) to +0.007</tspan> after per-parameter conformal recalibration.</text>
+  <text x="48" y="466" fill="#475569" font-size="11.5">Identifiability is a property of the forward map at a stated noise floor, measured on a calibrated posterior - not a property of a parameter alone. Simulated ECG only.</text>
+</svg>

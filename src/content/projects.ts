@@ -367,6 +367,84 @@ export const projects: PortfolioProject[] = [
     artifactNote: 'Apache-2.0, built for #hackthekitty 2026.',
   },
   {
+    slug: 'conduction-lens',
+    title: 'Conduction Lens: What a 12-Lead ECG Can and Cannot Identify',
+    repo: 'https://github.com/ricardogr07/ecg-purkinje-npe',
+    liveUrl: 'https://d2b1qd2pllzgje.cloudfront.net',
+    docsUrl: 'https://doi.org/10.5281/zenodo.21315609',
+    docsLabel: 'Read the paper',
+    visibility: 'public',
+    featured: true,
+    diagram: '/images/projects/conduction-lens/architecture.svg',
+    diagramCaption:
+      "Conduction parameters run through the author's own purkinje-uv + myocardial-mesh simulator to a 12-lead pseudo-ECG, then an amortized neural posterior estimator (sbi) inverts it and conformal recalibration makes it honest. No real ECG anywhere - every target is simulator output.",
+    heroImage: '/images/projects/conduction-lens/hero.svg',
+    categories: ['ml', 'scientific-python', 'backend-api'],
+    summary:
+      'Amortized, calibrated identifiability analysis of the His-Purkinje conduction system from a simulated 12-lead ECG: which conduction parameters the ECG can and cannot recover at a stated noise floor, measured on a calibrated posterior.',
+    deliverables: [],
+    techStack: [
+      'Python',
+      'sbi',
+      'PyTorch',
+      'purkinje-uv',
+      'myocardial-mesh',
+      'FastAPI',
+      'Next.js',
+      'AWS S3 + CloudFront',
+    ],
+    servicesSupported: [
+      'Scientific Machine Learning',
+      'Simulation-Based Inference',
+      'Uncertainty Quantification',
+      'Research Software',
+      'Cloud Deployment',
+    ],
+    businessValue: [],
+    tldr: "Looking only at a 12-lead ECG, which parts of the heart's wiring can you actually pin down? A calibrated neural posterior answers: of seven conduction parameters, four are recoverable and three are not, at a stated noise level. All simulated ECGs, no patient data - a method, not a clinical result.",
+    headlineMetric:
+      'Which His-Purkinje conduction parameters a 12-lead ECG can identify: 4 of 7, with formal calibration.',
+    status: 'live',
+    situation:
+      'A 12-lead ECG is cheap and everywhere, but the His-Purkinje conduction system that shapes it is hard to observe directly. Which of its parameters can the surface ECG actually recover, and which are wishful thinking? Answering that honestly needs a posterior you can trust, not just a point estimate.',
+    task: 'Build a calibrated, amortized characterization of exactly which cardiac conduction parameters a 12-lead ECG identifies at a stated observation-noise floor - a scientific finding, formally calibrated, with every claim checkable against a source.',
+    action: [
+      "Simulated 12-lead ECGs from cardiac conduction parameters using the author's own purkinje-uv and myocardial-mesh libraries (fractal Purkinje generation, eikonal activation, a Gima-Rudy pseudo-ECG), all CPU-only.",
+      'Trained an amortized Neural Posterior Estimator (sbi, PyTorch) over the 7-parameter prior so any new ECG inverts in a single forward pass, then applied per-parameter conformal recalibration so the reported uncertainty is honest.',
+      'Verified calibration with simulation-based calibration (SBC) and TARP, and ran confirmation experiments (a ridge test, a Fisher-information / CRLB analysis) so the identifiability verdict rests on a calibrated posterior, not raw contraction.',
+      'Shipped an interactive demo (FastAPI serving real posteriors, Next.js UI with 3D activation maps) as a static export on AWS S3 + CloudFront.',
+    ],
+    result:
+      'A calibrated 7-parameter identifiability spectrum at the operating noise floor (sigma = 0.025 mV): the interventricular delay (delta_iv, contraction 0.15) and myocardial conduction velocity (cv_myo, 0.35) are tightly constrained, RV initial length (0.63) and system CV (0.67) are moderately constrained, and the branch-angle, diffuse-block width, and LV-initial-length tree-shape parameters (~1.0 to 1.2) are formally unidentified - 4 of 7 informative. Calibration passes (SBC), and the joint TARP ATC moves from -0.057 (overconfident) to +0.007 after conformal recalibration.',
+    learning:
+      'Identifiability is a property of the forward map relative to a stated noise floor, measured on a calibrated posterior - not a property of a parameter in isolation. The contribution is as much the self-correction record as the numbers: SBC caught an overconfident posterior, a ridge-confirmation experiment refuted a claimed degeneracy, and an audit found a 3000x signal-to-noise error. Each correction narrowed the claim and made it truer, backed by a public verification ledger.',
+    caveat:
+      'No real ECG appears anywhere in this project. Every target is simulator output (an inverse-crime setting) on a single fixed geometry, at a stated noise floor. "Identifiable" means identifiable in simulation; comparison against measured ECGs is future work.',
+    references: [
+      {
+        citation:
+          'Felipe Alvarez-Barrientos, Mariana Salinas-Camus, Simone Pezzuto, Francisco Sahli Costabal. Probabilistic learning of the Purkinje network from the electrocardiogram. Medical Image Analysis, 2025. arXiv:2312.09887 - the direct point of departure for this work.',
+        url: 'https://arxiv.org/abs/2312.09887',
+      },
+    ],
+    resultGallery: [
+      {
+        src: '/images/projects/conduction-lens/identifiability-spectrum.svg',
+        alt: 'Horizontal bar chart of posterior contraction for seven conduction parameters: delta_iv 0.15, cv_myo 0.35, init_length_rv 0.63, cv 0.67 (identifiable), and branch_angle, w, init_length_lv near 1.0 to 1.2 (diffuse). A dashed line marks the prior width at 1.0.',
+        caption:
+          'The headline finding: 4 of 7 parameters fall well below the prior width (identifiable); 3 sit at or above it (the ECG learns nothing beyond the prior). Measured on a calibrated posterior at sigma = 0.025 mV.',
+      },
+      {
+        src: '/images/projects/conduction-lens/self-correction.svg',
+        alt: 'Three rows contrasting what looked true with what was actually true: raw contraction vs SBC-caught overconfidence; a -0.72 correlation vs a mild ridge (not a degeneracy); a ~3000x SNR measurement vs the physiological-mV re-run.',
+        caption:
+          'The methodological contribution: three errors caught and corrected in-house (an overconfident posterior, a mistaken degeneracy, a 3000x SNR audit), each narrowing the claim - backed by a public verification ledger.',
+      },
+    ],
+    artifactNote:
+      'Apache-2.0, built with Claude: Life Sciences. Weights and calibration artifacts ship in the v0.1.0-submission release; DOI 10.5281/zenodo.21315609.',
+  },
+  {
     slug: 'wc26-dashboard',
     title: 'WC26 Dashboard: Live World Cup Pool Forecasting',
     liveUrl: 'https://mango-mushroom-0a45d2a0f.7.azurestaticapps.net/',

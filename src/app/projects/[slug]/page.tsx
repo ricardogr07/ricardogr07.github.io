@@ -7,6 +7,7 @@ import DiagramZoom from '@/components/diagram-zoom'
 import Footer from '@/components/footer'
 import { visibleProjects } from '@/content/projects'
 import type { PortfolioProject } from '@/lib/types'
+import ActivationDemo from '@/components/conduction-lens/ActivationDemo'
 
 function renderWithMath(text: string) {
   const parts = text.split(/(\$[^$]+\$)/g)
@@ -429,6 +430,38 @@ export default async function CaseStudyPage({ params }: Props) {
                           )}
                         </figure>
                       ))}
+                    </div>
+                  )}
+
+                  {project.slug === 'conduction-lens' && (
+                    <div className="mt-8">
+                      <h3 className="mb-1 text-base font-semibold text-white">Explore it live</h3>
+                      <p className="mb-4 text-sm leading-relaxed text-neutral-500">
+                        The same forward model on two hearts, each with its grown LV and RV Purkinje
+                        trees: the crtdemo rig the study runs on, and a public Strocchi four-chamber
+                        anatomy. Drag to orbit, scroll to zoom, toggle the Purkinje layers, and play
+                        the wavefront to watch the depolarization propagate.
+                      </p>
+                      <div className="space-y-6">
+                        <div>
+                          <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-neutral-500">
+                            crtdemo rig
+                          </p>
+                          <ActivationDemo
+                            geometryUrl="/data/conduction-lens/geometry.crtdemo.json"
+                            resultsUrl="/data/conduction-lens/results.crtdemo.json"
+                          />
+                        </div>
+                        <div>
+                          <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-neutral-500">
+                            Strocchi four-chamber
+                          </p>
+                          <ActivationDemo
+                            geometryUrl="/data/conduction-lens/geometry.strocchi.json"
+                            resultsUrl="/data/conduction-lens/results.strocchi.json"
+                          />
+                        </div>
+                      </div>
                     </div>
                   )}
                 </section>
