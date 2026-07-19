@@ -302,8 +302,6 @@ export const projects: PortfolioProject[] = [
     title: 'ShelterPulse: Simulating Kitten Season for Shelter Budget Allocation',
     repo: 'https://github.com/ricardogr07/shelter-pulse',
     liveUrl: 'https://shelter-pulse.com/en',
-    docsUrl: 'https://shelter-pulse.com/api/docs',
-    docsLabel: 'API Docs',
     doiUrl: 'https://doi.org/10.5281/zenodo.21173654',
     visibility: 'public',
     featured: true,
